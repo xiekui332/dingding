@@ -173,6 +173,10 @@ body{
 }
 .gray-ul li{
 	background: #f7f7f7!important;
+	color: #bbb!important;
+}
+.gray-ul li span{
+	color: #bbb!important;
 }
 .sec-3 ul{
 	clear: both;

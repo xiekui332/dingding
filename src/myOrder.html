@@ -79,7 +79,7 @@
 				</li>
 			</ul>
 
-			<ul class="gray-ul">
+			<ul class="gray-ul" v-if="list2.length > 0">
 				<li v-for="item in list2">
 					<div class="line-1">
 						<span>{{item.month}}</span>
@@ -94,6 +94,7 @@
 					<p class=line></p>
 				</li>
 			</ul>
+			<ul v-else></ul>
 		</div>
 		
 	</div>
