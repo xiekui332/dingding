@@ -59,6 +59,15 @@ gulp.task('less', function () {
 });
 
 gulp.task('js', function () {
+
+    // return gulp.src('src/asset/js/**/*.js')
+    //     .pipe(babel())
+    //     .pipe(gulp.dest('dist/jsbabel'))
+    //     .pipe($.uglify())  //使用uglify进行压缩
+    //     .pipe(rev())                            //- 文件名加MD5后缀
+    //     .pipe(gulp.dest('dist/asset/js/'))
+    //     .pipe(rev.manifest())            
+
     return gulp.src('dist/jsbabel/**/*.js')
         .pipe($.uglify())  //使用uglify进行压缩
         .pipe(rev())                            //- 文件名加MD5后缀
@@ -101,11 +110,11 @@ gulp.task('watch', ['build'], function () {
 
     var changed = [];
 
-    gulp.watch("src/asset/**/*.html", ['html', pop]).on('change', push);
+    gulp.watch("src/**/*.html", ['html', pop]).on('change', push);
     
-    gulp.watch('src/asset/**/*.js', ['js',pop]).on('change',push);
+    gulp.watch('src/**/*.js', ['js',pop]).on('change',push);
 
-    gulp.watch("src/asset/less/*.less", ['less', pop]).on('change', push);
+    gulp.watch("src/css/*.css", ['css', pop]).on('change', push);
 
 
     function push(s) {
