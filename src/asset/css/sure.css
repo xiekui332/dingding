@@ -1,0 +1,363 @@
+body{
+    font-family: 'PingFangSC-Regular';
+    background: #f7f7f7;
+}
+.sec-1{
+	width: 100%;
+	height: 2.4rem;
+	background: #FFFFFF;
+	/* border-top: 1px solid #ddd; */
+    box-sizing: border-box;
+    margin-top: .2rem;
+    overflow: hidden;
+}
+.con-head{
+	margin: .35rem .3rem 0;
+	/* border-bottom: 1px solid #ddd; */
+	height: 2rem;
+}
+.img{
+	width: 1.6rem;height: 1.6rem;
+	float: left;
+}
+.detail-box{
+	display: inline-block;float: left;
+}
+.detail-box p{
+	padding-left: .15rem!important;
+}
+.detail-box p:nth-child(1){
+	font-size: .28rem;
+	color: #333333;
+	line-height: .28rem;
+}
+.detail-box p:nth-child(1) span{
+	padding: 0 .05rem;
+}
+.detail-box p:nth-child(2){
+	font-size: .24rem;
+	color: #999999;
+	line-height:.24rem;
+	margin-top: .15rem;
+}
+.detail-box p:nth-child(3){
+	font-size: .28rem;
+	color: #333333;
+	line-height: .28rem;
+	margin-top: .15rem;
+}
+.detail-box p:nth-child(3) span{
+	padding: 0 .05rem;
+}
+.renzh{
+	width: 1.7rem;
+	height: .3rem;
+	border: 1px solid #1CCFC9;
+	float: left;
+	margin:.15rem 0 0 .15rem;
+	font-size: .2rem;
+	color: #1CCFC9;
+	text-align: center;
+	line-height: .3rem;
+}
+
+
+/*租金信息*/
+.sec-2{
+	width: 100%;
+	height: 2rem;
+	background: #fff;
+	clear: both;
+	overflow: hidden;
+}
+.sec-2>div{
+	display: inline-block;
+	width: 33%;
+	float: left;
+	margin-top: .3rem;
+	height: .9rem;
+}
+.sec-2>div>p:nth-child(1){
+	font-size: .32rem;
+	color: #333333;
+	letter-spacing: 0;
+	text-align: center;
+	line-height: .32rem;
+}
+.sec-2>div>p:nth-child(2){
+	font-size:.24rem;
+	color: #999999;
+	letter-spacing: 0;
+	text-align: center;
+	line-height: .4rem;
+}
+.word{
+	clear: both;
+}
+.word span{
+	display: block;
+	font-size: .24rem;
+	color: #999999;
+	letter-spacing: 0;
+	line-height: .24rem;
+}
+.info{
+	float: left;
+	width: .2rem;
+	height: .2rem;
+}
+.word img{
+	width: .2rem;
+	float: left;
+	margin-left: .5rem;
+	margin-right: .08rem;
+	margin-top: .008rem;
+}
+.sec-3{
+	border-top: .1rem solid #f7f7f7;
+}
+.sec-3 ul li{
+	width: 100%;
+	height: 1.5rem;
+	background: #fff;
+}
+.line-1{
+	padding: .4rem .3rem 0;
+}
+.line-1>span:nth-child(1){
+	display: inline-block;
+	float: left;
+	font-size: .28rem;
+	color: #666666;
+	letter-spacing: 0;
+	line-height: .28rem;
+}
+.line-1>span:nth-child(2){
+	display: inline-block;
+	float: right;
+	font-size:.28rem;
+	color: #666666;
+	letter-spacing: 0;
+	text-align: right;
+	line-height: .28rem;
+}
+.line-2{
+	padding: .2rem .3rem 0;
+	clear: both;
+}
+.line-2>span:nth-child(1){
+	display: inline-block;
+	float: left;
+}
+.line-2 span:nth-child(1) span{
+	font-size: .4rem;
+	color: #333333;
+	letter-spacing: 0;
+}
+.line-2>span:nth-child(2){
+	display: inline-block;
+	float: right;
+	font-size: .24rem;
+	color: #999999;
+	letter-spacing: 0;
+	text-align: right;
+	margin: .1rem 0 0 0
+}
+.line-2>span{
+	font-size: .22rem;
+	color: #333333;
+	letter-spacing: 0;
+}
+.line{
+	float: right;
+	width: 96%;
+	border-top: 1px solid #ddd;
+	margin-top: .3rem;
+}
+.gray-ul li{
+	background: #f7f7f7!important;
+	color: #bbb!important;
+}
+.gray-ul li span{
+	color: #bbb!important;
+}
+.sec-3 ul{
+	clear: both;
+}
+.sec-3 ul li:nth-child(1){
+	border-top: none;
+}
+.fff-ul li:last-of-type .line{
+	display: none;
+}
+.gray-ul li:last-of-type .line{
+	display: none;
+}
+
+
+/* 头部地址 */
+.dd_sure{
+    width: 100%;
+    /* min-height: 2.3rem; */
+    background: #fff;
+    border-top: 1px solid #ddd;
+    position: relative;
+    overflow: hidden;
+}
+.dd_sure{
+    padding: .3rem 0 0;
+}
+.dd_sure>p span{
+    display: inline-block;
+    font-size: .32rem;
+    color:#000;
+}
+.dd_sure>p span:nth-child(1){
+    float: left;
+}
+.dd_sure>p span:nth-child(2){
+    float: left;
+    margin-left: .6rem;
+}
+.dd_sure>p{
+    padding:0 .3rem 0;
+    height: .4rem;
+}
+
+.address{
+    padding: 0 .3rem 0;
+    height: 1rem;
+}
+.address img{
+    width: .25rem;float: left;
+    margin-top: .08rem;
+}
+.address>p{
+    width: 6.6rem;float:left;
+    color: #999;
+    font-size: .28rem;
+    padding-left: .05rem;
+    line-height: .45rem;
+}
+.address>p.small{
+    font-size: .2rem;
+    float: left;
+    color: #999;
+    margin-left: .28rem;
+    line-height: .45rem;
+    padding-bottom: .3rem;
+}
+.line-2{
+    clear: both;
+    width: 100%;
+    height: .001rem;
+    position: absolute;
+    bottom: -.1rem;
+    background-image: linear-gradient(-50deg, #F3654C 0%, #F78C5C 100%);
+}
+
+/* 租金列表
+ */
+ .lb{
+    width: 100%;
+    /* height: 4.36rem; */
+    background: #fff;
+    margin-top: .2rem;
+}
+.yuezu{
+    padding: .3rem .3rem 0;
+}
+.yuezu>div{
+    clear: both;
+    font-size: .28rem;
+    line-height: .5rem;
+    height: .5rem;
+}
+/* .yuezu>div:nth-child(1){
+   font-size: .2rem;
+}
+.yuezu>div:nth-child(1) span{
+   font-size: .28rem;
+   color: #333333;
+   line-height: .28rem;
+} */
+.l{
+    display: inline-block;
+    float: left;
+}
+.r{
+   display: inline-block;
+   float: right;
+}
+.yuezu>div span{
+    font-size: .28rem;
+    color: #333;
+}
+.yuezu .gray span{
+    font-size: .28rem;
+    color: #999;
+}
+.yuezu .gray{
+    font-size: .28rem;
+    color: #999;
+}
+
+.lb-1{
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: .2rem;
+}
+.lb-1:last-of-type{
+    border-bottom: none!important;
+}
+.quest{
+    float: right;
+    width: .3rem;
+    margin-top: .1rem;
+}
+.mian{
+    padding-right: .08rem;
+}
+.submit{
+    height:2.5rem;
+    background: #fff;
+    margin-top: .2rem;
+    padding: .4rem .3rem;
+}
+.circle{
+    width: .44rem;
+    height: .44rem;
+    border-radius: 50%;
+    border: 1px solid #c9c9c9;
+    float: left;
+}
+.shi{
+    width: .3rem;height: .3rem;
+    background: red;
+    margin: .065rem auto;
+    border-radius: 50%;
+}
+.text-word{
+    display: inline-block;
+    font-size: .28rem;
+    color: #333333;
+    line-height: .5rem;
+    margin-left: .1rem;
+}
+.text-word span{
+    color: #2a8afa;
+}
+.tjdd{
+    text-align: center;
+    font-size: .36rem;
+    width: 6.9rem;
+    height: .88rem;
+    margin: .4rem auto .3rem;
+    background: rgba(244,107,83,0.40);
+    border-radius: .44rem;
+    line-height: .88rem;
+    color: #fff;
+}
+.red-btn{
+    background: rgba(244,107,83,1);
+}
