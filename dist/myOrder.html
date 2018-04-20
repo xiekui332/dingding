@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>我的账单</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-514257fc06.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/myCount-f076364c50.css"/>
+    <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//	如果报错clientWidth 为null，意思是对于null没有clientWidth这个属性，说明document.body这个是null。需写在$(document).ready(function(){})里面
+    		var body = document.body.clientWidth;		
+        		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    	})
+    </script>
+</head>
+<body>
+	<div id="app">
+		<div class="sec-1">
+			<div class="con-head">
+				<img src="" class="img"/>
+				<div class="detail-box">
+					<p>
+						<span>yaman/雅萌</span>
+						<span>瘦脸射频</span>
+						<span>美颜仪</span>
+					</p>
+					<p>瘦脸射频美颜仪瘦脸射频美颜仪</p>
+					<p>
+						<span>总租金:</span>
+						<span>￥2,988.00</span>
+					</p>
+					<div class="renzh">
+						芝麻信用·免押金
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!--租金信息-->
+		<div class="sec-2">
+			<div>
+				<p>3,000.00</p>
+				<p>应还租金(元)</p>
+			</div>
+			<div>
+				<p>1,000.00</p>
+				<p>已还租金(元)</p>
+			</div>
+			<div>
+				<p>2,000.00</p>
+				<p>待还租金(元)</p>
+			</div>
+			
+			<p class="word"> 
+				<img src="asset/images/icon/dh.png"/>
+				<span>账单到期将通过支付宝免密支付方式还款，请注意查收信息</span>	
+			</p>
+		</div>
+		
+		
+		<!--分期信息-->
+		
+		<div class="sec-3">
+			<ul class="fff-ul">
+				<li v-for="item in list">
+					<div class="line-1">
+						<span>{{item.month}}</span>
+						<span>{{item.status}}</span>
+					</div>
+					<div class="line-2">
+						<span>
+							￥<span>{{item.num}}</span>.00
+						</span>
+						<span>{{item.time}}</span>
+					</div>
+					<p class=line></p>
+				</li>
+			</ul>
+
+			<ul class="gray-ul" v-if="list2.length > 0">
+				<li v-for="item in list2">
+					<div class="line-1">
+						<span>{{item.month}}</span>
+						<span>{{item.status}}</span>
+					</div>
+					<div class="line-2">
+						<span>
+							￥<span>{{item.num}}</span>.00
+						</span>
+						<span>{{item.time}}</span>
+					</div>
+					<p class=line></p>
+				</li>
+			</ul>
+			<ul v-else></ul>
+		</div>
+		
+	</div>
+</body>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
+		data:{
+			list:[
+				{
+					month:'7/9期',
+					status:'待还款',
+					num:'249',
+					time:'2018年08月29日通过支付宝免密支付还款'
+				},
+				{
+					month:'8/9期',
+					status:'待还款',
+					num:'250',
+					time:'2018年08月30日通过支付宝免密支付还款'
+				}
+			],
+			list2:[
+				{
+					month:'7/9期',
+					status:'已还款',
+					num:'249',
+					time:'2018年03月29日'
+				},
+				{
+					month:'8/9期',
+					status:'已还款',
+					num:'250',
+					time:'2018年03月29日'
+				}
+			]
+		}
+	})
+	
+</script>
+</html>
