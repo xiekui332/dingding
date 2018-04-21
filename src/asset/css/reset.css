@@ -119,37 +119,42 @@ body{
   
   /* 字体大小 */
   .smallFont {
-    font-size: 22rpx;
-    line-height: 22rpx;
+    font-size: .22rem;
+    line-height: .22rem;
   }
   .smallerFont {
-    font-size: 20rpx;
-    line-height: 20rpx;
+    font-size: .20rem;
+    line-height: .20rem;
     letter-spacing: 0;
   }
   .mediumerFont {
-    font-size: 28rpx;
-    line-height: 29rpx;
+    font-size: .28rem;
+    line-height: .28rem;
     letter-spacing: 0;
   }
   .mediumFont {
-    font-size: 24rpx;
-    line-height: 24rpx;
+    font-size: .24rem;
+    line-height: .24rem;
     letter-spacing: 0;
   }
   .largeFont {
-    font-size: 32rpx;
-    line-height: 32rpx;
+    font-size: .32rem;
+    line-height: .32rem;
     letter-spacing: 0;
   }
   .largerFont {
-    font-size: 36rpx;
-    line-height: 36rpx;
+    font-size: .36rem;
+    line-height: .36rem;
+    letter-spacing: 0;
+  }
+  .largestFont {
+    font-size: .48rem;
+    line-height: .48rem;
     letter-spacing: 0;
   }
   .more {
-    height:26rpx;
-    width:16rpx;
+    height:.26rem;
+    width:.16rem;
   }
   
   
