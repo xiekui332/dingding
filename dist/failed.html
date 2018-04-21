@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>下单失败</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-7727e4c779.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/success-3cf57b7945.css"/>
+    <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//	如果报错clientWidth 为null，意思是对于null没有clientWidth这个属性，说明document.body这个是null。需写在$(document).ready(function(){})里面
+    		var body = document.body.clientWidth;		
+        		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    	})
+    </script>
+</head>
+<body>
+	<div id="app">
+		<div class="sec-1">
+            <img src="asset/images/icon/failed.png" alt="" class="sure sure2">
+            <p class="gx">下单失败</p>
+            <p class="will">系统异常请尝试重新下单</p>
+		</div>
+        
+       
+
+
+        <!-- 按钮 -->
+		<div class="btn-box btn-box2">
+            <a href="javascript:;" @click="again">重试</a>
+        </div>
+		
+		
+	</div>
+</body>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
+		data:{
+			list:[
+				{
+					month:'7/9期',
+					status:'待还款',
+					num:'249',
+					time:'2018年08月29日通过支付宝免密支付还款'
+				},
+				{
+					month:'8/9期',
+					status:'待还款',
+					num:'250',
+					time:'2018年08月30日通过支付宝免密支付还款'
+				}
+			],
+			list2:[
+				{
+					month:'7/9期',
+					status:'已还款',
+					num:'249',
+					time:'2018年03月29日'
+				},
+				{
+					month:'8/9期',
+					status:'已还款',
+					num:'250',
+					time:'2018年03月29日'
+				}
+			]
+		},
+        methods:{
+            again:function(){
+
+            }
+        }
+	})
+	
+</script>
+</html>

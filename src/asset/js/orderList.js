@@ -85,8 +85,8 @@ var vm = new Vue({
         page: 1,
         pageSize: 15,
         status: -1,
+        loading: false,
         isEnd: false,
-        isLoading: true,
         orderStatus: {//租赁状态  0-待支付 1-订单取消 9租赁中 10-租期已满 2待发货 3待收货 4交易结束
             cancel: '1',
             unpay: '0',
@@ -113,6 +113,7 @@ var vm = new Vue({
             this.getOrderList();
         },
         getOrderList() {
+            var data=[];
             this.orderList = this.orderList.concat(data);
             if (data.length === 0) {
                 this.isEnd = true;
@@ -154,21 +155,21 @@ var vm = new Vue({
             this.page = 1
             this.loading = false;
             this.isEnd = false
-            this.ordersDisplay = false
+            // this.ordersDisplay = false
             this.getOrderList()
         },
-        setTitle() {
-            console.info('setTitle')
-            dd.biz.navigation.setTitle({
-                title : '邮箱正文',//控制标题文本，空字符串表示显示默认文本
-                onSuccess : function(result) {
-                    /*结构
-                    {
-                    }*/
-                },
-                onFail : function(err) {}
-            });
-        }
+        // setTitle() {
+        //     console.info('setTitle')
+        //     dd.biz.navigation.setTitle({
+        //         title : '邮箱正文',//控制标题文本，空字符串表示显示默认文本
+        //         onSuccess : function(result) {
+        //             /*结构
+        //             {
+        //             }*/
+        //         },
+        //         onFail : function(err) {}
+        //     });
+        // }
     },
     created() {
     },
@@ -177,6 +178,6 @@ var vm = new Vue({
     mounted() {
         var body = document.body.clientWidth;		
         document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-        this.setTitle()
+        // this.setTitle()
     }
 })
