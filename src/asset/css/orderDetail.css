@@ -486,3 +486,14 @@ body{
 	white-space: nowrap;
 	text-overflow: ellipsis;
  }
+ .status-cancle{
+	 width: .28rem;
+ }
+ .status-ju{
+	 width: .35rem;
+	 height: .35rem;
+ }
+ .status-tg{
+	 width: .38rem;
+	 height: .38rem;
+ }
