@@ -5,6 +5,7 @@ var vm = new Vue({
     props: {
     },
     data: {
+        tabActive: 0,
         goodsDetail: {
             productImages: [
                 {
@@ -13,7 +14,15 @@ var vm = new Vue({
                 {
                     imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
                 }
-            ]
+            ],
+            productDescEntity: {
+                contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
+            },
+            name: '123',
+            productPrice: 123,
+            productDeposit: 232
         }
     },
     computed: {
@@ -23,13 +32,22 @@ var vm = new Vue({
     filters: {
     },
     methods: {
-        //加载更多
-        loadMore() {
-            if (this.isEnd == true) {
-                return;
-            }
-            this.loading = true
-            this.getOrderList();
+        tabTap(index) {
+            this.tabActive = index
+        },
+        setSkuData() {
+    
+            let list = this.goodsDetail.productPriceEntity
+            let item = JSON.parse(JSON.stringify(list[0]))
+            item.totalAmount = (parseInt(item.timeLength) * parseFloat(item.price)).toFixed(2)
+            item.price = item.price.toFixed(2)
+            this.setData({
+              oncePay: 0, //按月
+              time: 0,
+              oncePrice: item.isOncePrice,
+              monthPrice: item.price,
+              item: item
+            });
         },
     },
     created() {
