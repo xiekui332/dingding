@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title> 用户授权</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/userEmpower.css"/>
+    <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//	如果报错clientWidth 为null，意思是对于null没有clientWidth这个属性，说明document.body这个是null。需写在$(document).ready(function(){})里面
+    		var body = document.body.clientWidth;		
+        		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    	})
+    </script>
+</head>
+<body>
+	<div id="app">
+        <!-- 审核通过部分 -->
+		<div class="" style="display: none;">
+            <div class="sec-1">
+                <div class="order-status">
+                     <div>
+                         <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju">
+                         <span class="status-word">
+                                 {{st}}
+                         </span>
+     
+                         <p class="congratulation">恭喜你，授权信息已经审核通过；可以前往订单列表页 完成支付</p>
+                     </div>
+                </div>
+             </div>
+             
+             <div class="sec-2">
+                 <div class="sec-first">
+                     <img src="asset/images/icon/free.png" alt="" class="free-img">
+                     <span class="sq-word">
+                         授权芝麻信用
+                     </span>
+                     <p class="sq-explain">首次申请租赁的企业用户，需要完成企业/个人授权，部分信息人
+                         工审核后可以继续租赁</p>
+                 </div>
+             </div>
+     
+     
+             <!-- 信息部分 -->
+           
+             <div class="info-list">
+                 <div class="list-1">
+                     <p>统一社会信用代码/注册号</p>
+                     <p>91330101699836353W</p>
+                 </div>
+             </div>
+        </div>
+        
+        <!-- 信息填写 -->
+        <div class="">
+            <div class="head-sec">
+
+            </div>
+
+
+            <div class="tianxie">
+                <div class="item-mnue">
+                    <p class="item-title">统一社会信用代码/注册号</p>
+                    <input type="text">
+                </div>
+                <div class="item-mnue">
+                    <p class="item-title">公司名称</p>
+                    <input type="text">
+                </div>
+                <div class="item-mnue">
+                    <p class="item-title">真实姓名</p>
+                    <input type="text">
+                </div>
+                <div class="item-mnue">
+                    <p class="item-title">身份证号</p>
+                    <input type="text">
+                </div>
+                <div class="item-mnue">
+                    <p class="item-title">手机号</p>
+                    <input type="text">
+                </div>
+                
+                <div class="item-mnue-jt">
+                    <p class="item-title">上传钉钉指数截图</p>
+                </div>
+
+
+                <div class="img-up">
+                    <div class="img-box">
+
+                    </div>
+                    <div class="img-box">
+
+                    </div>
+                    <p style="clear: both;"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
+		data:{
+			list:[],
+            st:'审核通过'
+		},
+        methods:{
+            see:function(){
+
+            },
+            back:function(){
+
+            }
+        }
+	})
+	
+</script>
+</html>
