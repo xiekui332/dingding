@@ -89,14 +89,43 @@
 
 
                 <div class="img-up">
+                    <!-- <div class="img-box" v-for="item in img">
+                        <img :src="item" alt="">
+                    </div> -->
+                    <div class="img-box">
+                        <input type="file" accept="images/*" @change="fileUp(this)" id="up1">
+                    </div>
                     <div class="img-box">
 
+                    </div>
+                    <p class="explain-dd">说明：钉钉指数在0000以上享有免押权益</p>
+                </div>
+
+                <div class="item-mnue-jt">
+                    <p class="item-title">上传企业委托书</p>
+                </div>
+
+                <div class="img-up img-up2">
+                    <!-- <div class="img-box" v-for="item in img">
+                        <img :src="item" alt="">
+                    </div> -->
+                    <div class="img-box">
+                        <input type="file" accept="images/*" @change="fileUp(this)" id="up2">
                     </div>
                     <div class="img-box">
 
                     </div>
                     <p style="clear: both;"></p>
                 </div>
+                
+
+                <div class="now-lj">
+                    <div class="bow-btn" @click="ljsq">
+                            立即授权
+                    </div>
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -109,7 +138,8 @@
 		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 		data:{
 			list:[],
-            st:'审核通过'
+            st:'审核通过',
+            img:[],
 		},
         methods:{
             see:function(){
@@ -117,9 +147,44 @@
             },
             back:function(){
 
+            },
+            fileUp:function(){
+                var str = $('#up1').val();
+                vm.img.push(str)
+                
+                // dd.ready({
+                    
+                    // dd.biz.util.uploadImage({
+                    //     compression:true,//(是否压缩，默认为true)
+                    //     multiple: false, //是否多选，默认false
+                    //     max: 3, //最多可选个数
+                    //     quality: 50, // 图片压缩质量, 
+                    //     resize: 50, // 图片缩放率
+                    //     onSuccess : function(result) {
+                    //         //onSuccess将在图片上传成功之后调用
+                    //         alert()
+                    //         console.log(result)
+                    //         /*
+                    //         [
+                    //         'http://gtms03.alicdn.com/tps/i3/TB1VF6uGFXXXXalaXXXmh5R_VXX-237-236.png'
+                    //         ]
+                    //         */
+                    //     },
+                    //     onFail : function(err) {}
+                    // })
+                // });
+
+               
+            },
+            ljsq:function(){
+                
             }
         }
 	})
 	
+</script>
+<script>
+    
+    
 </script>
 </html>
