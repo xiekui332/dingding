@@ -6,6 +6,7 @@
     <title>订单详情</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/orderDetail.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
     <!-- <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script> -->
 </head>
 <body onresize="mask()">
@@ -63,10 +64,10 @@
                 <p>
                    北京北京市海淀区中关村街道双宜数东里3号楼友谊鲜果（菜鸟驿站:13423475456）
                 </p>
-               <div class="p-box">
+               <div class="p-box" @click="openModal('signTip')">
                     <p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
+                    <img src="asset/images/icon/more.png" alt="" class="small-jump">
                </div>   
-                <img src="asset/images/icon/more.png" alt="" class="small-jump">
             </div>
             <div class="line-2"></div>
          </div>
@@ -124,7 +125,7 @@
                     </div>
                     <div class="gray">
                         <span class="l">租金付款方式</span>
-                        <img src="asset/images/icon/quest.png" alt="" class="quest">
+                        <img src="asset/images/icon/quest.png" alt="" class="quest" @click="openModal('payTip')">
                         <span class="r mian">支付宝免密支付</span>
                     </div>
                 </div>
@@ -179,7 +180,7 @@
             <!-- <div @click="" class="seeCount2">授权申请</div> -->
             <!-- 查看授权信息 -->
             <div @click="seePower" class="seePower">查看授权信息</div>
-            <div @click="contact">联系客服</div>
+            <div @click="openModal('contactTip')">联系客服</div>
         </div>
 
         <!-- 审核通过 -->
@@ -206,12 +207,13 @@
             </div>
         </div>
 
-
+        <pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
 	</div>
 </body>
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="asset/component/js/modal.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -250,7 +252,11 @@
 					num:'250',
 					time:'2018年03月29日'
 				}
-			]
+            ],
+            showPop: false,
+            popTitle: '',
+            popContent: [],
+            setStyle: ''
 		},
         methods:{
             click:function(){
@@ -274,6 +280,31 @@
             },
             seePower:function(){
 
+            },
+            openModal:function(modalType) {
+                if (modalType == 'payTip') {
+                    this.popTitle = '支付宝免密支付',
+                    this.setStyle = ''
+                    this.popContent = [
+                        '租用中，相关费用由商户通过支付宝向用户发起扣款，如约归还物品后，支付宝免密支付自动取消'
+                    ]
+                } else if (modalType == 'signTip'){
+                    this.popTitle = '签收须知'
+                    this.setStyle = ''
+                    this.popContent = [
+                        '收货当天你需求:',
+                        '1.检查商品外包装完整；',
+                        '2.快递本人签收；',
+                        '3.签收当天视为合约生效'
+                    ]
+                } else if (modalType == 'contactTip') {
+                    this.popTitle = '客服电话'
+                    this.setStyle = 'textAlign:center;fontSize:.38rem;lineHeight:2'
+                    this.popContent = [
+                        '0571-85180735'
+                    ]
+                }
+                this.showPop = true
             }
         },
         mounted() {
