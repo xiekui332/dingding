@@ -1,0 +1,55 @@
+.pop_screen {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, .6);
+    /* opacity: .6; */
+    overflow: hidden;
+}
+  
+.pop_box {
+    font-family: 'PingFangSC-Regular';
+    width: 5.50rem;
+    position: fixed;
+    top: 50%;
+    left: 0;
+    z-index: 1001;
+    background: #FFF;
+    margin: -1.50rem 1rem 0 1rem;
+    border-radius: .03rem;
+    /* opacity: 1; */
+}
+  
+.pop_title {
+    font-family: 'PingFangSC-Regular';
+    padding:.50rem 0 .20rem 0;
+    text-align: center;
+    color: #333;
+}
+.pop_content {
+    /* width:100%; */
+    font-family: 'PingFangSC-Regular';
+    color: #666;
+    padding: 0 .60rem .90rem .60rem;
+    line-height: .40rem;
+    font-size: .26rem;
+}
+.close {
+    position: absolute;
+    bottom: -1.20rem;
+    width: 100%;
+    text-align: center;
+}
+.close img {
+    width: .64rem;
+}
+
+.popfade-enter-active, .popfade-leave-active {
+    transition: opacity .5s;
+}
+.popfade-enter, .popfade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+}

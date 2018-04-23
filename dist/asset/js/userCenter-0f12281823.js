@@ -1,1 +1,0 @@
-"use strict";var vm=new Vue({el:"#app",components:{},props:{},data:{},computed:{},watch:{},filters:{},methods:{},created:function(){},destroyed:function(){},mounted:function(){document.body.clientWidth;document.documentElement.style.fontSize=document.documentElement.clientWidth/7.5+"px"}});

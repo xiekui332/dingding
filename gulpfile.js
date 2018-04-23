@@ -31,6 +31,12 @@ gulp.task('babel',['cleanbabel'], function(){
 })
 
 
+gulp.task('babelComponentJs',['copyComponentCss'], function(){
+    gulp.src('src/asset/component/js/**/*.js')
+    .pipe(babel())
+    .pipe(gulp.dest('dist/asset/component/js'))
+})
+
 /*清理文件*/
 gulp.task('clean',['babel'], function () {                     //删除dist目录下的所有文件
     gulp.src('dist/asset/js/**/*.js',{read:false})
@@ -87,12 +93,20 @@ gulp.task('img', function () {
 
 
 // copy
-gulp.task('copy', function() {
+gulp.task('copy',['babelComponentJs', 'copyComponentCss'], function() {
     return gulp.src('src/static/**/*'
         // ['src/static/*'], {
         //     base: './src/asset/'   //如果设置为 base: 'js' 将只会复制 js目录下文件, 其他文件会忽略
         // }
     ).pipe(gulp.dest('dist/static/'));
+});
+
+gulp.task('copyComponentCss',function() {
+    return gulp.src('src/asset/component/**/*.css'
+        // ['src/static/*'], {
+        //     base: './src/asset/'   //如果设置为 base: 'js' 将只会复制 js目录下文件, 其他文件会忽略
+        // }
+    ).pipe(gulp.dest('dist/asset/component'));
 });
 
 /*修改html文件的link标签和script标签引用的css和js文件名，并把html文件输出到指定的位置*/
