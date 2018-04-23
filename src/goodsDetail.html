@@ -6,28 +6,29 @@
     <title>淘租公</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
 </head>
 <style>
+    .layout {
+        padding: 0 .34rem
+    }
     .title {
         font-family: 'PingFangSC-Regular';
-        font-size: .32rem;
+        font-size: .36rem;
         color: #333333;
         text-align: left;
-        line-height: .44rem;
-        margin-bottom: .12rem;
+        /* line-height: .44rem; */
+        margin-bottom: .1rem;
     }
     .tip {
         font-size: .20rem;
-        color: #ffffff;
-        background: #FF6262;
-        text-align: center;
-        /* line-height: 20rpx; */
-        width: 1.15rem;
-        padding: .05rem 0;
-        margin-bottom: .31rem;
+        color: #999999;
+        padding: .05rem .08rem;
+        /* float: right; */
+        border: 1px solid #999999;
     }
     .content {
-        padding:.44rem .30rem .28rem .30rem;
+        padding:.43rem .30rem .24rem .30rem;
         text-align: left;
     }
     .borderBottom {
@@ -38,16 +39,20 @@
         font-size: .32rem;
         color: #F3654C;
         line-height: .32rem;
+        margin: .20rem 0;
+    } 
+    .deposit {
+        display: flex;
+        justify-content: space-between;
     }
-
+    
     .tab {
-        font-family: 'PingFangSC-Regular';
         font-size: .28rem;
         color: #878787;
         text-align: left;
         display: flex;
         justify-content: space-around;
-        margin-top:.20rem;
+        border-bottom: 1px solid rgba(143,143,143,0.50);
     }
     .tab span {
         padding: .28rem 0 .16rem 0;
@@ -61,12 +66,120 @@
         font-size: .24rem;
         margin-left:.20rem;
     }
+
+    /* swipe */
+    .mint-swipe-indicator {
+        opacity: 0.3;
+        background: #F3654C;
+        width: .08rem;
+        height: .08rem;
+        display: inline-block;
+        border-radius: 100%;
+        /* margin: 0 3px; */
+    }
+
+    .mint-swipe-indicator.is-active {
+        opacity: 0.8;
+        background: #F3654C;
+        border-radius: .08rem;
+        width: .3rem;
+        height: .08rem;
+    }
+
+    .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .mint-button {
+        border-radius: 0;
+        font-size: .32rem;
+    }
+    .right-button {
+        background-color:#F3654C;
+        color:white;
+        width:100%;
+        height:1rem
+    }
+
+    .popup {
+        width: 100%;
+        /* padding: .2rem .4rem 0 .4rem; */
+        border-radius: .2rem .2rem 0 0;
+    }
+    .popup-sku p {
+        font-family: 'PingFangSC-Medium';
+        font-size: .28rem;
+        color: #333333;
+        line-height: .32rem;
+        margin: .42rem 0 .2rem 0;
+    }
+    .sku-price {
+        font-family: 'PingFangSC-Regular';
+        font-size: .456rem;
+        color: #666666;
+        text-align: right;
+        margin: 0 .46rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .popup-sku div span {
+        font-family: 'PingFangSC-Regular';
+        font-size: .24rem;
+        line-height: .24rem;
+        color: #999999;
+        border: 1px solid #999999;
+        border-radius: .24rem;
+        padding: .11rem .2rem .1rem .2rem;
+        margin-right: .25rem;
+        display: inline-block;
+    }
+
+    .sku-active {
+        color: #F3654C !important;
+        border: 1px solid #F3654C !important;
+    }
+    .sku-number span{
+        border: 1px solid #DDDDDD !important;
+        margin: 0 !important;
+    }
+    .sku-number .reduce{
+        border-radius: .24rem 0 0 .24rem;
+        color: #F3654C;
+        font-size: .35rem;
+        vertical-align: top;
+        padding: .1rem .15rem .15rem;
+    }
+    .sku-number .add {
+        border-radius: 0 .24rem .24rem 0;
+        color: #F3654C;
+        font-size: .35rem;
+        vertical-align: top;
+        padding: .1rem .15rem .15rem;
+    }
+    .sku-number .num {
+        border-radius: 0;
+        border-right: 0 !important;
+        border-left: 0 !important;
+        font-size: .24rem;
+        padding: .12rem .2rem;
+        
+    }
+    .submit {
+        font-family: 'PingFangSC-Regular';
+        background-color:#F3654C;
+        color:white;
+        border-radius: .88rem;
+        font-size: .36rem;
+        margin: .25rem 0 .18rem 0;
+    }
 </style>
 <body>
 	<div id="app">
-        <div>
+        <div class="regular">
             
-            <mt-swipe :auto="4000" style="height:7.5rem">
+            <mt-swipe :auto="4000" style="height:6.82rem;" class="writeBackColor layout">
                 <mt-swipe-item v-for="(item, index) in goodsDetail.productImages">
                     <img class="full-width" :src="item.imagePath" style="will-change: transform;">
                 </mt-swipe-item>
@@ -74,20 +187,31 @@
 
 
 
-            <div class="content borderBottom writeBackColor">
-                <div class="title">{{goodsDetail.name}}</div>
-                <div class="tip">租完送机</div>
+            <div class="content writeBackColor">
+                <div class="title overHidden">{{goodsDetail.name}}</div>
+                <div class="mediumstFont light-gray overHidden">{{goodsDetail.brief}}</div>
                 <div class="priceTitle">月租金<span class="unit">￥</span><span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span>起</div>
-                <div class="gray regular smallFont" style="margin-top:.32rem">官网售价<span class="smallerFont black" style="margin-left:.2rem">￥</span><span class="black mediumFont">{{goodsDetail.productDeposit}}</span></div>
+                <div class="gray regular smallFont deposit">
+                    <span>
+                        <span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
+                        <span class="smallerFont" style="color:#2A2A2A">￥</span><span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit}}</span>
+                    </span>
+                    <span class="tip">非全新</span>
+                </div>
             </div>
 
 
-            <div class="tab writeBackColor">
+            <div class="writeBackColor layout" style="margin-top:.31rem;padding: .4rem .3rem">
+                <p class="mediumerFont black">租赁流程</p>
+                <img src="asset/images/icon/lease_process.png" class="full-width" style="margin-top:.2rem">
+            </div>
+
+            <div class="tab writeBackColor" style="margin-top:.2rem">
                 <span @click="tabTap(0)" :class="{'tabActive':tabActive==0}">商品介绍</span>
                 <span @click="tabTap(1)" :class="{'tabActive':tabActive==1}">规格参数</span>
                 <span @click="tabTap(2)" :class="{'tabActive':tabActive==2}">售后说明</span>
             </div>
-            <div>
+            <div style="margin-bottom:1rem">
                 <div v-for="item in goodsDetail.productDescEntity.contentlist" v-show="tabActive == 0" :key="item">
                     <image :src="item" class="full-width"/>
                 </div>
@@ -98,6 +222,71 @@
                     <image :src="item" class="full-width" />
                 </div>
             </div>
+
+            <div class="fixed-bottom">
+                <span style="width:83%;display:inline-block">
+                    <mt-button class="largeFont right-button" @click="openSku">立即租赁</mt-button>
+                </span>
+                <span style="width:17%;float:left" >
+                    <mt-button style="width:100%;height:1rem" @click="openModal">
+                        <img style="height:.5rem;width:auto;vertical-align: middle;" src="asset/images/icon/service.png">
+                    </mt-button>
+                </span>
+            </div>
+            
+            <!-- sku -->
+            <mt-popup v-model="popupVisible" position="bottom" class="popup">
+                <div style="margin: 0 .4rem;">
+                    <div style="padding: .28rem 0;border-bottom:1px solid #F3654C;position: relative;">
+                        <img :src="goodsDetail.cover" style="width:1.5rem">
+                        <span class="sku-price">
+                            <span style="font-size:.288rem">￥</span>123<span style="font-size:.24rem">/月</span>
+                        </span>
+                    </div>
+                    <div class="popup-sku">
+                        <p>租赁方式</p>
+                        <div>
+                            <!-- <span class="sku-active">一次性付清（立减189元）</span> -->
+                            <span class="sku-active">按月支付</span>
+                        </div>
+                        <p>租期</p>
+                        <div>
+                            <span class="sku-active" style="padding: .09rem .37rem .08rem .37rem;">12期</span>
+                        </div>
+                        <p>数量</p>
+                        <div class="sku-number">
+                            <span class="reduce" @click="adjust(-1)">-</span><span class="num">{{num}}</span><span class="add" @click="adjust(1)">+</span>
+                        </div>
+                    </div>
+                    
+                    <mt-button class="full-width submit">确认</mt-button>
+                </div>
+
+                
+
+                <!-- <div class="container" style="padding-top:15px">
+                    <img style="width:1.6rem;height:auto;vertical-align: top;" :src="productDetail.cover">
+                    <span class="showprice" v-text="payprice"></span>
+                    <span class="gray-color" v-show="!chooseIsonce">/月</span>
+                    <span v-show="chooseIsonce" style="color:#9E9E9E;text-decoration:line-through;" v-text="totalPrice"></span>
+                </div>
+                <div class="container" style="color:#929292;padding:10px">租赁时长</div>
+                <div class="container">
+                    <span class="price" v-for="item in productPrice" :class={choosed:item.ischoosed} @click="clickPrice(item)" v-text="item.priceTime"></span>
+                </div>
+                <hr class="divider" />
+                <div class="container" style="color:#929292;padding:10px">租赁方式</div>
+                <div class="container" v-show="is_once_pay == '1'">
+                    <span class="price" :class={choosed:chooseIsonce} @click="payManner('true')" v-text="leaseDescribe"></span>
+                    <span class="price" :class={choosed:!chooseIsonce} @click="payManner('false')">按月付款</span>
+                </div>
+                <div class="container" v-show="is_once_pay == '0'">
+                    <span class="price choosed">按月付款</span>
+                </div> -->
+                
+            </mt-popup>
+
+            <modal :showPop="showPop" :popTitle="popTitle" :popContent="popContent"></modal>
         </div>
 	</div>
 </body>
@@ -106,5 +295,6 @@
 <!-- <script src="static/js/polyfill.js"></script> -->
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="asset/component/js/modal.js"></script>
 <script src="asset/js/goodsDetail.js"></script>
 </html>
