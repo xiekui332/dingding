@@ -22,6 +22,8 @@
     }
     .tip {
         font-size: .20rem;
+        /* line-height: .2rem; */
+        /* height: .2rem; */
         color: #999999;
         padding: .05rem .08rem;
         /* float: right; */
@@ -134,6 +136,7 @@
         padding: .11rem .2rem .1rem .2rem;
         margin-right: .25rem;
         display: inline-block;
+        cursor: pointer;
     }
 
     .sku-active {
@@ -149,14 +152,16 @@
         color: #F3654C;
         font-size: .35rem;
         vertical-align: top;
-        padding: .1rem .15rem .15rem;
+        padding: .11rem .15rem .13rem;
+        cursor: pointer;
     }
     .sku-number .add {
         border-radius: 0 .24rem .24rem 0;
         color: #F3654C;
         font-size: .35rem;
         vertical-align: top;
-        padding: .1rem .15rem .15rem;
+        padding: .11rem .15rem .13rem;
+        cursor: pointer;
     }
     .sku-number .num {
         border-radius: 0;
@@ -179,7 +184,7 @@
 	<div id="app">
         <div class="regular">
             
-            <mt-swipe :auto="4000" style="height:6.82rem;" class="writeBackColor layout">
+            <mt-swipe :auto="400000" style="height:6.82rem;" class="writeBackColor layout">
                 <mt-swipe-item v-for="(item, index) in goodsDetail.productImages">
                     <img class="full-width" :src="item.imagePath" style="will-change: transform;">
                 </mt-swipe-item>
@@ -286,15 +291,18 @@
                 
             </mt-popup>
 
-            <modal :showPop="showPop" :popTitle="popTitle" :popContent="popContent"></modal>
+            <pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
         </div>
 	</div>
 </body>
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <!-- <script src="static/js/polyfill.js"></script> -->
+
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/component/js/modal.js"></script>
+
 <script src="asset/js/goodsDetail.js"></script>
+<script src="asset/component/js/modal.js"></script>
+
 </html>

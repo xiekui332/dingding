@@ -31,7 +31,7 @@ var vm = new Vue({
         num: 1,
         showPop: false,
         popTitle: '客服电话',
-        setStyle: 'textAlign:center;fontSize:22px;lineHeight:2',
+        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
         popContent: [
             '0571-85180735'
         ]

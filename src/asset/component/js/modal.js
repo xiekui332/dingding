@@ -1,18 +1,18 @@
-Vue.component('modal',{
+Vue.component('popModal',{
     props: {
-        showPop: {
+        value: {
             type: Boolean,
             default: false
         },
-        popTitle: {
+        poptitle: {
             type: String,
-            default: ''
+            default: '12'
         },
-        popContent: {
+        popcontent: {
             type: Array,
             default: []
         },
-        setStyle: {
+        setstyle: {
             type: String,
             default: ''
         }
@@ -23,22 +23,31 @@ Vue.component('modal',{
     },
     computed: {},
     watch: {},
-    methods: {},
-    template: `
+    methods: {
+        closeModal: function() {
+            this.$emit('input', false)
+        }
+    },
+    template:  `
     <div>
-        <transition name="fade">
-            <div class="pop_screen" v-show="showPop"></div>
-            <div class="pop_box" v-show="showPop">
-                <div class="pop_title largeFont">{{popTitle}}</div>
-                <div class="pop_content" :style="setStyle"> 
-                    <div v-for="item in popContent">
-                        <p>{{item}}</p>
+        <transition name="popfade">
+            <div class="pop_screen" v-show="value">
+                <div class="pop_box">
+                    <div class="pop_title largeFont">{{poptitle}}</div>
+                    <div class="pop_content" :style="setstyle"> 
+                        <div v-for="item in popcontent">
+                            <p>{{item}}</p>
+                        </div>
                     </div>
-                </div>
-                <div class="close">
-                    <img src="asset/images/icon/close.png"/>
-                </div>
+                    <div class="close" @click="closeModal">
+                        <img src="asset/images/icon/close.png"/>
+                    </div>
+            </div>
             </div>
         </transition>
-    </div>`,
+    </div>
+    
+    `
 });
+
+

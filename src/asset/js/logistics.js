@@ -36,7 +36,7 @@ var vm = new Vue({
     },
     destroyed() {
     },
-    mounted() {
+    mounted:function() {
         var body = document.body.clientWidth;		
         document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     },
