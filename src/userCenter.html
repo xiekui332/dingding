@@ -30,11 +30,11 @@
           </div> 
         </div>
         <div class="main-bottom">
-          <div class="main-bottom1">
+          <div class="main-bottom1"  >
               <div class="main-list" v-for="item in navList">
-                  <div class="tubiao">
-                    <img :src="item.url" class="img3">
-                  </div>
+                  <!-- <div class="tubiao"> -->
+                  <img :src="item.url" class="img3">
+                  <!-- </div> -->
                   <div class="wenzi">{{item.navTitle}}</div> 
               </div>
           </div>
@@ -45,9 +45,9 @@
           <ul>
             <li  v-for="item in mainList">
               <div class="li-div">
-                <span class="tubiao1">
+                <!-- <span class="tubiao1"> -->
                   <img :src="item.urll" class="img4">
-                </span>
+                <!-- </span> -->
               </div>
               <span class="wenzi1" >{{item.mainTitle}}</span>
             </li>
@@ -105,9 +105,10 @@
     height:1rem;
     font:0.28rem/1rem "";
   }
+ 
   .myOrder{
     width:2rem;
-    padding-left:0.2rem;
+    padding-left:0.3rem;
     color:#333;
   }
   .allOrder{
@@ -129,24 +130,30 @@
     height:2rem;
   }
   .main-bottom1{
-    margin:0.2rem;
+    /* margin-left:0.39rem; */
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
     height:2rem;
     border-top:1px solid #ddd;
+    overflow-x:scroll;
   }
-  .tubiao{
+  .main-list{
+    width: 20%;
+    flex-shrink:0;
+    text-align: center;
+  }
+  /* .tubiao{
     width:0.5rem;
     height:0.5rem;
     border:1px solid #F46B4E;
     border-radius: 50%;
     background:#fff;
-  }
+  } */
   .img3{
-   width:0.4;
-   height:0.4rem;
+   width:0.5rem;
+   height:0.5rem;
    text-align: center;
    vertical-align: middle;
     /* margin-top:0.1rem;
@@ -167,8 +174,7 @@
     height:1.1rem;
     border-bottom:1px solid #ddd;
     margin-top:0.15rem;
-    margin:0.2rem;
-    
+    margin:0.31rem;
   }
   .li-div{
     display: inline-block;
@@ -177,7 +183,7 @@
     text-align: center;
     vertical-align: middle;
   }
-  .tubiao1{
+  /* .tubiao1{
     display: inline-block;
     width:0.4rem;
     height:0.4rem;
@@ -185,7 +191,7 @@
     border-radius: 50%;
     background:#fff;
     margin-top: 0.3rem;
-  }
+  } */
   .wenzi1{
     display: inline-block;
     /* font:0.24rem/1.2rem "";
@@ -197,11 +203,11 @@
     text-align: center;
   }
   .img4{
-   width:0.2rem;
-   height:0.2rem;
+   width:0.4rem;
+   height:0.4rem;
    text-align: center;
    vertical-align: middle;
-   margin-top:0.1rem;
+   margin-top:0.3rem;
    /* margin-left:0.1rem;   */
   }
  
