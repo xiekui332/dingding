@@ -5,6 +5,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>淘租公</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 <style>
@@ -33,10 +34,11 @@
 
     /* category */
     .type {
-        font-size: 0.28rem;
+        font-size: 0.32rem;
         display: inline-block;
-        padding: 0.07rem 0.04rem;
-        text-align: center
+        padding: 0 0.1rem;
+        text-align: center;
+        padding-bottom: .24rem;
     }
     .rotate {
         transform: rotate(180deg);
@@ -55,6 +57,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-around;
+        width: 6.5rem;
     }
 
     .mu-popover {
@@ -65,7 +68,7 @@
         overflow: visible;
         -webkit-overflow-scrolling: touch;
         /* box-shadow: 0 1px 6px rgba(0, 0, 0, .117647), 0 1px 4px rgba(0, 0, 0, .117647); */
-        box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, .117647);
+        /* box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, .117647); */
         width: 100%;
 
         -webkit-transform-origin: center top;
@@ -108,14 +111,14 @@
             
              <!-- 类别 -->
             <div style="position: fixed;top: 0;width: 100%;z-index: 10;border-bottom: 1px solid rgba(0,0,0,0.12);">
-                <div style="padding:0.25rem 0.6rem 0 0;background-color:white">
+                <div style="padding:0.27rem 0 0 .1rem;background-color:white;border-bottom:1px solid #eeeeee">
                     <div style="position:relative">
-                        <div class="category" :style="{'padding-right': tab.length == 3 ? '1.8rem' : ''}">
+                        <div class="category" :style="{'width': tab.length == 1 ? '1.6rem' : ''}">
                             <div v-for="tabitem in tab" style="text-align:center;">
                                 <span class="type" :class="{choose:tabitem.id == tabId}" @click="chooseCategory(tabitem.id, 0)">{{tabitem.name}}</span>
                             </div>
                         </div>
-                        <div style="right: -0.3rem;top: 0.05rem;position:absolute;width:0.5rem;height:0.5rem" ref="more" @click="showCategory">
+                        <div style="right: .1rem;top: 0.05rem;position:absolute;width:0.5rem;height:0.5rem" ref="more" @click="showCategory">
                             <img style="width:0.32rem;height:auto" :class="{rotate:open}" src="asset/images/icon/up.png">
                         </div>
     
@@ -123,9 +126,15 @@
                 </div>
                 <transition name="mu-popover">
                     <div v-show="open" class="mu-popover" style="padding-right: .6rem">
-                        <div :style="clientWidth" style="padding-right: 2.4rem">
+                        <div style="padding-right: .6rem;border-bottom: 1px solid rgba(0,0,0,0.12);">
                             <div style="background-color:#fff;display: flex;justify-content: space-around;">
-                                <span style="box-sizing:border-box;padding:0.14rem 0" v-for="categryitem in categryList" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 1)"
+                                <span style="box-sizing:border-box;padding:0.24rem 0" v-for="categryitem in categryList[0]" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 1)"
+                                    class="type"  :class="{choose:categryitem.id == tabId}">{{categryitem.name}}</span>
+                            </div>
+                        </div>
+                        <div style="padding-right: 5.7rem">
+                            <div style="background-color:#fff;display: flex;justify-content: space-around;">
+                                <span style="box-sizing:border-box;padding:0.24rem 0" v-for="categryitem in categryList[1]" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 2)"
                                     class="type"  :class="{choose:categryitem.id == tabId}">{{categryitem.name}}</span>
                             </div>
                         </div>
@@ -133,27 +142,31 @@
                 </transition>
             </div>
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-                <div v-if="orderList.length" :style="{'margin-top': open ? '1.5rem' : '.94rem'}" style="transition: all .3s;">
+                <div v-if="orderList.length" :style="{'margin-top': open ? '2.8rem' : '1.14rem'}" style="transition: all .3s;">
                     <div v-for="(item, index) in orderList" :key="index">
-                        <div class="orderBar line mediumerFont">
+                        <div class="orderBar line mediumerFont black">
                             <span>{{item.createTime}}</span>
                             <span>{{item.orderState}}</span>
                         </div>
-                        <div class="layout">
+                        <good-info :goodsinfo="item"></good-info>
+                        <!-- <div class="layout">
                             <div class="goodsInfo">
                                 <img :src="item.cover"/>
                                 <div class="goodsInfoRight regular">
                                     <div class="mediumerFont black overHidden ">{{item.productName}}</div>
                                     <div class="goodsInfoSmall gray overHidden">{{item.brief}}</div>
-                                    <div class="mediumerFont black">总租金：¥{{item.totalAmount}}</div>
+                                    <div class="mediumerFont black price-num">
+                                        <span>总租金：¥{{item.totalAmount}}</span>
+                                        <span class="gray">x{{item.num}}</span>
+                                    </div>
                                     <div style="margin-top:.20rem">
                                         <img src="asset/images/icon/zm.png" style="height:.3rem"/>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
-                            <button type="default" size="mini" class="button">订单跟踪</button>
+                            <button class="hollow-button" @click="toLogistics">订单跟踪</button>
                         </div>
                     </div>
                     
@@ -178,5 +191,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="./asset/component/js/goodInfo.js"></script>
 <script src="./asset/js/orderList.js"></script>
 
