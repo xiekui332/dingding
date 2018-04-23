@@ -122,7 +122,7 @@
                     </div>
                 </div>
                 <transition name="mu-popover">
-                    <div v-show="open" @close="showCategory" class="mu-popover" style="padding-right: .6rem">
+                    <div v-show="open" class="mu-popover" style="padding-right: .6rem">
                         <div :style="clientWidth" style="padding-right: 2.4rem">
                             <div style="background-color:#fff;display: flex;justify-content: space-around;">
                                 <span style="box-sizing:border-box;padding:0.14rem 0" v-for="categryitem in categryList" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 1)"
@@ -132,16 +132,13 @@
                     </div>
                 </transition>
             </div>
-
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
                 <div v-if="orderList.length" :style="{'margin-top': open ? '1.5rem' : '.94rem'}" style="transition: all .3s;">
                     <div v-for="(item, index) in orderList" :key="index">
-                        <div class="orderBar line">
+                        <div class="orderBar line mediumerFont">
                             <span>{{item.createTime}}</span>
                             <span>{{item.orderState}}</span>
                         </div>
-
-
                         <div class="layout">
                             <div class="goodsInfo">
                                 <img :src="item.cover"/>
@@ -180,5 +177,6 @@
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
-<script src="asset/js/orderList.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="./asset/js/orderList.js"></script>
+
