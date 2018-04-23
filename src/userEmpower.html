@@ -6,6 +6,8 @@
     <title> 用户授权</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/userEmpower.css"/>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
     <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
     	$(document).ready(function(){
@@ -16,9 +18,9 @@
     </script>
 </head>
 <body>
-	<div id="app">
+	<div id="app" :class="bot?'app':'app1'">
         <!-- 审核通过部分 -->
-		<div class="" style="display: none;">
+		<div class="">
             <div class="sec-1">
                 <div class="order-status">
                      <div>
@@ -43,20 +45,12 @@
                  </div>
              </div>
      
-     
-             <!-- 信息部分 -->
-           
-             <div class="info-list">
-                 <div class="list-1">
-                     <p>统一社会信用代码/注册号</p>
-                     <p>91330101699836353W</p>
-                 </div>
-             </div>
+            
         </div>
         
         <!-- 信息填写 -->
         <div class="">
-            <div class="head-sec">
+            <div class="head-sec" v-show="st1">
 
             </div>
 
@@ -64,23 +58,23 @@
             <div class="tianxie">
                 <div class="item-mnue">
                     <p class="item-title">统一社会信用代码/注册号</p>
-                    <input type="text">
+                    <input type="text" v-model="value1">
                 </div>
                 <div class="item-mnue">
                     <p class="item-title">公司名称</p>
-                    <input type="text">
+                    <input type="text" v-model="value2">
                 </div>
                 <div class="item-mnue">
                     <p class="item-title">真实姓名</p>
-                    <input type="text">
+                    <input type="text" v-model="value3">
                 </div>
                 <div class="item-mnue">
                     <p class="item-title">身份证号</p>
-                    <input type="text">
+                    <input type="text" v-model="value4">
                 </div>
                 <div class="item-mnue">
                     <p class="item-title">手机号</p>
-                    <input type="text">
+                    <input type="text" v-model="value5">
                 </div>
                 
                 <div class="item-mnue-jt">
@@ -89,16 +83,19 @@
 
 
                 <div class="img-up">
-                    <!-- <div class="img-box" v-for="item in img">
+                    <!-- <div class="img-box" v-for="item in src">
                         <img :src="item" alt="">
                     </div> -->
                     <div class="img-box">
-                        <input type="file" accept="images/*" @change="fileUp(this)" id="up1">
+                        
+                        <van-uploader :after-read="onRead1">
+                            <van-icon name="photograph" />
+                        </van-uploader>
                     </div>
                     <div class="img-box">
 
                     </div>
-                    <p class="explain-dd">说明：钉钉指数在0000以上享有免押权益</p>
+                    <p style="clear: both;"></p>
                 </div>
 
                 <div class="item-mnue-jt">
@@ -110,7 +107,10 @@
                         <img :src="item" alt="">
                     </div> -->
                     <div class="img-box">
-                        <input type="file" accept="images/*" @change="fileUp(this)" id="up2">
+                        
+                        <van-uploader :after-read="onRead2">
+                            <van-icon name="photograph" />
+                        </van-uploader>
                     </div>
                     <div class="img-box">
 
@@ -119,11 +119,26 @@
                 </div>
                 
 
-                <div class="now-lj">
+                <div class="now-lj" v-show="st1">
                     <div class="bow-btn" @click="ljsq">
                             立即授权
                     </div>
                 </div>
+
+
+                <!-- 联系客服，查看账单 -->
+                <div class="kf">
+                    <!-- 审核拒绝出现 重新提交 -->
+                    <div  class="seePower">重新提交</div>
+                    <div>联系客服</div>
+                </div>
+        
+                <!-- 审核成功 -->
+                <!-- <div class="now-lj">
+                    <div class="bow-btn">
+                            完成订单支付
+                    </div>
+                </div> -->
 
 
             </div>
@@ -132,6 +147,8 @@
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -140,6 +157,15 @@
 			list:[],
             st:'审核通过',
             img:[],
+            bot:true,
+            st1:false,
+            src:'',
+            value1:'',
+            value2:'',
+            value3:'',
+            value4:'',
+            value5:'',
+            
 		},
         methods:{
             see:function(){
@@ -148,36 +174,16 @@
             back:function(){
 
             },
-            fileUp:function(){
-                var str = $('#up1').val();
-                vm.img.push(str)
-                
-                // dd.ready({
-                    
-                    // dd.biz.util.uploadImage({
-                    //     compression:true,//(是否压缩，默认为true)
-                    //     multiple: false, //是否多选，默认false
-                    //     max: 3, //最多可选个数
-                    //     quality: 50, // 图片压缩质量, 
-                    //     resize: 50, // 图片缩放率
-                    //     onSuccess : function(result) {
-                    //         //onSuccess将在图片上传成功之后调用
-                    //         alert()
-                    //         console.log(result)
-                    //         /*
-                    //         [
-                    //         'http://gtms03.alicdn.com/tps/i3/TB1VF6uGFXXXXalaXXXmh5R_VXX-237-236.png'
-                    //         ]
-                    //         */
-                    //     },
-                    //     onFail : function(err) {}
-                    // })
-                // });
-
-               
-            },
             ljsq:function(){
-                
+
+            },
+            onRead1(file) {
+                // 以base64位上传图片
+                console.log(file)
+            },
+            onRead2(file) {
+                // 以base64位上传图片
+                console.log(file)
             }
         }
 	})
