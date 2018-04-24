@@ -101,6 +101,7 @@
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="static/js/commPage.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -133,9 +134,39 @@
 					num:'250',
 					time:'2018年03月29日'
 				}
-			]
+			],
+			orderId:'',
+		},
+		methods:{
+			init:function(){
+				vm.request();
+				
+			},
+			//	请求数据
+			request:function(){
+				$.ajax({
+					type:'get',
+					data:{
+						orderId:''
+					},
+					url:url+'shop-service/rest/bills/Ddview',
+					success:function(result){
+						console.log(result)
+						if(result.code == 200){
+							console.log(result.message)
+						}
+					},
+					error:function(){
+						console.log(':)')
+					}
+				})
+
+				// this.$axios.get(url+'shop-service/rest/bills/Ddview',{'orderId':''}).then(res=>{
+				// 	console.log(res)
+				// })
+			}
 		}
 	})
-	
+	vm.init()
 </script>
 </html>
