@@ -26,13 +26,13 @@
                         <p>
                             <span>Apple/苹果  全网通4G手机 iPhone7</span>
                         </p>
-                        <p>规格：玫瑰金</p>
+                        <p>低调奢华有内涵</p>
                         <p>
-                            <span>租赁时长:</span>
+                            <span>租用时长:</span>
                             <span>3个月 </span>
                         </p>
                         <p>
-                            <span>租赁方式:</span>
+                            <span>租用方式:</span>
                             <span>一次性付清 </span>
                         </p>
                     </div>
@@ -106,7 +106,7 @@
         <div class="checked-all">
             <van-checkbox v-model="checked"> </van-checkbox>
             <span class="explain-w">
-                    我已阅读并同意<span>《租赁须知协议》</span>
+                    我已阅读并同意<span>《租用须知协议》</span>
             </span>
         </div>
 
@@ -139,12 +139,6 @@
 					status:'待还款',
 					num:'249',
 					time:'2018年08月29日通过支付宝免密支付还款'
-				},
-				{
-					month:'8/9期',
-					status:'待还款',
-					num:'250',
-					time:'2018年08月30日通过支付宝免密支付还款'
 				}
 			],
             value:1,
@@ -159,7 +153,9 @@
 
             },
             zf:function(){
-
+                if(vm.checked == true){
+                    console.log(':)')
+                }
             }
         }
 	})

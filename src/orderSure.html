@@ -6,6 +6,8 @@
     <title>确认订单</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/sure.css"/>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
     <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
     <script type="text/javascript">
     	// $(document).ready(function(){
@@ -13,6 +15,20 @@
     		
     	// })
     </script>
+    <style type="text/css">
+    	.van-checkbox{
+    		display: inline-block;
+    		float: left;
+    	}
+    	.van-checkbox--checked{
+    		border-color: #F3654C;
+    background-color: #F3654C;
+    	}
+    	.text-word{
+    		line-height: .45rem;
+    		margin-left: .05rem;
+    	}
+    </style>
 </head>
 <body>
 	<div id="app">
@@ -127,20 +143,16 @@
         <!-- 提交订单 -->
         <div class="submit">
             <div class="agree">
-                <div class="circle" @click="click">
-                    <div class="shi" v-if="agree">
-
-                    </div>
-                    <div vv-else></div>
-                </div>
+                <van-checkbox v-model="checked"> </van-checkbox>
                 <p class="text-word">我已阅读并同意<span @click="jump">《租赁须知协议》</span></p>
             </div>
 
             <!-- red-btn -->
-            <div class="tjdd" v-if="select">
+            
+            <div class="tjdd red-btn" v-if="checked" @click="submit">
                     提交订单
             </div>
-            <div class="tjdd red-btn" v-else @click="submit">
+            <div class="tjdd" v-else>
                     提交订单
             </div>
         </div>
@@ -148,8 +160,9 @@
 	</div>
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
-<script src="static/js/zepto.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -184,7 +197,8 @@
 					num:'250',
 					time:'2018年03月29日'
 				}
-			]
+			],
+			checked:false
 		},
         methods:{
             click:function(){
@@ -192,7 +206,7 @@
                 vm.select = !vm.select;
             },
             submit:function(){
-               
+               console.log(':)')
             },
             jump:function(){
                 
