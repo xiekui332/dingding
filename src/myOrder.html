@@ -19,17 +19,15 @@
 	<div id="app">
 		<div class="sec-1">
 			<div class="con-head">
-				<img src="" class="img"/>
+				<img :src="ordersProductEntity.cover" class="img"/>
 				<div class="detail-box">
 					<p>
-						<span>yaman/雅萌</span>
-						<span>瘦脸射频</span>
-						<span>美颜仪</span>
+						<span>{{ordersProductEntity.productName}}</span>
 					</p>
-					<p>瘦脸射频美颜仪瘦脸射频美颜仪</p>
+					<p>{{ordersProductEntity.brief}}</p>
 					<p>
 						<span>总租金:</span>
-						<span>￥2,988.00</span>
+						<span>￥{{ordersProductEntity.totalAmount}}</span>
 					</p>
 					<!-- <div class="renzh">
 						芝麻信用·免押金
@@ -136,6 +134,7 @@
 				}
 			],
 			orderId:'',
+			ordersProductEntity:'',
 		},
 		methods:{
 			init:function(){
@@ -147,13 +146,14 @@
 				$.ajax({
 					type:'get',
 					data:{
-						orderId:''
+						orderId:15
 					},
 					url:url+'shop-service/rest/bills/Ddview',
 					success:function(result){
 						console.log(result)
 						if(result.code == 200){
-							console.log(result.message)
+							vm.ordersProductEntity = result.data.ordersProductEntity;
+							vm.ordersProductEntity.totalAmount = result.data.ordersProductEntity.totalAmount.toFixed(2)
 						}
 					},
 					error:function(){
