@@ -19,29 +19,30 @@ body{
 }
 .detail-box{
 	display: inline-block;float: left;
+	width: 5.1rem;
 }
 .detail-box p{
 	padding-left: .15rem!important;
 }
-.detail-box p:nth-child(1){
+.detail-box p:nth-child(1) span{
 	font-size: .28rem;
 	color: #333333;
-	line-height: .3rem;
+	line-height: .35rem;
 }
 .detail-box p:nth-child(1) span{
-	padding: 0 .05rem;
+	/* padding: 0 .05rem; */
 }
 .detail-box p:nth-child(2){
 	font-size: .24rem;
 	color: #999999;
-	line-height:.24rem;
-	margin-top: .25rem;
+	line-height:.3rem;
+	/* margin-top: .25rem; */
 }
 .detail-box p:nth-child(3){
 	font-size: .28rem;
 	color: #333333;
-	line-height: .28rem;
-	margin-top: .3rem;
+	line-height: .5rem;
+	/* margin-top: .3rem; */
 }
 .detail-box p:nth-child(3) span{
 	padding: 0 .05rem;
