@@ -81,3 +81,23 @@ body{
         color: #FFFFFF;
         line-height: .86rem;
  }
+ .van-dialog__header{
+    line-height: .5rem;
+ }
+ .van-dialog__content{
+     margin-top: .3rem;
+ }
+ .van-dialog__footer{
+     border-top: 1px solid #ddd;
+ }
+ .van-dialog{
+     border-radius: .3rem;
+ }
+ .van-dialog__cancel .van-button__text{
+     font-size: .34rem;
+     color: #108EE9;
+ }
+ .van-dialog__confirm .van-button__text{
+    font-size: .34rem;
+    color: #F3654C;
+}
