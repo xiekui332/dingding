@@ -72,6 +72,22 @@ function getHostUrl(url) {
 }
 //接口api地址
 function getApiUrl(url) {
-    const taozugonghost = "//api.taozugong.com/8080";
+    const taozugonghost = "//api.taozugong.com:8080";
     return taozugonghost + url
+}
+
+var body = document.body.clientWidth;		
+document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+
+
+function ddToast(message) {
+    dd.device.notification.toast({
+        icon: '', //icon样式，有success和error，默认为空 0.0.2
+        text: message, //提示信息
+        duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
+        delay: 0, //延迟显示，单位秒，默认0
+        onSuccess : function(result) {
+        },
+        onFail : function(err) {}
+    })
 }

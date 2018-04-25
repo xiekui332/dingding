@@ -119,8 +119,8 @@ var vm = new Vue({
         },
 
         uploadFile(e) {
-            let url =  getApiUrl('/shop-service/img/upload.do') 'http://api.taozugong.com:8080/shop-service/img/upload.do'
-            // let url =  '/getapi/shop-service/img/upload.do'
+            // let url =  getApiUrl('/shop-service/img/upload.do') 
+            let url =  '/getapi/shop-service/img/upload.do'
             uploadImg(e, url).then((imgUrl)=>{
                 alert(imgUrl)
             }).catch((err)=>{
@@ -133,7 +133,5 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     },
 })
