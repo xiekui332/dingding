@@ -25,7 +25,8 @@ var vm = new Vue({
             brief: '紧急集合',
             productPrice: 123,
             productDeposit: 232,
-            inventory: '12'
+            inventory: '12',
+            province: province
         },
         popupVisible: false,
         num: 1,
@@ -34,7 +35,14 @@ var vm = new Vue({
         setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
         popContent: [
             '0571-85180735'
-        ]
+        ],
+        // 地址
+        address: '',
+        addressShow: false,
+        addresslist: [],
+        addressVisible: false,
+        addressList: [{name:'浙江省', id:'330903'},{name:'杭州市', id:'330903'},{name:'西湖区', id:'330903'}],
+        province: province
     },
     computed: {
     },
@@ -73,6 +81,51 @@ var vm = new Vue({
         },
         openModal() {
             this.showPop = true
+        },
+
+        // 地址
+        getDetaiAddress(){
+            let citycode = ''
+            // if (this.selectedProvince == ""){
+            //     citycode = ''
+            // }else {
+            //     this.user.cityId = getId(citytest, this.addressId[1]);
+            //     citycode = this.user.cityId;
+            // }
+            console.log(citycode);
+            let key = this.address;
+            let autocomplete = ''
+            AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],()=>{
+                var autoOptions = {
+                    city: citycode //城市，默认全国
+                };
+                autocomplete= new AMap.Autocomplete(autoOptions);
+                autocomplete.search(key, (status, result)=>{
+                    //TODO:开发者使用result自己进行下拉列表的显示与交互功能
+                        // console.log(key)
+                        // console.log(result)
+                        // console.log(this);
+                        this.addresslist = result.tips;
+                    });
+            });
+            this.addressShow = true
+        },
+        looseBlur(){
+            this.addressShow = false
+        },
+        chooseDetailAddress(item){
+            this.address = item.name;
+            this.addressShow = false;
+        },
+
+        uploadFile(e) {
+            let url =  getApiUrl('/shop-service/img/upload.do') 'http://api.taozugong.com:8080/shop-service/img/upload.do'
+            // let url =  '/getapi/shop-service/img/upload.do'
+            uploadImg(e, url).then((imgUrl)=>{
+                alert(imgUrl)
+            }).catch((err)=>{
+                alert(err)
+            })  
         }
     },
     created() {
