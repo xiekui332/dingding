@@ -39,8 +39,8 @@
                             设为默认地址
                         </span>
                         <div class="icon-an">
-                            <van-icon name="edit" @click="edit"></van-icon>
-                            <van-icon name="delete" @click="dele"></van-icon>   
+                            <van-icon name="edit" @click="edit(index)"></van-icon>
+                            <van-icon name="delete" @click="dele(index)"></van-icon>   
                         </div>
                     </div>
                 </div>
@@ -82,10 +82,20 @@
             // checked:true,
 		},
         methods:{
-            dele:function(){
-                console.log(':)')
+            dele:function(a){
+                //  splice(a,b)参数分别为下标和删除的数量
+
+                this.$dialog.confirm({
+                    title: '确认要删除收货地址吗',
+                    message: ''
+                }).then(() => {
+                    vm.list.splice(a,1)
+                }).catch(() => {
+                    console.log(':)')
+                });
+               
             },
-            edit:function(){
+            edit:function(a){
                 console.log('(:')
                
             },
@@ -100,7 +110,7 @@
                 
             },
             addNew:function(){
-                
+
             }
         }
 	})
