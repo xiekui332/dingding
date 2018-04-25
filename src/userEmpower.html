@@ -20,7 +20,7 @@
 <body>
 	<div id="app" :class="bot?'app':'app1'">
         <!-- 审核通过部分 -->
-		<div class="">
+		<div class="" v-show="status1">
             <div class="sec-1">
                 <div class="order-status">
                      <div>
@@ -50,6 +50,7 @@
         
         <!-- 信息填写 -->
         <div class="">
+            <!-- 用户授权的首页 -->
             <div class="head-sec" v-show="st1">
 
             </div>
@@ -126,19 +127,21 @@
                 </div>
 
 
-                <!-- 联系客服，查看账单 -->
-                <div class="kf">
-                    <!-- 审核拒绝出现 重新提交 -->
-                    <div  class="seePower">重新提交</div>
-                    <div>联系客服</div>
-                </div>
-        
-                <!-- 审核成功 -->
-                <!-- <div class="now-lj">
-                    <div class="bow-btn">
-                            完成订单支付
+               <div v-show="status1">
+                    <!-- 联系客服，查看账单 -->
+                    <div class="kf">
+                        <!-- 审核拒绝出现 重新提交 -->
+                        <div  class="seePower">重新提交</div>
+                        <div>联系客服</div>
                     </div>
-                </div> -->
+            
+                    <!-- 审核成功 -->
+                    <!-- <div class="now-lj">
+                        <div class="bow-btn">
+                                完成订单支付
+                        </div>
+                    </div> -->
+               </div>
 
 
             </div>
@@ -154,11 +157,12 @@
 		el:'#app',
 		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 		data:{
+            status1:false, //  审核状态
 			list:[],
             st:'审核通过',
             img:[],
-            bot:true,
-            st1:false,
+            bot:false,
+            st1:true,
             src:'',
             value1:'',
             value2:'',

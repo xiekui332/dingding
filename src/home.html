@@ -23,26 +23,37 @@
         <a href="javascript:void(0)" class="newContent">
           <marquee>Dyson又出新产品了，历史价格最低...</marquee></a>
       </div>
-      <div class="homeMain" v-for="item in homeList">
-          <div class="homeMain-top">
+      <div class="homeBox"  >
+        <div class="homeMain" v-for="item in homeList">
+          <div class="homeMain-top" >
             <div class="homeMain-title">设计师</div>
             <img src="asset/images/icon/more.png" class="newImg1">
           </div>  
-          <div class="homeAround-top">
+          <div class="homeAround-top" 
+          v-infinite-scroll="loadMore"
+          infinite-scroll-disabled="loading"
+          infinite-scroll-distance="10"
+          >
             <div class="homeAround">
-              <div  class="newImg2"></div>
+              <!-- <div  > -->
+                <img src="http://img.taozugong.com/product/2018-04-11/a4a29b6feNrGMh"  class="newImg2">
+              <!-- </div> -->
               <div class="homeName">产品名称</div>
               <div class="homeDec">比购买省￥{{item.price1}}元</div>
               <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{item.price1}}</em></div>
             </div>
             <div class="homeAround">
-                <div  class="newImg2"></div>
+                <!-- <div  class="newImg2"> -->
+                  <img src="http://img.taozugong.com/product/2018-04-23/5683d54a76NQ3P"  class="newImg2">
+                <!-- </div> -->
+                <!-- </div> -->
                 <div class="homeName">产品名称</div>
                 <div class="homeDec">比购买省￥{{item.price1}}元</div>
                 <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{item.price1}}</em></div>
             </div>
           </div>
-      </div>
+        </div>
+      </div>  
       <div class="footer">
         <div class="footer-left">
           <img src="asset/images/icon/lease.png" class="footer-img">
@@ -111,11 +122,15 @@
     
    
   }
-  .homeMain{
+  .homeBox{
     height:6.69rem;
     width:100%;
     margin-top:0.15rem;
     background:#fff;
+  }
+  .homeMain{
+    height:6.69rem;
+    width:100%;
   }
   .homeMain-top{
     height:1rem;
@@ -162,7 +177,7 @@
   .newImg2{
     width:3.35rem;
     height:3.35rem;
-    background: #F3654C;
+    
   }
   .homeName{
     /* width:1.12rem;

@@ -3,6 +3,7 @@ var vm = new Vue({
     components: {
     },
     props: {
+      loading :true
     },
     data: {
       homeList:[
@@ -26,6 +27,16 @@ var vm = new Vue({
     filters: {
     },
     methods: {
+      loadMore() {
+        this.loading = true;
+        setTimeout(() => {
+          let last = this.homeList[this.homeList.length - 1];
+          for (let i = 1; i <= 10; i++) {
+            this.homeList.push(last + i);
+          }
+          this.loading = false;
+        }, 2500);
+      }
     },
     created() {
     },

@@ -4,41 +4,54 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>淘租公</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
 </head>
 <body>
 	<div id="app">
       <div class="nav">
         <div class="nav-top">
-           <div class="nav-icno">
-             <img src="/src/asset/images/icon/ren.png" class="img1">
-           </div>
+           <!-- <div class="nav-icno"> -->
+             <img src="/src/asset/images/icon/rentou.png" class="img1">
+           <!-- </div> -->
         </div>
         <div class="nav-bottom">
-           <div class="nav-telephone" style="font-size:0.3rem">133******33</div>
+           <div class="nav-momo">某莫</div>
+           <div class="nav-telephone">杭州不匠科技有限公司</div>
         </div>  
       </div>
       <div class="main">
         <div class="main-top">
           <div class="myOrder">我的订单</div>
           <div class="allOrder">
-              <span class="span">全部订单</span>
               <a href="javascript:void(0)" class="a1">
                 <img src="/src/asset/images/icon/jiantou.png" class="img2">
               </a>
           </div> 
         </div>
         <div class="main-bottom">
-          <div class="main-bottom1"  >
-              <div class="main-list" v-for="item in navList">
-                  <!-- <div class="tubiao"> -->
-                  <img :src="item.url" class="img3">
-                  <!-- </div> -->
-                  <div class="wenzi">{{item.navTitle}}</div> 
-              </div>
+          <div class="main-bottom1" >
+              <mt-swipe :auto="0" >
+                <mt-swipe-item>
+                  <div class="main-list" v-for="item in navList">
+                    <img :src="item.url" class="img3">
+                    <div class="wenzi">{{item.navTitle}}</div> 
+                  </div>
+                  
+                </mt-swipe-item>
+                <mt-swipe-item>
+                  <div class="main-list1" v-for="item in navList2">
+                      <img :src="item.url" class="img3">
+                      <div class="wenzi">{{item.navTitle}}</div> 
+                  </div>  
+                  
+                </mt-swipe-item>
+              </mt-swipe>
           </div>
-            
+          <!-- <div class="xian">
+              <span  id="page-back" @click="hanfnn" :show-indicators="true"></span>
+              <span  id="page-front" @click="hanfnn1" :show-indicators="true"></span>
+          </div> -->
         </div>
       </div>
       <div class="main1">
@@ -61,7 +74,7 @@
   } */
   .nav{
    width:100%;
-   height:2.17rem;
+   height:2.62rem;
    /* background:#F46B4E; */
    text-align: center;
    color:#fff;
@@ -69,31 +82,42 @@
   }
   .nav-top{
     width:100%;
-     padding-top: 0.2rem; 
+     padding-top: 0.4rem; 
     font:0.24rem/1rem "";
     display: flex;
     flex-direction: row;
     justify-content:center;
   }
-  .nav-icno{
+  /* .nav-icno{
    width:0.8rem;
    height:0.725rem;
    border:1px solid #F46B4E;
    border-radius: 50%;
    background:#fff;
 
-  }
+  } */
   .img1{
-    width:0.5rem;
-    height:0.4rem;
+    width:0.8rem;
+    height:0.725rem;
   }
   .nav-bottom{
     height:1rem;
-    font:0.24rem/1rem "";
+    font-family: PingFangSC-Regular;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    margin-bottom:0.4rem;
+    margin-top:0.265rem;
+  }
+  .nav-momo{
+    font-size: 0.3rem;
+  }
+  .nav-telephone{
+    margin-top:0.1rem;
+    font-size: 0.26rem;
   }
   .main{
-    margin-top:0.3rem;
-    height:2.73rem;
+    height:2.93rem;
     background:#fff;
   }
   .main-top{
@@ -104,6 +128,7 @@
     align-items: center;
     height:1rem;
     font:0.28rem/1rem "";
+    margin-top:0.2rem;
   }
  
   .myOrder{
@@ -112,37 +137,78 @@
     color:#333;
   }
   .allOrder{
-    width:1.7rem;
+    width:0.8rem;
   }
   .a{
     display: inline-block;
     height:0.5rem;
   }
-  .span{
-    display: inline-block;
-    margin-top:-2rem;
-  }
+  
   .img2{
     width:0.25rem;
     height: 0.25rem;
   }
   .main-bottom{
     height:2rem;
+    overflow: hidden;
   }
   .main-bottom1{
-    /* margin-left:0.39rem; */
+    /* margin-top:0.39rem;  */
     display: flex;
     flex-direction: row;
     justify-content:space-between;
     align-items: center;
-    height:2rem;
+    height:1.55rem;
+    padding-top:0.32rem;
     border-top:1px solid #ddd;
-    overflow-x:scroll;
+    overflow: hidden;
+    /* overflow-x:scroll; */
   }
+  .main-bottom1:hover{
+   display: none;
+  }
+  /* .main-rightt{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    padding-top:0.32rem;
+    display: none
+  } */
+  .xian{
+    height:0.2rem;
+    text-align: center;
+    margin-top:-0.2rem;
+  }
+  #page-back ,#page-front{
+    border-top: 1px solid #999999;
+    display: inline-block;
+    height:0.01rem;
+    width:0.3rem;
+    margin-left:0.07rem;
+    /* margin-bottom:0.15rem; */
+  }
+  #page-back:hover ,#page-front:hover {
+    border-top: 1px solid #F46B4E;
+    display: inline-block;
+    height:0.01rem;
+    width:0.3rem;
+    margin-left:0.07rem;
+    /* margin-bottom:0.15rem; */
+  }
+  /* .page-back:focus{
+    
+  } */
   .main-list{
     width: 20%;
-    flex-shrink:0;
     text-align: center;
+    float:left;
+  }
+  .main-list1{
+    width: 20%;
+    text-align: center;
+    float:left;
   }
   /* .tubiao{
     width:0.5rem;
@@ -160,15 +226,17 @@
    margin-left:0.1rem;  */
   }
   .wenzi{
-    font:0.24rem/0.5rem "";
+    font:0.24rem/0.63rem "";
     color:#666;
+    margin-bottom:0.1rem;
   }
   /* .main1 ul{
     height:3rem;
   } */
   .main1{
     background:#fff;
-    height: 3.72rem;
+    height: 3.96rem;
+    margin-top:-0.17rem;
   }
   .main1 ul li{
     height:1.1rem;
@@ -203,14 +271,57 @@
     text-align: center;
   }
   .img4{
-   width:0.4rem;
-   height:0.4rem;
+   width:0.5rem;
+   height:0.5rem;
    text-align: center;
    vertical-align: middle;
    margin-top:0.3rem;
    /* margin-left:0.1rem;   */
   }
- 
+ .mint-swipe{
+   height:1.55rem;
+   width:100%;
+   border-top:0;
+   border-bottom:0;
+ }
+ .mint-swipe-item {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    height:1.55rem;
+    padding-top:0.32rem;
+    border-top:1px solid #ddd;
+    overflow: hidden;
+    border-top:0;
+ }
+ .mint-swipe-indicator {
+    border-bottom:1px solid rgb(243, 64, 28);
+    width: 0.3rem;
+    height: 0.01rem;
+    display: inline-block;
+    margin: 0 0.03rem;
+ }
+ .mint-swipe-indicator.is-active{
+   border-bottom:0.01rem solid #F46B4E;
+   opacity: 0.1;
+ }
+ .mint-swipe-indicators {
+   position: absolute;
+   bottom: 0;
+   left: 50%;
+   transform: translateX(-50%);
+}
+ /* .mint-swipe-indicator{
+   border:1px solid #000;
+   width:0.3rem;
+   height:0.01rem;
+   opacity: 0.2;
+   border-radius:0;
+ }
+ .mint-swipe-indicator:active{
+  border:1px solid #fff;
+ } */
   /* .mainList{
     w
   } */
