@@ -17,14 +17,14 @@ Vue.component('popModal',{
             default: ''
         }
     },
-    data:function () {
+    data() {
         return {
         }
     },
     computed: {},
     watch: {},
     methods: {
-        closeModal: function() {
+        closeModal() {
             this.$emit('input', false)
         }
     },

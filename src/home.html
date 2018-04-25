@@ -6,17 +6,18 @@
     <title>淘租公</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link href="asset/css/home.css">
 </head>
 <body>
 	<div id="app">
       <div class="yamanTupian">
-         <img src="/src/asset/images/icon/homeTitleGoods.png" class="homeImg1"> 
+         <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1"> 
       </div>
       <div class="newModal">
          <div class="newTop">
             <span class="newTitle ">淘租公</span>
             <span  class="newTitle te">
-              <img class="newImg" src="/src/asset/images/icon/xiaoxi.png">
+              <img class="newImg" src="asset/images/icon/xiaoxi.png">
             </span>  
           </div>
         <a href="javascript:void(0)" class="newContent">
@@ -26,7 +27,7 @@
         <div class="homeMain" v-for="item in homeList">
           <div class="homeMain-top" >
             <div class="homeMain-title">设计师</div>
-            <img src="/src/asset/images/icon/more.png" class="newImg1">
+            <img src="asset/images/icon/more.png" class="newImg1">
           </div>  
           <div class="homeAround-top" 
           v-infinite-scroll="loadMore"
@@ -55,11 +56,11 @@
       </div>  
       <div class="footer">
         <div class="footer-left">
-          <img src="/src/asset//images/icon/lease.png" class="footer-img">
+          <img src="asset/images/icon/lease.png" class="footer-img">
           <div class="zuping">租凭</div>
         </div>
         <div class="footer-left">
-          <img src="/src/asset/images/icon/user_center_out.png" class="footer-img">
+          <img src="asset/images/icon/user_center_out.png" class="footer-img">
           <div class="zuping">我的</div>
         </div>
       </div>
@@ -236,7 +237,6 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
-<link href="/src/asset/css/home.css">
 <script>
   dd.ready(function(){
     dd.biz.navigation.setTitle({

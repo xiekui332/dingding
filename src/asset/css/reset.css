@@ -42,21 +42,22 @@ body{
   .writeBackColor {
     background: #FFFFFF;
   }
-  .button {
+  .hollow-button {
     border: 1px solid #F3654C;
-    border-radius: 24rpx;
-    font-size: 24rpx;
+    border-radius: .24rem;
+    font-size: .24rem;
     color: #F3654C;
-    height: 48rpx;
-    line-height: 45rpx;
-    padding: 0 36rpx;
+    height: .48rem;
+    line-height: .45rem;
+    padding: 0 .36rem;
+    background: #fff;
   }
   .orangeButton {
-      width: 175rpx;
-      height: 48rpx;
-      line-height: 45rpx;
-      border-radius: 100rpx;
-      font-size: 24rpx;
+      width: 1.75rem;
+      height: .48rem;
+      line-height: .45rem;
+      border-radius: 1rem;
+      font-size: .24rem;
       display: inline-block;
       color: white;
       border-color:  #F3654C;
@@ -194,7 +195,7 @@ body{
 .goodsInfoSmall {
     font-size: .24rem;
     line-height: .24rem;
-    margin: .20rem 0 .16rem 0;
+    margin: .20rem 0 .4rem 0;
     height: .24rem;
 }
 .goodsInfoTip {
@@ -206,4 +207,8 @@ body{
     width: 1.70rem;
     padding: .03rem;
     margin-top: .15rem;
+}
+.price-num {
+  display: flex;
+  justify-content: space-between;
 }

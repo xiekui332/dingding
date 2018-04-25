@@ -11,8 +11,8 @@ var vm = new Vue({
                 name: '全部'
             },
             {
-                id: 0,
-                name: '待支付'
+                id: 9,
+                name: '租用中'
             },
             {
                 id: 2,
@@ -21,6 +21,10 @@ var vm = new Vue({
             {
                 id: 3,
                 name: '待收货'
+            },
+            {
+                id: 0,
+                name: '待支付'
             }
         ],
         tabNew: [],
@@ -30,8 +34,8 @@ var vm = new Vue({
                 name: '全部'
             },
             {
-                id: 0,
-                name: '待支付'
+                id: 9,
+                name: '租用中'
             },
             {
                 id: 2,
@@ -40,24 +44,40 @@ var vm = new Vue({
             {
                 id: 3,
                 name: '待收货'
+            },
+            {
+                id: 0,
+                name: '待支付'
             }
         ],
         open: false,
         tabId: -1,
         clientWidth: {},
         categryList: [
-            {
-                id: 9,
-                name: '租赁中'
-            },
-            {
-                id: 1,
-                name: '订单取消'
-            },
-            {
-                id: 10,
-                name: '租期已满'
-            }
+            [
+                {
+                    id: 10,
+                    name: '租期已满'
+                },
+                {
+                    id: 1,
+                    name: '订单取消'
+                },
+                {
+                    id: -2,
+                    name: '审核中'
+                },
+                {
+                    id: -3,
+                    name: '审核成功'
+                }
+            ],
+            [
+                {
+                    id: -4,
+                    name: '审核拒绝'
+                },
+            ]
         ],
 
         orderList: [
@@ -66,10 +86,11 @@ var vm = new Vue({
                 cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
                 createTime: '2018-10-10 10:10:19',
                 orderState: '待发货',
-                status: 1,
+                status: 3,
                 productName: '123',
                 brief:'21324',
                 totalAmount: 123,
+                num: 2
             },
             {
                 orderId:1,
@@ -80,6 +101,7 @@ var vm = new Vue({
                 productName: '123',
                 brief:'21324',
                 totalAmount: 123,
+                num: 1
             }
         ],
         page: 1,
@@ -143,14 +165,20 @@ var vm = new Vue({
             }
 
             if (index) {
-                this.open = false
-                this.tabNew = this.categryList
+                this.tabNew = this.categryList[index-1]
                 this.tab = this.tabNew
-            } else if (!index && this.open) {
-                this.open = false
             }
-            this.tabId = id
 
+            // if (index) {
+            //     this.open = false
+            //     this.tabNew = this.categryList
+            //     this.tab = this.tabNew
+            // } else if (!index && this.open) {
+            //     this.open = false
+            // }
+
+            this.tabId = id
+            this.open = false
             this.orderList = []
             this.page = 1
             this.loading = false;
@@ -158,6 +186,9 @@ var vm = new Vue({
             // this.ordersDisplay = false
             this.getOrderList()
         },
+        toLogistics() {
+            location.href = 'logistics.html'
+        }
         // setTitle() {
         //     console.info('setTitle')
         //     dd.biz.navigation.setTitle({

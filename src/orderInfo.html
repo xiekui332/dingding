@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>确认订单</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/orderInfo.css"/>
+    <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function(){
+    		//	如果报错clientWidth 为null，意思是对于null没有clientWidth这个属性，说明document.body这个是null。需写在$(document).ready(function(){})里面
+    		var body = document.body.clientWidth;		
+        		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    	})
+    </script>
+</head>
+<body>
+	<div id="app">
+		<div class="sec-1">
+                <div class="con-head">
+                    <img src="" class="img"/>
+                    <div class="detail-box">
+                        <p>
+                            <span>Apple/苹果  全网通4G手机 iPhone7</span>
+                        </p>
+                        <p>低调奢华有内涵</p>
+                        <p>
+                            <span>租用时长:</span>
+                            <span>3个月 </span>
+                        </p>
+                        <p>
+                            <span>租用方式:</span>
+                            <span>一次性付清 </span>
+                        </p>
+                    </div>
+                </div>
+
+        </div>
+        
+        <div class="item item1">
+            <span class="left-title">
+                数量
+            </span>
+            <van-stepper v-model="value" class="van-stepper"/>
+        </div>
+
+        <!-- info 部分 -->
+        <div class="item-box item-box1">
+            <div class="item2">
+                <span class="left-title">
+                        收货人
+                </span>
+               <input type="text" placeholder="请在此输入收货人姓名">
+               <p></p>
+            </div>
+            <div class="item2">
+                <span class="left-title">
+                        公司名称
+                </span>
+                <input type="text" placeholder="请在此输入收货人的公司名称">
+                <p></p>
+            </div>
+            <div class="item2">
+                <span class="left-title">
+                        手机号码
+                </span>
+                <input type="text" placeholder="请在此输入收货人的手机或固话">
+                <p></p>
+            </div>
+            <div class="item2 item3">
+                <span class="left-title">
+                        所在地区
+                </span>
+                <input type="text" placeholder=" 请在此选择省市区" readonly class="address">
+                <img src="asset/images/icon/more.png" alt="" class="ad-more">
+                <p></p>
+            </div>
+            <div class="item2 item4">
+                <span class="left-title">
+                        收货地址
+                </span>
+                <!-- <input type="text" placeholder=" 请在此输入收货人的详细地址"> -->
+                <textarea name="" id="" cols="" rows="" placeholder="请在此输入收货人的详细地址"></textarea>
+            </div>
+        </div>
+        
+        <div class="item-box item-box2">
+            <div class="item2">
+                <span class="left-title">
+                        邀请码（选填）
+                </span>
+                <input type="text" placeholder="请输入渠道邀请码，有机会获得优惠">
+                <p></p>
+            </div>
+            <div class="item2 item4">
+                <span class="left-title">
+                        备注（选填）
+                </span>
+                <textarea name="" id="" cols="" rows="" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
+            </div>
+        </div>
+    
+        <div class="checked-all">
+            <van-checkbox v-model="checked"> </van-checkbox>
+            <span class="explain-w">
+                    我已阅读并同意<span>《租用须知协议》</span>
+            </span>
+        </div>
+
+        <div class="bottom">
+            <span class="all-heji">
+                    总合计 : ¥380.00
+            </span>
+            <span class="all-btn" @click="zf">
+                    确认支付
+            </span>
+        </div>
+
+        
+		
+		
+	</div>
+</body>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
+		data:{
+			list:[
+				{
+					month:'7/9期',
+					status:'待还款',
+					num:'249',
+					time:'2018年08月29日通过支付宝免密支付还款'
+				}
+			],
+            value:1,
+            redio:1,
+            checked:false
+		},
+        methods:{
+            see:function(){
+
+            },
+            back:function(){
+
+            },
+            zf:function(){
+                if(vm.checked == true){
+                    console.log(':)')
+                }
+            }
+        }
+	})
+	
+</script>
+</html>
