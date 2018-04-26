@@ -13,10 +13,16 @@
     		var body = document.body.clientWidth;		
         		document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     	})
-    </script>
+	</script>
+	<style>
+		/*指令可以隐藏未编译的  标签直到实例准备完毕*/
+		[v-cloak] {
+				display: none;
+			}
+	</style>
 </head>
 <body>
-	<div id="app">
+	<div id="app" v-cloak>
 		<div class="sec-1">
 			<div class="con-head">
 				<img :src="ordersProductEntity.cover" class="img"/>
@@ -39,15 +45,15 @@
 		<!--租金信息-->
 		<div class="sec-2">
 			<div>
-				<p>3,000.00</p>
+				<p>{{ordersProductEntity.totalAmount}}</p>
 				<p>应还租金(元)</p>
 			</div>
 			<div>
-				<p>1,000.00</p>
+				<p>{{money}}</p>
 				<p>已还租金(元)</p>
 			</div>
 			<div>
-				<p>2,000.00</p>
+				<p>{{waitMoney}}</p>
 				<p>待还租金(元)</p>
 			</div>
 			
@@ -64,14 +70,14 @@
 			<ul class="fff-ul">
 				<li v-for="item in list">
 					<div class="line-1">
-						<span>{{item.month}}</span>
-						<span>{{item.status}}</span>
+						<span>{{item.periodNumber}}/{{allCount}}</span>
+						<span>{{item.status == 0 ? '待还款' : '已还款'}}</span>
 					</div>
 					<div class="line-2">
 						<span>
-							￥<span>{{item.num}}</span>.00
+							￥<span>{{item.money}}</span>
 						</span>
-						<span>{{item.time}}</span>
+						<span>{{item.cdate}}通过支付宝免密支付还款</span>
 					</div>
 					<p class=line></p>
 				</li>
@@ -80,14 +86,14 @@
 			<ul class="gray-ul" v-if="list2.length > 0">
 				<li v-for="item in list2">
 					<div class="line-1">
-						<span>{{item.month}}</span>
-						<span>{{item.status}}</span>
+						<span>{{item.periodNumber}}/{{allCount}}</span>
+						<span>{{item.status == 1 ? '已还款' : '待还款'}}</span>
 					</div>
 					<div class="line-2">
 						<span>
-							￥<span>{{item.num}}</span>.00
+							￥<span>{{item.money}}</span>
 						</span>
-						<span>{{item.time}}</span>
+						<span>{{item.cdate}}</span>
 					</div>
 					<p class=line></p>
 				</li>
@@ -99,42 +105,27 @@
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
-<script src="static/js/commPage.js"></script>
+<script src="asset/js/util.js"></script>
+<script src="static/js/date.js"></script>
 <script type="text/javascript">
+
 	var vm = new Vue({
 		el:'#app',
 		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 		data:{
 			list:[
-				{
-					month:'7/9期',
-					status:'待还款',
-					num:'249',
-					time:'2018年08月29日通过支付宝免密支付还款'
-				},
-				{
-					month:'8/9期',
-					status:'待还款',
-					num:'250',
-					time:'2018年08月30日通过支付宝免密支付还款'
-				}
+				
 			],
 			list2:[
-				{
-					month:'7/9期',
-					status:'已还款',
-					num:'249',
-					time:'2018年03月29日'
-				},
-				{
-					month:'8/9期',
-					status:'已还款',
-					num:'250',
-					time:'2018年03月29日'
-				}
+
 			],
 			orderId:'',
 			ordersProductEntity:'',
+			url:getApiUrl('/rest/bills/view'),
+			allCount:'',
+			waitMoney:'',
+			money:'',
+
 		},
 		methods:{
 			init:function(){
@@ -146,14 +137,33 @@
 				$.ajax({
 					type:'get',
 					data:{
-						orderId:15
+						orderId:202
 					},
-					url:url+'shop-service/rest/bills/Ddview',
-					success:function(result){
-						console.log(result)
-						if(result.code == 200){
-							vm.ordersProductEntity = result.data.ordersProductEntity;
-							vm.ordersProductEntity.totalAmount = result.data.ordersProductEntity.totalAmount.toFixed(2)
+					url:vm.url,
+					success:function(data){
+						console.log(data)
+						if(data.code == 200){
+							vm.ordersProductEntity = data.data.ordersProductEntity;
+
+							// 如果值为null则赋值0
+							if(data.data.ordersProductEntity.totalAmount == null){
+								data.data.ordersProductEntity.totalAmount = 0;
+							}
+							if(data.data.money == null){
+								vm.money = 0;
+							}
+							vm.ordersProductEntity.totalAmount = data.data.ordersProductEntity.totalAmount.toFixed(2);
+							vm.list = data.data.noPaidList;
+							vm.list2 = data.data.paidList;
+							vm.money = data.data.money;
+							vm.waitMoney = (vm.ordersProductEntity.totalAmount - vm.money).toFixed(2);
+							vm.list.forEach(function(k,v){
+								k.cdate = getTime(k.cdate,1);
+								vm.allCount = data.data.ordersProductEntity.periodNumber;
+							});
+							vm.list2.forEach(function(k,v){
+								k.cdate = getTime(k.cdate);
+							})
 						}
 					},
 					error:function(){

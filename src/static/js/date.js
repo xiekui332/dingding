@@ -54,8 +54,32 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
 function tranformTow(number) {
     return number < 10 ? '0'+number:number
 }
+/* 时间戳转化为时间格式 */
+function getTime(createTime,a) {
+    
+	var date = new Date(createTime)
+	let Y, M, D, h, m, s
+	Y = date.getFullYear() + '年'
+	M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月'
+	D = date.getDate() + '日'
+	h = tranformTow(date.getHours()) + ':'
+	m = tranformTow(date.getMinutes())
+    s = tranformTow(date.getSeconds())
+    
+    if(a == 1){
+        return Y + M + D
+    }else if(a == 2){
+        return Y + M + D + h + m 
+    }else if(a == 3){
+        return Y + M + D + h + m  + ':' + s
+    }
+    
+    
 
-export default {
-    getOverdueTime,
-    dateFormat
+
 }
+
+// export default {
+//     getOverdueTime,
+//     dateFormat
+// }
