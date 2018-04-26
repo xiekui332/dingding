@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title> 用户授权</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="asset/css/userEmpower.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-08024df23b.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/userEmpower-054fd781a0.css"/>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
     <script src="//g.alicdn.com/ilw/cdnjs/jquery/2.1.4/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 <body>
 	<div id="app" :class="bot?'app':'app1'">
         <!-- 审核通过部分 -->
-		<div class="" v-show="status1">
+		<div class="">
             <div class="sec-1">
                 <div class="order-status">
                      <div>
@@ -50,7 +50,6 @@
         
         <!-- 信息填写 -->
         <div class="">
-            <!-- 用户授权的首页 -->
             <div class="head-sec" v-show="st1">
 
             </div>
@@ -127,21 +126,19 @@
                 </div>
 
 
-               <div v-show="status1">
-                    <!-- 联系客服，查看账单 -->
-                    <div class="kf">
-                        <!-- 审核拒绝出现 重新提交 -->
-                        <div  class="seePower">重新提交</div>
-                        <div>联系客服</div>
+                <!-- 联系客服，查看账单 -->
+                <div class="kf">
+                    <!-- 审核拒绝出现 重新提交 -->
+                    <div  class="seePower">重新提交</div>
+                    <div>联系客服</div>
+                </div>
+        
+                <!-- 审核成功 -->
+                <!-- <div class="now-lj">
+                    <div class="bow-btn">
+                            完成订单支付
                     </div>
-            
-                    <!-- 审核成功 -->
-                    <!-- <div class="now-lj">
-                        <div class="bow-btn">
-                                完成订单支付
-                        </div>
-                    </div> -->
-               </div>
+                </div> -->
 
 
             </div>
@@ -157,12 +154,11 @@
 		el:'#app',
 		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 		data:{
-            status1:false, //  审核状态
 			list:[],
             st:'审核通过',
             img:[],
-            bot:false,
-            st1:true,
+            bot:true,
+            st1:false,
             src:'',
             value1:'',
             value2:'',
@@ -189,6 +185,10 @@
                 // 以base64位上传图片
                 console.log(file)
             }
+        },
+        mounted() {
+            var body = document.body.clientWidth;		
+        	document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
         }
 	})
 	
