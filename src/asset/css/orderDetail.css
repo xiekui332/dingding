@@ -34,18 +34,25 @@ body{
 }
 .detail-box p:nth-child(1) span{
 	padding: 0 .05rem;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .detail-box p:nth-child(2){
 	font-size: .24rem;
 	color: #999999;
 	line-height:.36rem;
 	margin-top: .15rem;
+	overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 .detail-box p:nth-child(3){
 	font-size: .28rem;
 	color: #333333;
 	line-height: .28rem;
 	margin-top: .3rem;
+	font-style: normal;
 }
 .detail-box p:nth-child(3) span{
 	padding: 0 .05rem;
@@ -442,7 +449,7 @@ body{
  */
  .order-status{
 	 padding: .63rem .3rem .53rem .4rem;
-	 background-image: linear-gradient(-45deg, #F3654C 0%, #F78C5C 100%);
+	 background-image: linear-gradient(45deg, #F3654C 0%, #F78C5C 100%);
 	 position: relative;
  }
  .status-img{
