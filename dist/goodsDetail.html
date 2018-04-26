@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>淘租公</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-08024df23b.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
     <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
     <link rel="stylesheet" type="text/css" href="asset/component/css/address.css"/>
@@ -216,9 +216,6 @@
 
 
             <!-- 地址 -->
-            <input type="file" @change="uploadFile($event)">
-
-
             <mt-button class="largeFont right-button" @click="addressVisible = !addressVisible">地址</mt-button>
             <popup-address :popupvisible="addressVisible" :province="province" v-model="addressList"></popup-address>
             <input type='text' placeholder="请在此输入收货人的详细地址" style="border:none;width:100%;text-align:right" v-model="address" @input="getDetaiAddress" @blur="looseBlur" />
@@ -321,11 +318,11 @@
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <!-- <script src="static/js/polyfill.js"></script> -->
-<script src="asset/js/util.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="static/js/province.js"></script>
-<script src="asset/js/goodsDetail.js"></script>
+<script src="asset/js/goodsDetail-c610a5d77f.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/address.js"></script>
+
 </html>
