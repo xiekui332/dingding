@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>用户授权</title>
+	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
+	<link rel="stylesheet" type="text/css" href="asset/css/userAuto.css" />
+	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+</head>
+
+<body>
+	<div id="app">
+		<!-- 已授权头部 -->
+		<div v-show="!isFirstAuto">
+			<div class="sec-1">
+				<div class="order-status">
+					<div>
+						<img :src="autoHead.icon" class="status-img status-ju">
+						<span class="status-word">
+							{{autoHead.title}}
+						</span>
+						<p class="congratulation" v-for="(item, index) in autoHead.describe" :key="index">{{item}}</p>
+					</div>
+				</div>
+			</div>
+			<div class="sec-2">
+				<div class="sec-first">
+					<img src="asset/images/icon/free.png" class="free-img">
+					<span class="sq-word">
+						授权芝麻信用
+					</span>
+					<p class="sq-explain">首次申请租赁的企业用户，需要完成企业/个人授权，部分信息人 工审核后可以继续租赁
+					</p>
+				</div>
+			</div>
+		</div>
+		<!-- 未授权头部 -->
+		<div class="head-sec" v-show="isFirstAuto"></div>
+		
+		<!-- 信息填写 -->
+		<div class="">
+			<div class="tianxie">
+				<div class="item-mnue">
+					<p class="item-title">统一社会信用代码/注册号</p>
+					<input type="text" v-model="userAuto.registerNo" :disabled="!canEdit">
+				</div>
+				<div class="item-mnue">
+					<p class="item-title">公司名称</p>
+					<input type="text" v-model="userAuto.company" :disabled="!canEdit">
+				</div>
+				<div class="item-mnue">
+					<p class="item-title">真实姓名</p>
+					<input type="text" v-model="userAuto.name" :disabled="!canEdit">
+				</div>
+				<div class="item-mnue">
+					<p class="item-title">身份证号</p>
+					<input type="text" v-model="userAuto.idcard" :disabled="!canEdit">
+				</div>
+				<div class="item-mnue">
+					<p class="item-title">手机号</p>
+					<input type="text" v-model="userAuto.phone" :disabled="!canEdit">
+				</div>
+
+				<div class="item-mnue-jt">
+					<p class="item-title">上传钉钉指数截图</p>
+				</div>
+				<div class="img-up">
+					<span style="position:relative;display: inline-block">
+						<img :src="userAuto.dingIndexImg">
+						<input type="file" @change="onFileChange($event, 0)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
+						<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(0)" v-show="canEdit && userAuto.dingIndexImg != 'asset/images/icon/proof.png'">
+					</span>
+					<img src="asset/images/icon/example_index.png" v-show="isFirstAuto">
+				</div>
+
+				<div class="item-mnue-jt">
+					<p class="item-title">上传企业委托书</p>
+				</div>
+				<div class="img-up img-up2" style="margin-bottom: 1.6rem">
+					<span style="position:relative;display: inline-block">
+							<img :src="userAuto.companyDelegateImg">
+							<input type="file" @change="onFileChange($event, 1)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
+							<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(1)" v-show="canEdit && userAuto.companyDelegateImg != 'asset/images/icon/proof.png'">
+					</span>
+					<img src="asset/images/icon/example_trust.png" v-show="isFirstAuto">
+				</div>
+
+
+				<div class="now-lj" v-show="isFirstAuto" @click="saveUserAuto">
+					<div class="bow-btn" >
+						立即授权
+					</div>
+				</div>
+
+
+				<div v-show="!isFirstAuto">
+					<div class="kf">
+						<div class="seePower" v-show="userAuto.status == autoStatus.fail">重新提交</div>
+						<!-- 审核中、审核拒绝 -->
+						<div v-show="userAuto.status == autoStatus.fail || userAuto.status == autoStatus.audit" @click="showPop=!showPop">联系客服</div>
+					</div>
+					<!-- 审核成功 -->
+					<div class="now-lj" v-show="userAuto.status == autoStatus.success">
+						<div class="bow-btn">
+							完成订单支付
+						</div>
+					</div>
+				</div>
+
+				<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
+				
+			</div>
+		</div>
+	</div>
+</body>
+<script src="static/js/zepto.min.js"></script>
+<script src="asset/js/util.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="asset/js/userAuto.js"></script>
+<script src="asset/component/js/modal.js"></script>
+</html>
