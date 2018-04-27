@@ -7,34 +7,43 @@
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/orderDetail.css"/>
     <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
+    
+	<style>
+        /*指令可以隐藏未编译的  标签直到实例准备完毕*/
+        [v-cloak] {
+                display: none;
+            }
+    </style>
 </head>
 <body onresize="mask()">
 	<div id="app" :class="bot?'app':'app1'">
         <!-- 订单状态 -->
 
         <div class="order-status">
-            <div>
+            <div v-cloak>
+                <!-- status == 11..的为待定状态 -->
                 <!-- 订单取消 -->
-                <!-- <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle"> -->
+                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-if="status == 1">
                 <!-- 租用中 -->
-                <!-- <img src="asset/images/icon/leasing.png" alt="" class="status-img"> -->
+                <img src="asset/images/icon/leasing.png" alt="" class="status-img" v-else-if="status == 9">
                 <!-- 待收货 -->
-                <!-- <img src="asset/images/icon/logistic.png" alt="" class="status-img status-img-daishou"> -->
+                <img src="asset/images/icon/logistic.png" alt="" class="status-img status-img-daishou" v-else-if="status == 3">
                 <!-- 待支付 -->
-                <!-- <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle"> -->
+                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-else-if="status == 0">
                 <!-- 租期已满 -->
-                <!-- <img src="asset/images/icon/full.png" alt="" class="status-img"> -->
+                <img src="asset/images/icon/full.png" alt="" class="status-img" v-else-if="status == 10">
                 <!-- 待发货 -->
-                <img src="asset/images/icon/delivery.png" alt="" class="status-img status-img-daifa">
+                <img src="asset/images/icon/delivery.png" alt="" class="status-img status-img-daifa" v-else-if="status == 2">
                 <!-- 审核拒绝 -->
-                <!-- <img src="asset/images/icon/shhjj.png" alt="" class="status-img status-ju"> -->
+                <img src="asset/images/icon/shhjj.png" alt="" class="status-img status-ju" v-else-if="status == 16">
                 <!-- 审核通过 -->
-                <!-- <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju"> -->
+                <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju" v-else-if="status == 113">
                 <!-- 授权信息审核中 -->
-                <!-- <img src="asset/images/icon/shhz.png" alt="" class="status-img status-ju"> -->
+                <img src="asset/images/icon/shhz.png" alt="" class="status-img status-ju" v-else-if="status == 15">
+                <img src="" alt="" v-else>
 
                 <span class="status-word">
-                        {{st}}
+                        <span>{{nothing}}</span>
                 </span>
             </div>
             <div class="explain-t">
@@ -54,14 +63,14 @@
          -->
          <div class="dd_sure">
             <p>
-                <span>吴瑶</span>
-                <span>181****0093</span>
+                <span>{{obj.name}}</span>
+                <span>{{phone}}</span>
             </p>
 
             <div class="address">
                 <img src="asset/images/icon/map.png" alt="" class="map">
                 <p>
-                   北京北京市海淀区中关村街道双宜数东里3号楼友谊鲜果（菜鸟驿站:13423475456）
+                   {{obj.address}}
                 </p>
                <div class="p-box" @click="openModal('signTip')">
                     <p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
@@ -74,18 +83,16 @@
 
 		<div class="sec-1">
 			<div class="con-head">
-				<img src="" class="img"/>
+				<img :src="obj.cover" class="img"/>
 				<div class="detail-box">
 					<p>
-						<span>yaman/雅萌</span>
-						<span>瘦脸射频</span>
-						<span>美颜仪</span>
+						<span>{{obj.productName}}</span>
 					</p>
-					<p>瘦脸射频美颜仪瘦脸射频美颜仪</p>
+					<p>{{obj.brief}}</p>
 					<p>
 						<span>总租金:</span>
-                        <span>￥2,988.00</span>
-                        <span>x 2</span>
+                        <span>￥{{obj.totalAmount}}</span>
+                        <span>x {{obj.quantity}}</span>
 					</p>
 				</div>
 			</div>
@@ -100,26 +107,26 @@
                     <div class="gray">
                         <span class="l">总合计</span>
                         <div class="r">
-                            ￥<span>5487.00</span>
+                            ￥<span>{{obj.totalAmount}}</span>
                         </div>
                     </div>
                     
                     <div>
                         <span class="l">月租金</span>
                         <div class="r">
-                            ￥<span>249.00</span>
+                            ￥<span>{{obj.payAmount}}</span>
                         </div>
                     </div>
                     <div class="gray">
                         <span class="l">租期</span>
                         <div class="r">
-                            <span>共12个月</span>
+                            <span>共{{obj.periodNumber}}个月</span>
                         </div>
                     </div>
                     <div class="gray">
                         <span class="l">商品数量</span>
                         <div class="r">
-                            <span>2</span>
+                            <span>{{obj.quantity}}</span>
                         </div>
                     </div>
                     <div class="gray">
@@ -138,20 +145,20 @@
                     <div class="gray">
                         <span class="l">总押金</span>
                         <div class="r">
-                            ￥<span>6,900.00</span>
+                            ￥<span>{{obj.productDeposit}}</span>
                         </div>
                     </div>
                     
                     <div>
                         <span class="l">信用免押金</span>
                         <div class="r">
-                            -￥<span>3,000.00</span>
+                            -￥<span>{{obj.zhimaCrediFreeDeposit}}</span>
                         </div>
                     </div>
                     <div class="">
                         <span class="l">冻结金额</span>
                         <div class="r">
-                            -￥<span>3,000.00</span>
+                            -￥<span>{{obj.authorizedDeposit}}</span>
                         </div>
                     </div>
                 </div>
@@ -163,11 +170,11 @@
         <div class="xdbh">
             <p>
                 <span>订单编号</span>
-                <span>11807571321180757132</span>
+                <span>{{obj.sn}}</span>
             </p>
             <p>
                 <span>下单时间</span>
-                <span>2017年11月24日 09:25</span>
+                <span>{{stt}}</span>
             </p>
         </div>
         
@@ -213,6 +220,8 @@
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="asset/component/js/modal.js"></script>
+<script src="asset/js/util.js"></script>
+<script src="static/js/date.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -221,43 +230,85 @@
             select:true,
             agree:false,
             bot:true,
-            st:'待发货',
-            stw:'商品租用到期后买断或完成回收，冻结预授权金额将会释放',
-            stt:'2017年11月24日09:30',
+            // st:'待发货',
+            stw:'暂无',
+            stt:'',
 			list:[
-				{
-					month:'7/9期',
-					status:'待还款',
-					num:'249',
-					time:'2018年08月29日通过支付宝免密支付还款'
-				},
-				{
-					month:'8/9期',
-					status:'待还款',
-					num:'250',
-					time:'2018年08月30日通过支付宝免密支付还款'
-				}
+				
 			],
 			list2:[
-				{
-					month:'7/9期',
-					status:'已还款',
-					num:'249',
-					time:'2018年03月29日'
-				},
-				{
-					month:'8/9期',
-					status:'已还款',
-					num:'250',
-					time:'2018年03月29日'
-				}
+				
             ],
             showPop: false,
             popTitle: '',
             popContent: [],
-            setStyle: ''
+            setStyle: '',
+            url:getApiUrl('/rest/orders/dingding/view'),
+            status:'',  //  订单状态
+            nothing:'暂无',
+            phone:'',
+            obj:'',
 		},
         methods:{
+            init:function(){
+                $.ajax({
+                    type:'get',
+                    data:{
+						id:177
+					},
+                    url:vm.url,
+                    success:function(data){
+                        console.log(data)
+                        if(data.code == 200){
+                            vm.status = data.data.status;
+                            if(vm.status == 111){
+                                vm.stw = '订单取消，用户主动取消';
+                                vm.nothing = '订单取消';
+                            }else if(vm.status == 9){
+                                vm.stw = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
+                                vm.nothing = '租用中';
+                            }else if(vm.status == 3){
+                                vm.stw = '显示第三方物流轨迹或固定文案：您的包裹已交由{快递公司}配送';
+                                vm.nothing = '待收货';
+                            }else if(vm.status == 0){
+                                vm.stw = '请尽快完成支付，把宝贝带回家哦';
+                                vm.nothing = '待支付';
+                            }else if(vm.status == 10){
+                                vm.stw = '宝贝到期啦，重新下单吧';
+                                vm.nothing = '租期已满';
+                            }else if(vm.status == 2){
+                                vm.stw = '订单已经在备货中，请耐心等待';
+                                vm.nothing = '待发货';
+                            }else if(vm.status == 112){
+                                vm.stw = '请调整完善审核资料，增加审核成功概率';
+                                vm.nothing = '审核拒绝';
+                            }else if(vm.status == 113){
+                                vm.stw = '订单已经完成审核，请继续完成支付';
+                                vm.nothing = '审核通过';
+                            }else if(vm.status == 114){
+                                vm.stw = '授权信息正在审核中，请耐心等待';
+                                vm.nothing = '审核中';
+                            }
+
+                            //  转化时间
+
+                            vm.stt = getTime(data.data.createTime,2);
+                            vm.phone = data.data.phone.substring(0,3)+'****'+data.data.phone.substring(7);
+                            //    保证取值为两位有效数字
+                            if(data.data.totalAmount == null || data.data.totalAmount == 0){
+                                data.data.totalAmount = 0.00
+                            };
+                            data.data.totalAmount = (data.data.totalAmount).toFixed(2);
+                           
+                            vm.obj = data.data;
+                            
+                        }
+                    },
+                    error:function(){
+                        console.log(':)')
+                    }
+                })
+            },
             click:function(){
                 vm.agree = !vm.agree;
                 vm.select = !vm.select;
@@ -309,8 +360,12 @@
         mounted() {
             var body = document.body.clientWidth;		
             document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+
+           
         },
 	})
+
+    vm.init();
 
     // 蒙版方法
     function mask(){
