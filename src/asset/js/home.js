@@ -1,49 +1,52 @@
 var vm = new Vue({
-    el:'#app',
-    components: {
+  el: '#app',
+  components: {},
+  props: {
+    loading: false
+  },
+  data: {
+    id: "",
+    goodsList1: [],
+    show: true,
+    selected:[ ]
+  },
+  computed: {},
+  watch: {},
+  filters: {},
+  methods: {
+    footerFnn(){
+      $('.myContent').addClass('active').siblings().removeClass('active')
+      $('.footer-img').addClass(active).siblings().removeClass('active')
     },
-    props: {
-      loading :true
+    getGoodsList(id) {
+      $.ajax({
+        type: "GET",
+        url: "http://192.168.18.119:8080/rest/ddproducts/dingding/list",
+        data: {
+          id: id,
+        },
+        success: (json) => {
+          console.log(json.data)
+          this.goodsList1 = json.data
+        }
+      })
     },
-    data: {
-      homeList:[
-          {
-            url:'/src/asset/images/icon/waitPay.png',
-            price1:'1234',
-            price2:'12.34'
-          },
-          {
-            url:'/src/asset/images/icon/waitPay.png',
-            price1:'1234',
-            price2:'12.34'
-          },
-         
-      ]  
-    },
-    computed: {
-    },
-    watch: {
-    },
-    filters: {
-    },
-    methods: {
-      loadMore() {
-        this.loading = true;
-        setTimeout(() => {
-          let last = this.homeList[this.homeList.length - 1];
-          for (let i = 1; i <= 10; i++) {
-            this.homeList.push(last + i);
-          }
-          this.loading = false;
-        }, 2500);
-      }
-    },
-    created() {
-    },
-    destroyed() {
-    },
-    mounted:function() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-    },
+    imgFnn(id) {
+      console.log(id)
+      this.$router.push({
+        name: 'home',
+        params: {
+          userId: id
+        }
+      })
+
+    }
+  },
+  created() {},
+  destroyed() {},
+  mounted: function () {
+    var body = document.body.clientWidth;
+    document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    this.getGoodsList()
+  },
 })
