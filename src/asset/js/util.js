@@ -32,7 +32,7 @@ function uploadImg(e, url) {
 }
 
 
-function checkID(ID) {
+function checkIdcard(ID) {
 	if (typeof ID !== 'string') return false;
 	var city = { 11: "北京", 12: "天津", 13: "河北", 14: "山西", 15: "内蒙古", 21: "辽宁", 22: "吉林", 23: "黑龙江 ", 31: "上海", 32: "江苏", 33: "浙江", 34: "安徽", 35: "福建", 36: "江西", 37: "山东", 41: "河南", 42: "湖北 ", 43: "湖南", 44: "广东", 45: "广西", 46: "海南", 50: "重庆", 51: "四川", 52: "贵州", 53: "云南", 54: "西藏 ", 61: "陕西", 62: "甘肃", 63: "青海", 64: "宁夏", 65: "新疆", 71: "台湾", 81: "香港", 82: "澳门", 91: "国外" };
 	var birthday = ID.substr(6, 4) + '/' + Number(ID.substr(10, 2)) + '/' + Number(ID.substr(12, 2));
@@ -54,6 +54,16 @@ function checkID(ID) {
 	if (residue !== ID.substr(17, 1)) return false;
 
 	return true
+}
+
+function phoneValid(phone) {
+    var phoneExp = /^1[345789]\d{9}$/;//电话号码
+    return phoneExp.test(phone)
+}
+
+function emailValid(email) {
+    var emailExp = /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/;//邮箱
+    return emailExp.test(email)
 }
 
 //解析url
@@ -82,13 +92,15 @@ document.documentElement.style.fontSize = document.documentElement.clientWidth /
 
 
 function ddToast(message) {
-    dd.device.notification.toast({
-        icon: '', //icon样式，有success和error，默认为空 0.0.2
-        text: message, //提示信息
-        duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-        delay: 0, //延迟显示，单位秒，默认0
-        onSuccess : function(result) {
-        },
-        onFail : function(err) {}
-    })
+    alert(message)
+
+    // dd.device.notification.toast({
+    //     icon: '', //icon样式，有success和error，默认为空 0.0.2
+    //     text: message, //提示信息
+    //     duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
+    //     delay: 0, //延迟显示，单位秒，默认0
+    //     onSuccess : function(result) {
+    //     },
+    //     onFail : function(err) {}
+    // })
 }
