@@ -33,7 +33,7 @@ var vm = new Vue({
                 },
                 url:vm.url,
                 success:function(data){
-                    console.log(data)
+                    //  console.log(data)
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 111){
