@@ -202,7 +202,7 @@
                 <div class="gray regular smallFont deposit">
                     <span>
                         <span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
-                        <span class="smallerFont" style="color:#2A2A2A">￥</span><span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit}}</span>
+                        <span class="smallerFont" style="color:#2A2A2A">￥</span><span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit.toFixed(2)}}</span>
                     </span>
                     <span class="tip">非全新</span>
                 </div>
@@ -229,7 +229,6 @@
                     <hr class="divider" style="background-color:#e5e5e5" />
                 </div>
             </div> -->
-
 
 
             <div class="tab writeBackColor" style="margin-top:.2rem">
@@ -266,7 +265,7 @@
                     <div style="padding: .28rem 0;border-bottom:1px solid #F3654C;position: relative;">
                         <img :src="goodsDetail.cover" style="width:1.5rem">
                         <span class="sku-price">
-                            <span style="font-size:.288rem">￥</span>123<span style="font-size:.24rem">/月</span>
+                            <span style="font-size:.288rem">￥</span>{{monthPrice}}<span style="font-size:.24rem">/月</span>
                         </span>
                     </div>
                     <div class="popup-sku">
@@ -277,18 +276,18 @@
                         </div>
                         <p>租期</p>
                         <div>
-                            <span class="sku-active" style="padding: .09rem .37rem .08rem .37rem;">12期</span>
+                            <span v-for="(item, index) in goodsDetail.productPriceEntity" 
+                                :class="{'sku-active':timeActive==index}" 
+                                style="padding: .09rem .37rem .08rem .37rem;" 
+                                @click="skuTap(item, index)">{{item.timeLength}}期</span>
                         </div>
                         <p>数量</p>
                         <div class="sku-number">
                             <span class="reduce" @click="adjust(-1)">-</span><span class="num">{{num}}</span><span class="add" @click="adjust(1)">+</span>
                         </div>
                     </div>
-                    
-                    <mt-button class="full-width submit">确认</mt-button>
+                    <mt-button class="full-width submit" @click="toSure()">确认</mt-button>
                 </div>
-
-                
 
                 <!-- <div class="container" style="padding-top:15px">
                     <img style="width:1.6rem;height:auto;vertical-align: top;" :src="productDetail.cover">

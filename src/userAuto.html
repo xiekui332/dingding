@@ -97,7 +97,7 @@
 
 				<div v-show="!isFirstAuto">
 					<div class="kf">
-						<div class="seePower" v-show="userAuto.status == autoStatus.fail">重新提交</div>
+						<div class="seePower" v-show="userAuto.status == autoStatus.fail" @click="updateUserAuto">重新提交</div>
 						<!-- 审核中、审核拒绝 -->
 						<div v-show="userAuto.status == autoStatus.fail || userAuto.status == autoStatus.audit" @click="showPop=!showPop">联系客服</div>
 					</div>
