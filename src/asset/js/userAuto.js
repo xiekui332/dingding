@@ -11,11 +11,11 @@ var vm = new Vue({
             companyDelegateImg: 'asset/images/icon/proof.png',
             dingIndexImg: 'asset/images/icon/proof.png',
             idcard: "321322199602052213",
-            name: "zhoulei",
+            name: "",
             phone: "",
             registerNo: "330104000287730",
             status: 0,
-            // rejectReason: "的v"
+            rejectReason: "的v"
         },
         isFirstAuto: true,
         canEdit: true,
@@ -119,7 +119,9 @@ var vm = new Vue({
             });
         },
         getUserAuto() {
-            let url = '/getapi/rest/dingDingUserInfo/Ddlist'
+            // let url = '/getapi/rest/dingDingUserInfo/Ddlist'
+            let url = getApiUrl('/rest/dingDingUserInfo/Ddlist')
+            
             $.ajax({
                 url: url,
                 type: "POST",
@@ -160,7 +162,16 @@ var vm = new Vue({
             });
         },
         updateUserAuto() {
-            let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
+            let flag = ''
+            let message = this.autoValidate()
+            if (message != true) {
+                ddToast(message)
+                return
+            }
+
+            // let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
+            let url = getApiUrl('/rest/dingDingUserInfo/Ddupdate')
+            this.userAuto.id = this.authId
             $.ajax({
                 url: url,
                 type: "POST",
@@ -173,10 +184,9 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        ddToast('授权成功')
+                        ddToast('修改成功')
                     } else {
                         ddToast(result.message)
-                        
                     }
                 },
                 error: e => {
