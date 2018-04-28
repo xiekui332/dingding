@@ -73,17 +73,20 @@ body{
  .yuezu>div.gray{
      color: #999;
  }
+ .yuezu>div.gray:last-child{
+     font-size: .24rem;
+ }
  /* .yuezu>div:nth-child(1){
     font-size: .2rem;
  }
  .yuezu>div:nth-child(1) span{
     font-size: .28rem; 
  }*/
- .l{
+ .left{
      display: inline-block;
      float: left;
  }
- .r{
+ .right{
     display: inline-block;
     float: right;
 }
@@ -118,28 +121,28 @@ body{
  .lb-2 .yuezu>div:nth-child(3) span{
     font-size: .28rem!important;
  }
- .lb-2 .gray .l{
+ .lb-2 .gray .left{
      color: #999;
  }
- .lb-2 .gray .r, .lb-2 .gray .r span{
+ .lb-2 .gray .right, .lb-2 .gray .r span{
     color: #999;
 }
-.lb-2 .yuezu>div:nth-child(2) .l{
+.lb-2 .yuezu>div:nth-child(2) .left{
     color: #333;
 }
 
-.lb-2 .yuezu>div:nth-child(2) .r span{
+.lb-2 .yuezu>div:nth-child(2) .right span{
     color: #333;
 }
 
 
-.lb-2 .yuezu>div:nth-child(3) .l{
+.lb-2 .yuezu>div:nth-child(3) .left{
     color: #333;
 }
-.lb-2 .yuezu>div:nth-child(3) .r{
+.lb-2 .yuezu>div:nth-child(3) .right{
     color: #333;
 }
-.lb-2 .yuezu>div:nth-child(3) .r span{
+.lb-2 .yuezu>div:nth-child(3) .right span{
     color: #333;
 }
 .btn-box a{
@@ -171,7 +174,7 @@ body{
 }
 .footer{
     width:3.5rem;
-    margin: .5rem auto 0;
+    margin: 1.56rem auto 0;
 }
 .footer img{
     width: 100%;
