@@ -25,6 +25,14 @@
 </head>
 <body>
 	<div id="app">
+		
+		<!--未添加收货地址-->
+		<div class="no-add">
+			<div class="no-btn">
+				新建收货地址
+			</div>
+		</div>
+		
         <!-- 确认地址
          -->
          <div class="dd_sure">
@@ -58,9 +66,6 @@
 						<span>总租金:</span>
 						<span>￥2,988.00</span>
 					</p>
-					<div class="renzh">
-						芝麻信用·免押金
-					</div>
 				</div>
 			</div>
         </div>
@@ -149,6 +154,12 @@
                     提交订单
             </div>
         </div>
+		
+		
+		<!--弹窗提示-->
+		<van-popup v-model="show">内容</van-popup>
+		
+		
 		
 	</div>
 </body>
