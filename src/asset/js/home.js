@@ -14,14 +14,10 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
-    footerFnn(){
-      $('.myContent').addClass('active').siblings().removeClass('active')
-      $('.footer-img').addClass(active).siblings().removeClass('active')
-    },
     getGoodsList(id) {
       $.ajax({
         type: "GET",
-        url: "http://192.168.18.119:8080/rest/ddproducts/dingding/list",
+        url: "http://192.168.20.167:8080/rest/ddproducts/dingding/list",
         data: {
           id: id,
         },
@@ -31,16 +27,6 @@ var vm = new Vue({
         }
       })
     },
-    imgFnn(id) {
-      console.log(id)
-      this.$router.push({
-        name: 'home',
-        params: {
-          userId: id
-        }
-      })
-
-    }
   },
   created() {},
   destroyed() {},
