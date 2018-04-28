@@ -4,6 +4,7 @@ var vm = new Vue({
     data:{
         select:true,
         agree:false,
+        show: false,
         list:[
             {
                 month:'7/9期',
@@ -40,6 +41,10 @@ var vm = new Vue({
             vm.select = !vm.select;
         },
         submit:function(){
+        	//	判断是否添加收货地址，改变show的状态触发提示
+//      	if(){
+//      		vm.show = true;		//	没有添加收货地址
+//      	}
            console.log(':)')
         },
         jump:function(){
