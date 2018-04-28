@@ -19,7 +19,7 @@ var vm = new Vue({
         popContent: [],
         setStyle: '',
         url:getApiUrl('/rest/orders/dingding/view'),
-        status:'',  //  订单状态
+        status:-1,  //  订单状态
         nothing:'暂无',
         phone:'',
         obj:'',
@@ -36,33 +36,38 @@ var vm = new Vue({
                     //  console.log(data)
                     if(data.code == 200){
                         vm.status = data.data.status;
-                        if(vm.status == 111){
-                            vm.stw = '订单取消，用户主动取消';
-                            vm.nothing = '订单取消';
-                        }else if(vm.status == 9){
+                        if(vm.status == 9){
                             vm.stw = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
                             vm.nothing = '租用中';
+                            vm.bot = true;
                         }else if(vm.status == 3){
                             vm.stw = '显示第三方物流轨迹或固定文案：您的包裹已交由{快递公司}配送';
                             vm.nothing = '待收货';
+                            vm.bot = true;
                         }else if(vm.status == 0){
                             vm.stw = '请尽快完成支付，把宝贝带回家哦';
                             vm.nothing = '待支付';
+                            vm.bot = true;
                         }else if(vm.status == 10){
                             vm.stw = '宝贝到期啦，重新下单吧';
                             vm.nothing = '租期已满';
+                            vm.bot = true;
                         }else if(vm.status == 2){
                             vm.stw = '订单已经在备货中，请耐心等待';
                             vm.nothing = '待发货';
-                        }else if(vm.status == 112){
+                            vm.bot = true;
+                        }else if(vm.status == 16){
                             vm.stw = '请调整完善审核资料，增加审核成功概率';
                             vm.nothing = '审核拒绝';
-                        }else if(vm.status == 113){
-                            vm.stw = '订单已经完成审核，请继续完成支付';
-                            vm.nothing = '审核通过';
-                        }else if(vm.status == 114){
+                            vm.bot = true;
+                        }else if(vm.status == 15){
                             vm.stw = '授权信息正在审核中，请耐心等待';
                             vm.nothing = '审核中';
+                            vm.bot = true;
+                        }else{
+                            vm.stw = '订单取消，用户主动取消';
+                            vm.nothing = '订单取消';
+                            vm.bot = true;
                         }
 
                         //  转化时间
@@ -130,6 +135,14 @@ var vm = new Vue({
                 ]
             }
             this.showPop = true
+        },
+        // 申请退款
+        refund:function(){
+
+        },
+        //  申请归还
+        ret:function(){
+
         }
     },
     mounted() {

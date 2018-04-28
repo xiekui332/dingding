@@ -399,9 +399,9 @@ body{
 	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
-.kf>div{
+.kf .btnIng{
 	display: inline-block;
-	width: 1.6rem;
+	/* min-width: 1.6rem; */
 	height: .48rem;
 	border-radius: .24rem;
 	border: 1px solid #f3654c;
@@ -411,12 +411,16 @@ body{
 	color: #F3654C;
 	line-height: .48rem;
 	margin-top: .26rem;
+	padding: 0 .25rem;
 }
-.kf>div:nth-child(1){
+.kf .btnIng:nth-child(1){
 	margin-right: .3rem;
 }
-.kf>div:nth-child(2){
-	margin-right: .25rem;
+.kf .btnIng:nth-child(2){
+	margin-right: .2rem;
+}
+.kf .btnIng:nth-child(3){
+	margin-right: .2rem;
 }
 
 /* 下单编号
