@@ -211,6 +211,7 @@ body{
     font-size: .28rem;
     color: #333;
     line-height: .4rem;
+    padding-left: .15rem;
 }
 .checked-all .van-checkbox{
     display: inline-block;
