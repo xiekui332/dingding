@@ -22,6 +22,7 @@ body{
 }
 .detail-box{
 	display: inline-block;float: left;
+	width: 5.19rem;
 }
 .detail-box p{
 	padding-left: .15rem!important;
@@ -38,13 +39,13 @@ body{
 	font-size: .24rem;
 	color: #999999;
 	line-height:.24rem;
-	margin-top: .15rem;
+	margin-top: .2rem;
 }
 .detail-box p:nth-child(3){
 	font-size: .28rem;
 	color: #333333;
 	line-height: .28rem;
-	margin-top: .15rem;
+	margin-top: .4rem;
 }
 .detail-box p:nth-child(3) span{
 	padding: 0 .05rem;
@@ -203,7 +204,6 @@ body{
     border-top: 1px solid #f7f7f7;
     position: relative;
     overflow: hidden;
-    margin-top: .2rem;
 }
 .dd_sure{
     padding: .3rem 0 0;
@@ -271,8 +271,8 @@ body{
 .yuezu>div{
     clear: both;
     font-size: .28rem;
-    line-height: .5rem;
-    height: .5rem;
+    line-height: .6rem;
+    height: .6rem;
 }
 /* .yuezu>div:nth-child(1){
    font-size: .2rem;
@@ -282,11 +282,11 @@ body{
    color: #333333;
    line-height: .28rem;
 } */
-.l{
+.left{
     display: inline-block;
     float: left;
 }
-.r{
+.right{
    display: inline-block;
    float: right;
 }
@@ -305,7 +305,7 @@ body{
 
 .lb-1{
     width: 100%;
-    border-bottom: 1px solid #ddd;
+    /*border-bottom: 1px solid #ddd;*/
     padding-bottom: .2rem;
 }
 .lb-1:last-of-type{
@@ -314,7 +314,7 @@ body{
 .quest{
     float: right;
     width: .3rem;
-    margin-top: .1rem;
+    margin-top: .16rem;
 }
 .mian{
     padding-right: .08rem;
@@ -323,7 +323,15 @@ body{
     height:2.5rem;
     background: #fff;
     margin-top: .2rem;
-    padding: .4rem .3rem;
+    padding: .4rem .3rem 0;
+    position: relative;
+}
+.readFile{
+	position: absolute;
+	width: 3.14rem;
+	height: .81rem;
+	left: .3rem;
+	top: -.45rem;
 }
 .circle{
     width: .44rem;
@@ -344,6 +352,7 @@ body{
     color: #333333;
     line-height: .5rem;
     margin-left: .1rem;
+    padding-left: .15rem;
 }
 .text-word span{
     color: #2a8afa;
@@ -371,6 +380,7 @@ body{
 	height: 1.88rem;
 	background-image: linear-gradient(45deg, #F3654C 0%, #F78C5C 100%);
 	overflow: hidden;
+	margin-bottom: .2rem;
 }
 .no-btn{
 	width: 2.2rem;
@@ -382,4 +392,180 @@ body{
 	color: #fff;
 	text-align: center;
 	line-height: .5rem;
+}
+.van-popup{
+	width: 4.82rem;
+	height: 2.59rem;
+	background: #FFFFFF;
+	/*box-shadow: 0 2px 4px 0 rgba(0,0,0,0.50);*/
+	border-radius: .2rem;
+}
+.van-popup img{
+	display: block;
+	width: .6rem;
+	height: .6rem;
+	margin: .65rem auto .3rem;
+}
+.van-popup p{
+	font-size: .28rem;
+color: #333333;
+text-align: center;
+}
+.right{
+	display: inline-block;
+	float: right;
+	font-style: normal;
+}
+.item1{
+    height: .88rem;
+    /*margin: .2rem 0;*/
+}
+.left-title{
+    font-size: .28rem;
+    color: #333333;
+    letter-spacing: 0;
+    display: inline-block;
+    float: left;
+}
+.van-stepper{
+    display: inline-block;
+    float: right;
+    margin-left: .74rem;
+}
+.item1 .van-stepper button{
+    height: .38rem;
+    border: 1px solid #ddd;
+}
+.van-stepper input{
+    height: .3rem;
+    border: 1px solid #ddd;
+    border-left: none;
+    border-right: none;
+    width: .5rem;
+    font-size: .23rem;
+}
+
+.van-stepper .van-stepper__minus{
+    border-radius: .24rem 0 0 .24rem;
+    width: .4rem;
+}
+.van-stepper .van-stepper__plus{
+    border-radius:  0 .24rem  .24rem 0;
+    width: .4rem;
+    
+}
+.van-stepper .van-stepper__plus::after,.van-stepper .van-stepper__plus::before{
+	background-color: #F3654C;
+}
+.item1 .van-stepper__stepper{
+    width: .3rem;   
+}
+.item1 .van-stepper__stepper::after,.item1 .van-stepper__stepper::before{
+    background-color: #F3654C;
+    font-weight: bold;
+}
+.van-stepper__input{
+	line-height: .05rem;
+}
+.yuezu div.gray-word{
+	font-size: .24rem;
+	color: #999999;
+	text-align: left;
+	line-height: .32rem;
+	margin-top: .05rem;
+}
+.marTop{
+	margin-top: .2rem;
+	background: #fff;
+	padding-bottom: .35rem;
+}
+.marTop .black span,.marTop .black{
+	color: #333;
+}
+
+
+/*邀请码*/
+.item-box{
+    background: #fff;
+}
+
+.item-box1>.item2:last-of-type{
+    border-bottom:none;
+}
+.item2 textarea{
+    width: 5rem;
+    float: right;
+    /* height: .5rem; */
+    margin-top: .22rem;
+    border: none;
+    background: #fff;
+    line-height: .5rem;
+    font-size: .28rem;
+    text-align: right;
+}
+.item2 textarea::placeholder{
+    color: #ccc;
+    font-size: .28rem;
+    text-align: right;
+    line-height: .5rem;
+}
+.item-box .item2{
+    width: 6.9rem;
+    margin: 0 auto;
+    /* border-bottom: 1px solid #ddd; */
+    height: 1rem;
+    line-height: 1rem;
+}
+.item2 input{
+    width: 5rem;
+    float: right;
+    height: .5rem;
+    margin-top: .22rem;
+    border: none;
+    background: #fff;
+    line-height: .5rem;
+    font-size: .28rem;
+    text-align: right;
+}
+.item2 input::placeholder{
+    color: #ccc;
+    font-size: .28rem;
+    text-align: right;
+    line-height: .5rem;
+}
+.item-box2{
+    margin-top: .2rem;
+}
+.item-box2>.item2 input{
+    width: 4.8rem;
+}
+.item-box1 .item2 p{
+    width: 7.2rem;
+    position: absolute;
+    border-top: 1px solid #ddd;
+    bottom: 0;
+    left: 0;
+}
+.item-box1 .item2{
+    position: relative;
+}
+.item-box2 .item2 p{
+    width: 7.2rem;
+    position: absolute;
+    border-top: 1px solid #ddd;
+    bottom: 0;
+    left: 0;
+}
+.item-box2 .item2{
+    position: relative;
+}
+.item-box2 .item4 textarea{
+    width: 4.5rem;
+    text-align: left;
+}
+.item-box2 .item4 textarea::placeholder{
+    text-align: left;
+}
+.item-box .item4{
+    height: 1.5rem;
 }

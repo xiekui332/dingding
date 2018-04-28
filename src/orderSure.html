@@ -3,8 +3,11 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- 电话类型的数字不变颜色 -->
+	<meta name = "format-detection" content = "telephone=no">
     <title>确认订单</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/sure.css"/>
     <!-- 引入样式 -->
     <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
@@ -27,15 +30,16 @@
 	<div id="app">
 		
 		<!--未添加收货地址-->
-		<div class="no-add">
+		<div class="no-add" v-if="addNew">
 			<div class="no-btn">
 				新建收货地址
 			</div>
 		</div>
+		<div v-else></div>
 		
         <!-- 确认地址
          -->
-         <div class="dd_sure">
+         <div class="dd_sure" v-if="addShow">
             <p>
                 <span>吴瑶</span>
                 <span>181****0093</span>
@@ -65,6 +69,7 @@
 					<p>
 						<span>总租金:</span>
 						<span>￥2,988.00</span>
+						<span class="right">x2</span>
 					</p>
 				</div>
 			</div>
@@ -76,70 +81,87 @@
 		<div class="lb">
             <div class="lb-1">
                 <div class="yuezu">
+                	<div class="item item1">
+			            <span class="left-title">
+			                数量
+			            </span>
+			            <van-stepper v-model="value" class="van-stepper"/>
+			        </div>
                     <div class="gray">
-                        <span class="l">总租金</span>
-                        <div class="r">
-                            ￥<span>249.00</span>
+                        <span class="left">总合计</span>
+                        <div class="right">
+                            ￥<span>11</span>
                         </div>
                     </div>
                     
                     <div>
-                        <span class="l">月租金</span>
-                        <div class="r">
-                            ￥<span>249.00</span>
+                        <span class="left">月租金</span>
+                        <div class="right">
+                            ￥<span>11</span>
                         </div>
                     </div>
                     <div class="gray">
-                        <span class="l">月租金</span>
-                        <div class="r">
-                            <span>共12个月</span>
+                        <span class="left">租期</span>
+                        <div class="right">
+                            <span>共11个月</span>
                         </div>
                     </div>
                     <div class="gray">
-                        <span class="l">租金付款方式</span>
-                        <img src="asset/images/icon/quest.png" alt="" class="quest">
-                        <span class="r mian">支付宝免密支付</span>
+                        <span class="left">商品数量</span>
+                        <div class="right">
+                            <span>11</span>
+                        </div>
+                    </div>
+                    <div class="gray">
+                        <span class="left">租金付款方式</span>
+                        <img src="asset/images/icon/quest.png" alt="" class="quest" @click="openModal('payTip')">
+                        <span class="right mian">支付宝免密支付</span>
                     </div>
                 </div>
             </div>
 
 
-            <!-- 总押金 -->
-
-            <div class="lb-1">
-                <div class="yuezu">
-                    <div class="gray">
-                        <span class="l">总押金</span>
-                        <div class="r">
-                            ￥<span>6,900.00</span>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <span class="l">芝麻信用免押金</span>
-                        <div class="r">
-                            -￥<span>3,000.00</span>
-                        </div>
-                    </div>
-                    <div class="">
-                        <span class="l">已授权押金</span>
-                        <div class="r">
-                            -￥<span>3,000.00</span>
-                        </div>
-                    </div>
-                    <div class="gray">
-                        <span class="l">押金担保方式</span>
-                        <img src="asset/images/icon/quest.png" alt="" class="quest">
-                        <span class="r mian">支付宝资金授权</span>
-                    </div>
-                </div>
-            </div>
 
         </div>
         
+        <!-- 总押金 -->
+
+        <div class="lb-1 marTop">
+            <div class="yuezu">
+                <div class="gray black">
+                    <span class="left">总押金</span>
+                    <div class="right">
+                        ￥<span>6,900.00</span>
+                    </div>
+                </div>
+                <div class="gray gray-word">
+                	<p>企业法人的芝麻信用700分以上，享有每笔订单免10000元押金的权益哦</p>
+                </div>
+            </div>
+        </div>
+    
+    	<!--邀请码-->
+    	<div class="item-box item-box2">
+            <div class="item2">
+                <span class="left-title">
+                        邀请码（选填）
+                </span>
+                <input type="text" placeholder="请输入渠道邀请码，有机会获得优惠">
+                <p></p>
+            </div>
+            <div class="item2 item4">
+                <span class="left-title">
+                        备注（选填）
+                </span>
+                <textarea name="" id="" cols="" rows="" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
+                
+            </div>
+        </div>
+    
 
         <!-- 提交订单 -->
         <div class="submit">
+        	<img src="asset/images/icon/readFile.png" class="readFile" v-if="readFile == true"/>
             <div class="agree">
                 <van-checkbox v-model="checked"> </van-checkbox>
                 <p class="text-word">我已阅读并同意<span @click="jump">《租赁须知协议》</span></p>
@@ -148,18 +170,22 @@
             <!-- red-btn -->
             
             <div class="tjdd red-btn" v-if="checked" @click="submit">
-                    提交订单
+                    立即支付
             </div>
             <div class="tjdd" v-else>
-                    提交订单
+                    立即支付
             </div>
         </div>
 		
 		
 		<!--弹窗提示-->
-		<van-popup v-model="show">内容</van-popup>
+		<van-popup v-model="show" v-if="show">
+			<img src="asset/images/icon/remind2.png"/>
+			<p>请添加收货地址</p>
+		</van-popup>
 		
-		
+		<!--免密支付问好图片的弹窗-->
+		<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
 		
 	</div>
 </body>
@@ -168,6 +194,7 @@
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="static/js/date.js"></script>
+<script src="asset/component/js/modal.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 <script src="asset/js/orderSure.js"></script>
