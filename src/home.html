@@ -32,19 +32,23 @@
                   <div class="homeAround-top"> 
                       <div  class="homeAround"> 
                         <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:none;margin-left:0;margin-bottom:0.3rem;">
-                            <img v-lazy="goods.productEntity.cover" class="newImg2" @click="imgFnn(goods.productEntity.id)">
+                            <a href="./goodsDetail.html">
+                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
+                            </a>  
                             <div class="homeName">{{goods.productEntity.name}}</div>
                             <div class="homeDec">{{goods.productEntity.brief}}</div>
                             <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
                         </div>
                       </div> 
                       <div class="homeAround te1"> 
+                       <a href="./goodsDetail.html">
                         <div class="homeAroundRight"  v-for="goods in item.productVo" style="float:none;margin-left:0;margin-bottom:0.3rem;">
                             <img  v-lazy="goods.productEntity.cover"  class="newImg2" @click="imgFnn(goods.productEntity.id)">
                             <div class="homeName">{{goods.productEntity.name}}</div>
                             <div class="homeDec">{{goods.productEntity.brief}}</div>
                             <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
                         </div>
+                        </a>
                       </div>
                     </div>
                 </div>   
@@ -144,6 +148,8 @@
     flex-direction:row;
     justify-content:center;
     align-items:center;
+    margin-left: 0.3rem;
+    margin-top: 0.2rem;
   }
   .homeAround{
      width:50%;
@@ -164,6 +170,10 @@
     color: #333333;
     line-height: 0.28rem;
     margin-top:0.2rem;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    height:0.28rem;
   }
   .homeDec{
     font-size: 0.24rem;
@@ -171,6 +181,9 @@
     text-align: left;
     line-height: 0.30rem;
     font-family: PingFangSC-Regular;
+    overflow: hidden;
+   text-overflow:ellipsis;
+   white-space: nowrap;
   }
   .homeTitle{
     font-family: PingFangSC-Regular;

@@ -14,12 +14,10 @@ body{
     background: #fff;
 }
 .item-box .item2{
-    /* padding: 0 .3rem; */
     margin: 0 auto;
-    /* border-bottom: 1px solid #ddd; */
     height: 1rem;
     line-height: 1rem;
-    /* border-top: 1px solid #ddd; */
+    position: relative;
 }
 .item2 input{
     width: 5rem;
@@ -31,6 +29,7 @@ body{
     line-height: .5rem;
     font-size: .28rem;
     /* text-align: right; */
+   color: #333;
 }
 .item2 input::placeholder{
     color: #ccc;
@@ -83,9 +82,12 @@ body{
 }
 .item2>p{
     width: 7.2rem;
-    margin-left: .3rem;
+    /*margin-left: .3rem;*/
     clear: both;
     border-top: 1px solid #ddd;
+    position: absolute;
+    bottom: 0;
+    left: .3rem;
 }
 .btn-red{
     width: 6.9rem;

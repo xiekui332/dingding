@@ -14,10 +14,6 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
-    footerFnn(){
-      $('.myContent').addClass('active').siblings().removeClass('active')
-      $('.footer-img').addClass(active).siblings().removeClass('active')
-    },
     getGoodsList(id) {
       let url = getApiUrl('/rest/ddproducts/dingding/list')
       // let url = '/getapi/rest/ddproducts/dingding/list'
@@ -33,16 +29,6 @@ var vm = new Vue({
         }
       })
     },
-    imgFnn(id) {
-      console.log(id)
-      this.$router.push({
-        name: 'home',
-        params: {
-          userId: id
-        }
-      })
-
-    }
   },
   created() {},
   destroyed() {},

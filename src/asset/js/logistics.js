@@ -6,22 +6,11 @@ var vm = new Vue({
     },
     data: {
         express: {
-            expressName: '圆通',
-            expressCode: 1232312312
+            expressName: '',
+            expressCode: ''
         },
         logistic: [
-            {
-                time: '2018-02-29 12:12',
-                status: '大家回到北京东北部的奔波的微博'
-            },
-            {
-                time: '2018-02-29 12:12',
-                status: '大家回到北京东北部的奔波的微博'
-            },
-            {
-                time: '2018-02-29 12:12',
-                status: '大家回到北京东北部的奔波的微博'
-            },
+            
         ]
     },
     computed: {
@@ -31,6 +20,27 @@ var vm = new Vue({
     filters: {
     },
     methods: {
+        init(){
+            var orderNo = 'ZY1522327243828780';
+                $.ajax({
+                    type:'get',
+                    url:getApiUrl('/rest/express/orderexpress'),
+                    data:{
+                        orderNo:orderNo, 
+                    },
+                    success:function(data){
+                        //  console.log(data)
+                        if(data.code == 200){
+                            vm.express.expressName = data.data.expressName;
+                            vm.express.expressCode = data.data.expressCode;
+                            vm.logistic = data.data.expressStatus;
+                        }
+                    },
+                    error:function(){
+                        console.log(':)')
+                    }
+                })
+        }
     },
     created() {
     },
@@ -39,5 +49,6 @@ var vm = new Vue({
     mounted:function() {
         var body = document.body.clientWidth;		
         document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+        this.init();
     },
 })
