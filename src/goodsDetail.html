@@ -262,12 +262,13 @@
             <!-- sku -->
             <mt-popup v-model="popupVisible" position="bottom" class="popup">
                 <div style="margin: 0 .4rem;">
-                    <div style="padding: .28rem 0;border-bottom:1px solid #F3654C;position: relative;">
+                    <div style="padding: .28rem 0;position: relative;">
                         <img :src="goodsDetail.cover" style="width:1.5rem">
                         <span class="sku-price">
                             <span style="font-size:.288rem">￥</span>{{monthPrice}}<span style="font-size:.24rem">/月</span>
                         </span>
                     </div>
+                    <div style="background: linear-gradient(90deg, #F3654C , #ffffff);height:1px"></div>
                     <div class="popup-sku">
                         <p>租赁方式</p>
                         <div>

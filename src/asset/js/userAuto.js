@@ -12,19 +12,19 @@ var vm = new Vue({
             dingIndexImg: 'asset/images/icon/proof.png',
             idcard: "321322199602052213",
             name: "",
-            phone: "",
+            // phone: "",
             registerNo: "330104000287730",
             status: 0,
             rejectReason: "的v"
         },
         isFirstAuto: true,
         canEdit: true,
-        validate: ['company', 'idcard', 'name', 'phone', 'registerNo'],
+        validate: ['company', 'idcard', 'name', 'registerNo'],
         
         autoStatus: {
-            success: 11,
-            fail: 12,
-            audit: 13
+            success: 1,
+            fail: 2,
+            audit: 0
         },
         autoHead: {
             icon: '',
@@ -81,9 +81,10 @@ var vm = new Vue({
                 message = '请上传凭证' 
             } else if (!checkIdcard(this.userAuto.idcard)) {
                 message = '身份证号输入有误' 
-            } else if (!phoneValid(this.userAuto.phone)) {
-                message = '手机号输入有误' 
-            }
+            } 
+            // else if (!phoneValid(this.userAuto.phone)) {
+            //     message = '手机号输入有误' 
+            // }
             return message
         },
         saveUserAuto() {
@@ -205,7 +206,7 @@ var vm = new Vue({
             this.authId = getUrlParam('authId')
             this.canEdit = false
             this.isFirstAuto = false
-            this.getUserAuto()
+            // this.getUserAuto()
         } else {
             this.isFirstAuto = true
             this.canEdit = true

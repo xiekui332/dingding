@@ -3,7 +3,7 @@
 ### 第一步先安装node环境
 
 ### 第二步 安装gulp
-	sudo npm install --global gulp
+	npm install --global gulp
 ### 第三步  gulp clean 清除dist下文件
 
 ### 第四步 gulp build  

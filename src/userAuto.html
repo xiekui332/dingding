@@ -27,17 +27,20 @@
 			</div>
 			<div class="sec-2">
 				<div class="sec-first">
-					<img src="asset/images/icon/free.png" class="free-img">
-					<span class="sq-word">
+					<img src="asset/images/icon/zhima_dingding.png" style="width:1.2rem">
+					<p class="sq-explain">1.企业法人的芝麻信用700分以上，享有每笔订单免10000元押金的权益哦</p>
+					<!-- <span class="sq-word">
 						授权芝麻信用
-					</span>
-					<p class="sq-explain">首次申请租赁的企业用户，需要完成企业/个人授权，部分信息人 工审核后可以继续租赁
+					</span> -->
+					<p class="sq-explain">2.提供钉钉指数截图，上传企业委托书可以提高审核成功的概哟
 					</p>
 				</div>
 			</div>
 		</div>
 		<!-- 未授权头部 -->
-		<div class="head-sec" v-show="isFirstAuto"></div>
+		<div v-show="isFirstAuto" style="margin-bottom: .2rem">
+			<img src="asset/images/icon/auto_banner.png" class="full-width">
+		</div>
 		
 		<!-- 信息填写 -->
 		<div class="">
@@ -58,10 +61,10 @@
 					<p class="item-title">身份证号</p>
 					<input type="text" v-model="userAuto.idcard" :disabled="!canEdit">
 				</div>
-				<div class="item-mnue">
+				<!-- <div class="item-mnue">
 					<p class="item-title">手机号</p>
 					<input type="text" v-model="userAuto.phone" :disabled="!canEdit">
-				</div>
+				</div> -->
 
 				<div class="item-mnue-jt">
 					<p class="item-title">上传钉钉指数截图</p>
