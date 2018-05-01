@@ -1,0 +1,20 @@
+stages:
+  - deploy
+
+taozugong-web1_job:
+  stage: deploy
+  tags:
+    - taozugong-web1
+  only:
+    - master
+  script:
+    - bash deploy front-end tzgDingding master
+
+taozugong-web2_job:
+  stage: deploy
+  tags:
+    - taozugong-web2
+  only:
+    - master
+  script:
+    - bash deploy front-end tzgDingding master

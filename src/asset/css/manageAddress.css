@@ -36,8 +36,9 @@ body{
     display: inline-block;
     float: left;
     font-size: .28rem;
-    color: #333;
+    color: #000;
     line-height: .4rem;
+    padding-left: .15rem;
 }
 .checked-all .van-checkbox{
     display: inline-block;
@@ -104,4 +105,6 @@ body{
     font-size: .34rem;
     color: #F3654C;
 }
-
+[v-cloak]{
+	display: none;
+}

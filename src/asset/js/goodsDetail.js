@@ -10,26 +10,26 @@ var vm = new Vue({
         timeActive: 0,
         monthPrice: 0,
         goodsDetail: {
-            // productImages: [
-            //     {
-            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-            //     },
-            //     {
-            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-            //     }
-            // ],
-            // productDescEntity: {
-            //     contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-            //     specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-            //     afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
-            // },
-            // cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-            // name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
-            // brief: '紧急集合',
-            // productPrice: 123,
-            // productDeposit: 232,
-            // inventory: '12',
-            // province: province
+            productImages: [
+                {
+                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+                },
+                {
+                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+                }
+            ],
+            productDescEntity: {
+                contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
+            },
+            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
+            brief: '紧急集合',
+            productPrice: 123,
+            productDeposit: 232,
+            inventory: '12',
+            province: province
         },
         popupVisible: false,
         num: 1,
@@ -99,8 +99,8 @@ var vm = new Vue({
         openModal() {
             this.showPop = true
         },
-        toSure() {
-            
+        toOrderInfo() {
+            location.href = 'orderComfirm.html'
         },
         
     },
@@ -109,6 +109,6 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
-        this.getGoodsDetail()
+        // this.getGoodsDetail()
     },
 })

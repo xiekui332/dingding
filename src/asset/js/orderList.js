@@ -188,6 +188,9 @@ var vm = new Vue({
         },
         toLogistics() {
             location.href = 'logistics.html'
+        },
+        toOrderDetail() {
+            location.href = 'orderDetail.html'
         }
         // setTitle() {
         //     console.info('setTitle')

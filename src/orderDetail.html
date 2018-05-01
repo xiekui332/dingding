@@ -24,10 +24,8 @@
         <div class="order-status">
             <div v-cloak>
                 <!-- status == 11..的为待定状态 -->
-                <!-- 订单取消 -->
-                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-if="status == 1">
                 <!-- 租用中 -->
-                <img src="asset/images/icon/leasing.png" alt="" class="status-img" v-else-if="status == 9">
+                <img src="asset/images/icon/leasing.png" alt="" class="status-img" v-if="status == 9">
                 <!-- 待收货 -->
                 <img src="asset/images/icon/logistic.png" alt="" class="status-img status-img-daishou" v-else-if="status == 3">
                 <!-- 待支付 -->
@@ -37,12 +35,14 @@
                 <!-- 待发货 -->
                 <img src="asset/images/icon/delivery.png" alt="" class="status-img status-img-daifa" v-else-if="status == 2">
                 <!-- 审核拒绝 -->
-                <img src="asset/images/icon/shhjj.png" alt="" class="status-img status-ju" v-else-if="status == 16">
+                <img src="asset/images/icon/auto_fail.png" alt="" class="status-img status-ju" v-else-if="status == 16">
                 <!-- 审核通过 -->
-                <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju" v-else-if="status == 113">
+                <!-- <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju" v-else-if="status == 113"> -->
                 <!-- 授权信息审核中 -->
-                <img src="asset/images/icon/shhz.png" alt="" class="status-img status-ju" v-else-if="status == 15">
-                <img src="" alt="" v-else>
+                <img src="asset/images/icon/auto_audit.png" alt="" class="status-img status-ju" v-else-if="status == 15">
+                <!-- 订单取消 -->
+                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-else>
+                
 
                 <span class="status-word">
                         <span>{{nothing}}</span>
@@ -183,20 +183,36 @@
 
         <!-- 联系客服，查看账单 -->
         <div class="kf">
-            <!-- <div @click="seeCount">查看账单</div> -->
-            <!-- 审核拒绝出现 -->
-            <!-- <div @click="" class="seeCount2">授权申请</div> -->
+            
+            
             <!-- 查看授权信息 -->
-            <div @click="seePower" class="seePower">查看授权信息</div>
-            <div @click="openModal('contactTip')">联系客服</div>
+            <div v-if="status == 15">
+                <div @click="seePower" class="seePower btnIng">查看授权信息</div>
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="refund()" class="btnIng">申请退款</div>
+            </div>
+            <div v-else-if="status == 16">
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="" class="seeCount2 btnIng">授权申请</div>
+            </div>
+            <div v-else-if="status == 9">
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="seeCount" class="btnIng">查看账单</div>
+                <div @click="ret" class="btnIng">申请归还</div>
+            </div>
+            <div v-else>
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="seeCount" class="btnIng">查看账单</div>
+            </div>
+
         </div>
 
         <!-- 审核通过 -->
-        <!-- <div class="pay_btn">
+        <div class="pay_btn" v-if="status == 0">
             <div class="pay_now" @click="pay">
                 立即支付
             </div>
-        </div> -->
+        </div>
 
         
         <!-- 待发货弹窗 -->
@@ -220,9 +236,9 @@
 </body>
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="static/js/vue.min.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="static/js/date.js"></script>
-<script src="asset/js/orderDetai.js"></script>
+<script src="asset/js/orderDetail.js"></script>
 </html>

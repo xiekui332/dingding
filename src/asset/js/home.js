@@ -29,10 +29,13 @@ var vm = new Vue({
         }
       })
     },
+    toUserCenter() {
+      location.href = 'userCenter.html'
+    }
   },
   created() {},
   destroyed() {},
-  mounted: function () {
+  mounted() {
     this.getGoodsList()
   },
 })
