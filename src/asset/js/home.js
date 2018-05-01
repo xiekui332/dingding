@@ -15,24 +15,27 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
+      let url = getApiUrl('/rest/ddproducts/dingding/list')
+      // let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
-        url: "http://192.168.20.167:8080/rest/ddproducts/dingding/list",
+        url: url,
         data: {
-          id: id,
+          // id: id,
         },
         success: (json) => {
-          console.log(json.data)
+          // console.log(json.data)
           this.goodsList1 = json.data
         }
       })
     },
+    toUserCenter() {
+      location.href = 'userCenter.html'
+    }
   },
   created() {},
   destroyed() {},
-  mounted: function () {
-    var body = document.body.clientWidth;
-    document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+  mounted() {
     this.getGoodsList()
   },
 })

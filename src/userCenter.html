@@ -21,7 +21,7 @@
         </div>  
       </div>
       <div class="main">
-        <div class="main-top">
+        <div class="main-top" @click="toOrderList">
           <div class="myOrder">我的订单</div>
           <div class="allOrder">
               <a href="javascript:void(0)" class="a1">
@@ -66,6 +66,17 @@
             </li>
           </ul>
       </div> 
+
+      <mt-tabbar fixed="true">
+        <mt-tab-item id="tab4">
+          <img slot="icon" src="asset/images/icon/lease.png" @click="toHome()"> 
+          租赁
+        </mt-tab-item>
+        <mt-tab-item id="tab3" style="color:#F3654C">
+          <img slot="icon" src="asset/images/icon/user_center_in.png" > 
+          我的
+        </mt-tab-item>
+      </mt-tabbar>
 	</div>
 </body>
 <style>
