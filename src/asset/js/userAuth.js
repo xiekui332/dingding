@@ -6,27 +6,27 @@ var vm = new Vue({
     },
     data: {
         authId: 3,
-        userAuto: {
-            company: "",
+        userAuth: {
+            company: "不匠",
             companyDelegateImg: 'asset/images/icon/proof.png',
             dingIndexImg: 'asset/images/icon/proof.png',
             idcard: "321322199602052213",
-            name: "",
+            name: "周磊",
             // phone: "",
             registerNo: "330104000287730",
             status: 0,
             rejectReason: "的v"
         },
-        isFirstAuto: true,
+        isFirstAuth: true,
         canEdit: true,
         validate: ['company', 'idcard', 'name', 'registerNo'],
         
-        autoStatus: {
+        authStatus: {
             success: 1,
             fail: 2,
             audit: 0
         },
-        autoHead: {
+        authHead: {
             icon: '',
             title: '',
             describe: []
@@ -51,9 +51,9 @@ var vm = new Vue({
             let url =  '/getapi/img/upload.do'
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
-                    this.userAuto.dingIndexImg = imgUrl
+                    this.userAuth.dingIndexImg = imgUrl
                 } else if (index === 1) {
-                    this.userAuto.companyDelegateImg = imgUrl
+                    this.userAuth.companyDelegateImg = imgUrl
                 }
             }).catch((err)=>{
                 ddToast('图片上传失败')
@@ -61,15 +61,15 @@ var vm = new Vue({
         },
         closeImg(index) {
             if (index === 0) {
-                this.userAuto.dingIndexImg = 'asset/images/icon/proof.png'
+                this.userAuth.dingIndexImg = 'asset/images/icon/proof.png'
             } else if (index === 1) {
-                this.userAuto.companyDelegateImg = 'asset/images/icon/proof.png'
+                this.userAuth.companyDelegateImg = 'asset/images/icon/proof.png'
             }
         },
-        autoValidate() {
+        authValidate() {
             let message = true
             this.validate.some((name) => { 
-                if (!this.userAuto[name]) {
+                if (!this.userAuth[name]) {
                     message = '请填写必填项'
                     return true
                 }
@@ -77,19 +77,19 @@ var vm = new Vue({
             if (message) {
                 return message
             }
-            if (this.userAuto.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuto.companyDelegateImg == 'asset/images/icon/proof.png') {
+            if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
                 message = '请上传凭证' 
-            } else if (!checkIdcard(this.userAuto.idcard)) {
+            } else if (!checkIdcard(this.userAuth.idcard)) {
                 message = '身份证号输入有误' 
             } 
-            // else if (!phoneValid(this.userAuto.phone)) {
+            // else if (!phoneValid(this.userAuth.phone)) {
             //     message = '手机号输入有误' 
             // }
             return message
         },
-        saveUserAuto() {
+        saveUserAuth() {
             let flag = ''
-            let message = this.autoValidate()
+            let message = this.authValidate()
             if (message != true) {
                 ddToast(message)
                 return
@@ -100,7 +100,7 @@ var vm = new Vue({
                 url: url,
                 type: "POST",
                 // dataType: "json",
-                data: JSON.stringify(this.userAuto),
+                data: JSON.stringify(this.userAuth),
                 contentType: "application/json",
                 xhrFields: {
                     withCredentials: true
@@ -119,7 +119,7 @@ var vm = new Vue({
                 }
             });
         },
-        getUserAuto() {
+        getUserAuth() {
             // let url = '/getapi/rest/dingDingUserInfo/Ddlist'
             let url = getApiUrl('/rest/dingDingUserInfo/Ddlist')
             
@@ -137,23 +137,23 @@ var vm = new Vue({
                 success: result => {
                     if (result.code == 200) {
 
-                        this.userAuto = result.data
-                        this.userAuto.status = this.autoStatus.fail
+                        this.userAuth = result.data
+                        this.userAuth.status = this.authStatus.fail
                         // 审核拒绝可再编辑
-                        if (this.userAuto.status === this.autoStatus.fail) {
+                        if (this.userAuth.status === this.authStatus.fail) {
                             this.canEdit = true
-                            this.autoHead.icon = 'asset/images/icon/auto_fail.png'
-                            this.autoHead.title = '审核拒绝'
-                            this.autoHead.describe[0] = this.userAuto.rejectReason
-                            this.autoHead.describe[1] = '请重新编辑授权信息，再次提交审核'
-                        } else if (this.userAuto.status === this.autoStatus.success) {
-                            this.autoHead.icon = 'asset/images/icon/auto_success.png'
-                            this.autoHead.title = '审核通过'
-                            this.autoHead.describe[0] = '恭喜你，授权信息已经审核通过；可以前往订单列表页完成支付'
-                        } else if (this.userAuto.status === this.autoStatus.audit) {
-                            this.autoHead.icon = 'asset/images/icon/auto_audit.png'
-                            this.autoHead.title = '审核中'
-                            this.autoHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
+                            this.authHead.icon = 'asset/images/icon/auth_fail.png'
+                            this.authHead.title = '审核拒绝'
+                            this.authHead.describe[0] = this.userAuth.rejectReason
+                            this.authHead.describe[1] = '请重新编辑授权信息，再次提交审核'
+                        } else if (this.userAuth.status === this.authStatus.success) {
+                            this.authHead.icon = 'asset/images/icon/auth_success.png'
+                            this.authHead.title = '审核通过'
+                            this.authHead.describe[0] = '恭喜你，授权信息已经审核通过；可以前往订单列表页完成支付'
+                        } else if (this.userAuth.status === this.authStatus.audit) {
+                            this.authHead.icon = 'asset/images/icon/auth_audit.png'
+                            this.authHead.title = '审核中'
+                            this.authHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
                         }
                     } 
                 },
@@ -162,9 +162,9 @@ var vm = new Vue({
                 }
             });
         },
-        updateUserAuto() {
+        updateUserAuth() {
             let flag = ''
-            let message = this.autoValidate()
+            let message = this.authValidate()
             if (message != true) {
                 ddToast(message)
                 return
@@ -172,12 +172,12 @@ var vm = new Vue({
 
             // let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
             let url = getApiUrl('/rest/dingDingUserInfo/Ddupdate')
-            this.userAuto.id = this.authId
+            this.userAuth.id = this.authId
             $.ajax({
                 url: url,
                 type: "POST",
                 // dataType: "json",
-                data: JSON.stringify(this.userAuto),
+                data: JSON.stringify(this.userAuth),
                 contentType: "application/json",
                 xhrFields: {
                     withCredentials: true
@@ -186,6 +186,33 @@ var vm = new Vue({
                 success: result => {
                     if (result.code == 200) {
                         ddToast('修改成功')
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+                }
+            });
+        },
+        zhimaAuth() {
+            let url = '/getapi/nail/zhimaauth.html'
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: {
+                    name: this.userAuth.name,
+                    card: this.userAuth.idcard
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+                        location.href = result.data.url
+                        // ddToast('授权成功')
                     } else {
                         ddToast(result.message)
                     }
@@ -205,10 +232,10 @@ var vm = new Vue({
         if (getUrlParam('authId')) {
             this.authId = getUrlParam('authId')
             this.canEdit = false
-            this.isFirstAuto = false
-            // this.getUserAuto()
+            this.isFirstAuth = false
+            this.getUserAuth()
         } else {
-            this.isFirstAuto = true
+            this.isFirstAuth = true
             this.canEdit = true
         }
     },
