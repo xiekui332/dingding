@@ -102,13 +102,13 @@ var vm = new Vue({
         toOrderInfo() {
             location.href = 'orderComfirm.html'
         },
-        
     },
     created() {
     },
     destroyed() {
     },
     mounted() {
-        // this.getGoodsDetail()
+        this.productId = getUrlParam('productId')
+        this.getGoodsDetail()
     },
 })

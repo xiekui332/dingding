@@ -30,15 +30,15 @@
                     <div class="homeMain-title">{{item.category}}</div>
                     <img src="asset/images/icon/more.png" class="newImg1">
                   </div>  
-                  <div class="homeAround-top"> 
+                  <div class="homeAround-top" > 
                       <div  class="homeAround"> 
                         <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
-                            <a href="./goodsDetail.html">
+                            <a @click="toGoodsDetail(goods.productEntity.id)">
                               <img v-lazy="goods.productEntity.cover" class="newImg2" >
-                            </a>  
-                            <div class="homeName">{{goods.productEntity.name}}</div>
-                            <div class="homeDec">{{goods.productEntity.brief}}</div>
-                            <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+                              <div class="homeName">{{goods.productEntity.name}}</div>
+                              <div class="homeDec">{{goods.productEntity.brief}}</div>
+                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+                          </a>  
                         </div>
                       </div> 
                     </div>
@@ -82,7 +82,7 @@
   }
 
   .newTop {
-    width: 30%;
+    width: 25%;
     height: 0.93rem;
   }
 
@@ -110,6 +110,8 @@
     color: #999999;
     letter-spacing: 0;
     text-align: center;
+    width:70%;
+    display: inline-block;
   }
 
   .homeBox {
@@ -188,17 +190,19 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     height: 0.28rem;
+    width:3.35rem;
   }
 
-  .homeDec {
+  .homeDecc {
     font-size: 0.24rem;
     color: #999999;
     text-align: left;
-    line-height: 0.30rem;
+    line-height: 0.45rem;
     font-family: PingFangSC-Regular;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    padding-right:0.29rem;
   }
 
   .homeTitle {

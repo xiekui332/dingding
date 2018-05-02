@@ -32,11 +32,13 @@
           </div>    
         </div>
         <div class="refundsFooter">
+          <div class="refundsBottom"> 
             <span class="oneLine"></span>
             <span class="serviceTelephone">
               客服电话：<em class="em">0571 85180735</em>  
            </span>
            <span class="twoLine"></span>  
+          </div>  
        </div> 
     </div> 
 </body>
@@ -127,23 +129,34 @@
   } 
 .refundsFooter{
   text-align:center;
-  margin-top:2.04rem;
+  margin-top:0.83rem;
   width:100%;
+  position: fixed;
+  bottom:0.4rem;
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+} 
+.refundsBottom{
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+  width:80%;
 }
 .oneLine{
- display: inline-block;   
- border-top:1px solid #999999; 
- width:0.3rem; 
- 
+  display: inline-block;   
+  border-top:1px solid #999999; 
+  width:0.3rem; 
 }
 .twoLine{
  display: inline-block;   
  border-top:1px solid #999999; 
  width:0.3rem; 
- 
 }
+
 .serviceTelephone{
-  display: inline-block;
   height:0.4rem;
   width: 3.5rem;
   padding: 0 0.26rem;
@@ -153,6 +166,7 @@
   font-size: 0.28rem;
   color: #999999;
   letter-spacing: 0;
+  margin-top:-0.19rem;
 }
 .em{
     font-family: PingFangSC-Regular;

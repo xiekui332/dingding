@@ -3,6 +3,15 @@ var vm = new Vue({
     el:'#app',
     //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
+        goodsInfo: {
+            productName: '123213',
+            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            brief: '21321',
+            totalAmount: 2000,
+            num: 2
+        },
+
+
         select:true,
         agree:false,
         show: false,

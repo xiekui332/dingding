@@ -3,6 +3,14 @@ var vm = new Vue({
     //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
         phone:'',
+        orderId: 0,
+        goodsInfo: {
+            productName: '123213',
+            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            brief: '21321',
+            totalAmount: 2000,
+            num: 2
+        },
         select:true,
         agree:false,
         bottom:true,
@@ -86,8 +94,8 @@ var vm = new Vue({
             vm.agree = !vm.agree;
             vm.select = !vm.select;
         },
-        seeCount:function(){
-           
+        toBillOrder:function(){
+            location.href = 'billOrder.html?orderId=' + this.orderId
         },
         contact:function(){
             

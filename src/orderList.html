@@ -109,7 +109,7 @@
 	<div id="app">
         <div class="container">
             
-             <!-- 类别 -->
+            <!-- 类别 -->
             <div style="position: fixed;top: 0;width: 100%;z-index: 10;border-bottom: 1px solid rgba(0,0,0,0.12);">
                 <div style="padding:0.27rem 0 0 .1rem;background-color:white;border-bottom:1px solid #eeeeee">
                     <div style="position:relative">
@@ -149,28 +149,10 @@
                             <span>{{item.orderState}}</span>
                         </div>
                         <a @click="toOrderDetail()"><good-info :goodsinfo="item"></good-info></a>
-                        <!-- <div class="layout">
-                            <div class="goodsInfo">
-                                <img :src="item.cover"/>
-                                <div class="goodsInfoRight regular">
-                                    <div class="mediumerFont black overHidden ">{{item.productName}}</div>
-                                    <div class="goodsInfoSmall gray overHidden">{{item.brief}}</div>
-                                    <div class="mediumerFont black price-num">
-                                        <span>总租金：¥{{item.totalAmount}}</span>
-                                        <span class="gray">x{{item.num}}</span>
-                                    </div>
-                                    <div style="margin-top:.20rem">
-                                        <img src="asset/images/icon/zm.png" style="height:.3rem"/>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
                         <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
                             <button class="hollow-button" @click="toLogistics">订单跟踪</button>
                         </div>
                     </div>
-                    
-                    
                 </div>
                 <div v-else-if="orderList.length==0 && isEnd" class="mediumFont orderNone">
                     暂无订单哦~
@@ -191,6 +173,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="./asset/component/js/goodInfo.js"></script>
-<script src="./asset/js/orderList.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
+<script src="asset/js/orderList.js"></script>
 
