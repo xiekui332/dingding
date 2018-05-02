@@ -3,60 +3,7 @@ body{
     background: #f7f7f7;
     padding-bottom: 3.1rem;
 }
-.sec-1{
-	width: 100%;
-	height: 2.4rem;
-	background: #FFFFFF;
-	/* border-top: 1px solid #ddd; */
-    box-sizing: border-box;
-    margin-top: .2rem;
-    overflow: hidden;
-}
-.con-head{
-	margin: .35rem .3rem 0;
-	/* border-bottom: 1px solid #ddd; */
-	height: 2rem;
-}
-.img{
-	width: 1.6rem;height: 1.6rem;
-	float: left;
-}
-.detail-box{
-	display: inline-block;float: left;
-	width: 5.19rem;
-}
-.detail-box p{
-	padding-left: .15rem!important;
-}
-.detail-box p:nth-child(1){
-	font-size: .28rem;
-	color: #333333;
-    line-height: .28rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.detail-box p:nth-child(1) span{
-	padding: 0 .05rem;
-}
-.detail-box p:nth-child(2){
-	font-size: .24rem;
-	color: #999999;
-	line-height:.24rem;
-	margin-top: .2rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-.detail-box p:nth-child(3){
-	font-size: .28rem;
-	color: #333333;
-	line-height: .28rem;
-	margin-top: .4rem;
-}
-.detail-box p:nth-child(3) span{
-	padding: 0 .05rem;
-}
+
 .renzh{
 	width: 1.7rem;
 	height: .3rem;
