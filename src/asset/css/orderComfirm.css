@@ -215,30 +215,32 @@ body{
 .dd_sure{
     padding: .3rem 0 0;
 }
-.dd_sure>p span{
+.dd_sure>.contain-box span{
     display: inline-block;
     font-size: .32rem;
     color:#000;
 }
-.dd_sure>p span:nth-child(1){
+.dd_sure>.contain-box span:nth-child(1){
     float: left;
 }
-.dd_sure>p span:nth-child(2){
+.dd_sure.contain-box span:nth-child(2){
     float: left;
     margin-left: .6rem;
 }
-.dd_sure>p{
+.dd_sure>.contain-box{
     padding:0 .3rem 0;
     height: .4rem;
+    position: relative;
 }
 
 .address{
     padding: 0 .3rem 0;
-    height: 1rem;
+    /* height: 1rem; */
+	position: relative;
 }
 .address img{
-    width: .25rem;float: left;
-    margin-top: .08rem;
+    width: .2rem;float: left;
+    margin-top: .11rem;
 }
 .address>p{
     width: 6.6rem;float:left;
@@ -246,6 +248,23 @@ body{
     font-size: .28rem;
     padding-left: .05rem;
     line-height: .45rem;
+}
+ .address p.orderDetail-small{
+    clear: both;
+   font-size: .24rem;
+   color: #1F84FA;
+   letter-spacing: 0;
+   overflow: hidden;
+   white-space: nowrap;
+   text-overflow: ellipsis;
+   height: .65rem;
+   padding-left: .28rem;
+   line-height: .4rem;
+}
+.address .small-jump{
+	width: .16rem;
+	position: absolute;right: .3rem;
+    bottom: .33rem;
 }
 .address>p.small{
     font-size: .2rem;
@@ -583,3 +602,16 @@ text-align: center;
 .item-box .item4{
     height: 1.5rem;
 }
+
+
+
+/* 新增右上角编辑图标
+ */
+ .right-top{
+     position: absolute;
+    right: .3rem;
+    top: 0.01rem;
+ }
+ .van-icon-edit:before{
+     transform: scale(1.3)
+ }

@@ -244,13 +244,13 @@ body{
 	position: relative;
 }
 .address .map{
-    width: .25rem;float: left;
-    margin-top: .08rem;
+    width: .2rem;float: left;
+    margin-top: .11rem;
 }
 .address .small-jump{
 	width: .16rem;
 	position: absolute;right: .3rem;
-	bottom: .33rem;
+	bottom: .3rem;
 }
 .address>p{
     width: 6.6rem;float:left;
