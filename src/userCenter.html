@@ -22,7 +22,7 @@
       </div>
       <div class="main">
         <div class="main-top" @click="toOrderList">
-          <div class="myOrder">我的订单</div>
+          <div class="myOrder">企业订单</div>
           <div class="allOrder">
               <a href="javascript:void(0)" class="a1">
                 <img src="asset/images/icon/jiantou.png" class="img2">
@@ -67,7 +67,7 @@
           </ul>
       </div> 
 
-      <mt-tabbar fixed="true">
+      <!-- <mt-tabbar fixed="true">
         <mt-tab-item id="tab4">
           <img slot="icon" src="asset/images/icon/lease.png" @click="toHome()"> 
           租赁
@@ -76,7 +76,7 @@
           <img slot="icon" src="asset/images/icon/user_center_in.png" > 
           我的
         </mt-tab-item>
-      </mt-tabbar>
+      </mt-tabbar> -->
 	</div>
 </body>
 <style>
@@ -144,11 +144,12 @@
  
   .myOrder{
     width:2rem;
-    padding-left:0.3rem;
+    padding-left:0.31rem;
     color:#333;
   }
   .allOrder{
     width:0.8rem;
+    margin-right:-0.33rem;
   }
   .a{
     display: inline-block;
