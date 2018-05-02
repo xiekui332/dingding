@@ -200,6 +200,7 @@ Vue.component('popupAddress',{
                 }
             });
             this.$emit('input', addressList);
+            
         }
     },
     created() {

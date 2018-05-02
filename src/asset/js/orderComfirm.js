@@ -60,9 +60,16 @@ var vm = new Vue({
         	};
         	//	判断勾选
         	if(vm.checked == false){
-        		vm.readFile = true;
+                vm.readFile = true;
+                $('.readFile').show();
+                //  3000后消失
+                setTimeout(function(){
+                    vm.readFile = false;
+                    $('.readFile').hide();
+                },3000);
         	}else if(vm.checked == true){
-        		vm.readFile = false;
+                vm.readFile = false;
+                $('.readFile').hide();
         	}
          //  console.log(':)')
         },
@@ -93,6 +100,20 @@ var vm = new Vue({
                 ]
             }
             this.showPop = true
+        },
+        readAgree:function(){
+            if(vm.checked == true){
+                vm.readFile = false;
+                $('.readFile').hide();
+            }else{
+                vm.readFile = true;
+                $('.readFile').show();
+                //  3000后消失
+                setTimeout(function(){
+                    vm.readFile = false;
+                    $('.readFile').hide();
+                },3000)
+            }
         }
     },
     mounted() {
