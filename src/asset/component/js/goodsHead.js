@@ -1,8 +1,13 @@
 Vue.component(good,{
     props:{
-        data:{
-            type:Object,
-            required:true
+       goods:{
+            type: Object,
+            default: {}
+       }
+    },
+    data(){
+        return{
+
         }
     },
     template:'<div class="sec-1">'+
