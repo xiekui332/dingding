@@ -28,7 +28,7 @@ input:focus, textarea:focus {
 body{
     box-sizing: border-box;
     font-family: 'PingFangSC-Regular';
-    background: #f2f2f2;
+    background: #f7f7f7;
   }
   .flexBetween {
     display: flex;
@@ -42,7 +42,7 @@ body{
     font-size: 12px;
   }
   .grayBackColor {
-    background: #f2f2f2;
+    background: #f7f7f7;
   }
   .writeBackColor {
     background: #FFFFFF;

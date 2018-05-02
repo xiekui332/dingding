@@ -8,7 +8,7 @@ var vm = new Vue({
             cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
             brief: '21321',
             totalAmount: 2000,
-            num: 2
+            count: 2
         },
 
 

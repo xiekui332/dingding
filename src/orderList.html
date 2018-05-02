@@ -141,12 +141,13 @@
                     </div>
                 </transition>
             </div>
+
             <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-                <div v-if="orderList.length" :style="{'margin-top': open ? '2.8rem' : '1.14rem'}" style="transition: all .3s;">
+                <div v-if="orderList.length" :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
                     <div v-for="(item, index) in orderList" :key="index">
                         <div class="orderBar line mediumerFont black">
                             <span>{{item.createTime}}</span>
-                            <span>{{item.orderState}}</span>
+                            <span>{{getOrderStatus(item.status)}}</span>
                         </div>
                         <a @click="toOrderDetail()"><good-info :goodsinfo="item"></good-info></a>
                         <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
@@ -154,8 +155,9 @@
                         </div>
                     </div>
                 </div>
-                <div v-else-if="orderList.length==0 && isEnd" class="mediumFont orderNone">
-                    暂无订单哦~
+                <div v-else-if="orderList.length==0 && isEnd" class="mediumFont orderNone grayBackColor">
+                    <img src="asset/images/icon/none.png" style="width:2.1rem;margin-top:3rem">
+                    <p class="mediumerFont black" style="margin-top:.1rem">您还没有创建订单</p>
                 </div>
                 <div v-if="orderList.length!=0 && isEnd" class="mediumFont orderNone">
                 到底了哦~
@@ -170,6 +172,7 @@
 	</div>
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="asset/js/util.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
