@@ -19,7 +19,7 @@ var vm = new Vue({
       // let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
-        url: url,
+        url: "http://192.168.16.198:8081/rest/ddproducts/dingding/list",
         data: {
           // id: id,
         },
