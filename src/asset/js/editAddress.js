@@ -29,7 +29,7 @@ var vm = new Vue({
                 det:vm.det,
                 pos:vm.pos
             }
-            
+           // console.log(pto)
         },
         // 地址
         getDetaiAddress(){
@@ -67,3 +67,4 @@ var vm = new Vue({
         },
     }
 })
+
