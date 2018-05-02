@@ -1,6 +1,7 @@
 body{
     font-family: 'PingFangSC-Regular';
     background: #f7f7f7;
+    padding-bottom: 3.1rem;
 }
 .sec-1{
 	width: 100%;
@@ -30,7 +31,10 @@ body{
 .detail-box p:nth-child(1){
 	font-size: .28rem;
 	color: #333333;
-	line-height: .28rem;
+    line-height: .28rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .detail-box p:nth-child(1) span{
 	padding: 0 .05rem;
@@ -40,6 +44,9 @@ body{
 	color: #999999;
 	line-height:.24rem;
 	margin-top: .2rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 .detail-box p:nth-child(3){
 	font-size: .28rem;
@@ -322,10 +329,17 @@ body{
 .submit{
     height:2.5rem;
     background: #fff;
-    margin-top: .2rem;
+    /* margin-top: .2rem; */
     padding: .4rem .3rem 0;
     position: relative;
 }
+.position-bot{
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid #f7f7f7;
+}
+
+
 .readFile{
 	position: absolute;
 	width: 3.14rem;

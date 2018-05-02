@@ -30,7 +30,7 @@
 	<div id="app">
 		
 		<!--未添加收货地址-->
-		<div class="no-add" v-if="addNew">
+		<div class="no-add" v-show="addNew" style="display: none">
 			<div class="no-btn">
 				新建收货地址
 			</div>
@@ -62,8 +62,6 @@
 				<div class="detail-box">
 					<p>
 						<span>yaman/雅萌</span>
-						<span>瘦脸射频</span>
-						<span>美颜仪</span>
 					</p>
 					<p>瘦脸射频美颜仪瘦脸射频美颜仪</p>
 					<p>
@@ -160,20 +158,19 @@
     
 
         <!-- 提交订单 -->
-        <div class="submit">
-        	<img src="asset/images/icon/readFile.png" class="readFile" v-if="readFile == true"/>
-            <div class="agree">
-                <van-checkbox v-model="checked"> </van-checkbox>
-                <p class="text-word">我已阅读并同意<span @click="jump">《租赁须知协议》</span></p>
-            </div>
-
-            <!-- red-btn -->
-            
-            <div class="tjdd red-btn" v-if="checked" @click="submit">
-                    立即支付
-            </div>
-            <div class="tjdd" v-else>
-                    立即支付
+        <div class="position-bot">
+            <div class="submit">
+                <img src="asset/images/icon/readFile.png" class="readFile" style="display: none"/>
+                <div class="agree">
+                    <div @click="readAgree"><van-checkbox v-model="checked"> </van-checkbox></div>
+                    <p class="text-word">我已阅读并同意<span @click="jump">《租赁须知协议》</span></p>
+                </div>
+    
+                <!-- red-btn -->
+                
+                <div class="tjdd red-btn" @click="submit">
+                        立即支付
+                </div>
             </div>
         </div>
 		
