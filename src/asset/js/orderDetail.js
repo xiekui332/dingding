@@ -5,11 +5,11 @@ var vm = new Vue({
         phone:'',
         orderId: 0,
         goodsInfo: {
-            productName: '123213',
-            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-            brief: '21321',
-            totalAmount: 2000,
-            count: 2
+            productName: '',
+            cover: '',
+            brief: '',
+            totalAmount:'',
+            count:'',
         },
         bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
@@ -32,7 +32,7 @@ var vm = new Vue({
                 },
                 url:vm.url,
                 success:function(data){
-                    //  console.log(data)
+                    // console.log(data)
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 9){
@@ -80,7 +80,11 @@ var vm = new Vue({
                         data.data.totalAmount = (data.data.totalAmount).toFixed(2);
                        
                         vm.objAddress = data.data;
-                        
+                        vm.goodsInfo.productName = data.data.productName;
+                        vm.goodsInfo.cover = data.data.cover;
+                        vm.goodsInfo.brief = data.data.brief;
+                        vm.goodsInfo.totalAmount = data.data.totalAmount;
+                        vm.goodsInfo.count = data.data.quantity;
                     }
                 },
                 error:function(){
