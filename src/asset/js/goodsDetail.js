@@ -102,7 +102,6 @@ var vm = new Vue({
         toOrderInfo() {
             location.href = 'orderComfirm.html'
         },
-        
     },
     created() {
     },
