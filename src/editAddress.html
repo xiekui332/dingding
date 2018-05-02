@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- 电话类型的数字不变颜色 -->
-    <meta name = "format-detection" content = "telephone=no">
-    <title>编辑收货地址</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/editAddress.css"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="format-detection" content="telephone=no">
+	<title>编辑收货地址</title>
+	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
+	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+	<link rel="stylesheet" type="text/css" href="asset/component/css/address.css"/>
+	<link rel="stylesheet" type="text/css" href="asset/css/editAddress.css" />
 </head>
+
 <body>
 	<div id="app">
 		<div class="sec-1">
-                <!-- <van-address-edit
+			<!-- <van-address-edit
                 :area-list="areaList"
                 show-postal
                 show-search-result
@@ -23,63 +24,63 @@
                 @delete="onDelete"
                 @change-detail="onChangeDetail"
               /> -->
-                
-            <!-- info 部分 -->
-            <div class="item-box item-box1">
-                <div class="item2">
-                    <span class="left-title">
-                            收货人
-                    </span>
-                   <input type="text" placeholder="" value="" v-model="peo">
-                   <p></p>
-                </div>
-                <div class="item2">
-                    <span class="left-title">
-                            手机号码
-                    </span>
-                    <input type="text" placeholder="" value="" v-model="tel">
-                    <p></p>
-                </div>
-                <div class="item2">
-                    <span class="left-title">
-                            公司名称
-                    </span>
-                    <input type="text" placeholder="" value="" v-model="com">
-                    <p></p>
-                </div>
-                <div class="item2 item3">
-                    <span class="left-title">
-                            所在地区
-                    </span>
-                    <input type="text" placeholder=" " readonly class="address" value="" v-model="add">
-                    <img src="asset/images/icon/more.png" alt="" class="ad-more">
-                    <p></p>
-                </div>
-                <div class="item2 item4">
-                    <span class="left-title">
-                            详细地址
-                    </span>
-                    <!-- <input type="text" placeholder=" 请在此输入收货人的详细地址"> -->
-                    <textarea name="" id="" cols="" rows="" placeholder="" v-model="det"></textarea>
-                    <p></p>
-                </div>
-                <div class="item2">
-                    <span class="left-title">
-                            邮政编码
-                    </span>
-                   <input type="text" placeholder="" value="" v-model="pos">
-                   <p></p>
-                </div>
-            </div>
 
+			<!-- info 部分 -->
+			<div class="item-box item-box1">
+				<div class="item2">
+					<span class="left-title">
+						收货人
+					</span>
+					<input type="text" placeholder="姓名" v-model="address.name">
+				</div>
+				<div class="item2">
+					<span class="left-title">
+						手机号码
+					</span>
+					<input type="text" placeholder="手机或固话" v-model="address.phone">
+				</div>
+				<div class="item2">
+					<span class="left-title">
+						公司名称
+					</span>
+					<input type="text" placeholder="公司名称" v-model="address.company">
+				</div>
+				<div class="item2 item3">
+					<span class="left-title">
+						所在地区
+					</span>
+					<input type="text" placeholder="地区信息" readonly class="address" v-model="address.address" @click="addressVisible = !addressVisible">
+					<img src="asset/images/icon/more.png" class="ad-more">
+				</div>
+				<div class="item2">
+					<span class="left-title">
+						详细地址
+					</span>
+					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detailAddress" @input="getDetaiAddress" @blur="looseBlur"></textarea>
+					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh">
+							<div class="result_item" v-for="name in addresslist">
+									<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(name)">
+											<div  style="font-size:15px">{{name.name}}</div>
+											<div style="color:#999">{{name.district}}</div>
+									</div>
+									<hr class="divider" style="background-color:#e5e5e5" />
+							</div>
+					</div>
+				</div>
+				<div class="item2">
+					<span class="left-title">
+						邮政编码
+					</span>
+					<input type="text" placeholder="邮政编码" v-model="address.pos">
+				</div>
+			</div>
+		</div>
 
-
-        </div>
-
-        <div class="btn-red" @click="save">
-                保存
-        </div>
-
+		<div class="btn-red" @click="">
+			保存
+		</div>
+		<popup-address :popupvisible="addressVisible" :province="province" v-model="addressList"></popup-address>
+		
 
 	</div>
 </body>
@@ -87,8 +88,9 @@
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
-<script src="static/js/date.js"></script>
-<!-- 引入组件库 -->
-<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="static/js/province.js"></script>
 <script src="asset/js/editAddress.js"></script>
+<script src="asset/component/js/address.js"></script>
+<script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.2&key=eb425af91fdcdd675be15dff02af7787"></script>
 </html>

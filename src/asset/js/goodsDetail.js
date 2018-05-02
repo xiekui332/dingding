@@ -10,26 +10,26 @@ var vm = new Vue({
         timeActive: 0,
         monthPrice: 0,
         goodsDetail: {
-            // productImages: [
-            //     {
-            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-            //     },
-            //     {
-            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-            //     }
-            // ],
-            // productDescEntity: {
-            //     contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-            //     specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-            //     afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
-            // },
-            // cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-            // name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
-            // brief: '紧急集合',
-            // productPrice: 123,
-            // productDeposit: 232,
-            // inventory: '12',
-            // province: province
+            productImages: [
+                {
+                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+                },
+                {
+                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+                }
+            ],
+            productDescEntity: {
+                contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+                afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
+            },
+            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
+            brief: '紧急集合',
+            productPrice: 123,
+            productDeposit: 232,
+            inventory: '12',
+            province: province
         },
         popupVisible: false,
         num: 1,
@@ -39,13 +39,7 @@ var vm = new Vue({
         popContent: [
             '0571-85180735'
         ],
-        // 地址
-        address: '',
-        addressShow: false,
-        addresslist: [],
-        addressVisible: false,
-        addressList: [{name:'浙江省', id:'330903'},{name:'杭州市', id:'330903'},{name:'西湖区', id:'330903'}],
-        province: province
+        
     },
     computed: {
     },
@@ -105,49 +99,16 @@ var vm = new Vue({
         openModal() {
             this.showPop = true
         },
-        toSure() {
-            
+        toOrderInfo() {
+            location.href = 'orderComfirm.html'
         },
-        // 地址
-        // getDetaiAddress(){
-        //     let citycode = ''
-        //     // if (this.selectedProvince == ""){
-        //     //     citycode = ''
-        //     // }else {
-        //     //     this.user.cityId = getId(citytest, this.addressId[1]);
-        //     //     citycode = this.user.cityId;
-        //     // }
-        //     console.log(citycode);
-        //     let key = this.address;
-        //     let autocomplete = ''
-        //     AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],()=>{
-        //         var autoOptions = {
-        //             city: citycode //城市，默认全国
-        //         };
-        //         autocomplete= new AMap.Autocomplete(autoOptions);
-        //         autocomplete.search(key, (status, result)=>{
-        //             //TODO:开发者使用result自己进行下拉列表的显示与交互功能
-        //                 // console.log(key)
-        //                 // console.log(result)
-        //                 // console.log(this);
-        //                 this.addresslist = result.tips;
-        //             });
-        //     });
-        //     this.addressShow = true
-        // },
-        // looseBlur(){
-        //     this.addressShow = false
-        // },
-        // chooseDetailAddress(item){
-        //     this.address = item.name;
-        //     this.addressShow = false;
-        // },
+        
     },
     created() {
     },
     destroyed() {
     },
     mounted() {
-        this.getGoodsDetail()
+        // this.getGoodsDetail()
     },
 })

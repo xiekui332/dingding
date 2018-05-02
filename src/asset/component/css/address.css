@@ -6,11 +6,11 @@
     font-size: 20px;
 }
 .sure {
-    text-align:right;
-    padding-right:16px;
-    color: rgba(0,0,0,.54);
-    font-size: 14px;
-    line-height: 48px;
+    /* text-align:right; */
+    /* padding-right:.3rem; */
+    color: #1f84fa;
+    font-size: .36rem;
+    line-height: .8rem;
 }
 .coverTop {
     position: absolute;

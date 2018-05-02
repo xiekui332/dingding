@@ -83,7 +83,13 @@ var vm = new Vue({
         alert(123)
         $('.main-list').hide();
         $('.main-list1').show();
-      $('#page-front').addClass('hover').siblings('#page-back').removeClass('hover')
+        $('#page-front').addClass('hover').siblings('#page-back').removeClass('hover')
+      },
+      toHome() {
+        location.href = 'home.html'
+      },
+      toOrderList() {
+        location.href = 'orderList.html'
       }
     },
     created() {
