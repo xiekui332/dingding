@@ -62,6 +62,10 @@ var vm = new Vue({
           mainTitle:'我的授权'
         },
         {
+          urll:'asset/images/icon/mapDing.png',
+          mainTitle:'地址管理'
+        },
+        {
             urll:'asset/images/icon/about.png',
             mainTitle:'关于我们'
         },
