@@ -9,7 +9,7 @@ var vm = new Vue({
             cover: '',
             brief: '',
             totalAmount:'',
-            num:'',
+            count:'',
         },
         bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
@@ -84,7 +84,7 @@ var vm = new Vue({
                         vm.goodsInfo.cover = data.data.cover;
                         vm.goodsInfo.brief = data.data.brief;
                         vm.goodsInfo.totalAmount = data.data.totalAmount;
-                        vm.goodsInfo.num = data.data.quantity;
+                        vm.goodsInfo.count = data.data.quantity;
                     }
                 },
                 error:function(){

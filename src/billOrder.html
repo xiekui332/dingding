@@ -1,39 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>我的账单</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
-    <link rel="stylesheet" type="text/css" href="asset/css/myCount.css"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<title>我的账单</title>
+	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
+	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/billOrder.css" />
 	<style>
 		/*指令可以隐藏未编译的  标签直到实例准备完毕*/
+
 		[v-cloak] {
-				display: none;
-			}
+			display: none;
+		}
 	</style>
 </head>
+
 <body>
 	<div id="app" v-cloak>
-		<div class="sec-1">
-			<div class="con-head">
-				<img :src="ordersProductEntity.cover" class="img"/>
-				<div class="detail-box">
-					<p>
-						<span>{{ordersProductEntity.productName}}</span>
-					</p>
-					<p>{{ordersProductEntity.brief}}</p>
-					<p>
-						<span>总租金:</span>
-						<span>￥{{ordersProductEntity.totalAmount}}</span>
-					</p>
-					<!-- <div class="renzh">
-						芝麻信用·免押金
-					</div> -->
-				</div>
-			</div>
+
+		<div style="padding: .4rem .3rem;background: #fff">
+			<good-info :goodsinfo="ordersProductEntity"></good-info>
 		</div>
-		
+
 		<!--租金信息-->
 		<div class="sec-2">
 			<div>
@@ -48,26 +38,26 @@
 				<p>{{waitMoney}}</p>
 				<p>待还租金(元)</p>
 			</div>
-			
-			<p class="word"> 
-				<img src="asset/images/icon/dh.png"/>
-				<span>账单到期将通过支付宝免密支付方式还款，请注意查收信息</span>	
+
+			<p class="word">
+				<img src="asset/images/icon/dh.png" />
+				<span>账单到期将通过支付宝免密支付方式还款，请注意查收信息</span>
 			</p>
 		</div>
-		
-		
+
 		<!--分期信息-->
-		
+
 		<div class="sec-3">
 			<ul class="fff-ul">
 				<li v-for="item in list">
 					<div class="line-1">
-						<span>{{item.periodNumber}}/{{allCount}}</span>
+						<span>{{item.periodNumber}}/{{allCount}}期</span>
 						<span>{{item.status == 0 ? '待还款' : '已还款'}}</span>
 					</div>
 					<div class="line-2">
 						<span>
-							￥<span>{{item.money}}</span>
+							￥
+							<span>{{item.money}}</span>
 						</span>
 						<span>{{item.cdate}}通过支付宝免密支付还款</span>
 					</div>
@@ -83,7 +73,8 @@
 					</div>
 					<div class="line-2">
 						<span>
-							￥<span>{{item.money}}</span>
+							￥
+							<span>{{item.money}}</span>
 						</span>
 						<span>{{item.cdate}}</span>
 					</div>
@@ -92,7 +83,7 @@
 			</ul>
 			<ul v-else></ul>
 		</div>
-		
+
 	</div>
 </body>
 <script src="static/js/zepto.min.js"></script>
@@ -100,5 +91,6 @@
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="static/js/date.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
 <script src="asset/js/billOrder.js"></script>
 </html>
