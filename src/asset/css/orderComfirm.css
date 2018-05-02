@@ -369,7 +369,7 @@ body{
     margin-left: .1rem;
     padding-left: .15rem;
 }
-.text-word span{
+.text-word a{
     color: #2a8afa;
 }
 .tjdd{
