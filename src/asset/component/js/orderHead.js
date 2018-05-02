@@ -1,9 +1,9 @@
-Vue.component(good,{
+Vue.component('goodHead',{
     props:{
        goods:{
             type: Object,
             default: {}
-       }
+       },
     },
     data(){
         return{
