@@ -11,17 +11,15 @@ var vm = new Vue({
             totalAmount: 2000,
             num: 2
         },
-        select:true,
-        agree:false,
-        bottom:true,
+        bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
-        statusTime:'',
+        statusTime:'',      //  时间
         popTitle: '',
         popContent: [],
         setStyle: '',
         url:getApiUrl('/rest/orders/dingding/view'),
         status:-1,  //  订单状态
-        orderStatus:'暂无',
+        orderStatus:'暂无',     //  默认状态
         statusWords:'暂无',
         objAddress:'',
     },
@@ -90,17 +88,13 @@ var vm = new Vue({
                 }
             })
         },
-        click:function(){
-            vm.agree = !vm.agree;
-            vm.select = !vm.select;
-        },
         toBillOrder:function(){
             location.href = 'billOrder.html?orderId=' + this.orderId
         },
         contact:function(){
             
         },
-        mm:function(){
+        skip1:function(){
 
         },
         close:function(){
@@ -142,7 +136,7 @@ var vm = new Vue({
 
         },
         //  申请归还
-        ret:function(){
+        retBack:function(){
 
         }
     },
