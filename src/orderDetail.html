@@ -8,6 +8,7 @@
     <title>订单详情</title>
     <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
     <link rel="stylesheet" type="text/css" href="asset/css/orderDetail.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css"/>
     <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
     
 	<style>
@@ -18,7 +19,7 @@
     </style>
 </head>
 <body onresize="mask()">
-	<div id="app" :class="bot?'app':'app1'">
+	<div id="app" :class="bottom?'app':'app1'">
         <!-- 订单状态 -->
 
         <div class="order-status">
@@ -45,13 +46,13 @@
                 
 
                 <span class="status-word">
-                        <span>{{nothing}}</span>
+                        <span>{{orderStatus}}</span>
                 </span>
             </div>
             <div class="explain-t">
-                    {{stw}}
+                    {{statusWords}}
             </div>
-            <p class="status-time">{{stt}}</p>
+            <p class="status-time">{{statusTime}}</p>
 
             <div class="status-jump" @click="mm">
                 <img src="asset/images/icon/jump.png" alt="">
@@ -65,14 +66,14 @@
          -->
          <div class="dd_sure">
             <p>
-                <span>{{obj.name}}</span>
+                <span>{{objAddress.name}}</span>
                 <span>{{phone}}</span>
             </p>
 
             <div class="address">
                 <img src="asset/images/icon/map.png" alt="" class="map">
                 <p>
-                   {{obj.address}}
+                   {{objAddress.address}}
                 </p>
                <div class="p-box" @click="openModal('signTip')">
                     <p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
@@ -82,24 +83,27 @@
             <div class="line-2"></div>
          </div>
 
-
-		<div class="sec-1">
+        
+        <div style="padding: .4rem .3rem;background: #fff">
+            <good-info :goodsinfo="goodsInfo"></good-info>
+        </div>
+		<!-- <div class="sec-1">
 			<div class="con-head">
-				<img :src="obj.cover" class="img"/>
+				<img :src="objAddress.cover" class="img"/>
 				<div class="detail-box">
 					<p>
-						<span>{{obj.productName}}</span>
+						<span>{{objAddress.productName}}</span>
 					</p>
-					<p>{{obj.brief}}</p>
+					<p>{{objAddress.brief}}</p>
 					<p>
 						<span>总租金:</span>
-                        <span>￥{{obj.totalAmount}}</span>
-                        <span>x {{obj.quantity}}</span>
+                        <span>￥{{objAddress.totalAmount}}</span>
+                        <span>x {{objAddress.quantity}}</span>
 					</p>
 				</div>
 			</div>
         </div>
-        
+         -->
 
         <!-- 租金 -->
 		
@@ -109,26 +113,26 @@
                     <div class="gray">
                         <span class="l">总合计</span>
                         <div class="r">
-                            ￥<span>{{obj.totalAmount}}</span>
+                            ￥<span>{{objAddress.totalAmount}}</span>
                         </div>
                     </div>
                     
                     <div>
                         <span class="l">月租金</span>
                         <div class="r">
-                            ￥<span>{{obj.payAmount}}</span>
+                            ￥<span>{{objAddress.payAmount}}</span>
                         </div>
                     </div>
                     <div class="gray">
                         <span class="l">租期</span>
                         <div class="r">
-                            <span>共{{obj.periodNumber}}个月</span>
+                            <span>共{{objAddress.periodNumber}}个月</span>
                         </div>
                     </div>
                     <div class="gray">
                         <span class="l">商品数量</span>
                         <div class="r">
-                            <span>{{obj.quantity}}</span>
+                            <span>{{objAddress.quantity}}</span>
                         </div>
                     </div>
                     <div class="gray">
@@ -147,20 +151,20 @@
                     <div class="gray">
                         <span class="l">总押金</span>
                         <div class="r">
-                            ￥<span>{{obj.productDeposit}}</span>
+                            ￥<span>{{objAddress.productDeposit}}</span>
                         </div>
                     </div>
                     
                     <div>
                         <span class="l">信用免押金</span>
                         <div class="r">
-                            -￥<span>{{obj.zhimaCrediFreeDeposit}}</span>
+                            -￥<span>{{objAddress.zhimaCrediFreeDeposit}}</span>
                         </div>
                     </div>
                     <div class="">
                         <span class="l">冻结金额</span>
                         <div class="r">
-                            -￥<span>{{obj.authorizedDeposit}}</span>
+                            -￥<span>{{objAddress.authorizedDeposit}}</span>
                         </div>
                     </div>
                 </div>
@@ -172,11 +176,11 @@
         <div class="xdbh">
             <p>
                 <span>订单编号</span>
-                <span>{{obj.sn}}</span>
+                <span>{{objAddress.sn}}</span>
             </p>
             <p>
                 <span>下单时间</span>
-                <span>{{stt}}</span>
+                <span>{{statusTime}}</span>
             </p>
         </div>
         
@@ -197,12 +201,12 @@
             </div>
             <div v-else-if="status == 9">
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
-                <div @click="seeCount" class="btnIng">查看账单</div>
+                <div @click="toBillOrder()" class="btnIng">查看账单</div>
                 <div @click="ret" class="btnIng">申请归还</div>
             </div>
             <div v-else>
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
-                <div @click="seeCount" class="btnIng">查看账单</div>
+                <div @click="toBillOrder()" class="btnIng">查看账单</div>
             </div>
 
         </div>
@@ -240,5 +244,6 @@
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="static/js/date.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
 <script src="asset/js/orderDetail.js"></script>
 </html>

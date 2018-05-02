@@ -19,7 +19,7 @@ var vm = new Vue({
       // let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
-        url: "http://192.168.19.251:8081/rest/ddproducts/dingding/list",
+        url: url,
         data: {
           // id: id,
         },
@@ -31,6 +31,9 @@ var vm = new Vue({
     },
     toUserCenter() {
       location.href = 'userCenter.html'
+    },
+    toGoodsDetail(productId) {
+      location.href = 'goodsDetail.html?productId=' + productId
     }
   },
   created() {},
