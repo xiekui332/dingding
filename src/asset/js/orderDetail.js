@@ -2,6 +2,7 @@ var vm = new Vue({
     el:'#app',
     //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
+        phone:'',
         orderId: 0,
         goodsInfo: {
             productName: '123213',
@@ -10,29 +11,17 @@ var vm = new Vue({
             totalAmount: 2000,
             count: 2
         },
-
-
-        select:true,
-        agree:false,
-        bot:true,
-        // st:'待发货',
-        stw:'暂无',
-        stt:'',
-        list:[
-            
-        ],
-        list2:[
-            
-        ],
+        bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
+        statusTime:'',      //  时间
         popTitle: '',
         popContent: [],
         setStyle: '',
         url:getApiUrl('/rest/orders/dingding/view'),
         status:-1,  //  订单状态
-        nothing:'暂无',
-        phone:'',
-        obj:'',
+        orderStatus:'暂无',     //  默认状态
+        statusWords:'暂无',
+        objAddress:'',
     },
     methods:{
         init:function(){
@@ -47,42 +36,42 @@ var vm = new Vue({
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 9){
-                            vm.stw = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
-                            vm.nothing = '租用中';
-                            vm.bot = true;
+                            vm.statusWords = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
+                            vm.orderStatus = '租用中';
+                            vm.bottom = true;
                         }else if(vm.status == 3){
-                            vm.stw = '显示第三方物流轨迹或固定文案：您的包裹已交由{快递公司}配送';
-                            vm.nothing = '待收货';
-                            vm.bot = true;
+                            vm.statusWords = '显示第三方物流轨迹或固定文案：您的包裹已交由{快递公司}配送';
+                            vm.orderStatus = '待收货';
+                            vm.bottom = true;
                         }else if(vm.status == 0){
-                            vm.stw = '请尽快完成支付，把宝贝带回家哦';
-                            vm.nothing = '待支付';
-                            vm.bot = true;
+                            vm.statusWords = '请尽快完成支付，把宝贝带回家哦';
+                            vm.orderStatus = '待支付';
+                            vm.bottom = true;
                         }else if(vm.status == 10){
-                            vm.stw = '宝贝到期啦，重新下单吧';
-                            vm.nothing = '租期已满';
-                            vm.bot = true;
+                            vm.statusWords = '宝贝到期啦，重新下单吧';
+                            vm.orderStatus = '租期已满';
+                            vm.bottom = true;
                         }else if(vm.status == 2){
-                            vm.stw = '订单已经在备货中，请耐心等待';
-                            vm.nothing = '待发货';
-                            vm.bot = true;
+                            vm.statusWords = '订单已经在备货中，请耐心等待';
+                            vm.orderStatus = '待发货';
+                            vm.bottom = true;
                         }else if(vm.status == 16){
-                            vm.stw = '请调整完善审核资料，增加审核成功概率';
-                            vm.nothing = '审核拒绝';
-                            vm.bot = true;
+                            vm.statusWords = '请调整完善审核资料，增加审核成功概率';
+                            vm.orderStatus = '审核拒绝';
+                            vm.bottom = true;
                         }else if(vm.status == 15){
-                            vm.stw = '授权信息正在审核中，请耐心等待';
-                            vm.nothing = '审核中';
-                            vm.bot = true;
+                            vm.statusWords = '授权信息正在审核中，请耐心等待';
+                            vm.orderStatus = '审核中';
+                            vm.bottom = true;
                         }else{
-                            vm.stw = '订单取消，用户主动取消';
-                            vm.nothing = '订单取消';
-                            vm.bot = true;
+                            vm.statusWords = '订单取消，用户主动取消';
+                            vm.orderStatus = '订单取消';
+                            vm.bottom = true;
                         }
 
                         //  转化时间
 
-                        vm.stt = getTime(data.data.createTime,2);
+                        vm.statusTime = getTime(data.data.createTime,2);
                         vm.phone = data.data.phone.substring(0,3)+'****'+data.data.phone.substring(7);
                         //    保证取值为两位有效数字
                         if(data.data.totalAmount == null || data.data.totalAmount == 0){
@@ -90,7 +79,7 @@ var vm = new Vue({
                         };
                         data.data.totalAmount = (data.data.totalAmount).toFixed(2);
                        
-                        vm.obj = data.data;
+                        vm.objAddress = data.data;
                         
                     }
                 },
@@ -99,17 +88,13 @@ var vm = new Vue({
                 }
             })
         },
-        click:function(){
-            vm.agree = !vm.agree;
-            vm.select = !vm.select;
-        },
         toBillOrder:function(){
             location.href = 'billOrder.html?orderId=' + this.orderId
         },
         contact:function(){
             
         },
-        mm:function(){
+        skip1:function(){
 
         },
         close:function(){
@@ -151,7 +136,7 @@ var vm = new Vue({
 
         },
         //  申请归还
-        ret:function(){
+        retBack:function(){
 
         }
     },
