@@ -85,7 +85,7 @@ function getApiUrl(url) {
     // const taozugonghost = "//api.taozugong.com:8080";
     // const taozugonghost = '//192.168.18.53:8080';
     // const taozugonghost = 'http://192.168.18.119:8080'
-    const taozugonghost = '//192.168.20.167:8080'
+    const taozugonghost = '//192.168.19.251:8081'
     return taozugonghost + url
 }
 
