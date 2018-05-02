@@ -17,7 +17,7 @@ var vm = new Vue({
     getGoodsList(id) {
       $.ajax({
         type: "GET",
-        url: "http://192.168.20.167:8080/rest/ddproducts/dingding/list",
+        url: "http://192.168.16.198:8081/rest/ddproducts/dingding/list",
         data: {
           id: id,
         },
