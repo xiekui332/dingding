@@ -64,20 +64,14 @@ var vm = new Vue({
                     name: '订单取消'
                 },
                 {
-                    id: -2,
+                    id: 15,
                     name: '审核中'
                 },
                 {
-                    id: -3,
-                    name: '审核成功'
+                    id: 16,
+                    name: '审核失败'
                 }
             ],
-            [
-                {
-                    id: -4,
-                    name: '审核拒绝'
-                },
-            ]
         ],
 
         orderList: [
@@ -85,23 +79,21 @@ var vm = new Vue({
                 orderId:1,
                 cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
                 createTime: '2018-10-10 10:10:19',
-                orderState: '待发货',
-                status: 3,
+                status: 15,
                 productName: '123',
                 brief:'21324',
                 totalAmount: 123,
-                num: 2
+                count: 2
             },
             {
                 orderId:1,
                 cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
                 createTime: '2018-10-10 10:10:1',
-                orderState: '待发货',
-                status: 1,
+                status: 16,
                 productName: '123',
                 brief:'21324',
                 totalAmount: 123,
-                num: 1
+                count: 1
             }
         ],
         page: 1,
@@ -109,14 +101,16 @@ var vm = new Vue({
         status: -1,
         loading: false,
         isEnd: false,
-        orderStatus: {//租赁状态  0-待支付 1-订单取消 9租赁中 10-租期已满 2待发货 3待收货 4交易结束
+        orderStatus: {//租赁状态  0-待支付 1-订单取消 9租赁中 10-租期已满 2待发货 3待收货 4交易结束 15审核中 16审核失败
             cancel: '1',
             unpay: '0',
             lease: '9',
             complete: '10',
             send: '2',
             receive: '3',
-            end: '4'
+            end: '4',
+            authing: '15',
+            authFail: '16'
         }
     },
     computed: {
@@ -135,15 +129,67 @@ var vm = new Vue({
             this.getOrderList();
         },
         getOrderList() {
-            var data=[];
-            this.orderList = this.orderList.concat(data);
-            if (data.length === 0) {
-                this.isEnd = true;
-                this.loading = false
-                return;
+            this.isEnd = true
+            this.loading = false
+            let url = getApiUrl('/rest/orders/dingding/list')
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                data: {
+                    status: this.status,
+                    page: this.page,
+                    rows: 15
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: res => {
+                    if (res.code == 200) {
+                        if (res.data.length === 0) {
+                            this.isEnd = true
+                            this.loading = false
+                            return
+                        }
+                        this.orderList = this.orderList.concat(res.data);
+                        this.page += 1;
+                        this.loading = false;
+
+                    } else {
+                        ddToast(res.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+                }
+            });
+        },
+        getOrderStatus(status) {
+            let orderStatus = ''
+
+            if (status == this.orderStatus.unpay) {//订单商品转态 0-待支付1-订单取消-9租赁中 10-完成
+                orderState = '待支付';
+            } else if (status == this.orderStatus.lease) {
+                orderState = '租赁中';
+            } else if (status == this.orderStatus.complete) {
+                orderState = '租期已满';
+            } else if (status == this.orderStatus.send) {
+                orderState = '待发货';
+            } else if (status == this.orderStatus.receive) {
+                orderState = '待收货';
+            } else if (status == this.orderStatus.end) {
+                orderState = '交易结束';
+            } else if (status == this.orderStatus.authing) {
+                orderState = '审核中';
+            } else if (status == this.orderStatus.authFail) {
+                orderState = '审核失败';
+            } else if (status == this.orderStatus.cancel) {
+                orderState = '审核失败';
+            } else {
+                orderState = '订单已失效';
             }
-            this.page += 1;
-            this.loading = false;
+            return orderState
         },
         showCategory() {
             this.open = !this.open;
@@ -210,8 +256,5 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-        // this.setTitle()
     }
 })

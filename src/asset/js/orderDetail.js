@@ -9,7 +9,7 @@ var vm = new Vue({
             cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
             brief: '21321',
             totalAmount: 2000,
-            num: 2
+            count: 2
         },
         bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
