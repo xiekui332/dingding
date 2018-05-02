@@ -108,6 +108,7 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
-        // this.getGoodsDetail()
+        this.productId = getUrlParam('productId')
+        this.getGoodsDetail()
     },
 })

@@ -15,8 +15,8 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      let url = getApiUrl('/rest/ddproducts/dingding/list')
-      // let url = '/getapi/rest/ddproducts/dingding/list'
+      // let url = getApiUrl('/rest/ddproducts/dingding/list')
+      let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
         url: url,
