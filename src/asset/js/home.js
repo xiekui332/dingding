@@ -15,11 +15,11 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      // let url = getApiUrl('/rest/ddproducts/dingding/list')
-      let url = '/getapi/rest/ddproducts/dingding/list'
+      let url = getApiUrl('/rest/ddproducts/dingding/list')
+      // let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
-        url: "http://192.168.16.198:8081/rest/ddproducts/dingding/list",
+        url: url,
         data: {
           // id: id,
         },
@@ -31,6 +31,9 @@ var vm = new Vue({
     },
     toUserCenter() {
       location.href = 'userCenter.html'
+    },
+    toGoodsDetail(productId) {
+      location.href = 'goodsDetail.html?productId=' + productId
     }
   },
   created() {},
