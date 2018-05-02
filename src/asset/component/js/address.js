@@ -63,29 +63,28 @@ Vue.component('popupAddress',{
         popupvisible(val) {
             this.isVisible = true;
         },
-        isVisible(val) {
-            if (!val) {
-                let addressList = [];
+        // isVisible(val) {
+        //     if (!val) {
+        //         let addressList = [];
 
-                this.provinceList.forEach(item => {
-                    if (item.name == this.resultList[0]) {
-                        addressList[0] = item;
-                    }
-                });
-                this.cityList.forEach(item => {
-                    if (item.name == this.resultList[1]) {
-                        addressList[1] = item;
-                    }
-                });
-                this.areaList.forEach(item => {
-                    if (item.name == this.resultList[2]) {
-                        addressList[2] = item;
-                    }
-                });
-                // this.$emit('closepopup', false);
-                this.$emit('input', addressList);
-            }
-        },
+        //         this.provinceList.forEach(item => {
+        //             if (item.name == this.resultList[0]) {
+        //                 addressList[0] = item;
+        //             }
+        //         });
+        //         this.cityList.forEach(item => {
+        //             if (item.name == this.resultList[1]) {
+        //                 addressList[1] = item;
+        //             }
+        //         });
+        //         this.areaList.forEach(item => {
+        //             if (item.name == this.resultList[2]) {
+        //                 addressList[2] = item;
+        //             }
+        //         });
+        //         this.$emit('input', addressList);
+        //     }
+        // },
     },
     methods: {
         init() {
@@ -180,6 +179,28 @@ Vue.component('popupAddress',{
             this.addressSlots[1].values = this.getCityList();
             this.addressSlots[2].values = this.getAreaList();
         },
+        checkAddress() {
+            this.isVisible = !this.isVisible
+
+            let addressList = [];
+
+            this.provinceList.forEach(item => {
+                if (item.name == this.resultList[0]) {
+                    addressList[0] = item;
+                }
+            });
+            this.cityList.forEach(item => {
+                if (item.name == this.resultList[1]) {
+                    addressList[1] = item;
+                }
+            });
+            this.areaList.forEach(item => {
+                if (item.name == this.resultList[2]) {
+                    addressList[2] = item;
+                }
+            });
+            this.$emit('input', addressList);
+        }
     },
     created() {
         this.setSlots();
@@ -188,7 +209,12 @@ Vue.component('popupAddress',{
     <div>
         <mt-popup v-model="isVisible" position="bottom" style="width:100%;">
             <mt-picker :slots="addressSlots" :showToolbar="true" :visibleItemCount="5" @change="changeSlot"  style="margin-bottom:5px">
-                <div class="sure" @click="isVisible = !isVisible">确定</div>
+                <div style="display:flex;justify-content: space-between;padding: 0 .3rem;">
+                    <span class="sure" @click="isVisible = !isVisible">取消</span>
+                    <span class="sure" style="color:#000">选择地区</span>
+                
+                    <span class="sure" @click="checkAddress">确定</span>
+                </div>
                 <div class="coverTop"></div>
                 <div class="coverBottom"></div>
             </mt-picker>

@@ -5,12 +5,17 @@ var vm = new Vue({
       
     },
     data: {
+      showA:true,
+      showB:true,
+      
     },
     computed: {},
     watch: {},
     filters: {},
     methods: {
-      
+      changePage(){
+        this.showB=true;
+      }
     },
     created() {},
     destroyed() {},

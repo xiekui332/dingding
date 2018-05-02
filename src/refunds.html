@@ -14,7 +14,7 @@
         <div class="backbround">
           <img src="/src/asset/images/icon/rend.png">  
         </div> 
-        <div class="contain">
+        <div class="contain"  v-if="showA">
            <div class="refunds">
              <div class="refunds-top">
                 <img src="/src/asset/images/icon/rentou.png" class="refundsImg"> 
@@ -65,19 +65,56 @@
                  </li>
                 </ul> 
                 <div class="refunds-bottom">
-                <a  href="refundsing.html" class="btn1">确认退货</a> 
+                <a  @click="changePage" class="btn1">确认退货</a> 
                 <a  href="javascript:void(0)" class="btn1 te">取消</a> 
             </div> 
             </div>  
           </div>
         </div>
+        <div class="contain" v-else-if="!showB">
+            <div class="refunds"  style="height:8.26rem">
+              <div class="refunds-top">
+                  <img src="/src/asset/images/icon/rentou.png" class="refundsImg"> 
+              </div>
+              <div class="refundsing-center">
+                 <img src="/src/asset/images/icon/en.png" class="refundsingImg"> 
+              </div>
+              <div class="refundsing-center1">
+                 <div class="receive">归还中</div>
+                 <div class="callTele">商品归还中，有问题可拨打客服电话</div> 
+              </div>
+              <div class="receive-bottom">
+                <img src="/src/asset/images/icon/bot.png" class="cloned">  
+              </div>
+            </div>   
+        </div>
+        <div class="contain" v-else>
+            <div class="refunds" style="height:8.26rem">
+              <div class="refunds-top">
+                  <img src="/src/asset/images/icon/rentou.png" class="refundsImg"> 
+              </div>
+              <div class="refundsing-center">
+                 <img src="/src/asset/images/icon/en1.png" class="refundsingImg"> 
+              </div>
+              <div class="refundsing-center1">
+                 <div class="receive">还款成功</div>
+                 <div class="callTele">商品归还中，有问题可拨打客服电话</div> 
+              </div>
+              <div class="receive-bottom">
+                <img src="/src/asset/images/icon/bot.png" class="cloned">  
+              </div>
+            </div>    
+        </div>
      <div class="refundsFooter">
+       <div class="refundsBottom">
           <span class="oneLine"></span>
           <div class="serviceTelephone">
-                客服电话：<em class="em">0571 85180735</em>  
-         </div>
-         <div class="twoLine"></div>  
-     </div>  
+              客服电话：<em class="em">0571 85180735</em>  
+            </div> 
+          <span class="twoLine"></span> 
+          
+      </div>    
+    </div>  
    </div>      
 </body>
 <style>
@@ -225,23 +262,44 @@
   text-align:center;
   margin-top:0.83rem;
   width:100%;
+  position: fixed;
+  bottom:0.4rem;
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+ 
+}
+.refundsBottom{
+  display: flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items: center;
+  /* padding:0 1rem; */
+  /* padding:0 0.2rem; */
+  width:80%;
 }
 .oneLine{
  display: inline-block;   
  border-top:1px solid #999999; 
- width:0.3rem; 
+ width:0.3rem;
+ /* width:15%; */
+
+
  
 }
 .twoLine{
  display: inline-block;   
  border-top:1px solid #999999; 
  width:0.3rem; 
+ /* width:15%; */
  
 }
+
 .serviceTelephone{
-  display: inline-block;
   height:0.4rem;
   width: 3.5rem;
+  /* width:50%; */
   padding: 0 0.26rem;
   line-height: 0.6rem; 
   z-index: 99;
@@ -249,6 +307,7 @@
   font-size: 0.28rem;
   color: #999999;
   letter-spacing: 0;
+  margin-top:-0.19rem;
 }
 .em{
     font-family: PingFangSC-Regular;
@@ -257,6 +316,47 @@
     letter-spacing: 0;
     line-height: 0.4rem;
 }
+.refundsing-center{
+      height:4.59rem;
+      width:100%;
+  }
+  .refundsingImg{
+    width:2.175rem;
+    height: 2.505rem;
+    padding: 1.327rem 2.114rem 1.088rem 2.114rem;  
+  }
+  .refundsing-center1{
+    width:100%;
+    height:1.16rem;
+    text-align: center;
+    margin-bottom:0.91rem;
+    margin-top:0.26rem;  
+  }
+  .receive{
+    width:100%;
+    height:0.56rem;
+    font-family: PingFangSC-Medium;
+    font-size:0.4rem;
+    color: #333333;
+    letter-spacing: 0;
+    font-weight: 700;
+    
+  }
+  .callTele{
+    margin-top:0.2rem;
+    font-family: PingFangSC-Regular;
+    font-size: 0.28rem;
+    color: #999999;
+    letter-spacing: 0;  
+  }
+  .receive-bottom{
+    width:100%;
+    height:0.49rem;
+  }
+ .cloned{
+    width:100%;
+    height:0.49rem;
+  } 
 </style>    
 <script src="static/js/zepto.min.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>

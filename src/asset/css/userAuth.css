@@ -3,8 +3,7 @@ body{
     background: #f7f7f7;
 }
 .sec-1{
-    opacity: 0.8;
-    background-image: linear-gradient(90deg, #4D65FF 2%, #13D0CA 100%);
+    background-image: linear-gradient(-90deg, #3FE4EF 0%, #3C69F7 50%);
 }
 .order-status{
     padding: .32rem .48rem .32rem .3rem;
@@ -48,7 +47,7 @@ margin: 0 auto;
 }
 .sec-2{
     width: 100%;
-    height: 1.82rem;
+    /* height: 1.82rem; */
     margin: 0rem 0 .2rem;
     background: #fff;
 }
@@ -73,9 +72,10 @@ text-align: center;
 }
 .sq-explain{
     font-size: .24rem;
-color: #999999;
-letter-spacing: 0;
-line-height: .35rem;
+    color: #999999;
+    letter-spacing: 0;
+    line-height: .35rem;
+    margin-top: .12rem;
 }
 .list-1{
     padding: .22rem .3rem;
@@ -95,9 +95,9 @@ line-height: .5rem;
 /* 信息填写部分
  */
  .head-sec{
-     width: 100%;
-     height: 3.13rem;
-     background-image: url('../images/icon/banner.png');
+    width: 100%;
+     /* height: 3.13rem; */
+    background-image: url('../images/icon/auto_banner.png');
     background-size:cover;
     margin-bottom: .2rem; 
     }
@@ -182,8 +182,9 @@ line-height: .5rem;
     .bow-btn{
         width: 6.9rem;
         height: .88rem;
-        background-image: linear-gradient(90deg, #3C8CE9 0%, #18C6CE 84%);
-        border-radius: 44px;
+        background-image: linear-gradient(90deg, #2044DA 0%, #3D66F0 82%);
+border-radius: 44px;
+        border-radius: .44rem;
         margin: 0 auto;
         font-size: .36rem;
 color: #FFFFFF;

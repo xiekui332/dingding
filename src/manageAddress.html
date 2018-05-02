@@ -1,56 +1,77 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- 电话类型的数字不变颜色 -->
-    <meta name = "format-detection" content = "telephone=no">
-    <title>管理收货地址</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset.css"/>
-    <!-- 引入样式 -->
-    <link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
-    <link rel="stylesheet" type="text/css" href="asset/css/manageAddress.css"/>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- 电话类型的数字不变颜色 -->
+	<meta name="format-detection" content="telephone=no">
+	<title>管理收货地址</title>
+	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+	<!-- <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css"> -->
+
+	<link rel="stylesheet" type="text/css" href="asset/css/manageAddress.css" />
 </head>
+<style>
+	.van-radio__input {
+		vertical-align: -webkit-baseline-middle;
+	}
+
+	.van-radio .van-icon {
+		font-size: .28rem;
+		width: .4rem;
+
+	}
+
+	.van-radio__label {
+		font-size: .28rem;
+	}
+
+	.van-radio .van-icon-checked {
+		color: #F3654C;
+	}
+	.van-dialog {
+		width: 5.4rem;
+	}
+</style>
+
 <body>
 	<div id="app">
-		<div v-for="item,index in list" v-cloak>
-                <div class="sec-1">
-                    <p class="name-tel">
-                        <span class="l">
-                            {{item.name}}
-                        </span>
-                        <span class="r">
-                                {{item.tel}}
-                        </span>
-                    </p>
-                    <p class="detail-address">{{item.address}}</p>
-            
-                    <div class="checked-all">
-                       <div @click="check(index)"><van-checkbox v-model="item.checked"> </van-checkbox></div> 
-                        <span class="explain-w">
-                            设为默认地址
-                        </span>
-                        <div class="icon-an">
-                            <van-icon name="edit" @click="edit(index)"></van-icon>
-                            <van-icon name="delete" @click="dele(index)"></van-icon>   
-                        </div>
-                    </div>
-                </div>
-        </div>
-
-
-         <div class="bottom" @click="addNew">
-                新增收货地址
-         </div>
-
+		<van-radio-group v-model="activeAddressId">
+			<div v-for="(item,index) in addressList">
+				<div class="sec-1">
+					<p class="name-tel">
+						<span class="l">
+							{{item.name}}
+						</span>
+						<span class="r">
+							{{item.tel}}
+						</span>
+					</p>
+					<p class="detail-address">{{item.address}}</p>
+					<div style="display: flex;justify-content: space-between;margin-top:.2rem">
+						<van-radio :name="item.id">{{activeAddressId==item.id?'默认地址':'设为默认地址'}}</van-radio>
+						<span class="icon-an">
+							<van-icon name="edit" @click="toAddressEdit(item.id)"></van-icon>
+							<van-icon name="delete" @click="deleteAddress(item.id)"></van-icon>
+						</span>
+					</div>
+				</div>
+			</div>
+		</van-radio-group>
+		<div class="bottom" @click="toAddressEdit()">
+			新增收货地址
+		</div>
 	</div>
 </body>
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
-<script src="static/js/date.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 <script src="asset/js/manageAddress.js"></script>
+
 </html>
