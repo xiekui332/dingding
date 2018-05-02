@@ -3,12 +3,17 @@ var vm = new Vue({
     //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
         address: {
-            name: '',
-            phone: '',
+            nailUserId: '',
+            nailUserInfoId: '',
+            username: '',
+            mobile: '',
             company: '',
-            address: '',
-            detailAddress: '',
-            pos: ''
+            provinceId: 0,
+            cityId: 0,
+            districtId: 0,
+            detail: '',
+            isDefault: 0,
+            address: ''
         },
 
         // 地址
@@ -20,16 +25,13 @@ var vm = new Vue({
         province: province
     },
     methods:{
-        save:function(){
-            var pto = {
-                peo:vm.peo,
-                tel:vm.tel,
-                com:vm.com,
-                add:vm.add,
-                det:vm.det,
-                pos:vm.pos
-            }
-           // console.log(pto)
+        saveAddress(){
+        },
+        addressChange(addressList) {
+            this.address.address = ''
+            addressList.forEach(address => {
+                this.address.address += address.name + ' '
+            });
         },
         // 地址
         getDetaiAddress(){

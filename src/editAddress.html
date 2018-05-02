@@ -31,13 +31,13 @@
 					<span class="left-title">
 						收货人
 					</span>
-					<input type="text" placeholder="姓名" v-model="address.name">
+					<input type="text" placeholder="姓名" v-model="address.username">
 				</div>
 				<div class="item2">
 					<span class="left-title">
 						手机号码
 					</span>
-					<input type="text" placeholder="手机或固话" v-model="address.phone">
+					<input type="text" placeholder="手机或固话" v-model="address.mobile">
 				</div>
 				<div class="item2">
 					<span class="left-title">
@@ -56,7 +56,7 @@
 					<span class="left-title">
 						详细地址
 					</span>
-					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detailAddress" @input="getDetaiAddress" @blur="looseBlur"></textarea>
+					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detail" @input="getDetaiAddress" @blur="looseBlur"></textarea>
 					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh">
 							<div class="result_item" v-for="name in addresslist">
 									<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(name)">
@@ -67,19 +67,19 @@
 							</div>
 					</div>
 				</div>
-				<div class="item2">
+				<!-- <div class="item2">
 					<span class="left-title">
 						邮政编码
 					</span>
 					<input type="text" placeholder="邮政编码" v-model="address.pos">
-				</div>
+				</div> -->
 			</div>
 		</div>
 
-		<div class="btn-red" @click="save">
+		<div class="btn-red" @click="saveAddress">
 			保存
 		</div>
-		<popup-address :popupvisible="addressVisible" :province="province" v-model="addressList"></popup-address>
+		<popup-address :popupvisible="addressVisible" :province="province" @change="addressChange"></popup-address>
 		
 
 	</div>
