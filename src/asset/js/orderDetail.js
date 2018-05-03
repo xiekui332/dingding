@@ -98,13 +98,11 @@ var vm = new Vue({
         contact:function(){
             
         },
-        skip1:function(){
-
-        },
         close:function(){
             $('.mask').hide();
         },
-        pay:function(){
+       // 立即支付
+        payNow:function(){
 
         },
         seePower:function(){

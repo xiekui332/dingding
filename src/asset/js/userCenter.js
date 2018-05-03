@@ -51,25 +51,7 @@ var vm = new Vue({
           url:'asset/images/icon/order_cancel.png',
           navTitle:'订单取消' 
         }
-      ],
-      mainList:[
-        {
-          urll:'asset/images/icon/bill.png',
-          mainTitle:'我的账单'
-        },
-        {
-          urll:'asset/images/icon/auth.png',
-          mainTitle:'我的授权'
-        },
-        {
-          urll:'asset/images/icon/mapDing.png',
-          mainTitle:'地址管理'
-        },
-        {
-            urll:'asset/images/icon/about.png',
-            mainTitle:'关于我们'
-        },
-      ]  
+      ]
     },
     computed: {
     },
@@ -78,23 +60,24 @@ var vm = new Vue({
     filters: {
     },
     methods: {
-      hanfnn(){
-        $('.main-list1').hide();
-        $('.main-list').show();
-        $('#page-back').addClass('hover').siblings('#page-front').removeClass('hover')
-      },
-      hanfnn1(){
-        alert(123)
-        $('.main-list').hide();
-        $('.main-list1').show();
-        $('#page-front').addClass('hover').siblings('#page-back').removeClass('hover')
-      },
       toHome() {
         location.href = 'home.html'
       },
       toOrderList() {
         location.href = 'orderList.html'
-      }
+      },
+      toBillOrder(){
+        location.href = 'billOrder.html'
+     },
+     toUserAuth(){
+      location.href = 'UserAuth.html'
+     },
+     toManageAddress(){
+       location.href = 'manageAddress.html'
+     },
+     toAbout(){
+       location.href = 'about.html'
+     }
     },
     created() {
     },
