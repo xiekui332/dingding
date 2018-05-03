@@ -16,10 +16,12 @@ var vm = new Vue({
   methods: {
     getGoodsList(id) {
       let url = getApiUrl('/rest/ddproducts/dingding/list')
+      // let url="http://192.168.19.251:8081/rest/products/list?categoryId=1"
       $.ajax({
         type: "GET",
         url: url,
         data: {
+          categoryId:1
         },
         success: (json) => {
           this.goodsList1 = json.data

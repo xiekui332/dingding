@@ -36,22 +36,23 @@
                             <a @click="toGoodsDetail(goods.productEntity.id)">
                               <img v-lazy="goods.productEntity.cover" class="newImg2" >
                               <div class="homeName">{{goods.productEntity.name}}</div>
-                              <div class="homeDec">{{goods.productEntity.brief}}</div>
+                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
                               <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
                           </a>
+
                         </div>
                       </div>
                     </div>
                 </div>
           </div>
           <div class="footer">
-          <mt-tabbar v-model="selected">
-              <mt-tab-item id="tab3">
-                <img slot="icon" src="asset/images/icon/user_center_out.png">
-                 租凭
+            <mt-tabbar fixed="true">
+              <mt-tab-item id="tab4" style="color:#F3654C">
+                <img slot="icon" src="asset/images/icon/lease_in.png">
+                租赁
               </mt-tab-item>
-              <mt-tab-item id="tab4">
-                <img slot="icon" src="asset/images/icon/lease.png">
+              <mt-tab-item id="tab3" >
+                <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()">
                 我的
               </mt-tab-item>
             </mt-tabbar>
@@ -65,21 +66,21 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  // dd.ready(function () {
-  //   dd.biz.navigation.setTitle({
-  //     title: '淘租公',//控制标题文本，空字符串表示显示默认文本
-  //     onSuccess: function (result) {
-  //     },
-  //     onFail: function (err) { }
-  //   });
-  //   dd.biz.navigation.setright({
-  //     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-  //     text: '返回',//控制显示文本，空字符串表示显示默认文本
-  //     onSuccess: function (result) {
-  //     },
-  //     onFail: function (err) { }
-  //   });
-  // });
+  dd.ready(function () {
+    dd.biz.navigation.setTitle({
+      title: '淘租公',//控制标题文本，空字符串表示显示默认文本
+      onSuccess: function (result) {
+      },
+      onFail: function (err) { }
+    });
+    dd.biz.navigation.setright({
+      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+      text: '返回',//控制显示文本，空字符串表示显示默认文本
+      onSuccess: function (result) {
+      },
+      onFail: function (err) { }
+    });
+  });
 </script>
 
 </html>
