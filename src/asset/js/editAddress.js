@@ -1,7 +1,11 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
+		addressId: '',
+		nailUserId: '1',
+		nailUserInfoId: '1',
 		address: {
+			addressId: '',
 			nailUserId: '1',
 			nailUserInfoId: '1',
 			username: '',
@@ -12,11 +16,11 @@ var vm = new Vue({
 			districtId: 0,
 			detail: '',
 			// isDefault: 0,
-			address: ''
 		},
-
+		addressName: '',
+        validate: ['username', 'mobile', 'company', 'provinceId', 'detail'],
+		
 		// 地址
-		// address: '',
 		addressShow: false,
 		detailAddresslist: [],
 		addressVisible: false,
@@ -24,13 +28,58 @@ var vm = new Vue({
 		province: province
 	},
 	methods: {
-		saveAddress() {
-			let url = getApiUrl('/api/address/add_shipping_address')
+		getAddress() {
+			let url = getApiUrl('/api/address/get_shipping_address_one/')
 			$.ajax({
                 url: url,
                 type: "POST",
-                dataType: "json",
-                data: this.address,
+				dataType: "json",
+                // contentType: "application/json",
+                data: {
+					nailUserId: this.nailUserId,
+					nailUserInfoId: this.nailUserInfoId,
+					addressId: this.addressId
+				},
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+						this.address = result.data
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+				}
+			})
+		},
+		saveAddress() {
+			let flag = 0
+			this.validate.some(item => {
+				if (!this.address[item]) {
+					ddToast('请填写完整')
+					flag = 1
+					return true
+				}
+			})
+			if (flag) return
+			if (!phoneValid(this.address.mobile)) {
+				ddToast('手机号码格式错误')
+				return
+			}
+			this.address.addressId = this.addressId
+			this.address.nailUserId = this.nailUserId
+			this.address.nailUserInfoId = this.nailUserInfoId
+			let url = getApiUrl('/api/address/add_shipping_address/')
+			$.ajax({
+                url: url,
+                type: "POST",
+				dataType: "json",
+                contentType: "application/json",
+                data: JSON.stringify(this.address),
                 xhrFields: {
                     withCredentials: true
                 },
@@ -48,16 +97,16 @@ var vm = new Vue({
 			})
 		},
 		addressChange(addressList) {
-			this.address.address = ''
+			this.addressName = ''
 			addressList.forEach(address => {
-				this.address.address += address.name + ' '
+				this.addressName += address.name + ' '
 			});
 			this.address.provinceId = addressList[0].id
 			this.address.cityId = addressList[1].id
 			this.address.districtId = addressList[2].id
 		},
-		// 地址
-		getDetaiAddress() {
+		// 街道地址编辑
+		getDetailAddress() {
 			let citycode = ''
 			if (this.address.provinceId == ""){
 			    citycode = ''
@@ -86,6 +135,14 @@ var vm = new Vue({
 			this.address.detail = item.name;
 			this.addressShow = false;
 		},
+	},
+	mounted() {
+		//身份信息
+
+		this.addressId = getUrlParam('addressId')
+		if (this.addressId) {
+			this.getAddress()
+		}
 	}
 })
 

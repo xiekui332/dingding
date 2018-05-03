@@ -39,23 +39,23 @@
 
 <body>
 	<div id="app">
-		<van-radio-group v-model="activeAddressId">
+		<van-radio-group v-model="activeAddressId" style="margin-bottom: 1rem">
 			<div v-for="(item,index) in addressList">
 				<div class="sec-1">
 					<p class="name-tel">
 						<span class="l">
-							{{item.name}}
+							{{item.username}}
 						</span>
 						<span class="r">
-							{{item.tel}}
+							{{item.mobile}}
 						</span>
 					</p>
-					<p class="detail-address">{{item.address}}</p>
+					<p class="detail-address">{{item.detail}}</p>
 					<div style="display: flex;justify-content: space-between;margin-top:.2rem">
-						<van-radio :name="item.id">{{activeAddressId==item.id?'默认地址':'设为默认地址'}}</van-radio>
+						<van-radio :name="item.addressId" @click="checkAddress(item.addressId)">{{item.isDefault ? '默认地址':'设为默认地址'}}</van-radio>
 						<span class="icon-an">
-							<van-icon name="edit" @click="toAddressEdit(item.id)"></van-icon>
-							<van-icon name="delete" @click="deleteAddress(item.id)"></van-icon>
+							<van-icon name="edit" @click="toAddressEdit(item.addressId)"></van-icon>
+							<van-icon name="delete" @click="deleteAddress(item.addressId)"></van-icon>
 						</span>
 					</div>
 				</div>

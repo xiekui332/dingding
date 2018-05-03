@@ -49,14 +49,14 @@
 					<span class="left-title">
 						所在地区
 					</span>
-					<input type="text" placeholder="地区信息" readonly class="address" v-model="address.address" @click="addressVisible = !addressVisible">
+					<input type="text" placeholder="地区信息" readonly class="address" v-model="addressName" @click="addressVisible = !addressVisible">
 					<img src="asset/images/icon/more.png" class="ad-more">
 				</div>
 				<div class="item2">
 					<span class="left-title">
 						详细地址
 					</span>
-					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detail" @input="getDetaiAddress" @blur="looseBlur"></textarea>
+					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detail" @input="getDetailAddress" @blur="looseBlur"></textarea>
 					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh">
 							<div class="result_item" v-for="item in detailAddresslist">
 									<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(item)">
