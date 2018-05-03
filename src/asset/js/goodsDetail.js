@@ -10,26 +10,25 @@ var vm = new Vue({
         timeActive: 0,
         monthPrice: 0,
         goodsDetail: {
-            productImages: [
-                {
-                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-                },
-                {
-                    imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
-                }
-            ],
-            productDescEntity: {
-                contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-                specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
-                afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
-            },
-            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-            name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
-            brief: '紧急集合',
-            productPrice: 123,
-            productDeposit: 232,
-            inventory: '12',
-            province: province
+            // productImages: [
+            //     {
+            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+            //     },
+            //     {
+            //         imagePath: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'
+            //     }
+            // ],
+            // productDescEntity: {
+            //     contentlist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+            //     specificationslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a'],
+            //     afterSalesInstructionslist: ['http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a']
+            // },
+            // cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            // name: '空气堡（AIRBURG)新风系统新风系统新风 新风系统新风系统新风',
+            // brief: '紧急集合',
+            // productPrice: 123,
+            // productDeposit: 232,
+            // inventory: '12',
         },
         popupVisible: false,
         num: 1,
@@ -39,7 +38,6 @@ var vm = new Vue({
         popContent: [
             '0571-85180735'
         ],
-        
     },
     computed: {
     },
@@ -51,7 +49,6 @@ var vm = new Vue({
         getGoodsDetail() {
             let url = getApiUrl('/rest/ddproducts/dingding/view')
             // let url = '/getapi/rest/ddproducts/dingding/view'
-            
             $.ajax({
                 url: url,
                 type: "GET",
