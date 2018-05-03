@@ -199,8 +199,11 @@ Vue.component('popupAddress',{
                     addressList[2] = item;
                 }
             });
-            this.$emit('input', addressList);
+            // console.log(addressList)
+            this.$emit('change', addressList);
             
+            // addressList = JSON.parse(JSON.stringify(addressList))
+            this.$emit('input', addressList);
         }
     },
     created() {

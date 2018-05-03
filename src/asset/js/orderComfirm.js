@@ -8,7 +8,7 @@ var vm = new Vue({
             cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
             brief: '21321',
             totalAmount: 2000,
-            num: 2
+            count: 2
         },
 
 
@@ -121,12 +121,13 @@ var vm = new Vue({
                 setTimeout(function(){
                     vm.readFile = false;
                     $('.readFile').hide();
-                },3000)
+                },1000)
             }
+        },
+        toAddressEdit() {
+            location.href = 'manageAddress.html'
         }
     },
     mounted() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     }
 })
