@@ -5,22 +5,7 @@ var vm = new Vue({
         nailUserId: 1,
         nailUserInfoId: 1,
         activeAddressId: 1, 
-        addressList:[
-        // {
-        //     addressId: 1,
-        //     username: '张三',
-        //     mobile: '13000000000',
-        //     address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
-        //     isDefault:0
-        // },
-        // {
-        //     addressId: 2,
-        //     username: '李四',
-        //     mobile: '13100000000',
-        //     address: '浙江省杭州市拱墅区莫干山路 50 号',
-        //     isDefault:1
-        // }
-        ],
+        addressList:[],
     },
     methods:{
         getAddressList() {
