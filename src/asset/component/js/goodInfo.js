@@ -21,7 +21,7 @@ Vue.component('goodInfo',{
                 <div class="goodsInfoSmall gray overHidden">{{goodsinfo.brief}}</div>
                 <div class="mediumerFont black price-num">
                     <span>总租金：¥{{goodsinfo.totalAmount}}</span>
-                    <span class="gray">x{{goodsinfo.num}}</span>
+                    <span class="gray">x{{goodsinfo.count}}</span>
                 </div>
                 <!-- <div style="margin-top:.20rem">
                     <img src="asset/images/icon/zm.png" style="height:.3rem"/>

@@ -5,23 +5,21 @@ var vm = new Vue({
         phone:'',
         orderId: 0,
         goodsInfo: {
-            productName: '123213',
-            cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-            brief: '21321',
-            totalAmount: 2000,
-            num: 2
+            productName: '',
+            cover: '',
+            brief: '',
+            totalAmount:'',
+            count:'',
         },
-        select:true,
-        agree:false,
-        bottom:true,
+        bottom:true,        //  若底部有页脚，则需要距离底部一定距离
         showPop: false,
-        statusTime:'',
+        statusTime:'',      //  时间
         popTitle: '',
         popContent: [],
         setStyle: '',
         url:getApiUrl('/rest/orders/dingding/view'),
         status:-1,  //  订单状态
-        orderStatus:'暂无',
+        orderStatus:'暂无',     //  默认状态
         statusWords:'暂无',
         objAddress:'',
     },
@@ -34,7 +32,7 @@ var vm = new Vue({
                 },
                 url:vm.url,
                 success:function(data){
-                    //  console.log(data)
+                    // console.log(data)
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 9){
@@ -82,7 +80,11 @@ var vm = new Vue({
                         data.data.totalAmount = (data.data.totalAmount).toFixed(2);
                        
                         vm.objAddress = data.data;
-                        
+                        vm.goodsInfo.productName = data.data.productName;
+                        vm.goodsInfo.cover = data.data.cover;
+                        vm.goodsInfo.brief = data.data.brief;
+                        vm.goodsInfo.totalAmount = data.data.totalAmount;
+                        vm.goodsInfo.count = data.data.quantity;
                     }
                 },
                 error:function(){
@@ -90,17 +92,13 @@ var vm = new Vue({
                 }
             })
         },
-        click:function(){
-            vm.agree = !vm.agree;
-            vm.select = !vm.select;
-        },
         toBillOrder:function(){
             location.href = 'billOrder.html?orderId=' + this.orderId
         },
         contact:function(){
             
         },
-        mm:function(){
+        skip1:function(){
 
         },
         close:function(){
@@ -142,7 +140,7 @@ var vm = new Vue({
 
         },
         //  申请归还
-        ret:function(){
+        retBack:function(){
 
         }
     },

@@ -54,7 +54,7 @@
             </div>
             <p class="status-time">{{statusTime}}</p>
 
-            <div class="status-jump" @click="mm">
+            <div class="status-jump" @click="skip1">
                 <img src="asset/images/icon/jump.png" alt="">
             </div>
 
@@ -202,7 +202,7 @@
             <div v-else-if="status == 9">
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
                 <div @click="toBillOrder()" class="btnIng">查看账单</div>
-                <div @click="ret" class="btnIng">申请归还</div>
+                <div @click="retBack" class="btnIng">申请归还</div>
             </div>
             <div v-else>
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
