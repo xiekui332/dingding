@@ -35,23 +35,24 @@
                         <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
                             <a @click="toGoodsDetail(goods.productEntity.id)">
                               <img v-lazy="goods.productEntity.cover" class="newImg2" >
+                            </a>   
                               <div class="homeName">{{goods.productEntity.name}}</div>
                               <div class="homeDecc">{{goods.productEntity.brief}}</div>
                               <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
-                          </a>  
+                           
                         </div>
                       </div> 
                     </div>
                 </div>   
           </div>  
           <div class="footer">
-          <mt-tabbar v-model="selected">
-              <mt-tab-item id="tab3">
-                <img slot="icon" src="asset/images/icon/lease.png">
-                 租凭
+            <mt-tabbar fixed="true">
+              <mt-tab-item id="tab4" style="color:#F3654C">
+                <img slot="icon" src="asset/images/icon/lease_in.png"> 
+                租赁
               </mt-tab-item>
-              <mt-tab-item id="tab4">
-                <img slot="icon" src="asset/images/icon/user_center_out.png">
+              <mt-tab-item id="tab3" >
+                <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()"> 
                 我的
               </mt-tab-item>
             </mt-tabbar>
