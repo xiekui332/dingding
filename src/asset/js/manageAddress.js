@@ -2,47 +2,115 @@ var vm = new Vue({
     el:'#app',
     //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
+        nailUserId: 1,
+        nailUserInfoId: 1,
         activeAddressId: 1, 
-        addressList:[
-        {
-            id: 1,
-            name: '张三',
-            tel: '13000000000',
-            address: '浙江省杭州市西湖区文三路 138 号东方通信大厦 7 楼 501 室',
-            checked:false
-        },
-        {
-            id: 2,
-            name: '李四',
-            tel: '13100000000',
-            address: '浙江省杭州市拱墅区莫干山路 50 号',
-            checked:false
-        }
-        ],
-        chosenAddressId:1,
-        radio:''
-        // checked:true,
+        addressList:[],
     },
     methods:{
-        toAddressEdit(id) {
-            if (id) {
-                location.href = 'editAddress.html?id='+id
+        getAddressList() {
+            let url = getApiUrl('/api/address/get_shipping_address_list/')
+			$.ajax({
+                url: url,
+                type: "POST",
+				dataType: "json",
+                data: {
+                    nailUserId: this.nailUserId,
+                    nailUserInfoId: this.nailUserInfoId
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+                        this.addressList = result.data
+                        this.addressList.some(address => {
+                            if (address.isDefault) {
+                                this.activeAddressId = address.addressId
+                                return true
+                            }
+                        })
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+				}
+			})
+        },
+        checkAddress(addressId) {
+            let url = getApiUrl('/api/address/set_default_address/')
+			$.ajax({
+                url: url,
+                type: "POST",
+				dataType: "json",
+                data: {
+                    nailUserId: this.nailUserId,
+                    nailUserInfoId: this.nailUserInfoId,
+                    addressId: addressId
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+                        this.activeAddressId = addressId
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+				}
+			})
+        },
+        toAddressEdit(addressId) {
+            if (addressId) {
+                location.href = 'editAddress.html?addressId='+addressId
             } else {
                 location.href = 'editAddress.html'
             }
         },
-        deleteAddress(id){
-            //  splice(a,b)参数分别为下标和删除的数量
-
+        deleteAddress(addressId){
             this.$dialog.confirm({
                 title: '确认要删除收货地址吗',
                 message: ''
             }).then(() => {
-                // vm.list.splice(a,1)
+                let url = getApiUrl('/api/address/del_address/')
+                $.ajax({
+                    url: url,
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        nailUserId: this.nailUserId,
+                        nailUserInfoId: this.nailUserInfoId,
+                        addressId: addressId
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    success: result => {
+                        if (result.code == 200) {
+                            this.getAddressList()
+                        } else {
+                            ddToast(result.message)
+                        }
+                    },
+                    error: e => {
+                        ddToast('网络错误')
+                    }
+                })
             }).catch(() => {
-                // console.log(':)')
+                ddToast('网络错误')
             });
            
         },
+    },
+    mounted() {
+        this.getAddressList()
     }
 })

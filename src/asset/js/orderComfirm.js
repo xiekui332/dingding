@@ -8,12 +8,8 @@ var vm = new Vue({
             cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
             brief: '21321',
             totalAmount: 2000,
-            num: 2
+            count: 2
         },
-
-
-        select:true,
-        agree:false,
         show: false,
         addShow:true,	//	是否添加地址
         addNew:false,	//	新建收货地址
@@ -23,41 +19,9 @@ var vm = new Vue({
         popTitle:'',
         popContent: [],
         setStyle: '',
-        list:[
-            {
-                month:'7/9期',
-                status:'待还款',
-                num:'249',
-                time:'2018年08月29日通过支付宝免密支付还款'
-            },
-            {
-                month:'8/9期',
-                status:'待还款',
-                num:'250',
-                time:'2018年08月30日通过支付宝免密支付还款'
-            }
-        ],
-        list2:[
-            {
-                month:'7/9期',
-                status:'已还款',
-                num:'249',
-                time:'2018年03月29日'
-            },
-            {
-                month:'8/9期',
-                status:'已还款',
-                num:'250',
-                time:'2018年03月29日'
-            }
-        ],
         checked:false
     },
     methods:{
-        click:function(){
-            vm.agree = !vm.agree;
-            vm.select = !vm.select;
-        },
         submit:function(){
         	//	判断是否添加收货地址，改变show的状态触发提示
         	if(vm.addShow == false){
@@ -121,12 +85,13 @@ var vm = new Vue({
                 setTimeout(function(){
                     vm.readFile = false;
                     $('.readFile').hide();
-                },3000)
+                },1000)
             }
+        },
+        toAddressEdit() {
+            location.href = 'manageAddress.html'
         }
     },
     mounted() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
     }
 })

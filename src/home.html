@@ -11,14 +11,14 @@
 <body>
       <div id="app">
           <div class="yamanTupian">
-             <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1"> 
+             <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1">
           </div>
           <div class="newModal">
              <div class="newTop">
                 <span class="newTitle ">淘租公</span>
                 <span  class="newTitle te">
                   <img class="newImg" src="asset/images/icon/xiaoxi.png">
-                </span>  
+                </span>
               </div>
             <a href="javascript:void(0)" class="newContent">
               <marquee>Dyson又出新产品了，历史价格最低...</marquee></a>
@@ -29,33 +29,33 @@
                   <div class="homeMain-top" >
                     <div class="homeMain-title">{{item.category}}</div>
                     <img src="asset/images/icon/more.png" class="newImg1">
-                  </div>  
-                  <div class="homeAround-top" > 
-                      <div  class="homeAround"> 
+                  </div>
+                  <div class="homeAround-top" >
+                      <div  class="homeAround">
                         <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
                             <a @click="toGoodsDetail(goods.productEntity.id)">
                               <img v-lazy="goods.productEntity.cover" class="newImg2" >
-                            </a>   
                               <div class="homeName">{{goods.productEntity.name}}</div>
-                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
+                              <div class="homeDec">{{goods.productEntity.brief}}</div>
                               <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+                          </a>
                         </div>
-                      </div> 
+                      </div>
                     </div>
-                </div>   
-          </div>  
+                </div>
+          </div>
           <div class="footer">
-            <mt-tabbar fixed="true">
-              <mt-tab-item id="tab4" style="color:#F3654C">
-                <img slot="icon" src="asset/images/icon/lease_in.png"> 
-                租赁
+          <mt-tabbar v-model="selected">
+              <mt-tab-item id="tab3">
+                <img slot="icon" src="asset/images/icon/user_center_out.png">
+                 租凭
               </mt-tab-item>
-              <mt-tab-item id="tab3" >
-                <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()"> 
+              <mt-tab-item id="tab4">
+                <img slot="icon" src="asset/images/icon/lease.png">
                 我的
               </mt-tab-item>
             </mt-tabbar>
-        </div>  
+        </div>
     </div>
 </body>
 <script src="static/js/zepto.min.js"></script>
@@ -65,21 +65,21 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  dd.ready(function () {
-    dd.biz.navigation.setTitle({
-      title: '淘租公',//控制标题文本，空字符串表示显示默认文本
-      onSuccess: function (result) {
-      },
-      onFail: function (err) { }
-    });
-    dd.biz.navigation.setright({
-      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-      text: '返回',//控制显示文本，空字符串表示显示默认文本
-      onSuccess: function (result) {
-      },
-      onFail: function (err) { }
-    });
-  }); 
+  // dd.ready(function () {
+  //   dd.biz.navigation.setTitle({
+  //     title: '淘租公',//控制标题文本，空字符串表示显示默认文本
+  //     onSuccess: function (result) {
+  //     },
+  //     onFail: function (err) { }
+  //   });
+  //   dd.biz.navigation.setright({
+  //     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+  //     text: '返回',//控制显示文本，空字符串表示显示默认文本
+  //     onSuccess: function (result) {
+  //     },
+  //     onFail: function (err) { }
+  //   });
+  // });
 </script>
 
 </html>
