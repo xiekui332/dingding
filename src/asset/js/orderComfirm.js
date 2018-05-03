@@ -10,10 +10,6 @@ var vm = new Vue({
             totalAmount: 2000,
             count: 2
         },
-
-
-        select:true,
-        agree:false,
         show: false,
         addShow:true,	//	是否添加地址
         addNew:false,	//	新建收货地址
@@ -23,41 +19,9 @@ var vm = new Vue({
         popTitle:'',
         popContent: [],
         setStyle: '',
-        list:[
-            {
-                month:'7/9期',
-                status:'待还款',
-                num:'249',
-                time:'2018年08月29日通过支付宝免密支付还款'
-            },
-            {
-                month:'8/9期',
-                status:'待还款',
-                num:'250',
-                time:'2018年08月30日通过支付宝免密支付还款'
-            }
-        ],
-        list2:[
-            {
-                month:'7/9期',
-                status:'已还款',
-                num:'249',
-                time:'2018年03月29日'
-            },
-            {
-                month:'8/9期',
-                status:'已还款',
-                num:'250',
-                time:'2018年03月29日'
-            }
-        ],
         checked:false
     },
     methods:{
-        click:function(){
-            vm.agree = !vm.agree;
-            vm.select = !vm.select;
-        },
         submit:function(){
         	//	判断是否添加收货地址，改变show的状态触发提示
         	if(vm.addShow == false){
