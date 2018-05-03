@@ -16,15 +16,12 @@ var vm = new Vue({
   methods: {
     getGoodsList(id) {
       let url = getApiUrl('/rest/ddproducts/dingding/list')
-      // let url = '/getapi/rest/ddproducts/dingding/list'
       $.ajax({
         type: "GET",
         url: url,
         data: {
-          // id: id,
         },
         success: (json) => {
-          // console.log(json.data)
           this.goodsList1 = json.data
         }
       })
