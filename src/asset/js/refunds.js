@@ -2,19 +2,17 @@ var vm = new Vue({
     el: '#app',
     components: {},
     props: {
-      
     },
-    data: {
+    data: {  
       showA:true,
-      showB:true,
-      
+      showB:false
     },
     computed: {},
     watch: {},
     filters: {},
     methods: {
-      changePage(){
-        this.showB=true;
+      toRefundsing(){
+        this.showA=false;
       }
     },
     created() {},
