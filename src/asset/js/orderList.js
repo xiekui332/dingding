@@ -98,7 +98,6 @@ var vm = new Vue({
         ],
         page: 1,
         pageSize: 15,
-        status: -1,
         loading: false,
         isEnd: false,
         orderStatus: {//租赁状态  0-待支付 1-订单取消 9租赁中 10-租期已满 2待发货 3待收货 4交易结束 15审核中 16审核失败
@@ -137,9 +136,9 @@ var vm = new Vue({
                 type: "GET",
                 dataType: "json",
                 data: {
-                    status: this.status,
+                    status: this.tabId,
                     page: this.page,
-                    rows: 15
+                    rows: this.pageSize
                 },
                 xhrFields: {
                     withCredentials: true
@@ -203,7 +202,7 @@ var vm = new Vue({
         //选中商品分类
         chooseCategory(id, index) {
             if (index == -1) {
-                if (id == 9 || id == 1 || id == 10) {
+                if (id == 15 || id == 16 || id == 1 || id == 10) {
                     index = 1
                 } else {
                     index = 0
@@ -237,7 +236,7 @@ var vm = new Vue({
         },
         toOrderDetail() {
             location.href = 'orderDetail.html'
-        }
+        },
         // setTitle() {
         //     console.info('setTitle')
         //     dd.biz.navigation.setTitle({
@@ -256,5 +255,10 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
+        let status = getUrlParam('status')
+        if (status) {
+            this.chooseCategory(status, -1)
+        }
+        // this.getOrderList()
     }
 })
