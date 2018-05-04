@@ -125,11 +125,12 @@
     }
   })
 
-
+  let url1 = 'http://api.taozugong.com:8080/get_user_info';
+  
 
   function getUserId(code) {
     $.ajax({
-				url: url,
+				url: url1,
 				type: "GET",
 				dataType: "json",
 				data: {
