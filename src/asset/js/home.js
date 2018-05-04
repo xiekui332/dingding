@@ -15,11 +15,15 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      let url = getApiUrl('/rest/ddproducts/dingding/list')
-      // let url="http://192.168.19.251:8081/rest/products/list?categoryId=1"
+//    let url = getApiUrl('/rest/ddproducts/dingding/list')
+		let url = getApiUrl('/rest/products/list');
       $.ajax({
         type: "GET",
         url: url,
+        xhrFields:{
+        	withCredentails:true
+        },
+        crossDomain:true,
         data: {
           categoryId:1
         },

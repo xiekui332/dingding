@@ -131,6 +131,9 @@
      margin-top:0.15rem;
      margin:0.31rem;
    }
+   .main1 ul li:last-of-type{
+   		border-bottom: none;
+   }
    .li-div{
      display: inline-block;
      width:0.4rem;
