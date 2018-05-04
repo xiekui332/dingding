@@ -46,7 +46,7 @@ var vm = new Vue({
       // let url = 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw'
       $.ajax({
         type: "POST",
-        url: url,
+        url: 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw',
         xhrFields:{
         	withCredentails:true
         },
