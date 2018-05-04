@@ -107,7 +107,12 @@
                 onSuccess: function(result) {
         
                     alert('requestAuthCode:'+JSON.stringify(result))
-                    return result.code
+
+
+                    getUserId(result.code)
+
+
+                    // return result.code
                 },
                 onFail : function(err) {
                     alert("fail"+JSON.stringify(err))
@@ -119,6 +124,32 @@
       alert("error:"+JSON.stringify(e))
     }
   })
+
+
+
+  function getUserId(code) {
+    $.ajax({
+				url: url,
+				type: "GET",
+				dataType: "json",
+				data: {
+          url: window.location.href,
+          corpId: corpId,
+          code: code
+        },
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+          alert(JSON.stringify(result))
+				},
+				error: e => {
+          alert(JSON.stringify(e))
+					// ddToast('网络错误')
+				}
+			})
+  } 
 </script>
 
 </html>
