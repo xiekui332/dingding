@@ -38,6 +38,7 @@ var vm = new Vue({
       location.href = 'goodsDetail.html?productId=' + productId
     },
     getAuthCode() {
+      alert(8)
       // let url = getApiUrl('/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw');
 
       // let url = getApiUrl('/ding-isv-access/get_js_config');
@@ -54,12 +55,16 @@ var vm = new Vue({
         data: {
         },
         success: (res) => {
+          alert(9)
           alert(JSON.stringify(res))
 
           let authCode = requestAuthCode(corpid);
 
 
-        }
+        },
+        error: e => {
+					ddToast(e)
+				}
       })
 
 
