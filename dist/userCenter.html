@@ -4,223 +4,96 @@
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>淘租公</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset-08024df23b.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/userCenter-222c2e79d4.css"/>
 </head>
 <body>
 	<div id="app">
       <div class="nav">
         <div class="nav-top">
-           <div class="nav-icno">
-             <img src="/src/asset/images/icon/ren.png" class="img1">
-           </div>
+             <img src="asset/images/icon/rentou.png" class="img1">
         </div>
         <div class="nav-bottom">
-           <div class="nav-telephone" style="font-size:0.3rem">133******33</div>
+           <div class="nav-momo">某莫</div>
+           <div class="nav-telephone">杭州不匠科技有限公司</div>
         </div>  
       </div>
       <div class="main">
-        <div class="main-top">
-          <div class="myOrder">我的订单</div>
+        <div class="main-top" @click="toOrderList">
+          <div class="myOrder">企业订单</div>
           <div class="allOrder">
-              <span class="span">全部订单</span>
               <a href="javascript:void(0)" class="a1">
-                <img src="/src/asset/images/icon/jiantou.png" class="img2">
+                <img src="asset/images/icon/jiantou.png" class="img2">
               </a>
           </div> 
         </div>
         <div class="main-bottom">
-          <div class="main-bottom1"  >
-              <div class="main-list" v-for="item in navList">
-                  <!-- <div class="tubiao"> -->
-                  <img :src="item.url" class="img3">
-                  <!-- </div> -->
-                  <div class="wenzi">{{item.navTitle}}</div> 
-              </div>
+          <div class="main-bottom1" >
+              <mt-swipe :auto="0" >
+                <mt-swipe-item>
+                  <div class="main-list" v-for="item in navList">
+                    <img :src="item.url" class="img3">
+                    <div class="wenzi">{{item.navTitle}}</div> 
+                  </div>
+                  
+                </mt-swipe-item>
+                <mt-swipe-item>
+                  <div class="main-list1" v-for="item in navList2">
+                      <img :src="item.url" class="img3">
+                      <div class="wenzi">{{item.navTitle}}</div> 
+                  </div>  
+                  
+                </mt-swipe-item>
+              </mt-swipe>
           </div>
-            
         </div>
       </div>
       <div class="main1">
           <ul>
-            <li  v-for="item in mainList">
+            <li>
               <div class="li-div">
-                <!-- <span class="tubiao1"> -->
-                  <img :src="item.urll" class="img4">
-                <!-- </span> -->
+                <img src="asset/images/icon/bill.png" class="img4">
               </div>
-              <span class="wenzi1" >{{item.mainTitle}}</span>
+              <span class="wenzi1" @click="toBillOrder()">企业账单</span>
+            </li>
+            <li>
+              <div class="li-div">
+                <img src="asset/images/icon/auth.png" class="img4">
+              </div>
+              <span class="wenzi1" @click="toUserAuth()">企业授权</span>
+            </li>
+            <li>
+              <div class="li-div">
+                <img src="asset/images/icon/mapDing.png" class="img4">
+              </div>
+              <a  class="wenzi1" @click="toManageAddress()">地址管理</a>
+            </li>
+            <li>
+              <div class="li-div">
+                <img src="asset/images/icon/about.png" class="img4">
+              </div>
+              <span class="wenzi1" @click="toAbout()" >关于我们</span>
             </li>
           </ul>
       </div> 
+      <mt-tabbar fixed="true" style="background:#fff">
+        <mt-tab-item id="tab4">
+          <img slot="icon" src="asset/images/icon/lease.png" @click="toHome()"> 
+          租赁
+        </mt-tab-item>
+        <mt-tab-item id="tab3" style="color:#F3654C">
+          <img slot="icon" src="asset/images/icon/user_center_in.png" > 
+          我的
+        </mt-tab-item>
+      </mt-tabbar>
 	</div>
-</body>
-<style>
-  /* html{
-    font-size:62.5%  
-  } */
-  .nav{
-   width:100%;
-   height:2.17rem;
-   /* background:#F46B4E; */
-   text-align: center;
-   color:#fff;
-   background-image: linear-gradient(-90deg, #F46B4E 59%, #F7895B 96%);
-  }
-  .nav-top{
-    width:100%;
-     padding-top: 0.2rem; 
-    font:0.24rem/1rem "";
-    display: flex;
-    flex-direction: row;
-    justify-content:center;
-  }
-  .nav-icno{
-   width:0.8rem;
-   height:0.725rem;
-   border:1px solid #F46B4E;
-   border-radius: 50%;
-   background:#fff;
-
-  }
-  .img1{
-    width:0.5rem;
-    height:0.4rem;
-  }
-  .nav-bottom{
-    height:1rem;
-    font:0.24rem/1rem "";
-  }
-  .main{
-    margin-top:0.3rem;
-    height:2.73rem;
-    background:#fff;
-  }
-  .main-top{
-    width:100%;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    height:1rem;
-    font:0.28rem/1rem "";
-  }
- 
-  .myOrder{
-    width:2rem;
-    padding-left:0.3rem;
-    color:#333;
-  }
-  .allOrder{
-    width:1.7rem;
-  }
-  .a{
-    display: inline-block;
-    height:0.5rem;
-  }
-  .span{
-    display: inline-block;
-    margin-top:-2rem;
-  }
-  .img2{
-    width:0.25rem;
-    height: 0.25rem;
-  }
-  .main-bottom{
-    height:2rem;
-  }
-  .main-bottom1{
-    /* margin-left:0.39rem; */
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    height:2rem;
-    border-top:1px solid #ddd;
-    overflow-x:scroll;
-  }
-  .main-list{
-    width: 20%;
-    flex-shrink:0;
-    text-align: center;
-  }
-  /* .tubiao{
-    width:0.5rem;
-    height:0.5rem;
-    border:1px solid #F46B4E;
-    border-radius: 50%;
-    background:#fff;
-  } */
-  .img3{
-   width:0.5rem;
-   height:0.5rem;
-   text-align: center;
-   vertical-align: middle;
-    /* margin-top:0.1rem;
-   margin-left:0.1rem;  */
-  }
-  .wenzi{
-    font:0.24rem/0.5rem "";
-    color:#666;
-  }
-  /* .main1 ul{
-    height:3rem;
-  } */
-  .main1{
-    background:#fff;
-    height: 3.72rem;
-  }
-  .main1 ul li{
-    height:1.1rem;
-    border-bottom:1px solid #ddd;
-    margin-top:0.15rem;
-    margin:0.31rem;
-  }
-  .li-div{
-    display: inline-block;
-    width:0.4rem;
-    height: 1.1rem;
-    text-align: center;
-    vertical-align: middle;
-  }
-  /* .tubiao1{
-    display: inline-block;
-    width:0.4rem;
-    height:0.4rem;
-    border:1px solid #F46B4E;
-    border-radius: 50%;
-    background:#fff;
-    margin-top: 0.3rem;
-  } */
-  .wenzi1{
-    display: inline-block;
-    /* font:0.24rem/1.2rem "";
-    color:#666;*/
-    margin-left:0.12rem; 
-    font: 0.28rem/1.1rem "";
-    color: #333333;
-    letter-spacing: 0;
-    text-align: center;
-  }
-  .img4{
-   width:0.4rem;
-   height:0.4rem;
-   text-align: center;
-   vertical-align: middle;
-   margin-top:0.3rem;
-   /* margin-left:0.1rem;   */
-  }
- 
-  /* .mainList{
-    w
-  } */
-</style>  
+</body> 
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/userCenter-89f2835df8.js"></script>
+<script src="asset/js/userCenter-1623b9299c.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
-
 <script>
   dd.ready(function(){
     dd.biz.navigation.setTitle({

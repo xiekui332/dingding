@@ -33,32 +33,26 @@
 
 <body>
 	<div id="app">
-
 		<!--未添加收货地址-->
-		<div class="no-add" v-show="addNew" style="display: none">
-			<div class="no-btn">
+		<div class="no-add" v-show="!hasDefaultAddress" style="display: none">
+			<div class="no-btn" @click="toManageAddress">
 				新建收货地址
 			</div>
 		</div>
 		<div v-else></div>
 
 		<!-- 确认地址 -->
-		<div class="dd_sure" v-if="addShow">
+		<div class="dd_sure" v-if="hasDefaultAddress">
 			<div class="contain-box">
-				<span>吴瑶</span>
-				<span>181****0093</span>
+				<span>{{order.name}}</span>
+				<span style="margin-left:.72rem">{{order.mobile}}</span>
 				<div class="right-top">
-					<van-icon name="edit" @click="toAddressEdit()"></van-icon>
+					<van-icon name="edit" @click="toManageAddress()"></van-icon>
 				</div>
 			</div>
-
-
 			<div class="address">
 				<img src="asset/images/icon/map.png" alt="" class="map">
-				<p>
-					北京北京市海淀区中关村街道双宜数东里3号楼友谊鲜果（菜鸟驿站:13423475456）
-				</p>
-				<!-- <p class="small">如需修改地址，请取消订单，重新下单并在信用套餐页面进行修改</p> -->
+				<p>{{order.detail}}</p>
 				<div class="p-box" @click="openModal('signTip')">
 					<p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
 					<img src="asset/images/icon/more.png" alt="" class="small-jump">
@@ -69,11 +63,10 @@
 
 		<!--订单详情的组件-->
 		<div style="padding: .4rem .3rem;background: #fff">
-				<good-info :goodsinfo="goodsInfo"></good-info>
+			<good-info :goodsinfo="goodsInfo"></good-info>
 		</div>
 
 		<!-- 租金 -->
-
 		<div class="lb">
 			<div class="lb-1">
 				<div class="yuezu">
@@ -81,13 +74,13 @@
 						<span class="left-title">
 							数量
 						</span>
-						<van-stepper v-model="value" class="van-stepper" />
+						<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" />
 					</div>
 					<div class="gray">
 						<span class="left">总合计</span>
 						<div class="right">
 							￥
-							<span>11</span>
+							<span>{{goodsInfo.totalAmount}}</span>
 						</div>
 					</div>
 
@@ -95,21 +88,21 @@
 						<span class="left">月租金</span>
 						<div class="right">
 							￥
-							<span>11</span>
+							<span>{{goodsInfo.productPrice.price}}</span>
 						</div>
 					</div>
 					<div class="gray">
 						<span class="left">租期</span>
 						<div class="right">
-							<span>共11个月</span>
+							<span>共{{goodsInfo.productPrice.timeLength}}个月</span>
 						</div>
 					</div>
-					<div class="gray">
+					<!-- <div class="gray">
 						<span class="left">商品数量</span>
 						<div class="right">
 							<span>11</span>
 						</div>
-					</div>
+					</div> -->
 					<div class="gray">
 						<span class="left">租金付款方式</span>
 						<img src="asset/images/icon/quest.png" alt="" class="quest" @click="openModal('payTip')">
@@ -117,13 +110,9 @@
 					</div>
 				</div>
 			</div>
-
-
-
 		</div>
 
 		<!-- 总押金 -->
-
 		<div class="lb-1 marTop">
 			<div class="yuezu">
 				<div class="gray black">
@@ -145,43 +134,38 @@
 				<span class="left-title">
 					邀请码（选填）
 				</span>
-				<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠">
+				<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark"/>
 				<p></p>
 			</div>
 			<div class="item2 item4">
 				<span class="left-title">
 					备注（选填）
 				</span>
-				<textarea name="" id="" cols="" rows="" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
+				<textarea v-model="order.invitationCode" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
 
 			</div>
 		</div>
-
 
 		<!-- 提交订单 -->
 		<div class="position-bot">
 			<div class="submit">
 				<img src="asset/images/icon/readFile.png" class="readFile" style="display: none" />
 				<div class="agree">
-					<div @click="readAgree">
-						<van-checkbox v-model="checked"> </van-checkbox>
+					<div>
+						<van-checkbox v-model="isAgreement"> </van-checkbox>
 					</div>
 					<p class="text-word">我已阅读并同意
-						<a href="agreement.html" @click="jump">《租用须知协议》</a>
+						<a href="agreement.html">《租用须知协议》</a>
 					</p>
 				</div>
 
 				<!-- red-btn -->
-
-				<div class="tjdd red-btn" @click="submit">
-					立即支付
-				</div>
+				<div class="tjdd red-btn" @click="submitOrder">立即支付</div>
 			</div>
 		</div>
 
-
 		<!--弹窗提示-->
-		<van-popup v-model="show">
+		<van-popup v-model="showAddressTip">
 			<img src="asset/images/icon/remind2.png" />
 			<p>请添加收货地址</p>
 		</van-popup>
