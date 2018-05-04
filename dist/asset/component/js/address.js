@@ -57,31 +57,6 @@ Vue.component('popupAddress', {
     watch: {
         popupvisible: function popupvisible(val) {
             this.isVisible = true;
-        },
-        isVisible: function isVisible(val) {
-            var _this = this;
-
-            if (!val) {
-                var addressList = [];
-
-                this.provinceList.forEach(function (item) {
-                    if (item.name == _this.resultList[0]) {
-                        addressList[0] = item;
-                    }
-                });
-                this.cityList.forEach(function (item) {
-                    if (item.name == _this.resultList[1]) {
-                        addressList[1] = item;
-                    }
-                });
-                this.areaList.forEach(function (item) {
-                    if (item.name == _this.resultList[2]) {
-                        addressList[2] = item;
-                    }
-                });
-                // this.$emit('closepopup', false);
-                this.$emit('input', addressList);
-            }
         }
     },
     methods: {
@@ -176,11 +151,39 @@ Vue.component('popupAddress', {
             this.addressSlots[0].values = this.getProvinceList();
             this.addressSlots[1].values = this.getCityList();
             this.addressSlots[2].values = this.getAreaList();
+        },
+        checkAddress: function checkAddress() {
+            var _this = this;
+
+            this.isVisible = !this.isVisible;
+
+            var addressList = [];
+
+            this.provinceList.forEach(function (item) {
+                if (item.name == _this.resultList[0]) {
+                    addressList[0] = item;
+                }
+            });
+            this.cityList.forEach(function (item) {
+                if (item.name == _this.resultList[1]) {
+                    addressList[1] = item;
+                }
+            });
+            this.areaList.forEach(function (item) {
+                if (item.name == _this.resultList[2]) {
+                    addressList[2] = item;
+                }
+            });
+            // console.log(addressList)
+            this.$emit('change', addressList);
+
+            // addressList = JSON.parse(JSON.stringify(addressList))
+            this.$emit('input', addressList);
         }
     },
     created: function created() {
         this.setSlots();
     },
 
-    template: '\n    <div>\n        <mt-popup v-model="isVisible" position="bottom" style="width:100%;">\n            <mt-picker :slots="addressSlots" :showToolbar="true" :visibleItemCount="5" @change="changeSlot"  style="margin-bottom:5px">\n                <div class="sure" @click="isVisible = !isVisible">\u786E\u5B9A</div>\n                <div class="coverTop"></div>\n                <div class="coverBottom"></div>\n            </mt-picker>\n            \n        </mt-popup>\n    </div>\n    '
+    template: '\n    <div>\n        <mt-popup v-model="isVisible" position="bottom" style="width:100%;">\n            <mt-picker :slots="addressSlots" :showToolbar="true" :visibleItemCount="5" @change="changeSlot"  style="margin-bottom:5px">\n                <div style="display:flex;justify-content: space-between;padding: 0 .3rem;">\n                    <span class="sure" @click="isVisible = !isVisible">\u53D6\u6D88</span>\n                    <span class="sure" style="color:#000">\u9009\u62E9\u5730\u533A</span>\n                \n                    <span class="sure" @click="checkAddress">\u786E\u5B9A</span>\n                </div>\n                <div class="coverTop"></div>\n                <div class="coverBottom"></div>\n            </mt-picker>\n            \n        </mt-popup>\n    </div>\n    '
 });

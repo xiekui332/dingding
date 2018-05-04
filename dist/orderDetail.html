@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <!-- 电话类型的数字不变颜色 -->
+    <meta name = "format-detection" content = "telephone=no">
+    <title>订单详情</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/orderDetail-ee24dda59c.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
+    
+	<style>
+        /*指令可以隐藏未编译的  标签直到实例准备完毕*/
+        [v-cloak] {
+                display: none;
+            }
+    </style>
+</head>
+<body onresize="mask()">
+	<div id="app" :class="bottom?'app':'app1'">
+        <!-- 订单状态 -->
+
+        <div class="order-status">
+            <div v-cloak>
+                <!-- status == 11..的为待定状态 -->
+                <!-- 租用中 -->
+                <img src="asset/images/icon/leasing.png" alt="" class="status-img" v-if="status == 9">
+                <!-- 待收货 -->
+                <img src="asset/images/icon/logistic.png" alt="" class="status-img status-img-daishou" v-else-if="status == 3">
+                <!-- 待支付 -->
+                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-else-if="status == 0">
+                <!-- 租期已满 -->
+                <img src="asset/images/icon/full.png" alt="" class="status-img" v-else-if="status == 10">
+                <!-- 待发货 -->
+                <img src="asset/images/icon/delivery.png" alt="" class="status-img status-img-daifa" v-else-if="status == 2">
+                <!-- 审核拒绝 -->
+                <img src="asset/images/icon/auto_fail.png" alt="" class="status-img status-ju" v-else-if="status == 16">
+                <!-- 审核通过 -->
+                <!-- <img src="asset/images/icon/shhtg.png" alt="" class="status-img status-ju" v-else-if="status == 113"> -->
+                <!-- 授权信息审核中 -->
+                <img src="asset/images/icon/auto_audit.png" alt="" class="status-img status-ju" v-else-if="status == 15">
+                <!-- 订单取消 -->
+                <img src="asset/images/icon/cancel.png" alt="" class="status-img status-cancle" v-else>
+                
+
+                <span class="status-word">
+                        <span>{{orderStatus}}</span>
+                </span>
+            </div>
+            <div class="explain-t">
+                    {{statusWords}}
+            </div>
+            <p class="status-time">{{statusTime}}</p>
+
+            <div class="status-jump">
+                <img src="asset/images/icon/jump.png" alt="">
+            </div>
+
+            <!-- 待支付 无跳跃箭头 -->
+            <div></div>
+        </div>
+
+        <!-- 确认地址
+         -->
+         <div class="dd_sure">
+            <p>
+                <span>{{objAddress.name}}</span>
+                <span>{{phone}}</span>
+            </p>
+
+            <div class="address">
+                <img src="asset/images/icon/map.png" alt="" class="map">
+                <p>
+                   {{objAddress.address}}
+                </p>
+               <div class="p-box" @click="openModal('signTip')">
+                    <p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
+                    <img src="asset/images/icon/more.png" alt="" class="small-jump">
+               </div>   
+            </div>
+            <div class="line-2"></div>
+         </div>
+
+        
+        <div style="padding: .4rem .3rem;background: #fff">
+            <good-info :goodsinfo="goodsInfo"></good-info>
+        </div>
+		<!-- <div class="sec-1">
+			<div class="con-head">
+				<img :src="objAddress.cover" class="img"/>
+				<div class="detail-box">
+					<p>
+						<span>{{objAddress.productName}}</span>
+					</p>
+					<p>{{objAddress.brief}}</p>
+					<p>
+						<span>总租金:</span>
+                        <span>￥{{objAddress.totalAmount}}</span>
+                        <span>x {{objAddress.quantity}}</span>
+					</p>
+				</div>
+			</div>
+       </div>
+         -->
+
+        <!-- 租金 -->
+		
+		<div class="lb">
+            <div class="lb-1">
+                <div class="yuezu">
+                    <div class="gray">
+                        <span class="l">总合计</span>
+                        <div class="r">
+                            ￥<span>{{objAddress.totalAmount}}</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <span class="l">月租金</span>
+                        <div class="r">
+                            ￥<span>{{objAddress.payAmount}}</span>
+                        </div>
+                    </div>
+                    <div class="gray">
+                        <span class="l">租期</span>
+                        <div class="r">
+                            <span>共{{objAddress.periodNumber}}个月</span>
+                        </div>
+                    </div>
+                    <div class="gray">
+                        <span class="l">商品数量</span>
+                        <div class="r">
+                            <span>{{objAddress.quantity}}</span>
+                        </div>
+                    </div>
+                    <div class="gray">
+                        <span class="l">租金付款方式</span>
+                        <img src="asset/images/icon/quest.png" alt="" class="quest" @click="openModal('payTip')">
+                        <span class="r mian">支付宝免密支付</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- 总押金 -->
+
+            <div class="lb-1">
+                <div class="yuezu">
+                    <div class="gray">
+                        <span class="l">总押金</span>
+                        <div class="r">
+                            ￥<span>{{objAddress.productDeposit}}</span>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <span class="l">信用免押金</span>
+                        <div class="r">
+                            -￥<span>{{objAddress.zhimaCrediFreeDeposit}}</span>
+                        </div>
+                    </div>
+                    <div class="">
+                        <span class="l">冻结金额</span>
+                        <div class="r">
+                            -￥<span>{{objAddress.authorizedDeposit}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <!-- 下单编号 -->
+        <div class="xdbh">
+            <p>
+                <span>订单编号</span>
+                <span>{{objAddress.sn}}</span>
+            </p>
+            <p>
+                <span>下单时间</span>
+                <span>{{statusTime}}</span>
+            </p>
+        </div>
+        
+
+        <!-- 联系客服，查看账单 -->
+        <div class="kf">
+            
+            
+            <!-- 查看授权信息 -->
+            <div v-if="status == 15">
+                <div @click="seePower" class="seePower btnIng">查看授权信息</div>
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="refund()" class="btnIng">申请退款</div>
+            </div>
+            <div v-else-if="status == 16">
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="" class="seeCount2 btnIng">授权申请</div>
+            </div>
+            <div v-else-if="status == 9">
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="toBillOrder()" class="btnIng">查看账单</div>
+                <div @click="retBack" class="btnIng">申请归还</div>
+            </div>
+            <div v-else>
+                <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
+                <div @click="toBillOrder()" class="btnIng">查看账单</div>
+            </div>
+
+        </div>
+
+        <!-- 审核通过 -->
+        <div class="pay_btn" v-if="status == 0">
+            <div class="pay_now" @click="payNow">
+                立即支付
+            </div>
+        </div>
+
+        
+        <!-- 待发货弹窗 -->
+        <div class="mask" style="display: none;">
+            <div class="tt-ch">
+                <div class="data-box">
+                    <p class="t-head">签收须知</p>
+                    <div class="four-w">
+                        <p>收货当天你需求：</p>
+                        <p>1.检查商品外包装完整；</p>
+                        <p> 2.快递本人签收；</p>
+                        <p>3.签收当天视为合约生效</p>
+                    </div>
+                    <img src="asset/images/icon/close.png" alt="" class="close-tt" @click="close">
+                </div>
+            </div>
+        </div>
+
+        <pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
+	</div>
+</body>
+<script src="static/js/zepto.min.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="asset/component/js/modal.js"></script>
+<script src="asset/js/util-be4cf81eec.js"></script>
+<script src="static/js/date.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
+<script src="asset/js/orderDetail-fbf1ae97c4.js"></script>
+</html>
