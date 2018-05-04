@@ -115,25 +115,32 @@ function ddToast(message) {
 
 
 // 获取微应用免登授权码
-// dd.runtime.permission.requestAuthCode({
-//     corpId: "corpid",
-//     onSuccess: function(result) {
-//     /*{
-//         code: 'hYLK98jkf0m' //string authCode
-//     }*/
-//     },
-//     onFail : function(err) {}
- 
-// })
+function requestAuthCode(corpid) {
+    dd.runtime.permission.requestAuthCode({
+        corpId: corpid,
+        onSuccess: function(result) {
+            return result.code
+        /*{
+            code: 'hYLK98jkf0m' //string authCode
+        }*/
+        },
+        onFail : function(err) {
+            alert(1)
+        }
+    })
+}
+
 
 // 获取用户的基本信息
-// dd.biz.user.get({
-//     corpId:'xxx', // 可选参数，如果不传则使用用户当前企业的corpId。
-//     onSuccess: function (info) {
-//         logger.e('userGet success: ' + JSON.stringify(info));
-//     },
-//     onFail: function (err) {
-//         logger.e('userGet fail: ' + JSON.stringify(err));
-//     }
-// });
+function userGet() {
+    dd.biz.user.get({
+        corpId:'xxx', // 可选参数，如果不传则使用用户当前企业的corpId。
+        onSuccess: function (info) {
+            logger.e('userGet success: ' + JSON.stringify(info));
+        },
+        onFail: function (err) {
+            logger.e('userGet fail: ' + JSON.stringify(err));
+        }
+    });
+}
 

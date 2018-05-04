@@ -6,7 +6,7 @@
     <title>淘租公</title>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
     <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
-    <link rel="stylesheet" type="text/css" href="asset/css/userCenter-222c2e79d4.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/userCenter-e556548440.css"/>
 </head>
 <body>
 	<div id="app">
@@ -20,7 +20,7 @@
         </div>  
       </div>
       <div class="main">
-        <div class="main-top" @click="toOrderList">
+        <div class="main-top" @click="toOrderList(-1)">
           <div class="myOrder">企业订单</div>
           <div class="allOrder">
               <a href="javascript:void(0)" class="a1">
@@ -30,17 +30,18 @@
         </div>
         <div class="main-bottom">
           <div class="main-bottom1" >
-              <mt-swipe :auto="0" >
+          	<!--取消自动播放，设置indicators-->
+              <mt-swipe :auto="0" :show-indicators="true">
                 <mt-swipe-item>
                   <div class="main-list" v-for="item in navList">
-                    <img :src="item.url" class="img3">
+                    <img :src="item.url" class="img3" @click="toOrderList(item.status)">
                     <div class="wenzi">{{item.navTitle}}</div> 
                   </div>
                   
                 </mt-swipe-item>
                 <mt-swipe-item>
                   <div class="main-list1" v-for="item in navList2">
-                      <img :src="item.url" class="img3">
+                      <img :src="item.url" class="img3" @click="toOrderList(item.status)">
                       <div class="wenzi">{{item.navTitle}}</div> 
                   </div>  
                   
@@ -91,25 +92,26 @@
 </body> 
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/vue.min.js"></script>
+<script src="asset/js/util-8229b84faf.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/userCenter-1623b9299c.js"></script>
+<script src="asset/js/userCenter-f75e500f55.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script>
-  dd.ready(function(){
-    dd.biz.navigation.setTitle({
-      title : '个人中心',//控制标题文本，空字符串表示显示默认文本
-      onSuccess : function(result) {
+//   dd.ready(function(){
+//     dd.biz.navigation.setTitle({
+//       title : '个人中心',//控制标题文本，空字符串表示显示默认文本
+//       onSuccess : function(result) {
           
-      },
-      onFail : function(err) {}
-   });
-   dd.biz.navigation.setright({
-     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-     text: '返回',//控制显示文本，空字符串表示显示默认文本
-     onSuccess : function(result) {
-     },
-     onFail : function(err) {}
-   });  
-}); 
+//       },
+//       onFail : function(err) {}
+//    });
+//    dd.biz.navigation.setright({
+//      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+//      text: '返回',//控制显示文本，空字符串表示显示默认文本
+//      onSuccess : function(result) {
+//      },
+//      onFail : function(err) {}
+//    });  
+// }); 
 </script>
 </html>

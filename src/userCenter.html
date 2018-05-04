@@ -30,7 +30,8 @@
         </div>
         <div class="main-bottom">
           <div class="main-bottom1" >
-              <mt-swipe :auto="0" >
+          	<!--取消自动播放，设置indicators-->
+              <mt-swipe :auto="0" :show-indicators="true">
                 <mt-swipe-item>
                   <div class="main-list" v-for="item in navList">
                     <img :src="item.url" class="img3" @click="toOrderList(item.status)">

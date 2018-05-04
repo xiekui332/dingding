@@ -15,11 +15,15 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      let url = getApiUrl('/rest/ddproducts/dingding/list')
-      // let url="http://192.168.19.251:8081/rest/products/list?categoryId=1"
+//    let url = getApiUrl('/rest/ddproducts/dingding/list')
+		let url = getApiUrl('/rest/products/list');
       $.ajax({
         type: "GET",
         url: url,
+        xhrFields:{
+        	withCredentails:true
+        },
+        crossDomain:true,
         data: {
           categoryId:1
         },
@@ -33,11 +37,18 @@ var vm = new Vue({
     },
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
+    },
+    getCode() {
+      let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
+      let authCode = requestAuthCode(corpid);
+      alert(authCode)
     }
   },
   created() {},
   destroyed() {},
   mounted() {
     this.getGoodsList()
+    alert('测试')
+    this.getCode()
   },
 })

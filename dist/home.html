@@ -34,11 +34,11 @@
                       <div  class="homeAround">
                         <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
                             <a @click="toGoodsDetail(goods.productEntity.id)">
-                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
-                              <div class="homeName">{{goods.productEntity.name}}</div>
-                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
-                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
-                          </a>
+	                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
+	                              <div class="homeName">{{goods.productEntity.name}}</div>
+	                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
+	                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+	                          </a>
 
                         </div>
                       </div>
@@ -60,27 +60,27 @@
     </div>
 </body>
 <script src="static/js/zepto.min.js"></script>
-<script src="asset/js/util-3030c61f59.js"></script>
+<script src="asset/js/util-8229b84faf.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-0d01fdf952.js"></script>
+<script src="asset/js/home-e13f82b4e9.js"></script>
 <script>
-  dd.ready(function () {
-    dd.biz.navigation.setTitle({
-      title: '淘租公',//控制标题文本，空字符串表示显示默认文本
-      onSuccess: function (result) {
-      },
-      onFail: function (err) { }
-    });
-    dd.biz.navigation.setright({
-      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-      text: '返回',//控制显示文本，空字符串表示显示默认文本
-      onSuccess: function (result) {
-      },
-      onFail: function (err) { }
-    });
-  });
+  // dd.ready(function () {
+  //   dd.biz.navigation.setTitle({
+  //     title: '淘租公',//控制标题文本，空字符串表示显示默认文本
+  //     onSuccess: function (result) {
+  //     },
+  //     onFail: function (err) { }
+  //   });
+  //   dd.biz.navigation.setright({
+  //     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+  //     text: '返回',//控制显示文本，空字符串表示显示默认文本
+  //     onSuccess: function (result) {
+  //     },
+  //     onFail: function (err) { }
+  //   });
+  // });
 </script>
 
 </html>
