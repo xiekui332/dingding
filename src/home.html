@@ -81,6 +81,22 @@
   //     onFail: function (err) { }
   //   });
   // });
+
+  dd.ready(function(){
+    let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
+    
+    dd.runtime.permission.requestAuthCode({
+        corpId: corpid,
+        onSuccess: function(result) {
+
+            alert('requestAuthCode:'+JSON.stringify(result))
+            return result.code
+        },
+        onFail : function(err) {
+            alert("fail"+1)
+        }
+      })
+  });
 </script>
 
 </html>
