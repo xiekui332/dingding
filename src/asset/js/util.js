@@ -116,7 +116,7 @@ function ddToast(message) {
 
 // 获取微应用免登授权码
 function requestAuthCode(corpid) {
-    alert(1)
+    alert(6)
     dd.runtime.permission.requestAuthCode({
         corpId: corpid,
         onSuccess: function(result) {
