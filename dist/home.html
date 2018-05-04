@@ -60,11 +60,11 @@
     </div>
 </body>
 <script src="static/js/zepto.min.js"></script>
-<script src="asset/js/util-a658c76e20.js"></script>
+<script src="asset/js/util-fe2d56f82a.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-d67dcdba51.js"></script>
+<script src="asset/js/home-4bd6b81d8e.js"></script>
 <script>
   // dd.ready(function () {
   //   dd.biz.navigation.setTitle({
@@ -81,6 +81,22 @@
   //     onFail: function (err) { }
   //   });
   // });
+
+  dd.ready(function(){
+    let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
+    
+    dd.runtime.permission.requestAuthCode({
+        corpId: corpid,
+        onSuccess: function(result) {
+
+            alert('requestAuthCode:'+JSON.stringify(result))
+            return result.code
+        },
+        onFail : function(err) {
+            alert("fail"+1)
+        }
+      })
+  });
 </script>
 
 </html>
