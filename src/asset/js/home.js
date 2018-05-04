@@ -39,34 +39,32 @@ var vm = new Vue({
     },
     getAuthCode() {
       alert(8)
-      // let url = getApiUrl('/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw');
+      // let url = getApiUrl('/ding-isv-access/get_js_config');
 
       let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
       
 
       // let url = 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw'
+
       $.ajax({
-        type: "POST",
-        url: url,
-        xhrFields:{
-        	withCredentails:true
-        },
-        crossDomain:true,
-        data: {
-        },
-        success: (res) => {
+				url: url,
+				type: "POST",
+				dataType: "json",
+				data: '',
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: res => {
           alert(9)
           alert("success:"+JSON.stringify(res))
 
-          let authCode = requestAuthCode(corpid);
-
-
-        },
-        error: e => {
+          // let authCode = requestAuthCode(corpid);
+				},
+				error: e => {
 					alert("error:"+JSON.stringify(e))
 				}
-      })
-
+			})
 
       // let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
       // let authCode = requestAuthCode(corpid);
