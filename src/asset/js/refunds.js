@@ -5,7 +5,8 @@ var vm = new Vue({
     },
     data: {  
       showA:true,
-      showB:false
+      showB:false,
+      dataArray:[],
     },
     computed: {},
     watch: {},
@@ -14,6 +15,31 @@ var vm = new Vue({
 //  	确认归还按钮
       toRefundsing(){
         this.showA=false;
+        $.ajax({
+          type:'post',
+          url:getApiUrl('/nail/confirmreturn.html'),
+          data:{
+            order_no:'ZY1525401037862742'
+          },
+          xhrFields:{
+            withCredentials:true
+          },
+          crossDomain:true,
+          success:res=>{
+           // console.log(res)
+            if(res.code == 200){
+              if(res.data.status == 1){
+                this.showB = true;
+              }else if(res.data.status == 0){
+                this.showB = false;
+              }
+            }
+          },
+          error:e=>{
+            ddToast('网络错误')
+          }
+        })
+        
       },
 //    页面加载函数
 		init(){
@@ -22,15 +48,23 @@ var vm = new Vue({
 				url:getApiUrl("/nail/requestreturn.html"),
 				async:true,
 				data:{
-					order_no:'20'
+					order_no:'ZY1525401037862742'
 				},
 				xhrFields:{
 					withCredentials:true
 				},
 				crossDomain:true,
 				success:res =>{
-					console.log(res)
-				}
+         // console.log(res)
+          if(res.code == 200){
+            Number(res.data.Liquidated_amount).toFixed(2);
+            Number(res.data.total_amount).toFixed(2);
+            this.dataArray = res.data;
+          }
+        },
+        error:e =>{
+          ddToast('网络错误')
+        }
 			});
 		}
     },
