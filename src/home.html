@@ -71,8 +71,8 @@
 
   let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
 
-  let corpId = getUrlParam('corpId')
-  // let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
+  // let corpId = getUrlParam('corpId')
+  let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
   alert(corpId)
 
   $.ajax({
@@ -124,8 +124,10 @@
       alert("error:"+JSON.stringify(e))
     }
   })
-  let url1 = 'http://api.taozugong.com:8080/get_user_info';
+  let url1 = 'http://api.taozugong.com:8080/ding-isv-access/get_user_info';
   
+
+
 
   function getUserId(code) {
     alert(JSON.stringify({
@@ -141,6 +143,7 @@
           url: window.location.href,
           corpId: corpId,
           code: code
+          // code: 'bd8e53471f7937789e363bfd58cc793'
         },
 				xhrFields: {
 					withCredentials: true
@@ -155,6 +158,8 @@
 				}
 			})
   } 
+
+  // getUserId()
 
 </script>
 
