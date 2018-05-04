@@ -16,7 +16,7 @@ var vm = new Vue({
   methods: {
     getGoodsList(id) {
 //    let url = getApiUrl('/rest/ddproducts/dingding/list')
-		let url = getApiUrl('/rest/products/list');
+		  let url = getApiUrl('/rest/products/list');
       $.ajax({
         type: "GET",
         url: url,
@@ -38,17 +38,39 @@ var vm = new Vue({
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
-    getCode() {
-      let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
-      let authCode = requestAuthCode(corpid);
-      alert(authCode)
+    getAuthCode() {
+      let url = getApiUrl('/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw');
+
+      // let url = 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw'
+      $.ajax({
+        type: "GET",
+        url: url,
+        xhrFields:{
+        	withCredentails:true
+        },
+        crossDomain:true,
+        data: {
+        },
+        success: (res) => {
+          alert(JSON.stringify(res))
+
+          let authCode = requestAuthCode(corpid);
+
+
+        }
+      })
+
+
+      // let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
+      // let authCode = requestAuthCode(corpid);
+      // alert(authCode)
     }
   },
   created() {},
   destroyed() {},
   mounted() {
     this.getGoodsList()
-    alert('测试')
-    this.getCode()
+    // alert('测试')
+    this.getAuthCode()
   },
 })
