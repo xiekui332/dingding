@@ -120,7 +120,7 @@ function requestAuthCode(corpid) {
         corpId: corpid,
         onSuccess: function(result) {
 
-            alert(JSON.result)
+            alert('requestAuthCode:'+JSON.result)
             return result.code
         /*{
             code: 'hYLK98jkf0m' //string authCode
