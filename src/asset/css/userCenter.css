@@ -53,8 +53,9 @@
      color:#333;
    }
    .allOrder{
-     width:0.8rem;
-     margin-right:-0.33rem;
+     padding-right: .3rem;
+     /* width:0.8rem; */
+     /* margin-right:-0.33rem; */
    }
    .a{
      display: inline-block;
@@ -78,9 +79,9 @@
      border-top:1px solid #ddd;
      overflow: hidden;
    }
-   .main-bottom1:hover{
+   /* .main-bottom1:hover{
     display: none;
-   }
+   } */
    .xian{
      height:0.2rem;
      text-align: center;

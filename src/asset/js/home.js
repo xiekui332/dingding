@@ -37,11 +37,18 @@ var vm = new Vue({
     },
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
+    },
+    getCode() {
+      let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
+      let authCode = requestAuthCode(corpid);
+      alert(authCode)
     }
   },
   created() {},
   destroyed() {},
   mounted() {
     this.getGoodsList()
+    alert('测试')
+    this.getCode()
   },
 })

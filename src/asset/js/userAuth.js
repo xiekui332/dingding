@@ -6,6 +6,7 @@ var vm = new Vue({
     },
     data: {
         authId: 3,
+        productId: '',
         userAuth: {
             company: "不匠",
             companyDelegateImg: 'asset/images/icon/proof.png',
@@ -20,7 +21,6 @@ var vm = new Vue({
         isFirstAuth: true,
         canEdit: true,
         validate: ['company', 'idcard', 'name', 'registerNo'],
-        
         authStatus: {
             success: 1,
             fail: 2,
@@ -111,7 +111,6 @@ var vm = new Vue({
                         ddToast('授权成功')
                     } else {
                         ddToast(result.message)
-                        
                     }
                 },
                 error: e => {
@@ -196,14 +195,15 @@ var vm = new Vue({
             });
         },
         zhimaAuth() {
-            let url = '/getapi/nail/zhimaauth.html'
+            let url = getApiUrl('/nail/zhimaauth.html')
             $.ajax({
                 url: url,
                 type: "POST",
                 dataType: "json",
                 data: {
                     name: this.userAuth.name,
-                    card: this.userAuth.idcard
+                    card: this.userAuth.idcard,
+                    productId: this.productId
                 },
                 xhrFields: {
                     withCredentials: true
@@ -212,7 +212,6 @@ var vm = new Vue({
                 success: result => {
                     if (result.code == 200) {
                         location.href = result.data.url
-                        // ddToast('授权成功')
                     } else {
                         ddToast(result.message)
                     }
@@ -228,6 +227,7 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
+        this.productId = getUrlParam('productId')
         this.authId = getUrlParam('authId')
         if (getUrlParam('authId')) {
             this.authId = getUrlParam('authId')

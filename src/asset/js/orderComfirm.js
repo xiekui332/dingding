@@ -57,7 +57,11 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						// 
+						// 没有进行授权需求去授权
+						location.href = 'userAuth.html?productId=' + this.order.productId
+
+
+						//已授权直接支付
 					} else {
 						ddToast(result.message)
 					}
