@@ -64,25 +64,25 @@ var vm = new Vue({
 
 
       let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
-      let authCode = requestAuthCode(corpid);
-      alert('authCode:'+authCode)
+      // let authCode = requestAuthCode(corpid);
+      // alert('authCode:'+authCode)
 
 
 
-      // dd.runtime.permission.requestAuthCode({
-      //   corpId: corpid,
-      //   onSuccess: function(result) {
+      dd.runtime.permission.requestAuthCode({
+        corpId: corpid,
+        onSuccess: function(result) {
 
-      //       alert('requestAuthCode:'+JSON.result)
-      //       return result.code
-      //   /*{
-      //       code: 'hYLK98jkf0m' //string authCode
-      //   }*/
-      //   },
-      //   onFail : function(err) {
-      //       alert(1)
-      //   }
-      // })
+            alert('requestAuthCode:'+JSON.stringify(result))
+            return result.code
+        /*{
+            code: 'hYLK98jkf0m' //string authCode
+        }*/
+        },
+        onFail : function(err) {
+            alert(1)
+        }
+      })
     }
   },
   created() {},
