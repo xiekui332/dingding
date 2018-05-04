@@ -56,14 +56,14 @@ var vm = new Vue({
         },
         success: (res) => {
           alert(9)
-          alert(JSON.stringify(res))
+          alert("success:"+JSON.stringify(res))
 
           let authCode = requestAuthCode(corpid);
 
 
         },
         error: e => {
-					ddToast(e)
+					alert("error:"+JSON.stringify(e))
 				}
       })
 
@@ -89,7 +89,7 @@ var vm = new Vue({
   created() {},
   destroyed() {},
   mounted() {
-    this.getGoodsList()
+    // this.getGoodsList()
     // alert('测试')
     this.getAuthCode()
   },
