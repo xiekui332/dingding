@@ -1,6 +1,3 @@
-var body = document.body.clientWidth;		
-document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-
 function uploadImg(e, url) {
     return new Promise((resolve, reject) => {
         const imgFile = e.target.files[0]
@@ -94,11 +91,10 @@ function getApiUrl(url) {
     return taozugonghost + url
 }
 
+var body = document.body.clientWidth;		
+document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
 
 
-
-
-// dingding
 function ddToast(message) {
     alert(message)
 
@@ -112,38 +108,3 @@ function ddToast(message) {
     //     onFail : function(err) {}
     // })
 }
-
-
-// 获取微应用免登授权码
-function requestAuthCode(corpid) {
-    alert(6)
-    dd.runtime.permission.requestAuthCode({
-        corpId: corpid,
-        onSuccess: function(result) {
-
-            alert('requestAuthCode:'+JSON.result)
-            return result.code
-        /*{
-            code: 'hYLK98jkf0m' //string authCode
-        }*/
-        },
-        onFail : function(err) {
-            alert(1)
-        }
-    })
-}
-
-
-// 获取用户的基本信息
-function userGet() {
-    dd.biz.user.get({
-        corpId:'xxx', // 可选参数，如果不传则使用用户当前企业的corpId。
-        onSuccess: function (info) {
-            logger.e('userGet success: ' + JSON.stringify(info));
-        },
-        onFail: function (err) {
-            logger.e('userGet fail: ' + JSON.stringify(err));
-        }
-    });
-}
-
