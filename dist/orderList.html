@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>淘租公</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+</head>
+<style>
+    .layout {
+        padding: .3rem;
+    }
+    .orderBar {
+        display: flex;
+        justify-content: space-between;
+        padding: .2rem .3rem;
+    }
+    .orderBar text{
+        font-size: .28rem;
+        color: #333333;
+        letter-spacing: 0;
+        line-height: .28rem;
+    }
+    .footer {
+        padding: .10rem .30rem .40rem 0;
+        text-align: right;
+    }
+    .orderNone {
+        text-align: center;
+        padding: .30rem;
+    }
+
+    /* category */
+    .type {
+        font-size: 0.32rem;
+        display: inline-block;
+        padding: 0 0.1rem;
+        text-align: center;
+        padding-bottom: .24rem;
+    }
+    .rotate {
+        transform: rotate(180deg);
+    }
+
+    .red {
+        color: red
+    }
+
+    .choose {
+        color: #F3654C;
+        border-bottom: 2px solid #F3654C;
+    }
+
+    .category {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 6.5rem;
+    }
+
+    .mu-popover {
+        position: fixed;
+        background: #fff;
+        border-radius: 2px;
+        max-height: 100%;
+        overflow: visible;
+        -webkit-overflow-scrolling: touch;
+        /* box-shadow: 0 1px 6px rgba(0, 0, 0, .117647), 0 1px 4px rgba(0, 0, 0, .117647); */
+        /* box-shadow: 0px 3px 4px 0px rgba(0, 0, 0, .117647); */
+        width: 100%;
+
+        -webkit-transform-origin: center top;
+        -ms-transform-origin: center top;
+        transform-origin: center top
+    }
+
+    .mu-popover-enter-active,
+    .mu-popover-leave-active {
+        -webkit-transition-duration: .3s;
+        transition-duration: .3s;
+        -webkit-transition-property: opacity, -webkit-transform;
+        transition-property: opacity, -webkit-transform;
+        transition-property: opacity, transform;
+        transition-property: opacity, transform, -webkit-transform
+    }
+
+    .mu-popover-enter,
+    .mu-popover-leave-active {
+        -webkit-transform: scaleY(0);
+        -ms-transform: scaleY(0);
+        transform: scaleY(0);
+        opacity: 0
+    }
+    .tag{
+        background-color:rgb(196,31,40);
+        color:white;
+        text-align:center;
+        padding:3px;
+        display:inline-block;
+        margin-bottom:3px;
+        margin-top:3px;
+        margin-right:0.2rem;
+        border-radius: 2px;
+    }
+</style>
+<body>
+	<div id="app">
+        <div class="container">
+            
+            <!-- 类别 -->
+            <div style="position: fixed;top: 0;width: 100%;z-index: 10;border-bottom: 1px solid rgba(0,0,0,0.12);">
+                <div style="padding:0.27rem 0 0 .1rem;background-color:white;border-bottom:1px solid #eeeeee">
+                    <div style="position:relative">
+                        <div class="category" :style="{'width': tab.length == 1 ? '1.6rem' : ''}">
+                            <div v-for="tabitem in tab" style="text-align:center;">
+                                <span class="type" :class="{choose:tabitem.id == tabId}" @click="chooseCategory(tabitem.id, 0)">{{tabitem.name}}</span>
+                            </div>
+                        </div>
+                        <div style="right: .1rem;top: 0.05rem;position:absolute;width:0.5rem;height:0.5rem" ref="more" @click="showCategory">
+                            <img style="width:0.32rem;height:auto" :class="{rotate:open}" src="asset/images/icon/up.png">
+                        </div>
+    
+                    </div>
+                </div>
+                <transition name="mu-popover">
+                    <div v-show="open" class="mu-popover" style="padding-right: .6rem">
+                        <div style="padding-right: .6rem;border-bottom: 1px solid rgba(0,0,0,0.12);">
+                            <div style="background-color:#fff;display: flex;justify-content: space-around;">
+                                <span style="box-sizing:border-box;padding:0.24rem 0" v-for="categryitem in categryList[0]" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 1)"
+                                    class="type"  :class="{choose:categryitem.id == tabId}">{{categryitem.name}}</span>
+                            </div>
+                        </div>
+                        <div style="padding-right: 5.7rem">
+                            <div style="background-color:#fff;display: flex;justify-content: space-around;">
+                                <span style="box-sizing:border-box;padding:0.24rem 0" v-for="categryitem in categryList[1]" :key="categryitem.categoryId" @click="chooseCategory(categryitem.id, 2)"
+                                    class="type"  :class="{choose:categryitem.id == tabId}">{{categryitem.name}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+            </div>
+
+            <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+                <div v-if="orderList.length" :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
+                    <div v-for="(item, index) in orderList" :key="index">
+                        <div class="orderBar line mediumerFont black">
+                            <span>{{item.createTime}}</span>
+                            <span>{{getOrderStatus(item.status)}}</span>
+                        </div>
+                        <a @click="toOrderDetail()"><good-info :goodsinfo="item"></good-info></a>
+                        <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
+                            <button class="hollow-button" @click="toLogistics">订单跟踪</button>
+                        </div>
+                    </div>
+                </div>
+                <div v-else-if="orderList.length==0 && isEnd" class="mediumFont orderNone grayBackColor">
+                    <img src="asset/images/icon/none.png" style="width:2.1rem;margin-top:3rem">
+                    <p class="mediumerFont black" style="margin-top:.1rem">您还没有创建订单</p>
+                </div>
+                <div v-if="orderList.length!=0 && isEnd" class="mediumFont orderNone">
+                到底了哦~
+                </div>
+            
+                <div style="text-align:center;padding:0.32rem 0" v-show="loading">
+                    <mt-spinner type="fading-circle" style="display:inline-block;vertical-align: middle;"></mt-spinner>
+                    加载中...
+                </div>
+            </div>
+        </div>
+	</div>
+</body>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="asset/js/util-fe2d56f82a.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script src="static/js/zepto.min.js"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
+<script src="asset/js/orderList-0aa6881409.js"></script>
+
