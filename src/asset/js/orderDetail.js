@@ -106,7 +106,7 @@ var vm = new Vue({
 
         },
         seePower:function(){
-
+			
         },
         openModal:function(modalType) {
             if (modalType == 'payTip') {
@@ -139,7 +139,7 @@ var vm = new Vue({
         },
         //  申请归还
         retBack:function(){
-
+			location.href='refunds.html?orderId=' + this.orderId
         }
     },
     mounted() {
