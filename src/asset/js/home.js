@@ -50,7 +50,10 @@ var vm = new Vue({
 				url: url,
 				type: "GET",
 				dataType: "json",
-				data: '',
+				data: {
+          url: window.location.href,
+          corpId: 'dingaaa4a95c02214e0835c2f4657eb6378f'
+        },
 				xhrFields: {
 					withCredentials: true
 				},
@@ -58,8 +61,6 @@ var vm = new Vue({
 				success: res => {
           alert(9)
           alert("success:"+JSON.stringify(res))
-
-          // let authCode = requestAuthCode(corpid);
 				},
 				error: e => {
 					alert("error:"+JSON.stringify(e))
