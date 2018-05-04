@@ -48,7 +48,7 @@ var vm = new Vue({
 
       $.ajax({
 				url: url,
-				type: "POST",
+				type: "GET",
 				dataType: "json",
 				data: '',
 				xhrFields: {
