@@ -5,10 +5,11 @@ var vm = new Vue({
     props: {
     },
     data: {
-        productId: 5,
+        productId: 0,
         tabActive: 0,
         timeActive: 0,
         monthPrice: 0,
+        productPriceId: 0,
         goodsDetail: {
             // productImages: [
             //     {
@@ -31,7 +32,7 @@ var vm = new Vue({
             // inventory: '12',
         },
         popupVisible: false,
-        num: 1,
+        count: 1,
         showPop: false,
         popTitle: '客服电话',
         setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
@@ -48,7 +49,6 @@ var vm = new Vue({
     methods: {
         getGoodsDetail() {
             let url = getApiUrl('/rest/ddproducts/dingding/view')
-            // let url = '/getapi/rest/ddproducts/dingding/view'
             $.ajax({
                 url: url,
                 type: "GET",
@@ -64,7 +64,11 @@ var vm = new Vue({
                     if (res.code == 200) {
                         this.goodsDetail = res.data
                         this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)
+                        this.goodsDetail.productDeposit = res.data.productDeposit.toFixed(2)
+                        
                         this.monthPrice = this.goodsDetail.productPrice
+                        this.productPriceId = res.data.productPriceEntity[0].id
+                        
                     } else {
                         ddToast(res.message)
                     }
@@ -83,21 +87,22 @@ var vm = new Vue({
         skuTap(item, index) {
             this.timeActive = index
             this.monthPrice = item.price.toFixed(2)
+            this.productPriceId = item.id
         },
-        adjust(num) {
-            if (num < 0 && this.num <=1) {
+        adjust(count) {
+            if (count < 0 && this.count <=1) {
                 return
-            } else if (num > 0 && this.num >= parseInt(this.goodsDetail.inventory)) { //库存判断
+            } else if (count > 0 && this.count >= parseInt(this.goodsDetail.inventory)) { //库存判断
                 ddToast('超过库存了')
                 return
             }
-            this.num += num;
+            this.count += count;
         },
         openModal() {
             this.showPop = true
         },
-        toOrderInfo() {
-            location.href = 'orderComfirm.html'
+        toOrderComfirm() {
+            location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
         },
     },
     created() {

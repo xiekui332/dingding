@@ -8,24 +8,13 @@
 	<title>编辑收货地址</title>
 	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
 	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
-	<link rel="stylesheet" type="text/css" href="asset/component/css/address.css"/>
+	<link rel="stylesheet" type="text/css" href="asset/component/css/address.css" />
 	<link rel="stylesheet" type="text/css" href="asset/css/editAddress.css" />
 </head>
 
 <body>
 	<div id="app">
 		<div class="sec-1">
-			<!-- <van-address-edit
-                :area-list="areaList"
-                show-postal
-                show-search-result
-                :search-result="searchResult"
-                @save="onSave"
-                @delete="onDelete"
-                @change-detail="onChangeDetail"
-              /> -->
-
-			<!-- info 部分 -->
 			<div class="item-box item-box1">
 				<div class="item2">
 					<span class="left-title">
@@ -58,13 +47,13 @@
 					</span>
 					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detail" @input="getDetailAddress" @blur="looseBlur"></textarea>
 					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh">
-							<div class="result_item" v-for="item in detailAddresslist">
-									<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(item)">
-											<div  style="font-size:15px">{{item.name}}</div>
-											<div style="color:#999">{{item.district}}</div>
-									</div>
-									<hr class="divider" style="background-color:#e5e5e5" />
+						<div class="result_item" v-for="item in detailAddresslist">
+							<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(item)">
+								<div style="font-size:15px">{{item.name}}</div>
+								<div style="color:#999">{{item.district}}</div>
 							</div>
+							<hr class="divider" style="background-color:#e5e5e5" />
+						</div>
 					</div>
 				</div>
 				<!-- <div class="item2">
@@ -80,8 +69,6 @@
 			保存
 		</div>
 		<popup-address :popupvisible="addressVisible" :province="province" @change="addressChange"></popup-address>
-		
-
 	</div>
 </body>
 <script type="text/javascript" src="https://webapi.amap.com/maps?v=1.4.2&key=eb425af91fdcdd675be15dff02af7787"></script>

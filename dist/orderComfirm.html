@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<!-- 电话类型的数字不变颜色 -->
+	<meta name="format-detection" content="telephone=no">
+	<title>确认订单</title>
+	<link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css" />
+	<link rel="stylesheet" type="text/css" href="asset/component/css/modal.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-ecf901c3d3.css" />
+	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+	<style type="text/css">
+		.van-checkbox {
+			display: inline-block;
+			float: left;
+		}
+
+		.van-checkbox--checked {
+			border-color: #F3654C;
+			background-color: #F3654C;
+		}
+
+		.text-word {
+			line-height: .45rem;
+			margin-left: .05rem;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app">
+		<!--未添加收货地址-->
+		<div class="no-add" v-show="!hasDefaultAddress" style="display: none">
+			<div class="no-btn" @click="toManageAddress">
+				新建收货地址
+			</div>
+		</div>
+		<div v-else></div>
+
+		<!-- 确认地址 -->
+		<div class="dd_sure" v-if="hasDefaultAddress">
+			<div class="contain-box">
+				<span>{{order.name}}</span>
+				<span style="margin-left:.72rem">{{order.mobile}}</span>
+				<div class="right-top">
+					<van-icon name="edit" @click="toManageAddress()"></van-icon>
+				</div>
+			</div>
+			<div class="address">
+				<img src="asset/images/icon/map.png" alt="" class="map">
+				<p>{{order.detail}}</p>
+				<div class="p-box" @click="openModal('signTip')">
+					<p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
+					<img src="asset/images/icon/more.png" alt="" class="small-jump">
+				</div>
+			</div>
+			<div class="line-2"></div>
+		</div>
+
+		<!--订单详情的组件-->
+		<div style="padding: .4rem .3rem;background: #fff">
+			<good-info :goodsinfo="goodsInfo"></good-info>
+		</div>
+
+		<!-- 租金 -->
+		<div class="lb">
+			<div class="lb-1">
+				<div class="yuezu">
+					<div class="item item1">
+						<span class="left-title">
+							数量
+						</span>
+						<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" />
+					</div>
+					<div class="gray">
+						<span class="left">总合计</span>
+						<div class="right">
+							￥
+							<span>{{goodsInfo.totalAmount}}</span>
+						</div>
+					</div>
+
+					<div>
+						<span class="left">月租金</span>
+						<div class="right">
+							￥
+							<span>{{goodsInfo.productPrice.price}}</span>
+						</div>
+					</div>
+					<div class="gray">
+						<span class="left">租期</span>
+						<div class="right">
+							<span>共{{goodsInfo.productPrice.timeLength}}个月</span>
+						</div>
+					</div>
+					<!-- <div class="gray">
+						<span class="left">商品数量</span>
+						<div class="right">
+							<span>11</span>
+						</div>
+					</div> -->
+					<div class="gray">
+						<span class="left">租金付款方式</span>
+						<img src="asset/images/icon/quest.png" alt="" class="quest" @click="openModal('payTip')">
+						<span class="right mian">支付宝免密支付</span>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- 总押金 -->
+		<div class="lb-1 marTop">
+			<div class="yuezu">
+				<div class="gray black">
+					<span class="left">总押金</span>
+					<div class="right">
+						￥
+						<span>6,900.00</span>
+					</div>
+				</div>
+				<div class="gray gray-word">
+					<p>企业法人的芝麻信用700分以上，享有每笔订单免10000元押金的权益哦</p>
+				</div>
+			</div>
+		</div>
+
+		<!--邀请码-->
+		<div class="item-box item-box2">
+			<div class="item2">
+				<span class="left-title">
+					邀请码（选填）
+				</span>
+				<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark"/>
+				<p></p>
+			</div>
+			<div class="item2 item4">
+				<span class="left-title">
+					备注（选填）
+				</span>
+				<textarea v-model="order.invitationCode" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
+
+			</div>
+		</div>
+
+		<!-- 提交订单 -->
+		<div class="position-bot">
+			<div class="submit">
+				<img src="asset/images/icon/readFile.png" class="readFile" style="display: none" />
+				<div class="agree">
+					<div>
+						<van-checkbox v-model="isAgreement"> </van-checkbox>
+					</div>
+					<p class="text-word">我已阅读并同意
+						<a href="agreement.html">《租用须知协议》</a>
+					</p>
+				</div>
+
+				<!-- red-btn -->
+				<div class="tjdd red-btn" @click="submitOrder">立即支付</div>
+			</div>
+		</div>
+
+		<!--弹窗提示-->
+		<van-popup v-model="showAddressTip">
+			<img src="asset/images/icon/remind2.png" />
+			<p>请添加收货地址</p>
+		</van-popup>
+
+		<!--免密支付问好图片的弹窗-->
+		<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
+
+	</div>
+</body>
+<script src="static/js/zepto.min.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="asset/js/util-3030c61f59.js"></script>
+<script src="static/js/date.js"></script>
+<script src="asset/component/js/modal.js"></script>
+<script src="asset/component/js/goodInfo.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
+<script src="asset/js/orderComfirm-a27c36c9f5.js"></script>
+
+</html>

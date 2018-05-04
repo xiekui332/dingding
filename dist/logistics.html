@@ -3,8 +3,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>淘租公</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset-08024df23b.css"/>
+    <!-- 电话类型的数字不变颜色 -->
+    <meta name = "format-detection" content = "telephone=no">
+    <title>订单跟踪</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 <style>
@@ -14,6 +16,7 @@
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom:.20rem;
+  border-top: 1px solid #ddd;
 }
 .expressImg {
   width: .80rem;
@@ -86,6 +89,9 @@
 .log .time {
   margin-bottom: .08rem;
 }
+[v-cloak] {
+        display: none;
+    }
 </style>
 <body>
 	<div id="app">
@@ -98,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="logistic && logistic.length" class="logistic">
+        <div v-if="logistic && logistic.length" class="logistic" v-cloak>
             <div v-for="(item, index) in logistic">
                 <div class="log" :style="{color: !index ? '#666666':''}">
                 <div class="date">
@@ -118,4 +124,6 @@
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/logistics-bfd1643a5b.js"></script>
+<script src="asset/js/util-3030c61f59.js"></script>
+<script src="static/js/date.js"></script>
+<script src="asset/js/logistics-7fa3d35fb7.js"></script>

@@ -1,6 +1,5 @@
 var vm = new Vue({
     el:'#app',
-    //	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
     data:{
         nailUserId: 1,
         nailUserInfoId: 1,
@@ -31,6 +30,9 @@ var vm = new Vue({
                                 return true
                             }
                         })
+                    } else if (result.code == 6019) {//地址为空
+                        this.addressList = result.data
+                        this.activeAddressId = 0
                     } else {
                         ddToast(result.message)
                     }

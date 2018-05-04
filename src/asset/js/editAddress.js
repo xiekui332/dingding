@@ -18,8 +18,8 @@ var vm = new Vue({
 			// isDefault: 0,
 		},
 		addressName: '',
-        validate: ['username', 'mobile', 'company', 'provinceId', 'detail'],
-		
+		validate: ['username', 'mobile', 'company', 'provinceId', 'detail'],
+
 		// 地址
 		addressShow: false,
 		detailAddresslist: [],
@@ -31,28 +31,28 @@ var vm = new Vue({
 		getAddress() {
 			let url = getApiUrl('/api/address/get_shipping_address_one/')
 			$.ajax({
-                url: url,
-                type: "POST",
+				url: url,
+				type: "POST",
 				dataType: "json",
-                // contentType: "application/json",
-                data: {
+				// contentType: "application/json",
+				data: {
 					nailUserId: this.nailUserId,
 					nailUserInfoId: this.nailUserInfoId,
 					addressId: this.addressId
 				},
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success: result => {
-                    if (result.code == 200) {
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					if (result.code == 200) {
 						this.address = result.data
-                    } else {
-                        ddToast(result.message)
-                    }
-                },
-                error: e => {
-                    ddToast('网络错误')
+					} else {
+						ddToast(result.message)
+					}
+				},
+				error: e => {
+					ddToast('网络错误')
 				}
 			})
 		},
@@ -75,24 +75,24 @@ var vm = new Vue({
 			this.address.nailUserInfoId = this.nailUserInfoId
 			let url = getApiUrl('/api/address/add_shipping_address/')
 			$.ajax({
-                url: url,
-                type: "POST",
+				url: url,
+				type: "POST",
 				dataType: "json",
-                contentType: "application/json",
-                data: JSON.stringify(this.address),
-                xhrFields: {
-                    withCredentials: true
-                },
-                crossDomain: true,
-                success: result => {
-                    if (result.code == 200) {
-                        location.href = 'manageAddress.html'
-                    } else {
-                        ddToast(result.message)
-                    }
-                },
-                error: e => {
-                    ddToast('网络错误')
+				contentType: "application/json",
+				data: JSON.stringify(this.address),
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					if (result.code == 200) {
+						location.href = 'manageAddress.html'
+					} else {
+						ddToast(result.message)
+					}
+				},
+				error: e => {
+					ddToast('网络错误')
 				}
 			})
 		},
@@ -108,10 +108,10 @@ var vm = new Vue({
 		// 街道地址编辑
 		getDetailAddress() {
 			let citycode = ''
-			if (this.address.provinceId == ""){
-			    citycode = ''
-			}else {
-			    citycode = this.address.cityId;
+			if (this.address.provinceId == "") {
+				citycode = ''
+			} else {
+				citycode = this.address.cityId;
 			}
 			// console.log(citycode);
 			let key = this.address.detail;

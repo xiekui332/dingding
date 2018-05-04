@@ -199,7 +199,7 @@
                 <div class="gray regular smallFont deposit">
                     <span>
                         <span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
-                        <span class="smallerFont" style="color:#2A2A2A">￥</span><span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit.toFixed(2)}}</span>
+                        <span class="smallerFont" style="color:#2A2A2A">￥</span><span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit}}</span>
                     </span>
                     <span class="tip">非全新</span>
                 </div>
@@ -210,10 +210,6 @@
                 <p class="mediumerFont black">租赁流程</p>
                 <img src="asset/images/icon/lease_process.png" class="full-width" style="margin-top:.2rem">
             </div>
-
-
-            
-
 
             <div class="tab writeBackColor" style="margin-top:.2rem">
                 <span @click="tabTap(0)" :class="{'tabActive':tabActive==0}">商品介绍</span>
@@ -268,10 +264,10 @@
                         </div>
                         <p>数量</p>
                         <div class="sku-number">
-                            <span class="reduce" @click="adjust(-1)">-</span><span class="num">{{num}}</span><span class="add" @click="adjust(1)">+</span>
+                            <span class="reduce" @click="adjust(-1)">-</span><span class="num">{{count}}</span><span class="add" @click="adjust(1)">+</span>
                         </div>
                     </div>
-                    <mt-button class="full-width submit" @click="toOrderInfo()">确认</mt-button>
+                    <mt-button class="full-width submit" @click="toOrderComfirm()">确认</mt-button>
                 </div>
 
                 <!-- <div class="container" style="padding-top:15px">

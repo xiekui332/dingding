@@ -1,243 +1,86 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>淘租公</title>
-    <link rel="stylesheet" type="text/css" href="asset/css/reset-08024df23b.css"/>
-    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
-    <link href="asset/css/home-d41d8cd98f.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>淘租公</title>
+  <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/home-e08a0071b1.css" />
+  <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 </head>
 <body>
-	<div id="app">
-      <div class="yamanTupian">
-         <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1"> 
-      </div>
-      <div class="newModal">
-         <div class="newTop">
-            <span class="newTitle ">淘租公</span>
-            <span  class="newTitle te">
-              <img class="newImg" src="asset/images/icon/xiaoxi.png">
-            </span>  
+      <div id="app">
+          <div class="yamanTupian">
+             <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1">
           </div>
-        <a href="javascript:void(0)" class="newContent">
-          <marquee>Dyson又出新产品了，历史价格最低...</marquee></a>
-      </div>
-      <div class="homeMain" v-for="item in homeList">
-          <div class="homeMain-top">
-            <div class="homeMain-title">设计师</div>
-            <img src="asset/images/icon/more.png" class="newImg1">
-          </div>  
-          <div class="homeAround-top">
-            <div class="homeAround">
-              <div  class="newImg2"></div>
-              <div class="homeName">产品名称</div>
-              <div class="homeDec">比购买省￥{{item.price1}}元</div>
-              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{item.price1}}</em></div>
-            </div>
-            <div class="homeAround">
-                <div  class="newImg2"></div>
-                <div class="homeName">产品名称</div>
-                <div class="homeDec">比购买省￥{{item.price1}}元</div>
-                <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{item.price1}}</em></div>
-            </div>
+          <div class="newModal">
+             <div class="newTop">
+                <span class="newTitle ">淘租公</span>
+                <span  class="newTitle te">
+                  <img class="newImg" src="asset/images/icon/xiaoxi.png">
+                </span>
+              </div>
+            <a href="javascript:void(0)" class="newContent">
+              <marquee>Dyson又出新产品了，历史价格最低...</marquee></a>
           </div>
-      </div>
-      <div class="footer">
-        <div class="footer-left">
-          <img src="asset/images/icon/lease.png" class="footer-img">
-          <div class="zuping">租凭</div>
+          <div class="homeBox">
+              <div class="homeMain"
+                v-for="(item, index) in goodsList1" :key="index" >
+                  <div class="homeMain-top" >
+                    <div class="homeMain-title">{{item.category}}</div>
+                    <img src="asset/images/icon/more.png" class="newImg1">
+                  </div>
+                  <div class="homeAround-top" >
+                      <div  class="homeAround">
+                        <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
+                            <a @click="toGoodsDetail(goods.productEntity.id)">
+                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
+                              <div class="homeName">{{goods.productEntity.name}}</div>
+                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
+                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+                          </a>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+          <div class="footer">
+            <mt-tabbar fixed="true">
+              <mt-tab-item id="tab4" style="color:#F3654C">
+                <img slot="icon" src="asset/images/icon/lease_in.png">
+                租赁
+              </mt-tab-item>
+              <mt-tab-item id="tab3" >
+                <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()">
+                我的
+              </mt-tab-item>
+            </mt-tabbar>
         </div>
-        <div class="footer-left">
-          <img src="asset/images/icon/user_center_out.png" class="footer-img">
-          <div class="zuping">我的</div>
-        </div>
-      </div>
     </div>
 </body>
-<style>
-  .yamanTupian{
-    height:4.55rem;
-    width:100%;
-  }
-  .homeImg1{
-    height:4.55rem;
-    width:100%;
-    opacity: 0.5;
-    background: #000000;
-  }
-  .newModal{
-   height:0.93rem;
-   margin-top:0.3rem;
-   display: flex;
-   flex-direction:row;
-   justify-content:flex-start;
-   align-items:center;
-   background:#fff;
-  }
-  .newTop{
-    width:30%;
-    height:0.93rem;
-  }
-  .newTitle{
-    width: 1.03rem;
-    height:0.63rem;
-    display: inline-block;
-    color:#8A8A8A;
-    font:0.34rem/0.63rem "";
-    margin-top:0.1rem;
-    margin-left:0.2rem;
-  }
-  .te{
-    width: 0.44rem;
-    text-align: center;
-    margin-top:0;
-  }
-  .newImg{
-    display: inline-block;
-    width: 0.42rem;
-    height:0.42rem;
-    text-align:center;
-    vertical-align: middle;
-  }
-  .newContent{
-    height:0.96rem;
-    margin-top:0.1rem;
-    display: inline-block;
-    font: 0.24rem/0.96rem "";
-    color: #999999;
-    letter-spacing: 0;
-    text-align: center;
-    
-   
-  }
-  .homeMain{
-    height:6.69rem;
-    width:100%;
-    margin-top:0.15rem;
-    background:#fff;
-  }
-  .homeMain-top{
-    height:1rem;
-    display: flex;
-    flex-direction:row;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom: 1px solid #EEEEEE;;
-    margin-left:0.2rem;
-  }
-  .homeMain-title{
-    /*  height:0.76rem;
-    width:4.02rem;
-    font-size:0.34rem;*/
-    font-family: PingFangSC-Regular;
-    font-size:0.34rem;
-    color: #333333;
-    line-height: 0.36rem;
-
-  }
-  .newImg1{
-    height:0.262rem;
-    width:0.142rem;
-    margin-right:0.2rem;
-  }
-  .homeAround-top{
-    height:3.69rem;
-    display: flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    margin-top:1rem;
-  }
-  .homeAround{
-    
-    /* height:3.69rem;
-    float:left;
-    margin-left:0.2rem; */
-     width:50%;
-     margin-left:0.2rem;
-    /* padding-right:0.2rem; */
-    
-  }
-  .newImg2{
-    width:3.35rem;
-    height:3.35rem;
-    background: #F3654C;
-  }
-  .homeName{
-    /* width:1.12rem;
-    height:0.28rem;
-    color:#333333; */
-    /* margin-top:0.4rem; */
-    font-family: PingFangSC-Semibold;
-    font-size: 0.28rem;
-    color: #333333;
-    line-height: 0.28rem;
-    margin-top:0.2rem;
-  }
-  .homeDec{
-    font-size: 0.24rem;
-    color: #999999;
-    text-align: left;
-    line-height: 0.30rem;
-    font-family: PingFangSC-Regular;
-  }
-  .homeTitle{
-    font-family: PingFangSC-Regular;
-    font-size: 0.28rem;
-    color: #F3654C;
-    text-align: left;
-    margin-top:0.1rem;
-  }
-  .footer{
-    background: #FFFFFF;
-    height:1rem;
-    display: flex;
-    flex-direction:row;
-    justify-content:center;
-    align-items:center;
-    position:fixed;
-    bottom:0;
-    width:100%;
-  }
-  .footer-left{
-    width:50%;
-    text-align:center;
-  }
-  .footer-img{
-    width:0.32rem;
-    height:0.44rem;
-  }
-  .zuping{
-    font-family: PingFangSC-Regular;
-    font-size:0.2rem;
-    color: #999999;
-    letter-spacing: 0;
-    text-align: center;
-    line-height: 0.2rem;
-  }
-</style>
 <script src="static/js/zepto.min.js"></script>
+<script src="asset/js/util-3030c61f59.js"></script>
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-7d553adc0e.js"></script>
-<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="asset/js/home-0d01fdf952.js"></script>
 <script>
-  dd.ready(function(){
+  dd.ready(function () {
     dd.biz.navigation.setTitle({
-      title : '淘租公',//控制标题文本，空字符串表示显示默认文本
-      onSuccess : function(result) {
-          
+      title: '淘租公',//控制标题文本，空字符串表示显示默认文本
+      onSuccess: function (result) {
       },
-      onFail : function(err) {}
-   });
-   dd.biz.navigation.setright({
-     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-     text: '返回',//控制显示文本，空字符串表示显示默认文本
-     onSuccess : function(result) {
-     },
-     onFail : function(err) {}
-   });  
-}); 
+      onFail: function (err) { }
+    });
+    dd.biz.navigation.setright({
+      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+      text: '返回',//控制显示文本，空字符串表示显示默认文本
+      onSuccess: function (result) {
+      },
+      onFail: function (err) { }
+    });
+  });
 </script>
+
 </html>
