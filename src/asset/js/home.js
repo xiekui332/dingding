@@ -41,13 +41,13 @@ var vm = new Vue({
       alert(8)
       // let url = getApiUrl('/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw');
 
-      // let url = getApiUrl('/ding-isv-access/get_js_config');
+      let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
       
 
       // let url = 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw'
       $.ajax({
         type: "POST",
-        url: 'http://api.taozugong.com:8080/ding-isv-access/suite/callback/suitepfxkjqyuxbyxkeqw',
+        url: url,
         xhrFields:{
         	withCredentails:true
         },
