@@ -66,37 +66,58 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  // dd.ready(function () {
-  //   dd.biz.navigation.setTitle({
-  //     title: '淘租公',//控制标题文本，空字符串表示显示默认文本
-  //     onSuccess: function (result) {
-  //     },
-  //     onFail: function (err) { }
-  //   });
-  //   dd.biz.navigation.setright({
-  //     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-  //     text: '返回',//控制显示文本，空字符串表示显示默认文本
-  //     onSuccess: function (result) {
-  //     },
-  //     onFail: function (err) { }
-  //   });
-  // });
+  
+  let url = getApiUrl('/ding-isv-access/get_js_config');
 
-  dd.ready(function(){
-    let corpid = 'ding232f30042c7d834635c2f4657eb6378f'
-    
-    dd.runtime.permission.requestAuthCode({
-        corpId: corpid,
-        onSuccess: function(result) {
+  // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
 
-            alert('requestAuthCode:'+JSON.stringify(result))
-            return result.code
-        },
-        onFail : function(err) {
-            alert("fail"+1)
-        }
-      })
-  });
+  // let corpId = getUrlParam('corpIp')
+  let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
+
+  $.ajax({
+    url: url,
+    type: "GET",
+    dataType: "json",
+    data: {
+      url: window.location.href,
+      corpId: corpId
+    },
+    xhrFields: {
+      withCredentials: true
+    },
+    crossDomain: true,
+    success: res => {
+      alert("success:"+JSON.stringify(res))
+
+      dd.config({
+          agentId: res.agentId, // 必填，微应用ID
+          corpId: res.corpId,//必填，企业ID
+          timeStamp: res.timeStamp, // 必填，生成签名的时间戳
+          nonceStr: res.nonce, // 必填，生成签名的随机串
+          signature: res.signature, // 必填，签名
+          jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+      });
+
+      dd.ready(function(){
+
+
+            dd.runtime.permission.requestAuthCode({
+                corpId: corpId,
+                onSuccess: function(result) {
+        
+                    alert('requestAuthCode:'+JSON.stringify(result))
+                    return result.code
+                },
+                onFail : function(err) {
+                    alert("fail"+JSON.stringify(err))
+                }
+              })
+          });
+    },
+    error: e => {
+      alert("error:"+JSON.stringify(e))
+    }
+  })
 </script>
 
 </html>
