@@ -67,12 +67,13 @@
 <script src="asset/js/home-f83e4255e3.js"></script>
 <script>
   
-  let url = getApiUrl('/ding-isv-access/get_js_config');
+  // let url = getApiUrl('/ding-isv-access/get_js_config');
 
-  // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
+  let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
 
-  // let corpId = getUrlParam('corpIp')
-  let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
+  let corpId = getUrlParam('corpIp')
+  // let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
+  alert(corpId)
 
   $.ajax({
     url: url,
