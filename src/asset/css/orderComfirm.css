@@ -506,7 +506,8 @@ text-align: center;
     background: #fff;
     line-height: .5rem;
     font-size: .28rem;
-    text-align: right;
+    /*text-align: right;*/
+   text-indent: 1em;
 }
 .item2 input::placeholder{
     color: #ccc;
