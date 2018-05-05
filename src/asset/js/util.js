@@ -82,11 +82,11 @@ function getHostUrl(url) {
 }
 //接口api地址
 function getApiUrl(url) {
-    // const taozugonghost = "http://api.taozugong.com:8080/shop-test";
+    const taozugonghost = "http://api.taozugong.com:8080";
     // const taozugonghost = '//192.168.18.53:8080';
     // const taozugonghost = 'http://192.168.18.119:8080'
     //  const taozugonghost = '//192.168.19.251:8081'
-    const taozugonghost = '/getapi'
+    // const taozugonghost = '/getapi'
     //console.log(taozugonghost + url)
     return taozugonghost + url
 }
@@ -107,4 +107,17 @@ function ddToast(message) {
     //     },
     //     onFail : function(err) {}
     // })
+}
+
+
+
+function ddConfig(config) {
+    dd.config({
+        agentId: config.agentId, // 必填，微应用ID
+        corpId: config.corpId,//必填，企业ID
+        timeStamp: config.timeStamp, // 必填，生成签名的时间戳
+        nonceStr: config.nonce, // 必填，生成签名的随机串
+        signature: config.signature, // 必填，签名
+        jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+    });
 }

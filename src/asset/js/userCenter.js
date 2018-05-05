@@ -82,7 +82,7 @@ var vm = new Vue({
       location.href = 'billOrder.html'
     },
     toUserAuth() {
-      location.href = 'UserAuth.html'
+      location.href = 'userAuth.html'
     },
     toManageAddress() {
       location.href = 'manageAddress.html'
