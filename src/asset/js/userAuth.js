@@ -81,11 +81,11 @@ var vm = new Vue({
                 return message
             }
             
-            if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
-                message = '请上传凭证' 
-            } else if (!checkIdcard(this.userAuth.idcard)) {
-                message = '身份证号输入有误' 
-            } 
+            // if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
+            //     message = '请上传凭证' 
+            // } else if (!checkIdcard(this.userAuth.idcard)) {
+            //     message = '身份证号输入有误' 
+            // } 
             // else if (!phoneValid(this.userAuth.phone)) {
             //     message = '手机号输入有误' 
             // }
@@ -192,7 +192,7 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        ddToast('修改成功')
+                        this.zhimaAuth()
                     } else {
                         ddToast(result.message)
                     }
@@ -241,10 +241,7 @@ var vm = new Vue({
     mounted() {
 		this.user = getSession()
         this.productId = getUrlParam('productId')
-        // this.authId = getUrlParam('authId')
-
         this.getUserAuth()
-
 
         // hasAuth 为空 需要授权； hasAuth==true 不需要授权
         // if (getUrlParam('hasAuth') == true) {
