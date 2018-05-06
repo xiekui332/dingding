@@ -9,10 +9,10 @@
 	<title>确认订单</title>
 	<link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css" />
 	<link rel="stylesheet" type="text/css" href="asset/component/css/modal.css" />
-	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-340e87d9e9.css" />
 	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
 	<!-- 引入样式 -->
 	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
+	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-788f64dca7.css" />
 	<style type="text/css">
 		.van-checkbox {
 			display: inline-block;
@@ -52,7 +52,7 @@
 			</div>
 			<div class="address">
 				<img src="asset/images/icon/map.png" alt="" class="map">
-				<p>{{order.detail}}</p>
+				<p>{{order.address}}</p>
 				<div class="p-box" @click="openModal('signTip')">
 					<p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
 					<img src="asset/images/icon/more.png" alt="" class="small-jump">
@@ -119,7 +119,7 @@
 					<span class="left">总押金</span>
 					<div class="right">
 						￥
-						<span>6,900.00</span>
+						<span>{{goodsInfo.productDeposit}}</span>
 					</div>
 				</div>
 				<div class="gray gray-word">
@@ -178,12 +178,12 @@
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
-<script src="asset/js/util-a7d74b055f.js"></script>
+<script src="asset/js/util-9d5b372691.js"></script>
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
-<script src="asset/js/orderComfirm-5a7298501e.js"></script>
+<script src="asset/js/orderComfirm-3ec33ce622.js"></script>
 
 </html>
