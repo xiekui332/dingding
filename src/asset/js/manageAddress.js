@@ -1,21 +1,22 @@
 var vm = new Vue({
     el:'#app',
     data:{
-        nailUserId: 1,
-        nailUserInfoId: 1,
+        user: {},
+        // nailUserId: 1,
+        // nailUserInfoId: 1,
         activeAddressId: 1, 
         addressList:[],
     },
     methods:{
         getAddressList() {
-            let url = getApiUrl('/api/address/get_shipping_address_list/')
+            let url = getApiUrl('/shop-test/api/address/get_shipping_address_list/')
 			$.ajax({
                 url: url,
                 type: "POST",
 				dataType: "json",
                 data: {
-                    nailUserId: this.nailUserId,
-                    nailUserInfoId: this.nailUserInfoId
+                    nailUserId: this.user.userId,
+					nailUserInfoId: this.user.corpId
                 },
                 xhrFields: {
                     withCredentials: true
@@ -43,14 +44,14 @@ var vm = new Vue({
 			})
         },
         checkAddress(addressId) {
-            let url = getApiUrl('/api/address/set_default_address/')
+            let url = getApiUrl('/shop-test/api/address/set_default_address/')
 			$.ajax({
                 url: url,
                 type: "POST",
 				dataType: "json",
                 data: {
-                    nailUserId: this.nailUserId,
-                    nailUserInfoId: this.nailUserInfoId,
+                    nailUserId: this.user.userId,
+					nailUserInfoId: this.user.corpId,
                     addressId: addressId
                 },
                 xhrFields: {
@@ -81,14 +82,14 @@ var vm = new Vue({
                 title: '确认要删除收货地址吗',
                 message: ''
             }).then(() => {
-                let url = getApiUrl('/api/address/del_address/')
+                let url = getApiUrl('/shop-test/api/address/del_address/')
                 $.ajax({
                     url: url,
                     type: "POST",
                     dataType: "json",
                     data: {
-                        nailUserId: this.nailUserId,
-                        nailUserInfoId: this.nailUserInfoId,
+                        nailUserId: this.user.userId,
+					    nailUserInfoId: this.user.corpId,
                         addressId: addressId
                     },
                     xhrFields: {
@@ -113,6 +114,7 @@ var vm = new Vue({
         },
     },
     mounted() {
+		this.user = getSession()
         this.getAddressList()
     }
 })

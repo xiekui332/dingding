@@ -121,20 +121,15 @@ function ddConfig(config) {
 }
 
 
-//corpId  userId
+//{corpId:1,  userId:1}
 function setSession(sessionObj) {
-    for (let item in sessionObj) {
-        window.sessionStorage.setItem(item, sessionObj[item]);
-    }
+    window.sessionStorage.setItem('tzgDingDing', JSON.stringify(sessionObj));
 }
 
-function getSession(list) {
-
-    let sessionObj = {}
-    list.forEach(item => {
-        sessionObj[item] = window.sessionStorage.getItem(item);
-    })
-
-    
-    return sessionObj
+function getSession() {
+    // let sessionObj = {}
+    // list.forEach(item => {
+    //     sessionObj[item] = window.sessionStorage.getItem(item);
+    // })
+    return JSON.parse(window.sessionStorage.getItem('tzgDingDing'))
 }

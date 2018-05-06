@@ -2,8 +2,9 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
-		nailUserId: 1,
-		nailUserInfoId: 1,
+		user: {},
+		// nailUserId: 1,
+		// nailUserInfoId: 1,
 		productId: 0,
 		skuId: 0,
 		hasDefaultAddress: false,
@@ -118,14 +119,14 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
-			let url = getApiUrl('/api/address/get_default_address/')
+			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
 				type: "GET",
 				dataType: "json",
 				data: {
-					nailUserId: this.nailUserId,
-					nailUserInfoId: this.nailUserInfoId
+					nailUserId: this.user.userId,
+					nailUserInfoId: this.user.corpId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -163,7 +164,7 @@ var vm = new Vue({
 			location.href = 'manageAddress.html'
 		},
 		getGoodsInfo() {
-			let url = getApiUrl('/rest/ddproducts/dingding/view')
+			let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
 			$.ajax({
 				url: url,
 				type: "GET",
@@ -206,6 +207,8 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		this.user = getSession()
+		console.log(this.user)
 		this.order.productId = getUrlParam('productId')
 		this.order.productPriceId = getUrlParam('productPriceId')
 		this.order.count = getUrlParam('count')
