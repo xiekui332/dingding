@@ -5,9 +5,12 @@ var vm = new Vue({
     props: {
     },
     data: {
-        authId: 3,
+        user: {},
+        // authId: 3,
         productId: '',
         userAuth: {
+            nailCropId: '',
+            userid: '',
             company: "不匠",
             companyDelegateImg: 'asset/images/icon/proof.png',
             dingIndexImg: 'asset/images/icon/proof.png',
@@ -46,7 +49,9 @@ var vm = new Vue({
     },
     methods: {
         onFileChange(e, index) {
-            let url =  getApiUrl('/shop-test/img/upload.do') 
+            // let url =  getApiUrl('/shop-test/img/upload.do') 
+            let url =  '/getapi/shop-test/img/upload.do'
+            
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
                     this.userAuth.dingIndexImg = imgUrl
@@ -93,6 +98,8 @@ var vm = new Vue({
                 return
             }
             let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddcreate')
+            this.userAuth.nailCropId = this.user.corpId
+            this.userAuth.userid = this.user.userId
             $.ajax({
                 url: url,
                 type: "POST",
@@ -105,7 +112,8 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        ddToast('授权成功')
+                        // ddToast('授权成功')
+                        this.zhimaAuth()
                     } else {
                         ddToast(result.message)
                     }
@@ -117,13 +125,13 @@ var vm = new Vue({
         },
         getUserAuth() {
             let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddlist')
-            
             $.ajax({
                 url: url,
                 type: "POST",
                 dataType: "json",
                 data: {
-                    id: this.authId
+                    nailCropId: this.user.corpId,
+                    userId: this.user.userId
                 },
                 xhrFields: {
                     withCredentials: true
@@ -197,7 +205,7 @@ var vm = new Vue({
             });
         },
         zhimaAuth() {
-            let url = getApiUrl('/nail/zhimaauth.html')
+            let url = getPhpApiUrl('/nail/zhimaauth.html')
             $.ajax({
                 url: url,
                 type: "POST",
@@ -229,6 +237,7 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
+		this.user = getSession()
         this.productId = getUrlParam('productId')
         // this.authId = getUrlParam('authId')
 
