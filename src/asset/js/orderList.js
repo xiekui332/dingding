@@ -130,7 +130,7 @@ var vm = new Vue({
         getOrderList() {
             this.isEnd = true
             this.loading = false
-            let url = getApiUrl('/rest/orders/dingding/list')
+            let url = getApiUrl('/shop-test/rest/orders/dingding/list')
             $.ajax({
                 url: url,
                 type: "GET",
@@ -145,6 +145,7 @@ var vm = new Vue({
                 },
                 crossDomain: true,
                 success: res => {
+                    console.log(res)
                     if (res.code == 200) {
                         if (res.data.length === 0) {
                             this.isEnd = true

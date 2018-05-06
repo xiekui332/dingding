@@ -117,7 +117,7 @@ var vm = new Vue({
         },
         getUserAuth() {
             // let url = '/getapi/rest/dingDingUserInfo/Ddlist'
-            let url = getApiUrl('/rest/dingDingUserInfo/Ddlist')
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddlist')
             
             $.ajax({
                 url: url,
@@ -167,7 +167,7 @@ var vm = new Vue({
             }
 
             // let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
-            let url = getApiUrl('/rest/dingDingUserInfo/Ddupdate')
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddupdate')
             this.userAuth.id = this.authId
             $.ajax({
                 url: url,
@@ -192,7 +192,7 @@ var vm = new Vue({
             });
         },
         zhimaAuth() {
-            let url = getApiUrl('/nail/zhimaauth.html')
+            let url = getApiUrl('/shop-test/nail/zhimaauth.html')
             $.ajax({
                 url: url,
                 type: "POST",

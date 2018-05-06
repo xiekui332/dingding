@@ -17,7 +17,7 @@ var vm = new Vue({
         popTitle: '',
         popContent: [],
         setStyle: '',
-        url:getApiUrl('/rest/orders/dingding/view'),
+        url:getApiUrl('/shop-test/rest/orders/dingding/view'),
         status:-1,  //  订单状态
         orderStatus:'暂无',     //  默认状态
         statusWords:'暂无',
@@ -32,7 +32,7 @@ var vm = new Vue({
                 },
                 url:vm.url,
                 success:function(data){
-                    // console.log(data)
+                     console.log(data)
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 9){

@@ -24,7 +24,7 @@ var vm = new Vue({
             var orderNo = 'ZY1522327243828780';
                 $.ajax({
                     type:'get',
-                    url:getApiUrl('/rest/express/orderexpress'),
+                    url:getApiUrl('/shop-test/rest/express/orderexpress'),
                     data:{
                         orderNo:orderNo, 
                     },

@@ -46,7 +46,7 @@ var vm = new Vue({
 			if (!this.submitValid()) {
 				return
 			}
-			let url = getApiUrl('/rest/orders/dingding/create')
+			let url = getApiUrl('/shop-test/rest/orders/dingding/create')
 			$.ajax({
 				url: url,
 				type: "POST",
