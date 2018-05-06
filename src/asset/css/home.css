@@ -1,6 +1,8 @@
 .yamanTupian {
   height: 3.55rem;
   width: 100%;
+  background-image: url('../images/icon/homeTitleGoods.png');
+  background-size: cover;
 }
 
 .homeImg1 {
@@ -61,7 +63,7 @@
 .homeMain {
   width: 100%;
   background: #fff;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.31rem;
 }
 
 .homeMain-top {
@@ -71,8 +73,8 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #EEEEEE;
-  ;
-  margin-left: 0.2rem;
+  /* margin-left: 0.2rem; */
+  padding-left: .2rem;
 }
 
 .homeMain-title {
@@ -163,7 +165,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #f7f7f7;
+  border: 1px solid #f7f7f7;
 }
 
 .mint-tabbar>.mint-tab-item.is-selected {
@@ -181,4 +183,21 @@
  }
  .mint-tabbar.is-fixed{
   background: #fff;  
+  border: 1px solid #f7f7f7;
  }
+
+ /* @keyframes mymove{
+   0% {right: 0;}
+   50%{left: -5.3rem}
+  100% {right: 0;}
+ }
+ .newContent{
+  
+   overflow: hidden;
+ }
+ .newContent span{
+   display: block;
+   width: 5.3rem;
+   position: relative;
+   animation:mymove  5s infinite;
+ } */
