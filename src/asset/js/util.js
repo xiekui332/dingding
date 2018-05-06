@@ -109,8 +109,6 @@ function ddToast(message) {
     // })
 }
 
-
-
 function ddConfig(config) {
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
@@ -120,4 +118,23 @@ function ddConfig(config) {
         signature: config.signature, // 必填，签名
         jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
+}
+
+
+//corpId  userId
+function setSession(sessionObj) {
+    for (let item in sessionObj) {
+        window.sessionStorage.setItem(item, sessionObj[item]);
+    }
+}
+
+function getSession(list) {
+
+    let sessionObj = {}
+    list.forEach(item => {
+        sessionObj[item] = window.sessionStorage.getItem(item);
+    })
+
+    
+    return sessionObj
 }

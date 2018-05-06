@@ -86,6 +86,11 @@ var vm = new Vue({
         crossDomain: true,
         success: result => {
           alert("sucess:" + JSON.stringify(result))
+          let sessionObj = {
+            corpId: this.corpId,
+            userId: result.userId
+          }
+          setSession(sessionObj)
         },
         error: e => {
           ddToast('网络错误')
