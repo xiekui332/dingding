@@ -40,6 +40,23 @@ var vm = new Vue({
           }
         })
         
+       
+        dd.ready(function() {
+         
+          dd.runtime.permission.requestAuthCode({
+              corpId: "corpid",
+              onSuccess: function(result) {
+                console.log(result)
+              /*{
+                  code: 'hYLK98jkf0m' //string authCode
+              }*/
+              },
+              onFail : function(err) {}
+        
+          });
+      });
+
+
       },
 //    页面加载函数
 		init(){

@@ -30,6 +30,7 @@
   color: #8A8A8A;
   font: 0.25rem/0.93rem "";
   margin-left: 0.2rem;
+  line-height: .93rem;
 }
 
 .newImg {
@@ -38,12 +39,12 @@
   height: 0.32rem;
   text-align: center;
   vertical-align: middle;
-  margin-top: -0.12rem;
+  margin-top: -0.05rem;
 }
 
 .newContent {
   height: 0.96rem;
-  margin-top: 0.1rem;
+  /* margin-top: 0.1rem; */
   display: inline-block;
   font: 0.24rem/0.96rem "";
   color: #999999;
