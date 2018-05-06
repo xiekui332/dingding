@@ -46,9 +46,7 @@ var vm = new Vue({
     },
     methods: {
         onFileChange(e, index) {
-            // let url =  getApiUrl('/shop-service/img/upload.do') 
-            // let url = 'http://192.168.17.21:8080/img/upload.do'
-            let url =  '/getapi/img/upload.do'
+            let url =  getApiUrl('/shop-test/img/upload.do') 
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
                     this.userAuth.dingIndexImg = imgUrl
@@ -94,8 +92,7 @@ var vm = new Vue({
                 ddToast(message)
                 return
             }
-
-            let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddcreate')
             $.ajax({
                 url: url,
                 type: "POST",

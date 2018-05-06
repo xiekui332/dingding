@@ -2,8 +2,9 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
-		nailUserId: 1,
-		nailUserInfoId: 1,
+		user: {},
+		// nailUserId: 1,
+		// nailUserInfoId: 1,
 		productId: 0,
 		skuId: 0,
 		hasDefaultAddress: false,
@@ -124,8 +125,8 @@ var vm = new Vue({
 				type: "GET",
 				dataType: "json",
 				data: {
-					nailUserId: this.nailUserId,
-					nailUserInfoId: this.nailUserInfoId
+					nailUserId: this.user.userId,
+					nailUserInfoId: this.user.corpId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -206,6 +207,8 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		this.user = getSession()
+		console.log(this.user)
 		this.order.productId = getUrlParam('productId')
 		this.order.productPriceId = getUrlParam('productPriceId')
 		this.order.count = getUrlParam('count')
