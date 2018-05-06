@@ -208,7 +208,7 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
-		console.log(this.user)
+		// console.log(this.user)
 		this.order.productId = getUrlParam('productId')
 		this.order.productPriceId = getUrlParam('productPriceId')
 		this.order.count = getUrlParam('count')

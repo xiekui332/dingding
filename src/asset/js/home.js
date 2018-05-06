@@ -70,7 +70,7 @@ var vm = new Vue({
           });
 
           dd.ready(function(){
-
+              //  获取免登授权码
 
                 dd.runtime.permission.requestAuthCode({
                     corpId: corpId,
