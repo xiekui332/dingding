@@ -35,10 +35,7 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     if (!length) {
         length = 19
     }
-
     var newDate = new Date(dateF)
-    console.info('newDate:'+newDate)
-
     var year = newDate.getFullYear()
     var month = tranformTow(newDate.getMonth()+1)
     var date = tranformTow(newDate.getDate())
@@ -46,9 +43,9 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     var minute = tranformTow(newDate.getMinutes())
     var second = tranformTow(newDate.getSeconds())
 
-    var newDate = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
+    var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
 
-    return newDate.substring(0, length)
+    return newDate1.substring(0, length)
 }
 
 function tranformTow(number) {
