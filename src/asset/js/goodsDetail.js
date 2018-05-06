@@ -5,6 +5,7 @@ var vm = new Vue({
     props: {
     },
     data: {
+        user: {},
         productId: 0,
         tabActive: 0,
         timeActive: 0,
@@ -103,6 +104,38 @@ var vm = new Vue({
             this.showPop = true
         },
         toOrderComfirm() {
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdStatus')
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: {
+                    id: this.user.userId,
+                    nailCropId: this.user.cropId
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: res => {
+                    if (res.code == 200) {
+                        this.goodsDetail = res.data
+                        this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)
+                        this.goodsDetail.productDeposit = res.data.productDeposit.toFixed(2)
+                        
+                        this.monthPrice = this.goodsDetail.productPrice
+                        this.productPriceId = res.data.productPriceEntity[0].id
+                        
+                    } else {
+                        ddToast(res.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+                }
+            });
+
+
             location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
         },
     },
@@ -111,6 +144,7 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
+		this.user = getSession()
         this.productId = getUrlParam('productId')
         this.getGoodsDetail()
     },

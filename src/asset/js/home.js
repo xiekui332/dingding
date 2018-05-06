@@ -1,30 +1,144 @@
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
 var vm = new Vue({
   el: '#app',
   components: {},
-  props: {
-    loading: false
-  },
   data: {
-    id: "",
+    id: '',
     goodsList1: [],
     show: true,
-    selected:[ ]
+    selected: [],
+    corpId: ''
   },
   computed: {},
   watch: {},
   filters: {},
   methods: {
     getGoodsList(id) {
-		  let url = getApiUrl('/shop-test/rest/products/list');
+      let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
         type: "GET",
         url: url,
-        xhrFields:{
-        	withCredentails:true
+        xhrFields: {
+          withCredentails: true
         },
-        crossDomain:true,
+        crossDomain: true,
         data: {
-          categoryId:1
+          categoryId: 1
         },
         success: (json) => {
           this.goodsList1 = json.data
@@ -38,80 +152,81 @@ var vm = new Vue({
       location.href = 'goodsDetail.html?productId=' + productId
     },
     getAuthCode() {
-      let url = getApiUrl('/shop-test/ding-isv-access/get_js_config');
-
-      // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
-      
-      // let corpId = getUrlParam('corpIp')
-      let corpId = 'ding232f30042c7d834635c2f4657eb6378f'
-      
+      let url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
-				url: url,
-				type: "GET",
-				dataType: "json",
-				data: {
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: {
           url: window.location.href,
-          corpId: corpId
+          corpId: this.corpId
         },
-				xhrFields: {
-					withCredentials: true
-				},
-				crossDomain: true,
-				success: res => {
-          alert("success:"+JSON.stringify(res))
-
-          dd.config({
-              agentId: res.agentId, // 必填，微应用ID
-              corpId: res.orpId,//必填，企业ID
-              timeStamp: res.timeStamp, // 必填，生成签名的时间戳
-              nonceStr: res.nonce, // 必填，生成签名的随机串
-              signature: res.signature, // 必填，签名
-              jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: res => {
+          ddConfig(res)
+          dd.ready(() => {
+            dd.runtime.permission.requestAuthCode({
+              corpId: this.corpId,
+              onSuccess: (result) => {
+                alert('requestAuthCode:' + JSON.stringify(result))
+                getUserId(result.code)
+              },
+              onFail: (err) => {
+                alert("fail" + JSON.stringify(err))
+              }
+            })
           });
-
-          dd.ready(function(){
-              //  获取免登授权码
-
-                dd.runtime.permission.requestAuthCode({
-                    corpId: corpId,
-                    onSuccess: function(result) {
-            
-                        alert('requestAuthCode:'+JSON.stringify(result))
-                        return result.code
-                    },
-                    onFail : function(err) {
-                        alert("fail"+1)
-                    }
-                  })
-              });
-				},
-				error: e => {
-					alert("error:"+JSON.stringify(e))
-				}
-			})
+        },
+        error: e => {
+          alert("error:" + JSON.stringify(e))
+        }
+      })
     },
     getUserId() {
-      alert(1)
-      dd.biz.user.get({
-        corpId:'', // 可选参数，如果不传则使用用户当前企业的corpId。
-        onSuccess: function (info) {
-            alert('userGet success: ' + JSON.stringify(info));
+      let url = getApiUrl('/ding-isv-access/get_user_info');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: {
+          url: window.location.href,
+          corpId: this.corpId,
+          code: code
         },
-        onFail: function (err) {
-            alert('userGet fail: ' + JSON.stringify(err));
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          alert("sucess:" + JSON.stringify(result))
+          let sessionObj = {
+            corpId: this.corpId,
+            userId: result.userId
+          }
+          setSession(sessionObj)
+        },
+        error: e => {
+          ddToast('网络错误')
         }
-      });
+      })
     }
   },
-  created() {},
-  destroyed() {},
+  created() { },
+  destroyed() { },
   mounted() {
+    this.corpId = getUrlParam('corpId')
+    this.getGoodsList()
+    this.getAuthCode()
 
 
-
-    // this.getGoodsList()
-    // alert('测试')
-    // this.getAuthCode()
-    // this.getUserId()
+    let sessionObj = {
+      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      userId: 6
+    }
+    setSession(sessionObj)
   },
 })
+
