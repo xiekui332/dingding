@@ -145,6 +145,7 @@ var vm = new Vue({
         retBack:function(){
 			location.href='refunds.html?orderId=' + this.orderId
         },
+        //  跳转物流信息
         toLogistics() {
             location.href='logistics.html?orderNo=' + this.orderNo+'&createTime='+this.createTime
         }
