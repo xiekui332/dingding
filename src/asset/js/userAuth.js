@@ -116,8 +116,7 @@ var vm = new Vue({
             });
         },
         getUserAuth() {
-            // let url = '/getapi/rest/dingDingUserInfo/Ddlist'
-            let url = getApiUrl('/rest/dingDingUserInfo/Ddlist')
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddlist')
             
             $.ajax({
                 url: url,
@@ -132,7 +131,8 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-
+                        this.isFirstAuth = false
+                        
                         this.userAuth = result.data
                         this.userAuth.status = this.authStatus.fail
                         // 审核拒绝可再编辑
@@ -143,15 +143,20 @@ var vm = new Vue({
                             this.authHead.describe[0] = this.userAuth.rejectReason
                             this.authHead.describe[1] = '请重新编辑授权信息，再次提交审核'
                         } else if (this.userAuth.status === this.authStatus.success) {
+                            this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_success.png'
                             this.authHead.title = '审核通过'
                             this.authHead.describe[0] = '恭喜你，授权信息已经审核通过；可以前往订单列表页完成支付'
                         } else if (this.userAuth.status === this.authStatus.audit) {
+                            this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_audit.png'
                             this.authHead.title = '审核中'
                             this.authHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
                         }
-                    } 
+                    } else if (result.code == 7010) {
+                        this.isFirstAuth = true
+                        this.canEdit = true
+                    }
                 },
                 error: e => {
                     ddToast('网络错误')
@@ -225,15 +230,19 @@ var vm = new Vue({
     },
     mounted() {
         this.productId = getUrlParam('productId')
-        this.authId = getUrlParam('authId')
-        if (getUrlParam('authId')) {
-            this.authId = getUrlParam('authId')
-            this.canEdit = false
-            this.isFirstAuth = false
-            this.getUserAuth()
-        } else {
-            this.isFirstAuth = true
-            this.canEdit = true
-        }
+        // this.authId = getUrlParam('authId')
+
+        this.getUserAuth()
+
+
+        // hasAuth 为空 需要授权； hasAuth==true 不需要授权
+        // if (getUrlParam('hasAuth') == true) {
+        //     this.isFirstAuth = false
+        //     this.canEdit = false
+        //     this.getUserAuth()
+        // } else {
+        //     this.isFirstAuth = true
+        //     this.canEdit = true
+        // }
     },
 })
