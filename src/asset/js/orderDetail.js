@@ -22,6 +22,8 @@ var vm = new Vue({
         orderStatus:'暂无',     //  默认状态
         statusWords:'暂无',
         objAddress:'',
+        orderNo:'',
+        createTime:''
     },
     methods:{
         init:function(){
@@ -85,6 +87,8 @@ var vm = new Vue({
                         vm.goodsInfo.brief = data.data.brief;
                         vm.goodsInfo.totalAmount = data.data.totalAmount;
                         vm.goodsInfo.count = data.data.quantity;
+                        vm.orderNo = data.data.sn;
+                        vm.createTime = data.data.createTime;
                     }
                 },
                 error:function(){
@@ -140,6 +144,10 @@ var vm = new Vue({
         //  申请归还
         retBack:function(){
 			location.href='refunds.html?orderId=' + this.orderId
+        },
+        //  跳转物流信息
+        toLogistics() {
+            location.href='logistics.html?orderNo=' + this.orderNo+'&createTime='+this.createTime
         }
     },
     mounted() {
