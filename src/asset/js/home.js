@@ -15,7 +15,7 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-		  let url = getApiUrl('/rest/products/list');
+		  let url = getApiUrl('/shop-test/rest/products/list');
       $.ajax({
         type: "GET",
         url: url,
@@ -38,7 +38,7 @@ var vm = new Vue({
       location.href = 'goodsDetail.html?productId=' + productId
     },
     getAuthCode() {
-      let url = getApiUrl('/ding-isv-access/get_js_config');
+      let url = getApiUrl('/shop-test/ding-isv-access/get_js_config');
 
       // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
       

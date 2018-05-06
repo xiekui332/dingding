@@ -13,7 +13,7 @@ var vm = new Vue({
 	methods: {
 		//	请求数据
 		getBillOrder() {
-			let url = getApiUrl('/rest/bills/view')
+			let url = getApiUrl('/shop-test/rest/bills/view')
 			$.ajax({
 				type: 'get',
 				data: {
@@ -21,6 +21,7 @@ var vm = new Vue({
 				},
 				url: url,
 				success: (data) => {
+					//console.log(data)
 					if (data.code == 200) {
 						this.ordersProductEntity = data.data.ordersProductEntity;
 

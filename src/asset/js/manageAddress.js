@@ -8,7 +8,7 @@ var vm = new Vue({
     },
     methods:{
         getAddressList() {
-            let url = getApiUrl('/api/address/get_shipping_address_list/')
+            let url = getApiUrl('/shop-test/api/address/get_shipping_address_list/')
 			$.ajax({
                 url: url,
                 type: "POST",
@@ -81,7 +81,7 @@ var vm = new Vue({
                 title: '确认要删除收货地址吗',
                 message: ''
             }).then(() => {
-                let url = getApiUrl('/api/address/del_address/')
+                let url = getApiUrl('/shop-test/api/address/del_address/')
                 $.ajax({
                     url: url,
                     type: "POST",

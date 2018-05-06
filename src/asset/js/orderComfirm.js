@@ -45,7 +45,7 @@ var vm = new Vue({
 			if (!this.submitValid()) {
 				return
 			}
-			let url = getApiUrl('/rest/orders/dingding/create')
+			let url = getApiUrl('/shop-test/rest/orders/dingding/create')
 			$.ajax({
 				url: url,
 				type: "POST",
@@ -118,7 +118,7 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
-			let url = getApiUrl('/api/address/get_default_address/')
+			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
 				type: "GET",
@@ -163,7 +163,7 @@ var vm = new Vue({
 			location.href = 'manageAddress.html'
 		},
 		getGoodsInfo() {
-			let url = getApiUrl('/rest/ddproducts/dingding/view')
+			let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
 			$.ajax({
 				url: url,
 				type: "GET",

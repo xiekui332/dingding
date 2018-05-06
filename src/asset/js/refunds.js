@@ -17,7 +17,7 @@ var vm = new Vue({
         this.showA=false;
         $.ajax({
           type:'post',
-          url:getApiUrl('/nail/confirmreturn.html'),
+          url:getApiUrl('/shop-test/nail/confirmreturn.html'),
           data:{
             order_no:'ZY1525401037862742'
           },
@@ -62,7 +62,7 @@ var vm = new Vue({
 		init(){
 			$.ajax({
 				type:"post",
-				url:getApiUrl("/nail/requestreturn.html"),
+				url:getApiUrl("/shop-test/nail/requestreturn.html"),
 				async:true,
 				data:{
 					order_no:'ZY1525401037862742'

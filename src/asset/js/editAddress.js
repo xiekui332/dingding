@@ -29,7 +29,7 @@ var vm = new Vue({
 	},
 	methods: {
 		getAddress() {
-			let url = getApiUrl('/api/address/get_shipping_address_one/')
+			let url = getApiUrl('/shop-test/api/address/get_shipping_address_one/')
 			$.ajax({
 				url: url,
 				type: "POST",
@@ -45,6 +45,7 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
+					console.log(result)
 					if (result.code == 200) {
 						this.address = result.data
 					} else {
@@ -73,7 +74,7 @@ var vm = new Vue({
 			this.address.addressId = this.addressId
 			this.address.nailUserId = this.nailUserId
 			this.address.nailUserInfoId = this.nailUserInfoId
-			let url = getApiUrl('/api/address/add_shipping_address/')
+			let url = getApiUrl('/shop-test/api/address/add_shipping_address/')
 			$.ajax({
 				url: url,
 				type: "POST",
