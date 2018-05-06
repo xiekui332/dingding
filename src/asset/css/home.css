@@ -61,7 +61,7 @@
 .homeMain {
   width: 100%;
   background: #fff;
-  margin-bottom: 0.31rem;
+  margin-bottom: 0.2rem;
 }
 
 .homeMain-top {
@@ -163,6 +163,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  border-top: 1px solid #f7f7f7;
 }
 
 .mint-tabbar>.mint-tab-item.is-selected {
@@ -173,3 +174,11 @@
 .mint-tabbar>.mint-tab-item-icon.is-selected {
   background: #F3654C;
 }
+/* 底部遮挡修改
+ */
+ body{
+   padding-bottom: 1.1rem;
+ }
+ .mint-tabbar.is-fixed{
+  background: #fff;  
+ }
