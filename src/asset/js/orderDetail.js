@@ -23,14 +23,16 @@ var vm = new Vue({
         statusWords:'暂无',
         objAddress:'',
         orderNo:'',
-        createTime:''
+        createTime:'',
+        id:''
     },
     methods:{
         init:function(){
+            this.id = getUrlParam('orderId')
             $.ajax({
                 type:'get',
                 data:{
-                    id:177
+                    id:this.id
                 },
                 url:vm.url,
                 success:function(data){

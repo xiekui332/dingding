@@ -54,9 +54,10 @@
             </div>
             <p class="status-time">{{statusTime}}</p>
 
-            <div class="status-jump" @click="toLogistics">
+            <div class="status-jump" @click="toLogistics" v-if="status == 2 || status == 3 || status == 9 || status == 10">
                 <img src="asset/images/icon/jump.png" alt="">
             </div>
+            <div v-else></div>
 
             <!-- 待支付 无跳跃箭头 -->
             <!-- <div></div> -->
