@@ -104,5 +104,12 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     this.getAuthCode()
+
+
+    let sessionObj = {
+      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      userId: 6
+    }
+    setSession(sessionObj)
   },
 })

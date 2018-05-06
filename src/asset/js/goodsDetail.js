@@ -48,7 +48,7 @@ var vm = new Vue({
     },
     methods: {
         getGoodsDetail() {
-            let url = getApiUrl('/rest/ddproducts/dingding/view')
+            let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
             $.ajax({
                 url: url,
                 type: "GET",
