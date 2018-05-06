@@ -1,9 +1,10 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
+		user: {},
 		addressId: '',
-		nailUserId: '1',
-		nailUserInfoId: '1',
+		// nailUserId: '1',
+		// nailUserInfoId: '1',
 		address: {
 			addressId: '',
 			nailUserId: '1',
@@ -36,8 +37,8 @@ var vm = new Vue({
 				dataType: "json",
 				// contentType: "application/json",
 				data: {
-					nailUserId: this.nailUserId,
-					nailUserInfoId: this.nailUserInfoId,
+					nailUserId: this.user.userId,
+					nailUserInfoId: this.user.corpId,
 					addressId: this.addressId
 				},
 				xhrFields: {
@@ -45,7 +46,6 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-					console.log(result)
 					if (result.code == 200) {
 						this.address = result.data
 					} else {
@@ -71,9 +71,11 @@ var vm = new Vue({
 				ddToast('手机号码格式错误')
 				return
 			}
+
+			getSession() 
 			this.address.addressId = this.addressId
-			this.address.nailUserId = this.nailUserId
-			this.address.nailUserInfoId = this.nailUserInfoId
+			this.address.nailUserId = this.user.userId
+			this.address.nailUserInfoId = this.user.corpId
 			let url = getApiUrl('/shop-test/api/address/add_shipping_address/')
 			$.ajax({
 				url: url,
@@ -139,7 +141,8 @@ var vm = new Vue({
 	},
 	mounted() {
 		//身份信息
-
+		this.user = getSession()
+		
 		this.addressId = getUrlParam('addressId')
 		if (this.addressId) {
 			this.getAddress()
