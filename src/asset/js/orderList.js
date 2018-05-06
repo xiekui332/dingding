@@ -75,26 +75,26 @@ var vm = new Vue({
         ],
 
         orderList: [
-            {
-                orderId:1,
-                cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-                createTime: '2018-10-10 10:10:19',
-                status: 15,
-                productName: '123',
-                brief:'21324',
-                totalAmount: 123,
-                count: 2
-            },
-            {
-                orderId:1,
-                cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
-                createTime: '2018-10-10 10:10:1',
-                status: 16,
-                productName: '123',
-                brief:'21324',
-                totalAmount: 123,
-                count: 1
-            }
+            // {
+            //     orderId:1,
+            //     cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            //     createTime: '2018-10-10 10:10:19',
+            //     status: 15,
+            //     productName: '123',
+            //     brief:'21324',
+            //     totalAmount: 123,
+            //     count: 2
+            // },
+            // {
+            //     orderId:1,
+            //     cover: 'http://img.taozugong.com/product/2018-04-11/15293fb5jTpA2a',
+            //     createTime: '2018-10-10 10:10:1',
+            //     status: 16,
+            //     productName: '123',
+            //     brief:'21324',
+            //     totalAmount: 123,
+            //     count: 1
+            // }
         ],
         page: 1,
         pageSize: 15,
@@ -121,15 +121,17 @@ var vm = new Vue({
     methods: {
          //加载更多
         loadMore() {
+            if (this.orderList == 0) {
+                return;
+            }
             if (this.isEnd == true) {
                 return;
             }
             this.loading = true
+            alert(2)
             this.getOrderList();
         },
         getOrderList() {
-            this.isEnd = true
-            this.loading = false
             let url = getApiUrl('/shop-test/rest/orders/dingding/list')
             $.ajax({
                 url: url,
@@ -147,12 +149,12 @@ var vm = new Vue({
                 success: res => {
                     console.log(res)
                     if (res.code == 200) {
-                        if (res.data.length === 0) {
+                        if (res.data.data.length === 0) {
                             this.isEnd = true
                             this.loading = false
                             return
                         }
-                        this.orderList = this.orderList.concat(res.data);
+                        this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
                         this.loading = false;
 

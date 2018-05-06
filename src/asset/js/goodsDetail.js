@@ -118,12 +118,12 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     if (res.code == 200) {
-                        this.goodsDetail = res.data
-                        this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)
-                        this.goodsDetail.productDeposit = res.data.productDeposit.toFixed(2)
+                        // this.goodsDetail = res.data
+                        // this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)
+                        // this.goodsDetail.productDeposit = res.data.productDeposit.toFixed(2)
                         
-                        this.monthPrice = this.goodsDetail.productPrice
-                        this.productPriceId = res.data.productPriceEntity[0].id
+                        // this.monthPrice = this.goodsDetail.productPrice
+                        // this.productPriceId = res.data.productPriceEntity[0].id
                         
                     } else {
                         ddToast(res.message)
@@ -135,7 +135,7 @@ var vm = new Vue({
             });
 
 
-            location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
+            // location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
         },
     },
     created() {

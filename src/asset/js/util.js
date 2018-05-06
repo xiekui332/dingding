@@ -91,6 +91,11 @@ function getApiUrl(url) {
     return taozugonghost + url
 }
 
+function getPhpApiUrl(url) {
+    const taozugonghost = "http://test.api.taozugong.net";
+    return taozugonghost + url
+}
+
 var body = document.body.clientWidth;		
 document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
 
