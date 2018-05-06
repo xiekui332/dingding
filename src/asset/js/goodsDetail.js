@@ -62,6 +62,7 @@ var vm = new Vue({
                 },
                 crossDomain: true,
                 success: res => {
+                 //   console.log(res)
                     if (res.code == 200) {
                         this.goodsDetail = res.data
                         this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)

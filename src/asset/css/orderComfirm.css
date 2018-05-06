@@ -1,7 +1,7 @@
 body{
     font-family: 'PingFangSC-Regular';
     background: #f7f7f7;
-    padding-bottom: 3.1rem;
+    padding-bottom:2.7rem;
 }
 
 .renzh{
@@ -444,6 +444,9 @@ text-align: center;
 .item1 .van-stepper__stepper::after,.item1 .van-stepper__stepper::before{
     background-color: #F3654C;
     font-weight: bold;
+}
+.van-stepper .van-stepper__minus::before{
+    background-color: #F3654C;
 }
 .van-stepper__input{
 	line-height: .05rem;

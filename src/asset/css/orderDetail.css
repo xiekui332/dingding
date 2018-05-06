@@ -250,7 +250,7 @@ body{
 .address .small-jump{
 	width: .16rem;
 	position: absolute;right: .3rem;
-	bottom: .3rem;
+	bottom: .32rem;
 }
 .address>p{
     width: 6.6rem;float:left;
