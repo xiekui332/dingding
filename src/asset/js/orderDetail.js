@@ -17,7 +17,7 @@ var vm = new Vue({
         popTitle: '',
         popContent: [],
         setStyle: '',
-        url:getApiUrl('/shop-test/rest/orders/dingding/view'),
+        url: '',
         status:-1,  //  订单状态
         orderStatus:'暂无',     //  默认状态
         statusWords:'暂无',
@@ -27,16 +27,15 @@ var vm = new Vue({
         id:''
     },
     methods:{
-        init:function(){
-            this.id = getUrlParam('orderId')
+        getOrderDetail(){
+            let url = getApiUrl('/shop-test/rest/orders/dingding/view')
             $.ajax({
                 type:'get',
                 data:{
-                    id:this.id
+                    id:this.orderId
                 },
-                url:vm.url,
-                success:function(data){
-                     console.log(data)
+                url:url,
+                success:(data)=>{
                     if(data.code == 200){
                         vm.status = data.data.status;
                         if(vm.status == 9){
@@ -74,7 +73,6 @@ var vm = new Vue({
                         }
 
                         //  转化时间
-
                         vm.statusTime = getTime(data.data.createTime,2);
                         vm.phone = data.data.phone.substring(0,3)+'****'+data.data.phone.substring(7);
                         //    保证取值为两位有效数字
@@ -93,26 +91,16 @@ var vm = new Vue({
                         vm.createTime = data.data.createTime;
                     }
                 },
-                error:function(){
-                    console.log(':)')
+                error:(e)=>{
+                    ddToast('网络错误')
                 }
             })
         },
         toBillOrder:function(){
             location.href = 'billOrder.html?orderId=' + this.orderId
         },
-        contact:function(){
-            
-        },
-        close:function(){
-            $('.mask').hide();
-        },
-       // 立即支付
-        payNow:function(){
-
-        },
-        seePower:function(){
-			
+        toUserAuth(){
+            location.href = 'userAuth.html'
         },
         openModal:function(modalType) {
             if (modalType == 'payTip') {
@@ -139,32 +127,17 @@ var vm = new Vue({
             }
             this.showPop = true
         },
-        // 申请退款
-        refund:function(){
-
-        },
         //  申请归还
         retBack:function(){
 			location.href='refunds.html?orderId=' + this.orderId
         },
         //  跳转物流信息
         toLogistics() {
-            location.href='logistics.html?orderNo=' + this.orderNo+'&createTime='+this.createTime
+            location.href='logistics.html?orderNo=' + this.orderNo + '&createTime=' + this.createTime
         }
     },
     mounted() {
-        var body = document.body.clientWidth;		
-        document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
-
-       
+        this.orderId = getUrlParam('orderId')
+        this.getOrderDetail()
     },
 })
-
-vm.init();
-
-// 蒙版方法
-function mask(){
-    var w = $(window).width(),
-        h = $(window).height();
-        $('.mask').width(w).height(h);
-    }

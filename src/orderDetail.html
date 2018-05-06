@@ -188,17 +188,15 @@
 
         <!-- 联系客服，查看账单 -->
         <div class="kf">
-            
-            
             <!-- 查看授权信息 -->
             <div v-if="status == 15">
-                <div @click="seePower" class="seePower btnIng">查看授权信息</div>
+                <div @click="toUserAuth" class="seePower btnIng">查看授权信息</div>
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
-                <div @click="refund()" class="btnIng">申请退款</div>
+                <!-- <div @click="refund()" class="btnIng">申请退款</div> -->
             </div>
             <div v-else-if="status == 16">
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
-                <div @click="" class="seeCount2 btnIng">授权申请</div>
+                <div @click="toUserAuth" class="seeCount2 btnIng">授权申请</div>
             </div>
             <div v-else-if="status == 9">
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
@@ -207,34 +205,34 @@
             </div>
             <div v-else>
                 <div @click="openModal('contactTip')" class="btnIng">联系客服</div>
-                <div @click="toBillOrder()" class="btnIng">查看账单</div>
+                <div @click="toBillOrder" class="btnIng">查看账单</div>
             </div>
 
         </div>
 
         <!-- 审核通过 -->
         <div class="pay_btn" v-if="status == 0">
-            <div class="pay_now" @click="payNow">
+            <div class="pay_now" @click="">
                 立即支付
             </div>
         </div>
 
         
         <!-- 待发货弹窗 -->
-        <div class="mask" style="display: none;">
+        <!-- <div class="mask" style="display: none;">
             <div class="tt-ch">
                 <div class="data-box">
                     <p class="t-head">签收须知</p>
                     <div class="four-w">
                         <p>收货当天你需求：</p>
                         <p>1.检查商品外包装完整；</p>
-                        <p> 2.快递本人签收；</p>
+                        <p>2.快递本人签收；</p>
                         <p>3.签收当天视为合约生效</p>
                     </div>
                     <img src="asset/images/icon/close.png" alt="" class="close-tt" @click="close">
                 </div>
             </div>
-        </div>
+        </div> -->
 
         <pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
 	</div>

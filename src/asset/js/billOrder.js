@@ -1,6 +1,5 @@
 var vm = new Vue({
 	el: '#app',
-	//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 	data: {
 		orderId: 202,
 		noPaidList: [],
@@ -55,6 +54,7 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		this.orderId = getUrlParam('orderId')
 		this.getBillOrder()
 	}
 })
