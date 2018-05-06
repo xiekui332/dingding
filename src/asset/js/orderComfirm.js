@@ -65,13 +65,16 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-
-					if (result.code == 7010 || result.code == 7016) {//未授权 或 拒绝
-						// location.href = 'userAuth.html?productId=' + this.order.productId
-					} else if (result.code == 7014) {//待审核
-						ddToast("授权待审核中")
-					} else if (result.code == 7015) {  //审核通过
-						// 支付
+					if (result.code == 200) {
+						if (result.data.code == 7010 || result.data.code == 7016) {//未授权 或 拒绝
+							// location.href = 'userAuth.html?productId=' + this.order.productId
+						} else if (result.data.code == 7014) {//待审核
+							ddToast("授权待审核中")
+						} else if (result.data.code == 7015) {  //审核通过
+							// 支付
+						}
+					} else {
+						ddToast(result.message)
 					}
 				},
 				error: e => {
