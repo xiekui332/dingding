@@ -147,7 +147,6 @@ var vm = new Vue({
                 },
                 crossDomain: true,
                 success: res => {
-                    console.log(res)
                     if (res.code == 200) {
                         if (res.data.data.length === 0) {
                             this.isEnd = true
@@ -234,24 +233,12 @@ var vm = new Vue({
             // this.ordersDisplay = false
             this.getOrderList()
         },
-        toLogistics() {
-            location.href = 'logistics.html'
+        toLogistics(item) {
+            location.href = 'logistics.html?orderNo=' + item.sn + '&createTime=' + item.createTime
         },
         toOrderDetail() {
             location.href = 'orderDetail.html'
         },
-        // setTitle() {
-        //     console.info('setTitle')
-        //     dd.biz.navigation.setTitle({
-        //         title : '邮箱正文',//控制标题文本，空字符串表示显示默认文本
-        //         onSuccess : function(result) {
-        //             /*结构
-        //             {
-        //             }*/
-        //         },
-        //         onFail : function(err) {}
-        //     });
-        // }
     },
     created() {
     },
@@ -262,6 +249,5 @@ var vm = new Vue({
         if (status) {
             this.chooseCategory(status, -1)
         }
-        // this.getOrderList()
     }
 })

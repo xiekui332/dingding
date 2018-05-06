@@ -49,8 +49,8 @@ var vm = new Vue({
     },
     methods: {
         onFileChange(e, index) {
-            // let url =  getApiUrl('/shop-test/img/upload.do') 
-            let url =  '/getapi/shop-test/img/upload.do'
+            let url =  getApiUrl('/shop-test/img/upload.do') 
+            // let url =  '/getapi/shop-test/img/upload.do'
             
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
@@ -77,9 +77,10 @@ var vm = new Vue({
                     return true
                 }
             })
-            if (message) {
+            if (message != true) {
                 return message
             }
+            
             if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
                 message = '请上传凭证' 
             } else if (!checkIdcard(this.userAuth.idcard)) {
@@ -140,27 +141,26 @@ var vm = new Vue({
                 success: result => {
                     if (result.code == 200) {
                         this.isFirstAuth = false
-                        
                         this.userAuth = result.data
-                        this.userAuth.status = this.authStatus.fail
                         // 审核拒绝可再编辑
-                        if (this.userAuth.status === this.authStatus.fail) {
+                        if (this.userAuth.status == this.authStatus.fail) {
                             this.canEdit = true
                             this.authHead.icon = 'asset/images/icon/auth_fail.png'
                             this.authHead.title = '审核拒绝'
                             this.authHead.describe[0] = this.userAuth.rejectReason
                             this.authHead.describe[1] = '请重新编辑授权信息，再次提交审核'
-                        } else if (this.userAuth.status === this.authStatus.success) {
+                        } else if (this.userAuth.status == this.authStatus.success) {
                             this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_success.png'
                             this.authHead.title = '审核通过'
                             this.authHead.describe[0] = '恭喜你，授权信息已经审核通过；可以前往订单列表页完成支付'
-                        } else if (this.userAuth.status === this.authStatus.audit) {
+                        } else if (this.userAuth.status == this.authStatus.audit) {
                             this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_audit.png'
                             this.authHead.title = '审核中'
                             this.authHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
                         }
+                        console.log( this.userAuth )
                     } else if (result.code == 7010) {
                         this.isFirstAuth = true
                         this.canEdit = true
@@ -179,9 +179,7 @@ var vm = new Vue({
                 return
             }
 
-            // let url = '/getapi/rest/dingDingUserInfo/Ddcreate'
-            let url = getApiUrl('/rest/dingDingUserInfo/Ddupdate')
-            this.userAuth.id = this.authId
+            let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddupdate')
             $.ajax({
                 url: url,
                 type: "POST",
@@ -205,7 +203,9 @@ var vm = new Vue({
             });
         },
         zhimaAuth() {
-            let url = getPhpApiUrl('/nail/zhimaauth.html')
+            // let url = getPhpApiUrl('/nail/zhimaauth.html')
+            let url = '/getapi/nail/zhimaauth.html'
+            
             $.ajax({
                 url: url,
                 type: "POST",
@@ -213,7 +213,9 @@ var vm = new Vue({
                 data: {
                     name: this.userAuth.name,
                     card: this.userAuth.idcard,
-                    productId: this.productId
+                    productId: this.productId,
+                    nail_crop_id: this.user.corpId,
+                    userid: this.user.userId
                 },
                 xhrFields: {
                     withCredentials: true

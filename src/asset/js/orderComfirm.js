@@ -3,15 +3,17 @@ var vm = new Vue({
 	el: '#app',
 	data: {
 		user: {},
+		productDeposit: 0,
 		// nailUserId: 1,
 		// nailUserInfoId: 1,
+		zmStatus: 0,
 		productId: 0,
 		skuId: 0,
 		hasDefaultAddress: false,
 		address: {},
 		order: {
-			nailUserId: '1',
-			nailCropId: '1',
+			nailUserId: '',
+			nailCropId: '',
 			productId: '',
 			productPriceId: '',
 			companyName: '',
@@ -31,8 +33,11 @@ var vm = new Vue({
 			cover: '',
 			brief: '',
 			count: 1,
-			productPrice: {}
+			productPrice: {},
+			totalAmount: 0,
+			productDeposit: 0
 		},
+		redeceDeposit: 10000,
 		isAgreement: false,
 		showAddressTip: false,
 		readFile: false,	//	提示勾选阅读提示
@@ -46,25 +51,27 @@ var vm = new Vue({
 			if (!this.submitValid()) {
 				return
 			}
-			let url = getApiUrl('/shop-test/rest/orders/dingding/create')
+			let url = getApiUrl('/shop-test/rest/orders/Ddcreate')
+			this.order.nailUserId = this.user.userId
+			this.order.nailCropId = this.user.corpId
 			$.ajax({
 				url: url,
 				type: "POST",
 				dataType: "json",
-				data: this.order,
+                contentType: "application/json",
+				data: JSON.stringify(this.order),
 				xhrFields: {
 					withCredentials: true
 				},
 				crossDomain: true,
 				success: result => {
-					if (result.code == 200) {
-						// 没有进行授权需求去授权
-						location.href = 'userAuth.html?productId=' + this.order.productId
 
-
-						//已授权直接支付
-					} else {
-						ddToast(result.message)
+					if (result.code == 7010 || result.code == 7016) {//未授权 或 拒绝
+						// location.href = 'userAuth.html?productId=' + this.order.productId
+					} else if (result.code == 7014) {//待审核
+						ddToast("授权待审核中")
+					} else if (result.code == 7015) {  //审核通过
+						// 支付
 					}
 				},
 				error: e => {
@@ -136,18 +143,18 @@ var vm = new Vue({
 					if (result.code == 200) {
 						if (result.data) {
 							this.hasDefaultAddress = true
-							this.order.name = result.data.username
-							this.order.phone = result.data.mobile
+							this.order.name = result.data.addressEntity.username
+							this.order.phone = result.data.addressEntity.mobile
 
 							//要改
-							this.order.address = result.data.detail
+							this.order.address = result.data.addressVo.address
 
-							this.order.detail = result.data.detail
-							this.order.provinceId = result.data.provinceId
-							this.order.cityId = result.data.cityId
-							this.order.districtId = result.data.districtId
-							this.order.companyName = result.data.company
-							this.order.mobile = result.data.mobile.substring(0, 4) + '****' + result.data.mobile.substring(7)
+							// this.order.detail = result.data.detail
+							this.order.provinceId = result.data.addressEntity.provinceId
+							this.order.cityId = result.data.addressEntity.cityId
+							this.order.districtId = result.data.addressEntity.districtId
+							this.order.companyName = result.data.addressEntity.company
+							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
 						} else {
 							this.hasDefaultAddress = false
 						}
@@ -201,18 +208,47 @@ var vm = new Vue({
 		},
 		getTotalAmount() {
 			this.goodsInfo.totalAmount = (this.goodsInfo.count * this.goodsInfo.productPrice.price * this.goodsInfo.productPrice.timeLength).toFixed(2)
+			this.goodsInfo.productDeposit = (this.goodsInfo.count * this.goodsInfo.productPrice.price * this.goodsInfo.productPrice.timeLength)
+			if (this.zmStatus == 7018) {
+				this.goodsInfo.productDeposit = (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) ? (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) : 0
+			}
+			this.goodsInfo.productDeposit = this.goodsInfo.productDeposit.toFixed(2)
 		},
 		countChange() {
 			this.getTotalAmount()
+		},
+		getZmStatus() {
+			let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdZmStatus')
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType: "json",
+				data: {
+					nailCropId: this.user.corpId,
+					userId: this.user.userId
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					//7019小于700; 7020 为空； 7018大于700；
+					this.zmStatus = result.code
+					this.getGoodsInfo()
+				},
+				error: e => {
+					ddToast('网络错误')
+				}
+			})
+
 		}
 	},
 	mounted() {
 		this.user = getSession()
-		console.log(this.user)
 		this.order.productId = getUrlParam('productId')
 		this.order.productPriceId = getUrlParam('productPriceId')
 		this.order.count = getUrlParam('count')
 		this.getAddress()
-		this.getGoodsInfo()
+		this.getZmStatus()
 	},
 })
