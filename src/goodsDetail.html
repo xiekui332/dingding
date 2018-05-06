@@ -184,7 +184,7 @@
 	<div id="app">
         <div class="regular">
             
-            <mt-swipe :auto="400000" style="height:6.82rem;" class="writeBackColor layout">
+            <mt-swipe :auto="3000" style="height:6.82rem;" class="writeBackColor layout">
                 <mt-swipe-item v-for="(item, index) in goodsDetail.productImages">
                     <img class="full-width" :src="item.imagePath" style="will-change: transform;">
                 </mt-swipe-item>
@@ -216,7 +216,7 @@
                 <span @click="tabTap(1)" :class="{'tabActive':tabActive==1}">规格参数</span>
                 <span @click="tabTap(2)" :class="{'tabActive':tabActive==2}">售后说明</span>
             </div>
-            <div style="margin-bottom:1rem">
+            <div style="margin-bottom:1rem" v-if="goodsDetail.productDescEntity">
                 <div v-for="item in goodsDetail.productDescEntity.contentlist" v-show="tabActive == 0" :key="item">
                     <image :src="item" class="full-width"/>
                 </div>

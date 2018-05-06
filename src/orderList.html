@@ -151,7 +151,7 @@
                         </div>
                         <a @click="toOrderDetail()"><good-info :goodsinfo="item"></good-info></a>
                         <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
-                            <button class="hollow-button" @click="toLogistics">订单跟踪</button>
+                            <button class="hollow-button" @click="toLogistics(item)">订单跟踪</button>
                         </div>
                     </div>
                 </div>

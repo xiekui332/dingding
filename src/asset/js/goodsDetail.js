@@ -110,24 +110,20 @@ var vm = new Vue({
                 type: "POST",
                 dataType: "json",
                 data: {
-                    id: this.user.userId,
-                    nailCropId: this.user.cropId
+                    userId: this.user.userId,
+                    nailCropId: this.user.corpId
                 },
                 xhrFields: {
                     withCredentials: true
                 },
                 crossDomain: true,
                 success: res => {
-                    if (res.code == 200) {
-                        // this.goodsDetail = res.data
-                        // this.goodsDetail.productPrice = res.data.productPriceEntity[0].price.toFixed(2)
-                        // this.goodsDetail.productDeposit = res.data.productDeposit.toFixed(2)
-                        
-                        // this.monthPrice = this.goodsDetail.productPrice
-                        // this.productPriceId = res.data.productPriceEntity[0].id
-                        
+                    // 7010 未提交授权信息；7014 授权待审核；7015 授权审核通过；7016 授权审核拒绝
+                    if (res.code == 7014) {
+                        ddToast('授权信息审核中~')
+                        return
                     } else {
-                        ddToast(res.message)
+                        location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
                     }
                 },
                 error: e => {
@@ -136,7 +132,6 @@ var vm = new Vue({
             });
 
 
-            // location.href = 'orderComfirm.html?productId=' + this.productId + '&productPriceId=' + this.productPriceId + '&count=' + this.count
         },
     },
     created() {

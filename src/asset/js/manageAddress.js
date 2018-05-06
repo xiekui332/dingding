@@ -4,7 +4,7 @@ var vm = new Vue({
         user: {},
         // nailUserId: 1,
         // nailUserInfoId: 1,
-        activeAddressId: 1, 
+        activeAddressId: -1, 
         addressList:[],
     },
     methods:{
