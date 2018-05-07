@@ -28,8 +28,6 @@ var vm = new Vue({
 	methods: {
 		getOrderDetail() {
 			let url = getApiUrl('/shop-test/rest/orders/dingding/view')
-			// let url = 'http://192.168.17.214:8080/rest/orders/dingding/view'
-
 			$.ajax({
 				type: 'get',
 				data: {
@@ -39,7 +37,6 @@ var vm = new Vue({
 				success: (data) => {
 					if (data.code == 200) {
 						vm.status = data.data.status;
-						vm.status = 3
 						if (vm.status == 9) {
 							vm.statusWords = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
 							vm.orderStatus = '租用中';
@@ -74,7 +71,7 @@ var vm = new Vue({
 							vm.bottom = true;
 						} else {
 							vm.statusWords = '订单失效';
-							vm.orderStatus = '订单取消';
+							vm.orderStatus = '订单失效';
 							vm.bottom = true;
 						}
 

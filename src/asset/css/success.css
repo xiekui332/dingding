@@ -33,11 +33,12 @@ body{
     float: left;
 }
 .sec-1 .gx{
-    font-size: .36rem;
+    color: #333;
+    font-size: .34rem;
     margin-top: .3rem;
 }
 .will{
-    font-size: .34rem;
+    font-size: .30rem;
     color: #999;
     margin-top: .2rem;
 }
