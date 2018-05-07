@@ -203,9 +203,7 @@ var vm = new Vue({
             });
         },
         zhimaAuth() {
-            // let url = getPhpApiUrl('/nail/zhimaauth.html')
-            let url = '/getapi/nail/zhimaauth.html'
-            
+            let url = getPhpApiUrl('/nail/zhimaauth.html')
             $.ajax({
                 url: url,
                 type: "POST",
