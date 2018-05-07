@@ -4,6 +4,7 @@ var vm = new Vue({
     props: {
     },
     data: {  
+      orderNo: '',
       showA:true,
       showB:false,
       dataArray:[],
@@ -12,14 +13,13 @@ var vm = new Vue({
     watch: {},
     filters: {},
     methods: {
-//  	确认归还按钮
       toRefundsing(){
         this.showA=false;
         $.ajax({
           type:'post',
           url:getApiUrl('/shop-test/nail/confirmreturn.html'),
           data:{
-            order_no:'ZY1525401037862742'
+            order_no: this.orderNo
           },
           xhrFields:{
             withCredentials:true
@@ -39,33 +39,14 @@ var vm = new Vue({
             ddToast('网络错误')
           }
         })
-        
-       
-        dd.ready(function() {
-         
-          dd.runtime.permission.requestAuthCode({
-              corpId: "corpid",
-              onSuccess: function(result) {
-                console.log(result)
-              /*{
-                  code: 'hYLK98jkf0m' //string authCode
-              }*/
-              },
-              onFail : function(err) {}
-        
-          });
-      });
-
-
       },
-//    页面加载函数
 		init(){
 			$.ajax({
 				type:"post",
-				url:getApiUrl("/shop-test/nail/requestreturn.html"),
+				url:getPhpApiUrl("/shop-test/nail/requestreturn.html"),
 				async:true,
 				data:{
-					order_no:'ZY1525401037862742'
+					order_no: this.orderNo
 				},
 				xhrFields:{
 					withCredentials:true
@@ -87,9 +68,8 @@ var vm = new Vue({
     },
     created() {},
     destroyed() {},
-    mounted: function () {
-      var body = document.body.clientWidth;
-      document.documentElement.style.fontSize = document.documentElement.clientWidth / 7.5 + 'px';
+    mounted() {
+      this.orderNo = getUrlParam('order_no')
       this.init();
     },
   })

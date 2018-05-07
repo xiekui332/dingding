@@ -39,11 +39,16 @@ var vm = new Vue({
 						} else {
 							this.flag = 1
 							this.logistic.push({
-								time: dateFormat(parseInt(this.createTime), 19, '-','-',' '),
+								time: dateFormat(parseInt(this.createTime), 16, '-','-',''),
 								status: '正在为你备货，请耐心等待'
 							})
 						}
 					} else {
+						// this.flag = 1
+						// this.logistic.push({
+						// 	time: dateFormat(parseInt(this.createTime), 16, '-','-',''),
+						// 	status: '正在为你备货，请耐心等待'
+						// })
 						ddToast(res.message)
 					}
 				},

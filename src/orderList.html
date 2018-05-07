@@ -146,10 +146,10 @@
                 <div v-if="orderList.length" :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
                     <div v-for="(item, index) in orderList" :key="index">
                         <div class="orderBar line mediumerFont black">
-                            <span>{{item.createTime}}</span>
+                            <span>{{item.orderTime}}</span>
                             <span>{{getOrderStatus(item.status)}}</span>
                         </div>
-                        <a @click="toOrderDetail()"><good-info :goodsinfo="item"></good-info></a>
+                        <a @click="toOrderDetail(item)"><good-info :goodsinfo="item"></good-info></a>
                         <div class="footer" v-if="item.status == 3 || item.status == 9 || item.status == 10">
                             <button class="hollow-button" @click="toLogistics(item)">订单跟踪</button>
                         </div>
@@ -173,6 +173,7 @@
 </body>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="asset/js/util.js"></script>
+<script src="static/js/date.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
