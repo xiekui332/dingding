@@ -47,7 +47,8 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						this.address = result.data
+						this.address = result.data.addressEntity
+						this.addressName = result.data.addressVo.prefix
 					} else {
 						ddToast(result.message)
 					}
@@ -72,7 +73,6 @@ var vm = new Vue({
 				return
 			}
 
-			getSession() 
 			this.address.addressId = this.addressId
 			this.address.nailUserId = this.user.userId
 			this.address.nailUserInfoId = this.user.corpId

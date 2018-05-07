@@ -162,7 +162,7 @@ var vm = new Vue({
 							this.hasDefaultAddress = false
 						}
 					} else {
-						ddToast(result.message)
+						// ddToast(result.message)
 					}
 				},
 				error: e => {
