@@ -68,6 +68,7 @@ var vm = new Vue({
             dd.biz.user.get({
               corpId: this.corpId, // 可选参数，如果不传则使用用户当前企业的corpId。
               onSuccess:(info) => {
+                alert(11)
                 alert(JSON.stringify(info))
               },
               onFail:(err)=>{

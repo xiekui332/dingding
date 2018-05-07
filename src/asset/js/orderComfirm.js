@@ -64,11 +64,11 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						if (result.data.code == 7010 || result.data.code == 7016) {//未授权 或 拒绝
-							// location.href = 'userAuth.html?productId=' + this.order.productId
-						} else if (result.data.code == 7014) {//待审核
+						if (result.data.authCode == 7010 || result.data.authCode == 7016) {//未授权 或 拒绝
+							location.href = 'userAuth.html?productId=' + this.order.productId
+						} else if (result.data.authCode == 7014) {//待审核
 							ddToast("授权待审核中")
-						} else if (result.data.code == 7015) {  //审核通过
+						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
 						}
 					} else {
@@ -79,7 +79,6 @@ var vm = new Vue({
 					ddToast('网络错误')
 				}
 			})
-
 		},
 		submitValid() {
 			//	判断是否添加收货地址，改变show的状态触发提示
@@ -211,7 +210,7 @@ var vm = new Vue({
 			this.goodsInfo.totalAmount = (this.goodsInfo.count * this.goodsInfo.productPrice.price * this.goodsInfo.productPrice.timeLength).toFixed(2)
 			this.goodsInfo.productDeposit = (this.goodsInfo.count * this.goodsInfo.productPrice.price * this.goodsInfo.productPrice.timeLength)
 			if (this.zmStatus == 7018) {
-				this.goodsInfo.productDeposit = (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) ? (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) : 0
+				this.goodsInfo.productDeposit = (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) > 0 ? (parseFloat(this.goodsInfo.productDeposit) - this.redeceDeposit) : 0
 			}
 			this.goodsInfo.productDeposit = this.goodsInfo.productDeposit.toFixed(2)
 		},

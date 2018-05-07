@@ -1,1 +1,0 @@
-"use strict";var vm=new Vue({el:"#app",data:{},methods:{see:function(){},back:function(){}}});
