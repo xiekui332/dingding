@@ -13,9 +13,7 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      // let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
-      let url = '//192.168.17.214:8080/rest/ddproducts/dingding/list';
-      
+      let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
         type: "GET",
         url: url,
