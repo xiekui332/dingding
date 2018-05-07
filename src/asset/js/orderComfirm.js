@@ -4,8 +4,6 @@ var vm = new Vue({
 	data: {
 		user: {},
 		productDeposit: 0,
-		// nailUserId: 1,
-		// nailUserInfoId: 1,
 		zmStatus: 0,
 		productId: 0,
 		skuId: 0,

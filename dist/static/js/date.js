@@ -33,12 +33,9 @@ function getOverdueTime(year, month, date, time) {//3  7
 
 function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     if (!length) {
-        length = 19
+        length = 20
     }
-
     var newDate = new Date(dateF)
-    console.info('newDate:'+newDate)
-
     var year = newDate.getFullYear()
     var month = tranformTow(newDate.getMonth()+1)
     var date = tranformTow(newDate.getDate())
@@ -46,9 +43,9 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     var minute = tranformTow(newDate.getMinutes())
     var second = tranformTow(newDate.getSeconds())
 
-    var newDate = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
+    var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
 
-    return newDate.substring(0, length)
+    return newDate1.substring(0, length)
 }
 
 function tranformTow(number) {
@@ -61,7 +58,7 @@ function getTime(createTime,a) {
 	let Y, M, D, h, m, s
 	Y = date.getFullYear() + '年'
 	M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '月'
-	D = date.getDate() + '日'
+	D = tranformTow(date.getDate()) + '日 '
 	h = tranformTow(date.getHours()) + ':'
 	m = tranformTow(date.getMinutes())
     s = tranformTow(date.getSeconds())

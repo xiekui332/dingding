@@ -95,7 +95,7 @@
 </style>
 <body>
 	<div id="app">
-        <div class="express writeBackColor">
+        <div class="express writeBackColor" v-if="!flag">
             <div>
                 <img src="asset/images/icon/logistic_icon.png" class="expressImg"/>
                 <div class="expressRight">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="logistic && logistic.length" class="logistic" v-cloak>
+        <div v-if="logistic && logistic.length" class="logistic">
             <div v-for="(item, index) in logistic">
                 <div class="log" :style="{color: !index ? '#666666':''}">
                 <div class="date">
@@ -126,4 +126,4 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/util-9d5b372691.js"></script>
 <script src="static/js/date.js"></script>
-<script src="asset/js/logistics-243afb407d.js"></script>
+<script src="asset/js/logistics-6845bad8da.js"></script>

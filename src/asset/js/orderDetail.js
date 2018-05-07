@@ -27,8 +27,8 @@ var vm = new Vue({
 	},
 	methods: {
 		getOrderDetail() {
-			// let url = getApiUrl('/shop-test/rest/orders/dingding/view')
-			let url = 'http://192.168.17.214:8080/rest/orders/dingding/view'
+			let url = getApiUrl('/shop-test/rest/orders/dingding/view')
+			// let url = 'http://192.168.17.214:8080/rest/orders/dingding/view'
 
 			$.ajax({
 				type: 'get',
@@ -39,7 +39,7 @@ var vm = new Vue({
 				success: (data) => {
 					if (data.code == 200) {
 						vm.status = data.data.status;
-						vm.status = 9
+						vm.status = 3
 						if (vm.status == 9) {
 							vm.statusWords = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
 							vm.orderStatus = '租用中';
@@ -80,7 +80,7 @@ var vm = new Vue({
 
 						//  转化时间
 						vm.statusTime = getTime(data.data.createTime, 2);
-						vm.phone = data.data.phone.substring(0,3)+'****'+data.data.phone.substring(7);
+						vm.phone = data.data.phone.substring(0, 3) + '****' + data.data.phone.substring(7);
 						//    保证取值为两位有效数字
 						if (data.data.totalAmount == null || data.data.totalAmount == 0) {
 							data.data.totalAmount = 0.00
@@ -135,7 +135,7 @@ var vm = new Vue({
 		},
 		//  申请归还
 		retBack() {
-			location.href = 'refunds.html?orderId=' + this.orderId
+			location.href = 'refunds.html?orderNo=' + this.orderNo
 		},
 		//  跳转物流信息
 		toLogistics() {
