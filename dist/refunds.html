@@ -12,12 +12,12 @@
    
    <div id="app">
         <div class="backbround">
-          <img src="/src/asset/images/icon/rend.png">  
+          <img src="asset/images/icon/rend.png">  
         </div> 
         <div class="contain">
            <div class="refunds" v-if="showA">
              <div class="refunds-top">
-                <img src="/src/asset/images/icon/rentou.png" class="refundsImg"> 
+                <img src="asset/images/icon/rentou.png" class="refundsImg"> 
              </div>
             <div class="refunds-title">
                 <span class="forward">归还需知</span>  
@@ -66,25 +66,25 @@
                 </ul> 
                 <div class="refunds-bottom">
                 <a  @click="toRefundsing()" class="btn1" >确认归还</a> 
-                <a  href="javascript:void(0)" class="btn1 te">取消</a> 
+                <a  @click="toOrderDetail" class="btn1 te">取消</a> 
             </div> 
             </div>  
            </div>
            <!-- 确认归还状态改变 -->
            <div class="refunds" v-else style="height:8.26rem">
             <div class="refunds-top">
-                <img src="/src/asset/images/icon/rentou.png" class="refundsImg" style="width:1.37rem;height:1.37rem;"> 
+                <img src="asset/images/icon/rentou.png" class="refundsImg" style="width:1.37rem;height:1.37rem;"> 
             </div>
             <div class="refundsing-center">
-               <img src="/src/asset/images/icon/en.png" class="refundsingImg" v-if="!showB">
-               <img src="/src/asset/images/icon/en1.png" class="refundsingImg" v-else>  
+               <img src="asset/images/icon/en.png" class="refundsingImg" v-if="!showB">
+               <img src="asset/images/icon/en1.png" class="refundsingImg" v-else>  
             </div>
             <div class="refundsing-center1">
                <div class="receive">{{showB==true ? '还款成功' : '归还中'}}</div>
                <div class="callTele">{{showB==true ? '商品归还成功，有问题可拨打客服电话':'商品归还中，有问题可拨打客服电话'}}</div> 
             </div>
             <div class="receive-bottom">
-              <img src="/src/asset/images/icon/bot.png" class="cloned">  
+              <img src="asset/images/icon/bot.png" class="cloned">  
             </div>
           </div>
 
@@ -106,24 +106,6 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/util-9d5b372691.js"></script>
 <script src="static/js/date.js"></script>
-<script src="asset/js/refunds-b620bdf4a9.js"></script>
+<script src="asset/js/refunds-a9a7b9563f.js"></script>
 <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-<script>
-  dd.ready(function(){
-    dd.biz.navigation.setTitle({
-      title : '申请归还',//控制标题文本，空字符串表示显示默认文本
-      onSuccess : function(result) {
-      },
-      onFail : function(err) {}
-   });
-   dd.biz.navigation.setright({
-     control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-     text: '返回',//控制显示文本，空字符串表示显示默认文本
-     onSuccess : function(result) {
-     },
-     onFail : function(err) {}
-   });  
-});
-
-</script>
 </html>
