@@ -27,6 +27,7 @@ var vm = new Vue({
           categoryId: 1
         },
         success: (json) => {
+        //  console.log(json)
           this.goodsList1 = json.data
         }
       })
@@ -54,14 +55,16 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-
-          console.log(res)
+         
           ddConfig(res)
           dd.ready(() => {
+          //  获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
+                //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
+                
                 getUserId(result.code)
               },
               onFail: (err) => {
