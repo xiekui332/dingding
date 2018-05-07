@@ -5,8 +5,13 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>退款说明</title>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
-    <link rel="stylesheet" href="asset/css/refunds-83e96d8b9f.css">
+    <link rel="stylesheet" href="asset/css/refunds-3a6e032bd3.css">
     <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css"/>
+    <style>
+      [v-cloak]{
+        display: none;
+      }
+    </style>
 </head>
 <body>
    
@@ -14,7 +19,7 @@
         <div class="backbround">
           <img src="asset/images/icon/rend.png">  
         </div> 
-        <div class="contain">
+        <div class="contain" v-cloak>
            <div class="refunds" v-if="showA">
              <div class="refunds-top">
                 <img src="asset/images/icon/rentou.png" class="refundsImg"> 
@@ -90,14 +95,15 @@
 
         </div>
         <div class="refundsFooter">
-       <div class="refundsBottom">
-          <span class="oneLine"></span>
-          <div class="serviceTelephone">
-              客服电话：<em class="em">0571 85180735</em>  
-            </div> 
-          <span class="twoLine"></span> 
-      </div>    
+          <div class="refundsBottom">
+              <span class="oneLine"></span>
+              <div class="serviceTelephone">
+                  客服电话：<em class="em">0571 85180735</em>  
+                </div> 
+              <span class="twoLine"></span> 
+          </div>    
         </div>  
+        <p style="clear: both"></p>
    </div>      
 </body>  
 <script src="static/js/zepto.min.js"></script>

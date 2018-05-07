@@ -71,17 +71,6 @@ var vm = new Vue({
                 alert("fail" + JSON.stringify(err))
               }
             })
-
-            dd.biz.user.get({
-              corpId: this.corpId, // 可选参数，如果不传则使用用户当前企业的corpId。
-              onSuccess:(info) => {
-                alert(11)
-                alert(JSON.stringify(info))
-              },
-              onFail:(err)=>{
-                ddToast(JSON.stringify(err))
-              }
-            });
           });
         },
         error: e => {
@@ -126,12 +115,11 @@ var vm = new Vue({
     this.getAuthCode()
 
 
-    let sessionObj = {
-      // corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      corpId: 1,
-      userId: 1
-    }
-    setSession(sessionObj)
+    // let sessionObj = {
+    //   corpId: 1,
+    //   userId: 1
+    // }
+    // setSession(sessionObj)
   },
 })
 
