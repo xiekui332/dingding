@@ -31,9 +31,11 @@ var vm = new Vue({
         }
       })
     },
+    // 跳往我的页面
     toUserCenter() {
       location.href = 'userCenter.html'
     },
+    //  跳往商品详情
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
@@ -52,6 +54,8 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
+
+          console.log(res)
           ddConfig(res)
           dd.ready(() => {
             dd.runtime.permission.requestAuthCode({
