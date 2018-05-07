@@ -8,7 +8,7 @@
   }
   .contain{
       
-    margin-top:-5.5rem;  
+    margin-top:-6rem;  
     width:100%;
     background:#fff;
     padding-top:1.09rem; 
@@ -224,3 +224,6 @@
     width:100%;
     height:0.49rem;
   } 
+  body{
+    background: #fff!important;
+  }

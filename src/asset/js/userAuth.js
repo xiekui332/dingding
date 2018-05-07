@@ -139,6 +139,7 @@ var vm = new Vue({
                 },
                 crossDomain: true,
                 success: result => {
+                    console.log(result)
                     if (result.code == 200) {
                         this.isFirstAuth = false
                         this.userAuth = result.data
