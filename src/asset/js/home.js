@@ -1,4 +1,3 @@
-
 var vm = new Vue({
   el: '#app',
   components: {},
@@ -14,7 +13,9 @@ var vm = new Vue({
   filters: {},
   methods: {
     getGoodsList(id) {
-      let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
+      // let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
+      let url = '//192.168.17.214:8080/rest/ddproducts/dingding/list';
+      
       $.ajax({
         type: "GET",
         url: url,
@@ -63,6 +64,16 @@ var vm = new Vue({
                 alert("fail" + JSON.stringify(err))
               }
             })
+
+            dd.biz.user.get({
+              corpId: this.corpId, // 可选参数，如果不传则使用用户当前企业的corpId。
+              onSuccess:(info) => {
+                alert(JSON.stringify(info))
+              },
+              onFail:(err)=>{
+                ddToast(JSON.stringify(err))
+              }
+            });
           });
         },
         error: e => {
@@ -108,8 +119,9 @@ var vm = new Vue({
 
 
     let sessionObj = {
-      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      userId: 6
+      // corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      corpId: 1,
+      userId: 1
     }
     setSession(sessionObj)
   },

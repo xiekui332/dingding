@@ -5,6 +5,7 @@ var vm = new Vue({
     props: {
     },
     data: {
+        user: {},
         tabDefault: [
             {
                 id: -1,
@@ -73,7 +74,6 @@ var vm = new Vue({
                 }
             ],
         ],
-
         orderList: [
             // {
             //     orderId:1,
@@ -128,16 +128,19 @@ var vm = new Vue({
                 return;
             }
             this.loading = true
-            alert(2)
             this.getOrderList();
         },
         getOrderList() {
-            let url = getApiUrl('/shop-test/rest/orders/dingding/list')
+            // let url = getApiUrl('/shop-test/rest/orders/dingding/list')
+            let url = 'http://192.168.17.214:8080/rest/orders/dingding/list'
+            
             $.ajax({
                 url: url,
                 type: "GET",
                 dataType: "json",
                 data: {
+                    userid: this.user.userId,
+                    nailCropId: this.user.corpId,
                     status: this.tabId,
                     page: this.page,
                     rows: this.pageSize
@@ -153,6 +156,9 @@ var vm = new Vue({
                             this.loading = false
                             return
                         }
+                        res.data.data.forEach((item) => {
+                            item.orderTime = dateFormat(item.createTime, 20, '-', '-', ' ')
+                        })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
                         this.loading = false;
@@ -186,7 +192,7 @@ var vm = new Vue({
             } else if (status == this.orderStatus.authFail) {
                 orderState = '审核失败';
             } else if (status == this.orderStatus.cancel) {
-                orderState = '审核失败';
+                orderState = '订单取消';
             } else {
                 orderState = '订单已失效';
             }
@@ -234,10 +240,10 @@ var vm = new Vue({
             this.getOrderList()
         },
         toLogistics(item) {
-            location.href = 'logistics.html?orderNo=' + item.sn + '&createTime=' + item.createTime
+            location.href = 'logistics.html?orderNo=' + item.orderNo + '&createTime=' + item.createTime
         },
-        toOrderDetail() {
-            location.href = 'orderDetail.html'
+        toOrderDetail(item) {
+            location.href = 'orderDetail.html?orderId=' + item.orderId
         },
     },
     created() {
@@ -245,9 +251,13 @@ var vm = new Vue({
     destroyed() {
     },
     mounted() {
-        let status = getUrlParam('status')
-        if (status) {
-            this.chooseCategory(status, -1)
-        }
+        this.user =  getSession()
+        this.tabId = getUrlParam('status')
+        // if (status) {
+        //     this.chooseCategory(status, -1)
+        // }
+
+        this.chooseCategory(this.tabId || -1, -1)
+
     }
 })

@@ -95,7 +95,7 @@
 </style>
 <body>
 	<div id="app">
-        <div class="express writeBackColor">
+        <div class="express writeBackColor" v-if="!flag">
             <div>
                 <img src="asset/images/icon/logistic_icon.png" class="expressImg"/>
                 <div class="expressRight">
@@ -104,7 +104,7 @@
                 </div>
             </div>
         </div>
-        <div v-if="logistic && logistic.length" class="logistic" v-cloak>
+        <div v-if="logistic && logistic.length" class="logistic">
             <div v-for="(item, index) in logistic">
                 <div class="log" :style="{color: !index ? '#666666':''}">
                 <div class="date">

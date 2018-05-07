@@ -5,7 +5,9 @@ var vm = new Vue({
 	props: {
 	},
 	data: {
-		orderNo: 'ZY1522327243828780',
+		flag: 0,
+		orderNo: '',
+		createTime: '',
 		express: {
 			expressName: '',
 			expressCode: ''
@@ -26,14 +28,27 @@ var vm = new Vue({
 				type: 'GET',
 				url: url,
 				data: {
-					orderNo: orderNo,
+					orderNo: this.orderNo,
 				},
 				success: (res) => {
 					if (res.code == 200) {
-						this.express.expressName = res.data.expressName;
-						this.express.expressCode = res.data.expressCode;
-						this.logistic = res.data.expressStatus;
+						if (res.data) {
+							this.express.expressName = res.data.expressName;
+							this.express.expressCode = res.data.expressCode;
+							this.logistic = res.data.expressStatus;
+						} else {
+							this.flag = 1
+							this.logistic.push({
+								time: dateFormat(parseInt(this.createTime), 16, '-','-',''),
+								status: '正在为你备货，请耐心等待'
+							})
+						}
 					} else {
+						// this.flag = 1
+						// this.logistic.push({
+						// 	time: dateFormat(parseInt(this.createTime), 16, '-','-',''),
+						// 	status: '正在为你备货，请耐心等待'
+						// })
 						ddToast(res.message)
 					}
 				},
@@ -49,6 +64,7 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.orderNo = getUrlParam('orderNo')
+		this.createTime = getUrlParam('createTime')
 		this.getLogistics()
 	},
 })
