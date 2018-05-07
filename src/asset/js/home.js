@@ -93,11 +93,74 @@ var vm = new Vue({
         crossDomain: true,
         success: result => {
           alert("sucess:" + JSON.stringify(result))
+          // let sessionObj = {
+          //   corpId: this.corpId,
+          //   userId: result.userId
+          // }
+          // setSession(sessionObj)
+
+          this.getUserDetail(result.userId)
+        },
+        error: e => {
+          ddToast('网络错误')
+        }
+      })
+    },
+    getUserDetail(userId) {
+      // this.corpId = 'dingaaa4a95c02214e0835c2f4657eb6378f'
+      // userId = '141502201726340017'
+      let url = getApiUrl('/ding-isv-access/get_user_detail');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: {
+          corpId: this.corpId,
+          useId: userId
+        },
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          alert(JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
-            userId: result.userId
+            userId: result.userId,
+            companyName: result.companyName,
+            avatar: result.avatar,
+            name: result.name
           }
           setSession(sessionObj)
+        },
+        error: e => {
+          ddToast('网络错误')
+        }
+      })
+    },
+    setUserDetail(user) {
+      let userDetail = {
+        userid: user.userid,
+        unionid: user.unionid,
+        nailCropId: this.corpId,
+        name: user.name,
+        isAdmin: user.isAdmin,
+        isBoss: user.isBoss,
+        dingId: user.dingId,
+        companyName: user.companyName
+      }
+      let url = getApiUrl('/ding-isv-access/get_user_detail');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: userDetail,
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          
         },
         error: e => {
           ddToast('网络错误')
@@ -118,6 +181,8 @@ var vm = new Vue({
     //   userId: 1
     // }
     // setSession(sessionObj)
+
+    // this.getUserDetail()
   },
 })
 

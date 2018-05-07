@@ -92,7 +92,7 @@ var vm = new Vue({
     },
     toOrderList(status) {
       location.href = 'orderList.html?status=' + status
-    }
+    },
   },
   created() {
   },
