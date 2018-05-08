@@ -58,6 +58,7 @@
 
 .homeBox {
   width: 100%;
+  overflow: hidden;
 }
 
 .homeMain {
