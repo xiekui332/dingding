@@ -7,6 +7,11 @@
   <link rel="stylesheet" type="text/css" href="asset/css/reset-e404a16f8c.css" />
   <link rel="stylesheet" type="text/css" href="asset/css/home-f81b954108.css" />
   <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+  <style>
+    /* [v-cloak]{
+      display: none;
+    } */
+  </style>
 </head>
 <body>
       <div id="app">
@@ -26,7 +31,7 @@
           </div>
           <div class="homeBox">
               <div class="homeMain"
-                v-for="(item, index) in goodsList1" :key="index" >
+                v-for="(item, index) in goodsList1" :key="index">
                   <div class="homeMain-top" >
                     <div class="homeMain-title">{{item.category}}</div>
                     <img src="asset/images/icon/more.png" class="newImg1">
@@ -60,12 +65,12 @@
         </div>
     </div>
 </body>
-<script src="static/js/zepto.min.js"></script>
-<script src="asset/js/util-9d5b372691.js"></script>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/zepto.min.js"></script>
+<script src="asset/js/util-8ca8d62350.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-3edff97fa4.js"></script>
+<script src="asset/js/home-0ab3f27e88.js"></script>
 <script>
   // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
   // let corpId = getUrlParam('corpId')

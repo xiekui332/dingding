@@ -28,8 +28,6 @@ var vm = new Vue({
 	methods: {
 		getOrderDetail() {
 			let url = getApiUrl('/shop-test/rest/orders/dingding/view')
-			// let url = 'http://192.168.17.214:8080/rest/orders/dingding/view'
-
 			$.ajax({
 				type: 'get',
 				data: {
@@ -39,7 +37,6 @@ var vm = new Vue({
 				success: (data) => {
 					if (data.code == 200) {
 						vm.status = data.data.status;
-						vm.status = 3
 						if (vm.status == 9) {
 							vm.statusWords = '商品租用到期后买断或完成回收，冻结预授权金额将会释放';
 							vm.orderStatus = '租用中';
@@ -74,7 +71,7 @@ var vm = new Vue({
 							vm.bottom = true;
 						} else {
 							vm.statusWords = '订单失效';
-							vm.orderStatus = '订单取消';
+							vm.orderStatus = '订单失效';
 							vm.bottom = true;
 						}
 
@@ -140,6 +137,41 @@ var vm = new Vue({
 		//  跳转物流信息
 		toLogistics() {
 			location.href = 'logistics.html?orderNo=' + this.orderNo + '&createTime=' + this.createTime
+		},
+		pay() {
+			let url = getPhpApiUrl('/nail/pay.html')
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType: "json",
+				data: {
+					order_no: this.orderNo,
+					product_id: this.order.productId,
+					product_price_id: this.order.productPriceId,
+					count: this.order.count
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					if (result.code == 200) {
+						if (result.data.authCode == 7010 || result.data.authCode == 7016) {//未授权 或 拒绝
+							// location.href = 'userAuth.html?productId=' + this.order.productId
+						} else if (result.data.authCode == 7014) {//待审核
+							ddToast("授权待审核中")
+						} else if (result.data.authCode == 7015) {  //审核通过
+							// 支付
+							this.pay()
+						}
+					} else {
+						ddToast(result.message)
+					}
+				},
+				error: e => {
+					ddToast('网络错误')
+				}
+			})
 		}
 	},
 	mounted() {

@@ -131,9 +131,7 @@ var vm = new Vue({
             this.getOrderList();
         },
         getOrderList() {
-            // let url = getApiUrl('/shop-test/rest/orders/dingding/list')
-            let url = 'http://192.168.17.214:8080/rest/orders/dingding/list'
-            
+            let url = getApiUrl('/shop-test/rest/orders/dingding/list')
             $.ajax({
                 url: url,
                 type: "GET",

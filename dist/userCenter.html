@@ -12,11 +12,11 @@
 	<div id="app">
       <div class="nav">
         <div class="nav-top">
-             <img src="asset/images/icon/rentou.png" class="img1">
+             <img :src="user.avatar" class="img1">
         </div>
         <div class="nav-bottom">
-           <div class="nav-momo">某莫</div>
-           <div class="nav-telephone">杭州不匠科技有限公司</div>
+           <div class="nav-momo">{{user.name}}</div>
+           <div class="nav-telephone">{{user.companyName}}</div>
         </div>  
       </div>
       <div class="main">
@@ -90,28 +90,10 @@
       </mt-tabbar>
 	</div>
 </body> 
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/vue.min.js"></script>
-<script src="asset/js/util-9d5b372691.js"></script>
+<script src="asset/js/util-8ca8d62350.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/userCenter-b724f3f4c4.js"></script>
-<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
-<script>
-//   dd.ready(function(){
-//     dd.biz.navigation.setTitle({
-//       title : '个人中心',//控制标题文本，空字符串表示显示默认文本
-//       onSuccess : function(result) {
-          
-//       },
-//       onFail : function(err) {}
-//    });
-//    dd.biz.navigation.setright({
-//      control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-//      text: '返回',//控制显示文本，空字符串表示显示默认文本
-//      onSuccess : function(result) {
-//      },
-//      onFail : function(err) {}
-//    });  
-// }); 
-</script>
+<script src="asset/js/userCenter-5ac99daefb.js"></script>
 </html>

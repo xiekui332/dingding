@@ -4,11 +4,12 @@ var vm = new Vue({
     data:{
     },
     methods:{
-        see:function(){
-
+        toOrderDetail(){
+            //orderId
+            location.href = 'orderDetail.html'
         },
-        back:function(){
-
+        toHome(){
+            location.href = 'home.html'
         }
     }
 })

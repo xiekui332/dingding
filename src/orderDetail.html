@@ -49,9 +49,7 @@
 					<span>{{orderStatus}}</span>
 				</span>
 			</div>
-			<div class="explain-t">
-				{{statusWords}}
-			</div>
+			<div class="explain-t">{{statusWords}}</div>
 			<p class="status-time">{{statusTime}}</p>
 
 			<div class="status-jump" @click="toLogistics" v-if="status == 2 || status == 3 || status == 9 || status == 10">
@@ -150,7 +148,7 @@
 			</div>
 		</div>
 		<!-- 下单编号 -->
-		<div class="xdbh">
+		<div class="xdbh" :style="{'margin-bottom': status == 0 ? '.7rem': '.3rem'}">
 			<p>
 				<span>订单编号</span>
 				<span>{{objAddress.sn}}</span>
@@ -169,13 +167,18 @@
 				<!-- <div @click="refund()" class="btnIng">申请退款</div> -->
 			</div>
 			<div v-else-if="status == 16">
-				<div @click="openModal('contactTip')" class="btnIng">联系客服</div>
 				<div @click="toUserAuth" class="seeCount2 btnIng">授权申请</div>
+				<div @click="openModal('contactTip')" class="btnIng">联系客服</div>
 			</div>
 			<div v-else-if="status == 9">
 				<div @click="openModal('contactTip')" class="btnIng">联系客服</div>
 				<div @click="toBillOrder()" class="btnIng">查看账单</div>
 				<div @click="retBack" class="btnIng">申请归还</div>
+			</div>
+			<div class="pay_btn" v-else-if="status == 0">
+				<div class="pay_now" @click="pay">
+					立即支付
+				</div>
 			</div>
 			<div v-else>
 				<div @click="openModal('contactTip')" class="btnIng">联系客服</div>
@@ -185,11 +188,7 @@
 		</div>
 
 		<!-- 审核通过 -->
-		<div class="pay_btn" v-if="status == 0">
-			<div class="pay_now" @click="">
-				立即支付
-			</div>
-		</div>
+		
 
 
 		<!-- 待发货弹窗 -->
