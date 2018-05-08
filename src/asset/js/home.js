@@ -76,7 +76,7 @@ var vm = new Vue({
         }
       })
     },
-    getUserId() {
+    getUserId(code) {
       let url = getApiUrl('/ding-isv-access/get_user_info');
       $.ajax({
         url: url,
@@ -92,7 +92,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert("sucess:" + JSON.stringify(result))
+          alert("userIdSuccess:" + JSON.stringify(result))
           // let sessionObj = {
           //   corpId: this.corpId,
           //   userId: result.userId
@@ -123,15 +123,17 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert(JSON.stringify(result))
+          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
-            userId: result.userId,
+            userId: result.userid,
             companyName: result.companyName,
             avatar: result.avatar,
             name: result.name
           }
           setSession(sessionObj)
+
+          this.setUserDetail(result)
         },
         error: e => {
           ddToast('网络错误')
@@ -149,12 +151,13 @@ var vm = new Vue({
         dingId: user.dingId,
         companyName: user.companyName
       }
-      let url = getApiUrl('/ding-isv-access/get_user_detail');
+      let url = getApiUrl('/shop-test/rest/user/addInformation');
       $.ajax({
         url: url,
-        type: "GET",
+        type: "POST",
         dataType: "json",
-        data: userDetail,
+        contentType: "application/json",
+        data: JSON.stringify(userDetail),
         xhrFields: {
           withCredentials: true
         },
@@ -174,15 +177,13 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     this.getAuthCode()
-
+    this.getUserDetail()
 
     // let sessionObj = {
     //   corpId: 1,
     //   userId: 1
     // }
     // setSession(sessionObj)
-
-    // this.getUserDetail()
   },
 })
 

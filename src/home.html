@@ -8,9 +8,9 @@
   <link rel="stylesheet" type="text/css" href="asset/css/home.css" />
   <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
   <style>
-    [v-cloak]{
+    /* [v-cloak]{
       display: none;
-    }
+    } */
   </style>
 </head>
 <body>
@@ -31,7 +31,7 @@
           </div>
           <div class="homeBox">
               <div class="homeMain"
-                v-for="(item, index) in goodsList1" :key="index" v-cloak>
+                v-for="(item, index) in goodsList1" :key="index">
                   <div class="homeMain-top" >
                     <div class="homeMain-title">{{item.category}}</div>
                     <img src="asset/images/icon/more.png" class="newImg1">
