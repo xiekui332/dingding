@@ -119,7 +119,9 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						
+						if (result.data.flag == 1) {
+							
+						}
 					} else {
 						ddToast(result.message)
 					}
