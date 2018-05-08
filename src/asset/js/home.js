@@ -61,8 +61,7 @@ var vm = new Vue({
               corpId: this.corpId,
               onSuccess: (result) => {
                 //  得到授权码
-                alert('requestAuthCode:' + JSON.stringify(result))
-                
+                // alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
               onFail: (err) => {
@@ -92,7 +91,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert("userIdSuccess:" + JSON.stringify(result))
+          // alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -117,7 +116,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert('getUserDetail:'+JSON.stringify(result))
+          // alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
@@ -171,14 +170,12 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     if (!getSession()) {
-      alert('hasSession')
       this.getAuthCode()
     }
     let sessionObj = {
-      corpId: 1,
-      userId: 1
+      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      userId: '08623665231156032'
     }
-    // this.getUserDetail()
     setSession(sessionObj)
   },
 })

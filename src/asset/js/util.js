@@ -89,8 +89,8 @@ function getApiUrl(url) {
 }
 
 function getPhpApiUrl(url) {
-    const taozugonghost = "http://test.api.taozugong.net";
-    // const taozugonghost = "/getapi";
+    // const taozugonghost = "http://test.api.taozugong.net";
+    const taozugonghost = "/getapi";
     
     return taozugonghost + url
 }
