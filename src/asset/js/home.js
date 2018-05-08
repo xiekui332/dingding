@@ -93,12 +93,6 @@ var vm = new Vue({
         crossDomain: true,
         success: result => {
           alert("userIdSuccess:" + JSON.stringify(result))
-          // let sessionObj = {
-          //   corpId: this.corpId,
-          //   userId: result.userId
-          // }
-          // setSession(sessionObj)
-
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -177,15 +171,14 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     if (!getSession) {
-      alert(3)
+      alert('hasSession')
       this.getAuthCode()
     }
-    // this.getUserDetail()
-
     // let sessionObj = {
     //   corpId: 1,
     //   userId: 1
     // }
+    // this.getUserDetail()
     // setSession(sessionObj)
   },
 })
