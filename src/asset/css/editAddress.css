@@ -19,7 +19,7 @@
 }
 .item-box span {
     display: inline-block;
-    width: 1.3rem;
+    min-width: 1.5rem;
     margin-right:.52rem;
     float: left;
 }
