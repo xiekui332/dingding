@@ -164,7 +164,7 @@ var vm = new Vue({
           ddToast('网络错误')
         }
       })
-    }
+    },
   },
   created() { },
   destroyed() { },

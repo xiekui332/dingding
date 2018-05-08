@@ -6,8 +6,8 @@ var vm = new Vue({
     },
     data: {
         user: {},
-        // authId: 3,
         productId: '',
+        orderNo: '',
         userAuth: {
             nailCropId: '',
             userid: '',
@@ -139,7 +139,6 @@ var vm = new Vue({
                 },
                 crossDomain: true,
                 success: result => {
-                    console.log(result)
                     if (result.code == 200) {
                         this.isFirstAuth = false
                         this.userAuth = result.data
@@ -161,7 +160,6 @@ var vm = new Vue({
                             this.authHead.title = '审核中'
                             this.authHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
                         }
-                        console.log( this.userAuth )
                     } else if (result.code == 7010) {
                         this.isFirstAuth = true
                         this.canEdit = true
@@ -214,7 +212,8 @@ var vm = new Vue({
                     card: this.userAuth.idcard,
                     productId: this.productId,
                     nail_crop_id: this.user.corpId,
-                    userid: this.user.userId
+                    userid: this.user.userId,
+                    order_no: this.orderNo
                 },
                 xhrFields: {
                     withCredentials: true
@@ -222,7 +221,7 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        location.href = result.data.url
+                        // location.href = result.data.url
                     } else {
                         ddToast(result.message)
                     }
@@ -240,6 +239,7 @@ var vm = new Vue({
     mounted() {
 		this.user = getSession()
         this.productId = getUrlParam('productId')
+        this.orderNo = getUrlParam('orderNo')
         this.getUserAuth()
 
         // hasAuth 为空 需要授权； hasAuth==true 不需要授权
