@@ -74,7 +74,7 @@ var vm = new Vue({
   },
   methods: {
     toHome() {
-      location.href = 'home.html'
+      location.href = 'home.html?corpId=' + this.user.corpId
     },
     toOrderList() {
       location.href = 'orderList.html'

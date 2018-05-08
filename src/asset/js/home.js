@@ -177,7 +177,7 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     this.getAuthCode()
-    this.getUserDetail()
+    // this.getUserDetail()
 
     // let sessionObj = {
     //   corpId: 1,
