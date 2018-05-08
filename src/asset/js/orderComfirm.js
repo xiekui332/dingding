@@ -43,7 +43,8 @@ var vm = new Vue({
 		popTitle: '',
 		popContent: [],
 		setStyle: '',
-		payHtml: ''
+		payHtml: '',
+		orderNo: ''
 	},
 	methods: {
 		submitOrder() {
@@ -65,13 +66,14 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						this.orderNo = result.data.sn
 						if (result.data.authCode == 7010 || result.data.authCode == 7016) {//未授权 或 拒绝
-							// location.href = 'userAuth.html?productId=' + this.order.productId
+							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
 						} else if (result.data.authCode == 7014) {//待审核
 							ddToast("授权待审核中")
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
-							this.pay(result.data.sn)
+							this.pay()
 						}
 					} else {
 						ddToast(result.message)
@@ -109,7 +111,7 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: orderNo,
+					order_no: this.orderNo,
 					product_id: this.order.productId,
 					product_price_id: this.order.productPriceId,
 					count: this.order.count
