@@ -86,7 +86,7 @@
 				<div class="item-mnue-jt">
 					<p class="item-title">上传企业委托书</p>
 				</div>
-				<div class="img-up img-up2" style="margin-bottom: 1.6rem">
+				<div class="img-up img-up2" :style="{'margin-bottom': userAuth.status != authStatus.success ? '1.6rem' : ''}">
 					<span style="position:relative;display: inline-block">
 							<img :src="userAuth.companyDelegateImg">
 							<input type="file" @change="onFileChange($event, 1)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
@@ -103,22 +103,20 @@
 				</div>
 
 
-				<div v-show="!isFirstAuth">
+				<div v-show="!isFirstAuth && userAuth.status != authStatus.success">
 					<div class="kf">
 						<div class="seePower" v-show="userAuth.status == authStatus.fail" @click="updateUserAuth">重新提交</div>
 						<!-- 审核中、审核拒绝 -->
 						<div v-show="userAuth.status == authStatus.fail || userAuth.status == authStatus.audit" @click="showPop=!showPop">联系客服</div>
 					</div>
 					<!-- 审核成功 -->
-					<div class="now-lj" v-show="userAuth.status == authStatus.success">
+					<!-- <div class="now-lj" v-show="userAuth.status == authStatus.success">
 						<div class="bow-btn">
 							完成订单支付
 						</div>
-					</div>
+					</div> -->
 				</div>
-
 				<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
-				
 			</div>
 		</div>
 	</div>
