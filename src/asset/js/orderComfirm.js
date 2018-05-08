@@ -57,7 +57,7 @@ var vm = new Vue({
 				url: url,
 				type: "POST",
 				dataType: "json",
-                contentType: "application/json",
+				contentType: "application/json",
 				data: JSON.stringify(this.order),
 				xhrFields: {
 					withCredentials: true
@@ -87,7 +87,7 @@ var vm = new Vue({
 			if (this.hasDefaultAddress == false) {
 				this.showAddressTip = true;		//	没有添加收货地址
 				return false
-			} 
+			}
 			//	判断勾选
 			if (this.isAgreement == false) {
 				this.readFile = true;
@@ -98,7 +98,7 @@ var vm = new Vue({
 				}, 1000);
 
 				return false
-			} 
+			}
 
 			return true
 		},
@@ -126,10 +126,32 @@ var vm = new Vue({
 							$('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
-
+							this.SecretFree()
 						}
 					} else {
 						ddToast(result.message)
+					}
+				},
+				error: e => {
+					ddToast('网络错误')
+				}
+			})
+		},
+		SecretFree() {
+			let url = getPhpApiUrl('/pay/nailpay.html')
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType: "json",
+				data: {
+					order_no: this.order.orderNo
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					if (result.code == 200) {
 					}
 				},
 				error: e => {
@@ -232,7 +254,7 @@ var vm = new Vue({
 						this.goodsInfo.cover = result.data.cover
 						this.goodsInfo.brief = result.data.brief
 						this.goodsInfo.count = this.order.count
-						
+
 						this.getTotalAmount()
 					} else {
 						ddToast(result.message)
