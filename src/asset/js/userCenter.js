@@ -5,6 +5,7 @@ var vm = new Vue({
   props: {
   },
   data: {
+    user: {},
     show: true,
     navList: [
       {
@@ -99,5 +100,6 @@ var vm = new Vue({
   destroyed() {
   },
   mounted() {
+    this.user = getSession()
   },
 })

@@ -12,11 +12,11 @@
 	<div id="app">
       <div class="nav">
         <div class="nav-top">
-             <img src="asset/images/icon/rentou.png" class="img1">
+             <img :src="user.avatar" class="img1">
         </div>
         <div class="nav-bottom">
-           <div class="nav-momo">某莫</div>
-           <div class="nav-telephone">杭州不匠科技有限公司</div>
+           <div class="nav-momo">{{user.name}}</div>
+           <div class="nav-telephone">{{user.compayName}}</div>
         </div>  
       </div>
       <div class="main">
@@ -90,10 +90,10 @@
       </mt-tabbar>
 	</div>
 </body> 
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/zepto.min.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/userCenter.js"></script>
-<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 </html>

@@ -1,1 +1,0 @@
-"use strict";var vm=new Vue({el:"#app",data:{list:[{month:"7/9期",status:"待还款",num:"249",time:"2018年08月29日通过支付宝免密支付还款"}],value:1,redio:1,checked:!1},methods:{see:function(){},back:function(){},zf:function(){1==vm.checked&&console.log(":)")}}});
