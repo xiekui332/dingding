@@ -43,6 +43,7 @@ var vm = new Vue({
 		popTitle: '',
 		popContent: [],
 		setStyle: '',
+		payHtml: ''
 	},
 	methods: {
 		submitOrder() {
@@ -120,6 +121,11 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data.flag == 1) {
+							// 支付表单
+							this.payHtml = result.data.html
+							$('#alipaysubmit').submit();
+						} else if (result.data.flag == 0) {
+							// 免密
 							
 						}
 					} else {
