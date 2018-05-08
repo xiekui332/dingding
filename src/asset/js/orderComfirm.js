@@ -109,7 +109,7 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: this.order.orderNo,
+					order_no: orderNo,
 					product_id: this.order.productId,
 					product_price_id: this.order.productPriceId,
 					count: this.order.count
@@ -127,6 +127,8 @@ var vm = new Vue({
 						} else if (result.data.flag == 0) {
 							// 免密
 							this.SecretFree()
+						} else if (result.data.flag == 2) {
+							location.href = result.data.html
 						}
 					} else {
 						ddToast(result.message)
