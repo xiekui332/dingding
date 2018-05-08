@@ -147,6 +147,8 @@ var vm = new Vue({
 		if (this.addressId) {
 			this.getAddress()
 		}
+		
 	}
 })
+
 
