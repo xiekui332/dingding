@@ -12,6 +12,7 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
+    
     getGoodsList(id) {
       let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
@@ -125,6 +126,7 @@ var vm = new Vue({
             avatar: result.avatar,
             name: result.name
           }
+          //  session存储对象
           setSession(sessionObj)
 
           this.setUserDetail(result)
@@ -174,12 +176,12 @@ var vm = new Vue({
       alert('hasSession')
       this.getAuthCode()
     }
-    let sessionObj = {
-      corpId: 1,
-      userId: 1
-    }
+    // let sessionObj = {
+    //   corpId: 1,
+    //   userId: 1
+    // }
     // this.getUserDetail()
-    setSession(sessionObj)
+    // setSession(sessionObj)
   },
 })
 

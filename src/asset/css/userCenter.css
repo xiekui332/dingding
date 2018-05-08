@@ -16,6 +16,7 @@
    .img1{
      width:0.8rem;
      height:0.725rem;
+     border-radius: 50%;
    }
    .nav-bottom{
      height:1rem;
@@ -195,4 +196,6 @@
   */
   .mint-tabbar{
     border-top: 1px solid #f7f7f7;
+    border-bottom: 1px solid #f7f7f7;
+    
   }
