@@ -63,7 +63,7 @@ var vm = new Vue({
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
                 
-                getUserId(result.code)
+                this.getUserId(result.code)
               },
               onFail: (err) => {
                 alert("fail" + JSON.stringify(err))
