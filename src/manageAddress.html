@@ -35,10 +35,13 @@
 	.van-dialog {
 		width: 5.4rem;
 	}
+	[v-cloak]{
+		display: none;
+	}
 </style>
 
 <body>
-	<div id="app">
+	<div id="app" v-cloak>
 		<van-radio-group v-model="activeAddressId" style="margin-bottom: 1rem">
 			<div v-for="(item,index) in addressList">
 				<div class="sec-1">
