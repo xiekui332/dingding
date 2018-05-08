@@ -12,7 +12,7 @@
     padding: .25rem 0;
     border-bottom: 1px solid #DDDDDD;
     font-size: .32rem;
-    line-height: .32rem;
+    line-height: .35rem;
 }
 .item-box .item2:last-of-type{
     border-bottom: none;
@@ -21,6 +21,7 @@
     display: inline-block;
     width: 1.3rem;
     margin-right:.52rem;
+    float: left;
 }
 .item2 input,textarea{
     width: 4.9rem;
@@ -28,6 +29,7 @@
     background: #fff;
     font-size: .32rem;
    color: #333;
+   line-height: .4rem;
 }
 .item2 input::placeholder, .item2 textarea::placeholder{
     color: #ccc;
