@@ -174,27 +174,27 @@ var vm = new Vue({
             let orderStatus = ''
 
             if (status == this.orderStatus.unpay) {//订单商品转态 0-待支付1-订单取消-9租赁中 10-完成
-                orderState = '待支付';
+                orderStatus = '待支付';
             } else if (status == this.orderStatus.lease) {
-                orderState = '租赁中';
+                orderStatus = '租赁中';
             } else if (status == this.orderStatus.complete) {
-                orderState = '租期已满';
+                orderStatus = '租期已满';
             } else if (status == this.orderStatus.send) {
-                orderState = '待发货';
+                orderStatus = '待发货';
             } else if (status == this.orderStatus.receive) {
-                orderState = '待收货';
+                orderStatus = '待收货';
             } else if (status == this.orderStatus.end) {
-                orderState = '交易结束';
+                orderStatus = '交易结束';
             } else if (status == this.orderStatus.authing) {
-                orderState = '审核中';
+                orderStatus = '审核中';
             } else if (status == this.orderStatus.authFail) {
-                orderState = '审核失败';
+                orderStatus = '审核失败';
             } else if (status == this.orderStatus.cancel) {
-                orderState = '订单取消';
+                orderStatus = '订单取消';
             } else {
-                orderState = '订单已失效';
+                orderStatus = '订单已失效';
             }
-            return orderState
+            return orderStatus
         },
         showCategory() {
             this.open = !this.open;
