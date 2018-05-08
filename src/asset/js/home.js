@@ -12,6 +12,7 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
+    
     getGoodsList(id) {
       // let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       let url = '//192.168.17.214:8080/rest/ddproducts/dingding/list';
@@ -109,6 +110,7 @@ var vm = new Vue({
             corpId: this.corpId,
             userId: result.userId
           }
+          //  session存储对象
           setSession(sessionObj)
         },
         error: e => {
@@ -131,6 +133,8 @@ var vm = new Vue({
       userId: 1
     }
     setSession(sessionObj)
+
+    
   },
 })
 

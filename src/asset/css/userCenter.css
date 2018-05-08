@@ -16,6 +16,7 @@
    .img1{
      width:0.8rem;
      height:0.725rem;
+     border-radius: 50%;
    }
    .nav-bottom{
      height:1rem;
