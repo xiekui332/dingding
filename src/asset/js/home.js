@@ -14,9 +14,7 @@ var vm = new Vue({
   methods: {
     
     getGoodsList(id) {
-      // let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
-      let url = '//192.168.17.214:8080/rest/ddproducts/dingding/list';
-      
+      let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
         type: "GET",
         url: url,
@@ -66,22 +64,12 @@ var vm = new Vue({
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
                 
-                getUserId(result.code)
+                this.getUserId(result.code)
               },
               onFail: (err) => {
                 alert("fail" + JSON.stringify(err))
               }
             })
-
-            dd.biz.user.get({
-              corpId: this.corpId, // 可选参数，如果不传则使用用户当前企业的corpId。
-              onSuccess:(info) => {
-                alert(JSON.stringify(info))
-              },
-              onFail:(err)=>{
-                ddToast(JSON.stringify(err))
-              }
-            });
           });
         },
         error: e => {
@@ -89,7 +77,7 @@ var vm = new Vue({
         }
       })
     },
-    getUserId() {
+    getUserId(code) {
       let url = getApiUrl('/ding-isv-access/get_user_info');
       $.ajax({
         url: url,
@@ -105,13 +93,73 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert("sucess:" + JSON.stringify(result))
+          alert("userIdSuccess:" + JSON.stringify(result))
+          this.getUserDetail(result.userId)
+        },
+        error: e => {
+          ddToast('网络错误')
+        }
+      })
+    },
+    getUserDetail(userId) {
+      // this.corpId = 'dingaaa4a95c02214e0835c2f4657eb6378f'
+      // userId = '141502201726340017'
+      let url = getApiUrl('/ding-isv-access/get_user_detail');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: {
+          corpId: this.corpId,
+          useId: userId
+        },
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
-            userId: result.userId
+            userId: result.userid,
+            companyName: result.companyName,
+            avatar: result.avatar,
+            name: result.name
           }
           //  session存储对象
           setSession(sessionObj)
+
+          this.setUserDetail(result)
+        },
+        error: e => {
+          ddToast('网络错误')
+        }
+      })
+    },
+    setUserDetail(user) {
+      let userDetail = {
+        userid: user.userid,
+        unionid: user.unionid,
+        nailCropId: this.corpId,
+        name: user.name,
+        isAdmin: user.isAdmin,
+        isBoss: user.isBoss,
+        dingId: user.dingId,
+        companyName: user.companyName
+      }
+      let url = getApiUrl('/shop-test/rest/user/addInformation');
+      $.ajax({
+        url: url,
+        type: "POST",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(userDetail),
+        xhrFields: {
+          withCredentials: true
+        },
+        crossDomain: true,
+        success: result => {
+          
         },
         error: e => {
           ddToast('网络错误')
@@ -124,17 +172,16 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    this.getAuthCode()
-
-
-    let sessionObj = {
-      // corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      corpId: 1,
-      userId: 1
+    if (!getSession()) {
+      alert('hasSession')
+      this.getAuthCode()
     }
-    setSession(sessionObj)
-
-    
+    // let sessionObj = {
+    //   corpId: 1,
+    //   userId: 1
+    // }
+    // this.getUserDetail()
+    // setSession(sessionObj)
   },
 })
 

@@ -14,16 +14,10 @@
             <p class="gx">下单失败</p>
             <p class="will">系统异常请尝试重新下单</p>
 		</div>
-        
-       
-
-
         <!-- 按钮 -->
 		<div class="btn-box btn-box2">
-            <a href="javascript:;" @click="again">重试</a>
+            <a @click="toGoodsDetail">重试</a>
         </div>
-		
-		
 	</div>
 </body>
 <script src="static/js/zepto.min.js"></script>
@@ -33,16 +27,14 @@
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
-		//	此处的data返回应该是一个object，vue-cli构建的里面才可返回方法
 		data:{
-			
 		},
         methods:{
-            again:function(){
-
+            toGoodsDetail:function() {
+                let productId = getUrlParam('productId')
+                location.href = 'goodsDetail.html?productId=' + productId
             }
-        }
+        },
 	})
-	
 </script>
 </html>

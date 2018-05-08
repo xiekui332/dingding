@@ -5,6 +5,7 @@ var vm = new Vue({
   props: {
   },
   data: {
+    user: {},
     show: true,
     navList: [
       {
@@ -73,7 +74,7 @@ var vm = new Vue({
   },
   methods: {
     toHome() {
-      location.href = 'home.html'
+      location.href = 'home.html?corpId=' + this.user.corpId
     },
     toOrderList() {
       location.href = 'orderList.html'
@@ -92,12 +93,14 @@ var vm = new Vue({
     },
     toOrderList(status) {
       location.href = 'orderList.html?status=' + status
-    }
+    },
   },
   created() {
   },
   destroyed() {
   },
   mounted() {
+    this.user = getSession()
+    alert(JSON.stringify(this.user))
   },
 })
