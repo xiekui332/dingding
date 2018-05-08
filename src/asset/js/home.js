@@ -174,12 +174,12 @@ var vm = new Vue({
       alert('hasSession')
       this.getAuthCode()
     }
-    // let sessionObj = {
-    //   corpId: 1,
-    //   userId: 1
-    // }
+    let sessionObj = {
+      corpId: 1,
+      userId: 1
+    }
     // this.getUserDetail()
-    // setSession(sessionObj)
+    setSession(sessionObj)
   },
 })
 
