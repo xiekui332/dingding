@@ -57,8 +57,7 @@ function checkIdcard(ID) {
 }
 
 function phoneValid(phone) {
-    // var phoneExp = /^1[345789]\d{9}$/;//电话号码;
-    var phoneExp = /^((0\d{2,3}-\d{7,8})|(1[3584]\d{9}))$/;
+    var phoneExp = /^1[345789]\d{9}$/;//电话号码;
     return phoneExp.test(phone)
 }
 
