@@ -126,7 +126,7 @@ var vm = new Vue({
 							$('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
-							
+
 						}
 					} else {
 						ddToast(result.message)
