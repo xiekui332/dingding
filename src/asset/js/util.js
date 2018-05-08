@@ -89,8 +89,8 @@ function getApiUrl(url) {
 }
 
 function getPhpApiUrl(url) {
-    // const taozugonghost = "http://test.api.taozugong.net";
-    const taozugonghost = "/getapi";
+    const taozugonghost = "http://test.api.taozugong.net";
+    // const taozugonghost = "/getapi";
     
     return taozugonghost + url
 }
@@ -127,7 +127,7 @@ function ddConfig(config) {
 
 //{corpId:1,  userId:1}
 function setSession(sessionObj) {
-    window.sessionStorage.setItem('tzgDingDing', JSON.stringify(sessionObj));
+    window.localStorage.setItem('tzgDingDing', JSON.stringify(sessionObj));
 }
 
 function getSession() {
@@ -136,5 +136,5 @@ function getSession() {
     //     sessionObj[item] = window.sessionStorage.getItem(item);
     // })
     // alert(JSON.parse(window.sessionStorage.getItem('tzgDingDing')))
-    return JSON.parse(window.sessionStorage.getItem('tzgDingDing'))
+    return JSON.parse(window.localStorage.getItem('tzgDingDing'))
 }
