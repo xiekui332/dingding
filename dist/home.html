@@ -14,7 +14,7 @@
   </style>
 </head>
 <body>
-      <div id="app">
+      <div id="app" v-cloak>
           <div class="yamanTupian">
              <!-- <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1"> -->
           </div>
@@ -29,7 +29,7 @@
               <marquee direction='left'>Dyson又出新产品了，历史价格最低...</marquee>
             </a>
           </div>
-          <div class="homeBox" v-cloak>
+          <div class="homeBox">
               <div class="homeMain"
                 v-for="(item, index) in goodsList1" :key="index">
                   <div class="homeMain-top" >
