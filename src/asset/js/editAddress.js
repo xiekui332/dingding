@@ -69,7 +69,7 @@ var vm = new Vue({
 			})
 			if (flag) return
 			if (!phoneValid(this.address.mobile)) {
-				//ddToast('手机号码格式错误')
+				ddToast('手机号码格式错误')
 				return
 			}
 
