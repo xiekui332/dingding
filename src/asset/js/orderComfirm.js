@@ -67,7 +67,6 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						
 						this.orderNo = result.data.sn
 						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
 							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
@@ -127,17 +126,17 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						if (result.data.flag == 1) {
-							// 支付表单
-							this.payHtml = result.data.html
-							
-							$('#alipaysubmit').submit();
+						if (result.data.flag == 1 || result.data.flag == 2) {
+							// 支付链接
+							location.href = result.data.html
+							// $('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
 							this.SecretFree()
-						} else if (result.data.flag == 2) {
-							location.href = result.data.html
-						}
+						} 
+						// else if (result.data.flag == 2) {
+						// 	location.href = result.data.html
+						// }
 					} else {
 						ddToast(result.message)
 					}
@@ -215,10 +214,7 @@ var vm = new Vue({
 							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
 
-							//要改
-							this.order.address = result.data.addressVo.address
-
-							// this.order.detail = result.data.detail
+							this.order.address = result.data.addressEntity.detail
 							this.order.provinceId = result.data.addressEntity.provinceId
 							this.order.cityId = result.data.addressEntity.cityId
 							this.order.districtId = result.data.addressEntity.districtId

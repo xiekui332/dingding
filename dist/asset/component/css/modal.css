@@ -19,7 +19,7 @@
     z-index: 1001;
     background: #FFF;
     margin: -1.50rem 1rem 0 1rem;
-    border-radius: .03rem;
+    border-radius: .08rem;
     /* opacity: 1; */
 }
   
@@ -28,8 +28,8 @@
     padding:.50rem 0 .20rem 0;
     text-align: center;
     color: #333;
-    font-size: .4rem;
-    font-weight: bold;
+    font-size: .36rem;
+    /* font-weight: bold; */
 }
 .pop_content {
     /* width:100%; */
@@ -44,7 +44,7 @@
     bottom: 0rem;
     width: 100%;
     text-align: center;
-    font-size: .4rem;
+    font-size: .36rem;
     color: #e86d59;
     line-height: 1rem;
     border-top: 1px solid #f7f7f7;
