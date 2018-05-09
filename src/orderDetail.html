@@ -126,7 +126,7 @@
 						<span class="l">总押金</span>
 						<div class="r">
 							￥
-							<span>{{objAddress.productDeposit}}</span>
+							<span>{{objAddress.totalAmount}}</span>
 						</div>
 					</div>
 
@@ -134,14 +134,14 @@
 						<span class="l">信用免押金</span>
 						<div class="r">
 							-￥
-							<span>{{objAddress.zhimaCrediFreeDeposit}}</span>
+							<span>{{objAddress.freeDeposit}}</span>
 						</div>
 					</div>
 					<div class="">
 						<span class="l">冻结金额</span>
 						<div class="r">
 							-￥
-							<span>{{objAddress.authorizedDeposit}}</span>
+							<span>{{objAddress.nailFreezeDeposit}}</span>
 						</div>
 					</div>
 				</div>
@@ -184,7 +184,6 @@
 				<div @click="openModal('contactTip')" class="btnIng">联系客服</div>
 				<div @click="toBillOrder" class="btnIng">查看账单</div>
 			</div>
-
 		</div>
 
 		<!-- 审核通过 -->

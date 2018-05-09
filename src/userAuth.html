@@ -96,8 +96,11 @@
 				</div>
 
 
-				<div class="now-lj" v-show="isFirstAuth" @click="saveUserAuth">
-					<div class="bow-btn" >
+				<div class="now-lj" v-show="isFirstAuth" >
+					<div class="bow-btn" v-if="userAuth.status == authStatus.invalid" @click="updateUserAuth">
+						立即授权
+					</div>
+					<div class="bow-btn" v-else @click="saveUserAuth">
 						立即授权
 					</div>
 				</div>
