@@ -63,35 +63,39 @@
               </div>
               <span class="wenzi1" @click="toBillOrder()">企业账单</span>
             </li> -->
-            <li>
+            <li @click="toUserAuth()">
               <div class="li-div">
                 <img src="asset/images/icon/auth.png" class="img4">
               </div>
-              <span class="wenzi1" @click="toUserAuth()">企业授权</span>
+              <span class="wenzi1" >企业授权</span>
             </li>
-            <li>
+            <li @click="toManageAddress()">
               <div class="li-div">
                 <img src="asset/images/icon/mapDing.png" class="img4">
               </div>
-              <a  class="wenzi1" @click="toManageAddress()">地址管理</a>
+              <a  class="wenzi1" >地址管理</a>
             </li>
-            <li>
+            <li @click="toAbout()">
               <div class="li-div">
                 <img src="asset/images/icon/about.png" class="img4">
               </div>
-              <span class="wenzi1" @click="toAbout()" >关于我们</span>
+              <span class="wenzi1">关于我们</span>
             </li>
           </ul>
       </div> 
       <mt-tabbar fixed="true" style="background:#fff">
-        <mt-tab-item id="tab4">
-          <img slot="icon" src="asset/images/icon/lease.png" @click="toHome()"> 
-          租赁
-        </mt-tab-item>
-        <mt-tab-item id="tab3" style="color:#F3654C">
-          <img slot="icon" src="asset/images/icon/user_center_in.png" > 
-          我的
-        </mt-tab-item>
+        <a style="width:50%" @click="toHome()">
+          <mt-tab-item id="tab4">
+            <img slot="icon" src="asset/images/icon/lease.png"> 
+            租赁
+          </mt-tab-item>
+        </a>
+        <a style="width:50%">
+          <mt-tab-item id="tab3" style="color:#F3654C">
+            <img slot="icon" src="asset/images/icon/user_center_in.png" > 
+            我的
+          </mt-tab-item>
+        </a>
       </mt-tabbar>
 	</div>
 </body> 
