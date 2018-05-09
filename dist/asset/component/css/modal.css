@@ -28,27 +28,33 @@
     padding:.50rem 0 .20rem 0;
     text-align: center;
     color: #333;
+    font-size: .4rem;
+    font-weight: bold;
 }
 .pop_content {
     /* width:100%; */
     font-family: 'PingFangSC-Regular';
     color: #666;
-    padding: 0 .60rem .90rem .60rem;
+    padding: 0 .60rem 1.2rem .60rem;
     line-height: .40rem;
     font-size: .26rem;
 }
 .close {
     position: absolute;
-    bottom: -1.20rem;
+    bottom: 0rem;
     width: 100%;
     text-align: center;
+    font-size: .4rem;
+    color: #e86d59;
+    line-height: 1rem;
+    border-top: 1px solid #f7f7f7;
 }
 .close img {
     width: .64rem;
 }
 
 .popfade-enter-active, .popfade-leave-active {
-    transition: opacity .5s;
+    transition: opacity .4s;
 }
 .popfade-enter, .popfade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
