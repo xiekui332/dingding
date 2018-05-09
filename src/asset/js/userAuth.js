@@ -27,7 +27,8 @@ var vm = new Vue({
         authStatus: {
             success: 1,
             fail: 2,
-            audit: 0
+            audit: 0,
+            invalid: 3
         },
         authHead: {
             icon: '',
@@ -159,7 +160,10 @@ var vm = new Vue({
                             this.authHead.icon = 'asset/images/icon/auth_audit.png'
                             this.authHead.title = '审核中'
                             this.authHead.describe[0] = '你的授权信息正在审核中，请耐心等待'
-                        }
+                        }  else if (this.userAuth.status == this.authStatus.invalid) {
+                            this.isFirstAuth = true
+                            this.canEdit = true
+                        } 
                     } else if (result.code == 7010) {
                         this.isFirstAuth = true
                         this.canEdit = true
@@ -221,7 +225,7 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        // location.href = result.data.url
+                        location.href = result.data.url
                     } else {
                         ddToast(result.message)
                     }
@@ -241,15 +245,5 @@ var vm = new Vue({
         this.productId = getUrlParam('productId')
         this.orderNo = getUrlParam('orderNo')
         this.getUserAuth()
-
-        // hasAuth 为空 需要授权； hasAuth==true 不需要授权
-        // if (getUrlParam('hasAuth') == true) {
-        //     this.isFirstAuth = false
-        //     this.canEdit = false
-        //     this.getUserAuth()
-        // } else {
-        //     this.isFirstAuth = true
-        //     this.canEdit = true
-        // }
     },
 })
