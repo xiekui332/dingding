@@ -310,9 +310,14 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
-		this.order.productId = getUrlParam('productId')
-		this.order.productPriceId = getUrlParam('productPriceId')
-		this.order.count = getUrlParam('count')
+
+		let product = getUrlParam('product')
+		if (product) {
+			let arr = product.split('-')
+			this.order.productId = arr[0]
+			this.order.productPriceId = arr[1]
+			this.order.count = arr[2]
+		}
 		this.getAddress()
 		this.getZmStatus()
 	},
