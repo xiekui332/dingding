@@ -67,7 +67,7 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						this.orderNo = result.data.sn
-						if (result.data.authCode == 7010 || result.data.authCode == 7016) {//未授权 或 拒绝
+						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
 							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
 						} else if (result.data.authCode == 7014) {//待审核
 							ddToast("授权待审核中")
@@ -88,6 +88,9 @@ var vm = new Vue({
 			//	判断是否添加收货地址，改变show的状态触发提示
 			if (this.hasDefaultAddress == false) {
 				this.showAddressTip = true;		//	没有添加收货地址
+				setTimeout(()=>{
+					this.showAddressTip = false
+				}, 1000)
 				return false
 			}
 			//	判断勾选

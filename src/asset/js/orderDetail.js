@@ -83,6 +83,8 @@ var vm = new Vue({
 							data.data.totalAmount = 0.00
 						};
 						data.data.totalAmount = (data.data.totalAmount).toFixed(2);
+						data.data.freeDeposit = (data.data.totalAmount - data.data.nailFreezeDeposit).toFixed(2);
+						
 
 						vm.objAddress = data.data;
 						vm.goodsInfo.productName = data.data.productName;
