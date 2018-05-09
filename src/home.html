@@ -43,7 +43,7 @@
 	                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
 	                              <div class="homeName">{{goods.productEntity.name}}</div>
 	                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
-	                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0]}}</em></div>
+	                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0].toFixed(2)}}</em></div>
 	                          </a>
 
                         </div>
@@ -53,14 +53,18 @@
           </div>
           <div class="footer">
             <mt-tabbar fixed="true">
-              <mt-tab-item id="tab4" style="color:#F3654C">
-                <img slot="icon" src="asset/images/icon/lease_in.png">
-                租赁
-              </mt-tab-item>
-              <mt-tab-item id="tab3" >
-                <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()">
-                我的
-              </mt-tab-item>
+              <a style="width:50%">
+                <mt-tab-item id="tab4" style="color:#F3654C">
+                  <img slot="icon" src="asset/images/icon/lease_in.png">
+                  租赁
+                </mt-tab-item>
+              </a>
+              <a @click="toUserCenter()" style="width:50%">
+                <mt-tab-item id="tab3" >
+                  <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()">
+                  我的
+                </mt-tab-item>
+              </a>
             </mt-tabbar>
         </div>
     </div>
