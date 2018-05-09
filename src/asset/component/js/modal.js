@@ -40,7 +40,8 @@ Vue.component('popModal',{
                         </div>
                     </div>
                     <div class="close" @click="closeModal">
-                        <img src="asset/images/icon/close.png"/>
+                       
+                        确定
                     </div>
             </div>
             </div>
