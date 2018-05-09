@@ -5,7 +5,6 @@ function uploadImg(e, url) {
         let formData = new FormData()
         formData.append('picture', imgFile)
         formData.append('filename', imgFile.name)
-
         $.ajax({
             url: url,
             type: "POST",
@@ -20,11 +19,14 @@ function uploadImg(e, url) {
             },
             crossDomain: true,
             success: result => {
+                alert(JSON.stringify(result))
                 if (result.code == 200) {
+                    alert(1)
                     resolve(result.data)
                 } 
             },
             error: e => {
+                alert(3)
                 reject('上传失败')
             }
         });
@@ -83,7 +85,6 @@ function getHostUrl(url) {
 //接口api地址
 function getApiUrl(url) {
     const taozugonghost = "http://api.taozugong.com:8080";
-    // const taozugonghost = "//192.168.17.214";
     // const taozugonghost = '/getapi'
     return taozugonghost + url
 }
