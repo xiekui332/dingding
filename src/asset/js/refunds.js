@@ -26,6 +26,7 @@ var vm = new Vue({
           crossDomain:true,
           success:res=>{
             if(res.code == 200){
+              this.showA = false
               if(res.data.status == 1){
                 this.showB = true;
               }else if(res.data.status == 0){
@@ -42,7 +43,7 @@ var vm = new Vue({
         $.ajax({
           type:"post",
           url:getPhpApiUrl("/nail/requestreturn.html"),
-          async:true,
+          // async:true,
           data:{
             order_no: this.orderNo
           },
@@ -55,6 +56,13 @@ var vm = new Vue({
               Number(res.data.Liquidated_amount).toFixed(2);
               Number(res.data.total_amount).toFixed(2);
               this.dataArray = res.data;
+
+              if (res.data.status == 0) { //归还中
+                this.showA = false
+              } else if (res.data.status == 1)  { //归还成功
+                this.showA = false
+                this.showB = true
+              }
             }
           },
           error:e =>{
