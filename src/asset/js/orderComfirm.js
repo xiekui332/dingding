@@ -153,7 +153,7 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: this.order.orderNo
+					order_no: this.orderNo
 				},
 				xhrFields: {
 					withCredentials: true
