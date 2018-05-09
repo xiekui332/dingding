@@ -6,7 +6,7 @@ Vue.component('popModal',{
         },
         poptitle: {
             type: String,
-            default: '12'
+            default: ''
         },
         popcontent: {
             type: Array,
