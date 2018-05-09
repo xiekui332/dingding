@@ -127,11 +127,7 @@ var vm = new Vue({
           }
           //  session存储对象
           setSession(sessionObj)
-
           this.setUserDetail(result)
-
-
-         
         },
         error: e => {
           ddToast('网络错误')
@@ -167,20 +163,6 @@ var vm = new Vue({
         }
       })
     },
-    openUrl(url) {
-      alert(1)
-      ddConfig(res)
-      dd.ready(() => {
-        dd.biz.util.openLink({
-          url: url,//要打开链接的地址
-          onSuccess:(result)=>{
-              /**/
-          },
-          onFail:(err)=>{
-          }
-        })
-      })
-    }
   },
   created() { },
   destroyed() {},
@@ -195,10 +177,6 @@ var vm = new Vue({
       userId: '08623665231156032'
     }
     setSession(sessionObj)
-
-    // let a = 'http://payauth.alipay.com/home/exterfaceAssign.htm?_input_charset=utf-8&sign=01acd90146ce092fe29700c2e9e8baba&product_code=GENERAL_WITHHOLDING_P&alipay_exterface_invoke_assign_model=customer&alipay_exterface_invoke_assign_target=customerAgreementSign.htm&scene=INDUSTRY%7CDIGITAL_MEDIA&partner=2088821141940303&alipay_exterface_invoke_assign_sign=_k_dp_g_q_f_mqj_jp_ga_r_v%2Bq_f6_k_i_ks3ewlf_vd5q%2B_ow9%2B_l_d4_mf%2Fu1e_wn_x7_kj0g%3D%3D&service=alipay.dut.customer.agreement.page.sign&return_url=http%3A%2F%2Ftest.api.taozugong.net%2Fpay%2Fnail-signed-return.html&access_info=%7B%22channel%22%3A%22ALIPAYAPP%22%7D&external_sign_no=B508699651052651&sign_type=MD5&alipay_exterface_invoke_assign_client_ip=60.176.86.219'
-    // let open = 'alipays://platformapi/startapp?appId=20000067&url=' + a
-    // this.openUrl(open)
   },
 })
 

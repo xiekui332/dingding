@@ -82,18 +82,17 @@ var vm = new Vue({
                 return message
             }
             
-            // if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
-            //     message = '请上传凭证' 
-            // } else if (!checkIdcard(this.userAuth.idcard)) {
-            //     message = '身份证号输入有误' 
-            // } 
+            if (this.userAuth.dingIndexImg == 'asset/images/icon/proof.png' || this.userAuth.companyDelegateImg == 'asset/images/icon/proof.png') {
+                message = '请上传凭证' 
+            } else if (!checkIdcard(this.userAuth.idcard)) {
+                message = '身份证号输入有误' 
+            } 
             // else if (!phoneValid(this.userAuth.phone)) {
             //     message = '手机号输入有误' 
             // }
             return message
         },
         saveUserAuth() {
-            let flag = ''
             let message = this.authValidate()
             if (message != true) {
                 ddToast(message)
@@ -175,13 +174,11 @@ var vm = new Vue({
             });
         },
         updateUserAuth() {
-            let flag = ''
             let message = this.authValidate()
             if (message != true) {
                 ddToast(message)
                 return
             }
-
             let url = getApiUrl('/shop-test/rest/dingDingUserInfo/Ddupdate')
             $.ajax({
                 url: url,
