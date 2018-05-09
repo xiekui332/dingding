@@ -51,8 +51,6 @@ var vm = new Vue({
     methods: {
         onFileChange(e, index) {
             let url =  getApiUrl('/shop-test/img/upload.do') 
-            // let url =  '/getapi/shop-test/img/upload.do'
-            
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
                     this.userAuth.dingIndexImg = imgUrl
