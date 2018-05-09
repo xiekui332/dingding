@@ -48,6 +48,7 @@ var vm = new Vue({
 	},
 	methods: {
 		submitOrder() {
+			
 			if (!this.submitValid()) {
 				return
 			}
@@ -66,6 +67,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						
 						this.orderNo = result.data.sn
 						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
 							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
@@ -128,6 +130,7 @@ var vm = new Vue({
 						if (result.data.flag == 1) {
 							// 支付表单
 							this.payHtml = result.data.html
+							
 							$('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
