@@ -63,7 +63,7 @@ var vm = new Vue({
             jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
           });
           // ddConfig(res)
-          // dd.ready(() => {
+          dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
@@ -76,7 +76,7 @@ var vm = new Vue({
                 alert("fail" + JSON.stringify(err))
               }
             })
-          // });
+          });
         },
         error: e => {
           ddToast('网络错误')
