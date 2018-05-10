@@ -59,11 +59,11 @@ var vm = new Vue({
               corpId: this.corpId,
               onSuccess: (result) => {
                 //  得到授权码
-                // alert('requestAuthCode:' + JSON.stringify(result))
+                alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
               onFail: (err) => {
-                // alert("fail" + JSON.stringify(err))
+                alert("fail" + JSON.stringify(err))
               }
             })
           // });
@@ -89,7 +89,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert("userIdSuccess:" + JSON.stringify(result))
+          alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -114,7 +114,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert('getUserDetail:'+JSON.stringify(result))
+          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
