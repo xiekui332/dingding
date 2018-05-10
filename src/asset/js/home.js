@@ -169,7 +169,7 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    window.localStorage.clear
+    window.localStorage.clear()
     if (!getSession()) {
       this.getAuthCode()
     }
