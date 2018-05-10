@@ -52,6 +52,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
+          alert(JSON.stringify(res))
           ddConfig(res)
           // dd.ready(() => {
             //获取免登授权码
