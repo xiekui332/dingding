@@ -24,7 +24,6 @@ function uploadImg(e, url) {
                 } 
             },
             error: e => {
-                alert(3)
                 reject('上传失败')
             }
         });

@@ -41,7 +41,7 @@ var vm = new Vue({
 							this.allCount = data.data.ordersProductEntity.periodNumber;
 						});
 						this.paidList.forEach((k, v) => {
-							k.cdate = getTime(k.cdate);
+							k.cdate = getTime(k.cdate, 1);
 						})
 					} else {
 						ddToast(data.message)
