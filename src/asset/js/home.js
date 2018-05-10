@@ -51,18 +51,9 @@ var vm = new Vue({
           withCredentials: true
         },
         crossDomain: true,
-        success: config => {
-          alert(JSON.stringify(config))
-
-          dd.config({
-            agentId: config.agentId, // 必填，微应用ID
-            corpId: config.corpId,//必填，企业ID
-            timeStamp: config.timeStamp, // 必填，生成签名的时间戳
-            nonceStr: config.nonce, // 必填，生成签名的随机串
-            signature: config.signature, // 必填，签名
-            jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
-          });
-          // ddConfig(res)
+        success: res => {
+          // alert(JSON.stringify(res))
+          ddConfig(res)
           dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
@@ -99,7 +90,6 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -124,7 +114,6 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
@@ -176,9 +165,9 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    // if (!getSession()|| !getSession().userId) {
+    if (!getSession()|| !getSession().userId) {
       this.getAuthCode()
-    // }
+    }
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'
