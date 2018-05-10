@@ -12,7 +12,6 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
-    
     getGoodsList(id) {
       let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
@@ -26,7 +25,6 @@ var vm = new Vue({
           categoryId: 1
         },
         success: (json) => {
-        //  console.log(json)
           this.goodsList1 = json.data
         }
       })
@@ -54,27 +52,24 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-          alert(JSON.stringify(res))
           ddConfig(res)
-          alert(7)
           // dd.ready(() => {
-            alert(4)
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
                 //  得到授权码
-                alert('requestAuthCode:' + JSON.stringify(result))
+                // alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
               onFail: (err) => {
-                alert("fail" + JSON.stringify(err))
+                // alert("fail" + JSON.stringify(err))
               }
             })
           // });
         },
         error: e => {
-          alert("error:" + JSON.stringify(e))
+          ddToast('网络错误')
         }
       })
     },
@@ -94,7 +89,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert("userIdSuccess:" + JSON.stringify(result))
+          // alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -119,7 +114,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert('getUserDetail:'+JSON.stringify(result))
+          // alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
@@ -159,7 +154,6 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          alert('setUserDetail')
         },
         error: e => {
           ddToast('网络错误')
