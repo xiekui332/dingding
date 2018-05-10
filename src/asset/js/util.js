@@ -126,7 +126,6 @@ function ddConfig(config) {
 //{corpId:1,  userId:1}
 function setSession(sessionObj) {
     window.localStorage.clear()
-    
     window.localStorage.setItem('tzgDingDing', JSON.stringify(sessionObj));
 }
 
