@@ -168,6 +168,8 @@ var vm = new Vue({
     if (!getSession()|| !getSession().userId) {
       this.getAuthCode()
     }
+
+    alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'
