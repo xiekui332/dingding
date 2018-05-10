@@ -62,7 +62,7 @@ var vm = new Vue({
               corpId: this.corpId,
               onSuccess: (result) => {
                 //  得到授权码
-                // alert('requestAuthCode:' + JSON.stringify(result))
+                alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
               onFail: (err) => {
@@ -170,7 +170,8 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     window.localStorage.clear()
-    if (!getSession()) {
+    if (!getSession().userId) {
+      alert(1)
       this.getAuthCode()
     }
     // let sessionObj = {
