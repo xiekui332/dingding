@@ -86,7 +86,7 @@ var vm = new Vue({
       location.href = 'userAuth.html'
     },
     toManageAddress() {
-      location.href = 'manageAddress.html'
+      location.href = 'manageAddress.html?addressType=userCenter'
     },
     toAbout() {
       location.href = 'about.html'

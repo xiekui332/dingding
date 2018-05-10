@@ -49,7 +49,6 @@ var vm = new Vue({
 	},
 	methods: {
 		submitOrder() {
-			
 			if (!this.submitValid()) {
 				return
 			}
@@ -91,7 +90,7 @@ var vm = new Vue({
 			//	判断是否添加收货地址，改变show的状态触发提示
 			if (this.hasDefaultAddress == false) {
 				this.showAddressTip = true;		//	没有添加收货地址
-				setTimeout(()=>{
+				setTimeout(() => {
 					this.showAddressTip = false
 				}, 2000)
 				return false
@@ -135,7 +134,7 @@ var vm = new Vue({
 						} else if (result.data.flag == 0) {
 							// 免密
 							this.SecretFree()
-						} 
+						}
 					} else {
 						ddToast(result.message)
 					}

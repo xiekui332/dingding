@@ -53,6 +53,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
+          alert(JSON.stringify(res))
           ddConfig(res)
           // dd.ready(() => {
             //获取免登授权码
@@ -60,11 +61,11 @@ var vm = new Vue({
               corpId: this.corpId,
               onSuccess: (result) => {
                 //  得到授权码
-                // alert('requestAuthCode:' + JSON.stringify(result))
+                alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
               onFail: (err) => {
-                // alert("fail" + JSON.stringify(err))
+                alert("fail" + JSON.stringify(err))
               }
             })
           // });
@@ -90,7 +91,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert("userIdSuccess:" + JSON.stringify(result))
+          alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -115,7 +116,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert('getUserDetail:'+JSON.stringify(result))
+          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
@@ -167,15 +168,15 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    window.localStorage.clear()
-    if (!getSession()|| !getSession().userId) {
+    // window.localStorage.clear()
+    // if (!getSession()|| !getSession().userId) {
       this.getAuthCode()
-    }
-    let sessionObj = {
-      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      userId: '08623665231156032'
-    }
-    setSession(sessionObj)
+    // }
+    // let sessionObj = {
+    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+    //   userId: '08623665231156032'
+    // }
+    // setSession(sessionObj)
   },
 })
 
