@@ -115,7 +115,6 @@ function ddToast(message) {
 }
 
 function ddConfig(config) {
-    alert('dd')
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID
@@ -124,7 +123,6 @@ function ddConfig(config) {
         signature: config.signature, // 必填，签名
         jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
-    alert('ddend')
 }
 
 
