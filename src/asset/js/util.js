@@ -124,6 +124,7 @@ function ddConfig(config) {
         signature: config.signature, // 必填，签名
         jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
+    alert('ddend')
 }
 
 
