@@ -57,21 +57,21 @@ var vm = new Vue({
           alert(JSON.stringify(res))
           ddConfig(res)
           alert(7)
-          dd.ready(() => {
+          // dd.ready(() => {
             alert(4)
             //获取免登授权码
-            // dd.runtime.permission.requestAuthCode({
-            //   corpId: this.corpId,
-            //   onSuccess: (result) => {
-            //     //  得到授权码
-            //     alert('requestAuthCode:' + JSON.stringify(result))
-            //     this.getUserId(result.code)
-            //   },
-            //   onFail: (err) => {
-            //     alert("fail" + JSON.stringify(err))
-            //   }
-            // })
-          });
+            dd.runtime.permission.requestAuthCode({
+              corpId: this.corpId,
+              onSuccess: (result) => {
+                //  得到授权码
+                alert('requestAuthCode:' + JSON.stringify(result))
+                this.getUserId(result.code)
+              },
+              onFail: (err) => {
+                alert("fail" + JSON.stringify(err))
+              }
+            })
+          // });
         },
         error: e => {
           alert("error:" + JSON.stringify(e))
