@@ -6,6 +6,8 @@ var vm = new Vue({
         // nailUserInfoId: 1,
         activeAddressId: -1, 
         addressList:[],
+        addressType: '',
+        backUrl: ''
     },
     methods:{
         getAddressList() {
@@ -116,5 +118,11 @@ var vm = new Vue({
     mounted() {
 		this.user = getSession()
         this.getAddressList()
+        // this.addressType = getUrlParam('addressType')
+        // if (this.addressType == 'userCenter') {
+        //     this.backUrl = 'userCenter.html'
+        // } else {
+        //     this.backUrl = document.referrer
+        // }
     }
 })
