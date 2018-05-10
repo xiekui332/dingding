@@ -60,17 +60,17 @@ var vm = new Vue({
           dd.ready(() => {
             alert(4)
             //获取免登授权码
-            dd.runtime.permission.requestAuthCode({
-              corpId: this.corpId,
-              onSuccess: (result) => {
-                //  得到授权码
-                alert('requestAuthCode:' + JSON.stringify(result))
-                this.getUserId(result.code)
-              },
-              onFail: (err) => {
-                alert("fail" + JSON.stringify(err))
-              }
-            })
+            // dd.runtime.permission.requestAuthCode({
+            //   corpId: this.corpId,
+            //   onSuccess: (result) => {
+            //     //  得到授权码
+            //     alert('requestAuthCode:' + JSON.stringify(result))
+            //     this.getUserId(result.code)
+            //   },
+            //   onFail: (err) => {
+            //     alert("fail" + JSON.stringify(err))
+            //   }
+            // })
           });
         },
         error: e => {
@@ -172,10 +172,8 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    alert(2)
     window.localStorage.clear()
     if (!getSession()|| !getSession().userId) {
-      alert(1)
       this.getAuthCode()
     }
     // let sessionObj = {
