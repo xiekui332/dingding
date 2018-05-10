@@ -104,6 +104,7 @@ var vm = new Vue({
             this.showPop = true
         },
         toOrderComfirm() {
+            alert(JSON.stringify(this.user))
             let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdStatus')
             $.ajax({
                 url: url,
