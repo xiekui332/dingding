@@ -24,7 +24,8 @@ function uploadImg(e, url) {
                 } 
             },
             error: e => {
-                reject('上传失败')
+                reject(JSON.stringify(e))
+                // reject('上传失败')
             }
         });
     })
