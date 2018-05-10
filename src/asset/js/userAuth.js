@@ -58,7 +58,7 @@ var vm = new Vue({
                     this.userAuth.companyDelegateImg = imgUrl
                 }
             }).catch((err)=>{
-                ddToast(JSON.stringify(err))
+                ddToast(err)
                 // ddToast('图片上传失败')
             })  
         },
