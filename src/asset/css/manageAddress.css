@@ -1,6 +1,7 @@
 body{
     background: #f7f7f7;
     font-family: 'PingFangSC-Regular';
+    border-top: 1px solid #f7f7f7;
 }
 .sec-1{
     background: #fff;
@@ -60,6 +61,14 @@ body{
     float: right;
     margin-top: .05rem;
 }
+.icon-an i:nth-child(2){
+    display: inline-block;
+    margin-top: .02rem!important;
+    float: right;
+}
+.icon-an i:nth-child(1){
+    transform: scaleX(.91)
+}
 .van-icon:before{
     display: inline-block;
     float: right;
@@ -67,6 +76,10 @@ body{
 }
 .van-icon-edit{
     padding-right: .5rem;
+    /* margin-top: -.05rem; */
+}
+.van-radio__label{
+    padding-top: .035rem;
 }
 
 
