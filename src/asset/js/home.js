@@ -56,6 +56,7 @@ var vm = new Vue({
         success: res => {
           alert(3)
           ddConfig(res)
+          alert(7)
           dd.ready(() => {
             alert(4)
             //获取免登授权码
