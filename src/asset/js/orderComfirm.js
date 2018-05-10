@@ -71,12 +71,12 @@ var vm = new Vue({
 						this.orderNo = result.data.sn
 						this.orderId = result.data.orderId
 						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
-							// location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
+							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
 						} else if (result.data.authCode == 7014) {//待审核
 							ddToast("授权待审核中")
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
-							// this.pay()
+							this.pay()
 						}
 					} else {
 						ddToast(result.message)
