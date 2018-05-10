@@ -142,16 +142,13 @@ var vm = new Vue({
 			location.href = 'logistics.html?orderNo=' + this.orderNo + '&createTime=' + this.createTime
 		},
 		pay() {
-			let url = getPhpApiUrl('/nail/pay.html')
+			let url = getPhpApiUrl('/nail/immediatelypay.html')
 			$.ajax({
 				url: url,
 				type: "POST",
 				dataType: "json",
 				data: {
 					order_no: this.orderNo,
-					product_id: this.order.productId,
-					product_price_id: this.order.productPriceId,
-					count: this.order.count
 				},
 				xhrFields: {
 					withCredentials: true
@@ -159,14 +156,13 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						if (result.data.authCode == 7010 || result.data.authCode == 7016) {//未授权 或 拒绝
-							// location.href = 'userAuth.html?productId=' + this.order.productId
-						} else if (result.data.authCode == 7014) {//待审核
-							ddToast("授权待审核中")
-						} else if (result.data.authCode == 7015) {  //审核通过
-							// 支付
-							this.pay()
-						}
+						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
+							// 支付链接
+							location.href = result.data.html
+						} else if (result.data.flag == 0) {
+							// 免密
+							this.SecretFree()
+						} 
 					} else {
 						ddToast(result.message)
 					}
@@ -175,7 +171,32 @@ var vm = new Vue({
 					ddToast('网络错误')
 				}
 			})
-		}
+		},
+		SecretFree() {
+			let url = getPhpApiUrl('/nail/nailpay.html')
+			$.ajax({
+				url: url,
+				type: "POST",
+				dataType: "json",
+				data: {
+					order_no: this.orderNo
+				},
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
+				success: result => {
+					if (result.code == 200) {
+						location.href = 'orderSuccess.html?orderId=' + this.orderId
+					} else if (result.code == -1) {
+						location.href = 'orderFailed.html?productId=' + this.order.productId
+					}
+				},
+				error: e => {
+					ddToast('网络错误')
+				}
+			})
+		},
 	},
 	mounted() {
 		this.orderId = getUrlParam('orderId')
