@@ -19,9 +19,7 @@ function uploadImg(e, url) {
             },
             crossDomain: true,
             success: result => {
-                alert(JSON.stringify(result))
                 if (result.code == 200) {
-                    alert(1)
                     resolve(result.data)
                 } 
             },
