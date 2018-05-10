@@ -52,9 +52,10 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-          // alert(JSON.stringify(res))
+          alert(JSON.stringify(res))
           ddConfig(res)
-          dd.ready(() => {
+          alert(6)
+          // dd.ready(() => {
             //获取免登授权码
             alert(5)
             dd.runtime.permission.requestAuthCode({
@@ -68,7 +69,7 @@ var vm = new Vue({
                 alert("fail" + JSON.stringify(err))
               }
             })
-          });
+          // });
         },
         error: e => {
           ddToast('网络错误')
