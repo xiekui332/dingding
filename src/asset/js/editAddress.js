@@ -138,6 +138,11 @@ var vm = new Vue({
 			this.address.detail = item.name;
 			this.addressShow = false;
 		},
+		chooseAddress() {
+			setTimeout(() => {
+				this.addressVisible = !this.addressVisible
+            }, 550);
+		}
 	},
 	mounted() {
 		//身份信息
