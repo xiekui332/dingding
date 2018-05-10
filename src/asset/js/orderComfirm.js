@@ -146,7 +146,7 @@ var vm = new Vue({
 			})
 		},
 		SecretFree() {
-			let url = getPhpApiUrl('/pay/nailpay.html')
+			let url = getPhpApiUrl('/nail/nailpay.html')
 			$.ajax({
 				url: url,
 				type: "POST",
