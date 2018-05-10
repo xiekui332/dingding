@@ -56,6 +56,7 @@ var vm = new Vue({
           ddConfig(res)
           dd.ready(() => {
             //获取免登授权码
+            alert(5)
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
@@ -165,7 +166,8 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    if (!getSession()|| !getSession().userId) {
+    if (!getSession() || !getSession().userId) {
+      alert(1)
       this.getAuthCode()
     }
 
