@@ -44,7 +44,8 @@ var vm = new Vue({
 		popContent: [],
 		setStyle: '',
 		payHtml: '',
-		orderNo: ''
+		orderNo: '',
+		orderId: ''
 	},
 	methods: {
 		submitOrder() {
@@ -67,6 +68,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						//
 						this.orderNo = result.data.sn
 						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
 							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
@@ -134,9 +136,6 @@ var vm = new Vue({
 							// 免密
 							this.SecretFree()
 						} 
-						// else if (result.data.flag == 2) {
-						// 	location.href = result.data.html
-						// }
 					} else {
 						ddToast(result.message)
 					}
@@ -160,9 +159,11 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-					// location.href = result
-					// if (result.code == 200) {
-					// }
+					if (result.code == 200) {
+						location.href = 'orderSuccess.html?orderId=' + this.orderId
+					} else if (result.code == -1) {
+						location.href = 'orderFailed.html?productId=' + this.order.productId
+					}
 				},
 				error: e => {
 					ddToast('网络错误')
@@ -311,7 +312,6 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
-
 		let product = getUrlParam('product')
 		if (product) {
 			let arr = product.split('-')

@@ -175,17 +175,17 @@ body{
   /*定单共用样式*/
   /* view,text { font-family: Arial, Helvetica, sans-serif;} */
   
-  .orderInfo{display:flex; padding: 20rpx 10rpx;  background: #fff;}
+  /* .orderInfo{display:flex; padding: 20rpx 10rpx;  background: #fff;}
   .orderInfo image{ width: 200rpx; height: 200rpx;}
   .orderInfo .right{ flex: 1; }
   .orderInfo text {color:#333; font-size: 24rpx; display:block; line-height: 50rpx;}
   .orderInfo .right .title { font-size: 28rpx;}
   .orderInfo .right .spec { color:#999;}
-  .orderInfo .right label { padding:2rpx 10rpx; color: #1CCFC9; font-size: 20rpx; border: 2rpx solid #1CCFC9;}
+  .orderInfo .right label { padding:2rpx 10rpx; color: #1CCFC9; font-size: 20rpx; border: 2rpx solid #1CCFC9;} */
   
   
 /* 商品 */
-.goodsInfo {
+/* .goodsInfo {
     display: flex;
     background: #fff;
 }
@@ -216,4 +216,4 @@ body{
 .price-num {
   display: flex;
   justify-content: space-between;
-}
+} */
