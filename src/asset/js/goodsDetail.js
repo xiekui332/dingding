@@ -123,8 +123,10 @@ var vm = new Vue({
                         ddToast('授权信息审核中~')
                         return
                     } else {
+                        ddToast(res.message)
+                        
                         location.href = 'orderComfirm.html?product=' + this.productId + '-' + this.productPriceId + '-' + this.count
-                    }
+                    } 
                 },
                 error: e => {
                     ddToast('网络错误')

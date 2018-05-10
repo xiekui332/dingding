@@ -59,7 +59,6 @@ var vm = new Vue({
                 }
             }).catch((err)=>{
                 ddToast(err)
-                // ddToast('图片上传失败')
             })  
         },
         closeImg(index) {
