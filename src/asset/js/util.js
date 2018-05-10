@@ -115,6 +115,7 @@ function ddToast(message) {
 }
 
 function ddConfig(config) {
+    alert('dd')
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID

@@ -57,7 +57,8 @@ var vm = new Vue({
           alert(3)
           ddConfig(res)
           dd.ready(() => {
-          //  获取免登授权码
+            alert(4)
+            //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
@@ -92,7 +93,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert("userIdSuccess:" + JSON.stringify(result))
+          alert("userIdSuccess:" + JSON.stringify(result))
           this.getUserDetail(result.userId)
         },
         error: e => {
@@ -117,7 +118,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
-          // alert('getUserDetail:'+JSON.stringify(result))
+          alert('getUserDetail:'+JSON.stringify(result))
           let sessionObj = {
             corpId: this.corpId,
             userId: result.userid,
@@ -157,6 +158,7 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: result => {
+          alert('setUserDetail')
         },
         error: e => {
           ddToast('网络错误')
