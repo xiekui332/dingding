@@ -1,7 +1,7 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
-		orderId: 202,
+		orderId: 0,
 		noPaidList: [],
 		paidList: [],
 		ordersProductEntity: {},
