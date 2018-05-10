@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css"/>
+    <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+    <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
+    <style>
+      [v-cloak]{
+        display: none;
+      }
+    </style>
+</head>
+<style>
+    .layout {
+        padding: 0 .34rem
+    }
+    .title {
+        font-family: 'PingFangSC-Regular';
+        font-size: .36rem;
+        color: #333333;
+        text-align: left;
+        /* line-height: .44rem; */
+        margin-bottom: .1rem;
+    }
+    .tip {
+        font-size: .20rem;
+        /* line-height: .2rem; */
+        /* height: .2rem; */
+        color: #999999;
+        padding: .05rem .08rem;
+        /* float: right; */
+        border: 1px solid #999999;
+    }
+    .content {
+        padding:.43rem .30rem .24rem .30rem;
+        text-align: left;
+    }
+    .borderBottom {
+        border-bottom: 1px solid #dddddd;
+    }
+    .priceTitle {
+        /* font-family: 'PingFangSC-Regular'; */
+        font-size: .32rem;
+        color: #F3654C;
+        line-height: .32rem;
+        margin: .20rem 0;
+    } 
+    .deposit {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .tab {
+        font-size: .28rem;
+        color: #878787;
+        text-align: left;
+        display: flex;
+        justify-content: space-around;
+        border-bottom: 1px solid rgba(143,143,143,0.50);
+    }
+    .tab span {
+        padding: .28rem 0 .16rem 0;
+    }
+    .tabActive {
+        border-bottom: .04rem solid #F3654C;
+        color: #F3654C;
+    }
+    .unit {
+        font-family: 'PingFangSC-Semibold';
+        font-size: .24rem;
+        margin-left:.20rem;
+    }
+
+    /* swipe */
+    .mint-swipe-indicator {
+        opacity: 0.3;
+        background: #F3654C;
+        width: .08rem;
+        height: .08rem;
+        display: inline-block;
+        border-radius: 100%;
+        /* margin: 0 3px; */
+    }
+
+    .mint-swipe-indicator.is-active {
+        opacity: 0.8;
+        background: #F3654C;
+        border-radius: .08rem;
+        width: .3rem;
+        height: .08rem;
+    }
+
+    .fixed-bottom {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+    }
+    .mint-button {
+        border-radius: 0;
+        font-size: .32rem;
+    }
+    .right-button {
+        background-color:#F3654C;
+        color:white;
+        width:100%;
+        height:1rem
+    }
+
+    .popup {
+        width: 100%;
+        /* padding: .2rem .4rem 0 .4rem; */
+        border-radius: .2rem .2rem 0 0;
+    }
+    .popup-sku p {
+        font-family: 'PingFangSC-Medium';
+        font-size: .28rem;
+        color: #333333;
+        line-height: .32rem;
+        margin: .42rem 0 .2rem 0;
+    }
+    .sku-price {
+        font-family: 'PingFangSC-Regular';
+        font-size: .456rem;
+        color: #666666;
+        text-align: right;
+        margin: 0 .46rem;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+    .popup-sku div span {
+        font-family: 'PingFangSC-Regular';
+        font-size: .24rem;
+        line-height: .24rem;
+        color: #999999;
+        border: 1px solid #999999;
+        border-radius: .24rem;
+        padding: .11rem .2rem .1rem .2rem;
+        margin-right: .25rem;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .sku-active {
+        color: #F3654C !important;
+        border: 1px solid #F3654C !important;
+    }
+    .sku-number span{
+        border: 1px solid #DDDDDD !important;
+        margin: 0 !important;
+    }
+    .sku-number .reduce{
+        border-radius: .24rem 0 0 .24rem;
+        color: #F3654C;
+        font-size: .35rem;
+        vertical-align: top;
+        padding: .11rem .15rem .13rem;
+        cursor: pointer;
+    }
+    .sku-number .add {
+        border-radius: 0 .24rem .24rem 0;
+        color: #F3654C;
+        font-size: .35rem;
+        vertical-align: top;
+        padding: .11rem .15rem .13rem;
+        cursor: pointer;
+    }
+    .sku-number .num {
+        border-radius: 0;
+        border-right: 0 !important;
+        border-left: 0 !important;
+        font-size: .24rem;
+        padding: .12rem .2rem;
+        
+    }
+    .submit {
+        font-family: 'PingFangSC-Regular';
+        background-color:#F3654C;
+        color:white;
+        border-radius: .88rem;
+        font-size: .36rem;
+        margin: .25rem 0 .18rem 0;
+    }
+</style>
+<body>
+	<div id="app" v-cloak>
+       
+	</div>
+</body>
+<script src="static/js/zepto.min.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<!-- <script src="static/js/polyfill.js"></script> -->
+<script src="asset/js/util-a17ea04659.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="asset/js/goodsDetail-81f47e552d.js"></script>
+<script src="asset/component/js/modal.js"></script>
+</html>
