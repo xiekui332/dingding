@@ -20,6 +20,7 @@
   justify-content: flex-start;
   align-items: center;
   background: #fff;
+  margin-bottom: 0.2rem;
 }
 
 .newTop {
@@ -90,7 +91,7 @@
   height: 0.262rem;
   width: 0.142rem;
   margin-right: 0.2rem;
-  display: none;
+  display: block;
 }
 
 .homeAround-top {
@@ -156,7 +157,10 @@
   text-align: left;
   margin-top: 0.1rem;
 }
-
+.homeTitle .homeMoney{
+  font-family: PingFangSC-Semibold;
+  font-size: .32rem;
+}
 .footer {
   background: #FFFFFF;
   height: 1rem;

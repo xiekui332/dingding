@@ -26,6 +26,7 @@ var vm = new Vue({
         },
         success: (json) => {
           this.goodsList1 = json.data
+         // console.log(json)
         }
       })
     },
@@ -170,11 +171,11 @@ var vm = new Vue({
     if (!getSession()|| !getSession().userId) {
       this.getAuthCode()
     }
-    // let sessionObj = {
-    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-    //   userId: '08623665231156032'
-    // }
-    // setSession(sessionObj)
+    let sessionObj = {
+      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      userId: '08623665231156032'
+    }
+    setSession(sessionObj)
   },
 })
 
