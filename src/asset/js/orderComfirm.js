@@ -160,8 +160,9 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-					if (result.code == 200) {
-					}
+					// location.href = result
+					// if (result.code == 200) {
+					// }
 				},
 				error: e => {
 					ddToast('网络错误')
