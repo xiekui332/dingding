@@ -127,7 +127,7 @@
   font-family: PingFangSC-Semibold;
   font-size: 0.28rem;
   color: #333333;
-  line-height: 0.28rem;
+  /* line-height: 0.28rem; */
   margin-top: 0.2rem;
   overflow: hidden;
   text-overflow: ellipsis;

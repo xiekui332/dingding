@@ -1,1 +1,0 @@
-"use strict";var vm=new Vue({el:"#app",data:{},methods:{toOrderDetail:function(){location.href="orderDetail.html"},toHome:function(){location.href="home.html"}}});

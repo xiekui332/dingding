@@ -28,6 +28,15 @@
 			line-height: .45rem;
 			margin-left: .05rem;
 		}
+		.van-stepper__input[disabled] {
+			color: #000;
+			background: #fff;
+			border: 1px solid #ddd;
+    		border-left: none;
+			border-right: none;
+			opacity: 1;
+		}
+
 		[v-cloak]{
 			display: none;
 		}
@@ -78,7 +87,7 @@
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" />
+							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true"/>
 						</div>
 						<div class="gray">
 							<span class="left">总合计</span>

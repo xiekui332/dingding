@@ -7,7 +7,7 @@
 	<!-- 电话类型的数字不变颜色 -->
 	<meta name="format-detection" content="telephone=no">
 	<title>确认订单</title>
-	<link rel="stylesheet" type="text/css" href="asset/css/reset-e448653a30.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css" />
 	<link rel="stylesheet" type="text/css" href="asset/component/css/modal.css" />
 	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
 	<!-- 引入样式 -->
@@ -28,6 +28,15 @@
 			line-height: .45rem;
 			margin-left: .05rem;
 		}
+		.van-stepper__input[disabled] {
+			color: #000;
+			background: #fff;
+			border: 1px solid #ddd;
+    		border-left: none;
+			border-right: none;
+			opacity: 1;
+		}
+
 		[v-cloak]{
 			display: none;
 		}
@@ -78,7 +87,7 @@
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" />
+							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true"/>
 						</div>
 						<div class="gray">
 							<span class="left">总合计</span>
@@ -178,11 +187,11 @@
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 
-<script src="asset/js/util-6a433f83ed.js"></script>
+<script src="asset/js/util-35759cceb4.js"></script>
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
 <!-- 引入组件库 -->
-<script src="asset/js/orderComfirm-3bdc436b2a.js"></script>
+<script src="asset/js/orderComfirm-bdaa5a0308.js"></script>
 
 </html>

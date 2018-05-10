@@ -12,7 +12,6 @@ var vm = new Vue({
   watch: {},
   filters: {},
   methods: {
-    
     getGoodsList(id) {
       let url = getApiUrl('/shop-test/rest/ddproducts/dingding/list');
       $.ajax({
@@ -26,7 +25,6 @@ var vm = new Vue({
           categoryId: 1
         },
         success: (json) => {
-        //  console.log(json)
           this.goodsList1 = json.data
         }
       })
@@ -54,10 +52,9 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-         
           ddConfig(res)
-          dd.ready(() => {
-          //  获取免登授权码
+          // dd.ready(() => {
+            //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
@@ -66,13 +63,13 @@ var vm = new Vue({
                 this.getUserId(result.code)
               },
               onFail: (err) => {
-                alert("fail" + JSON.stringify(err))
+                // alert("fail" + JSON.stringify(err))
               }
             })
-          });
+          // });
         },
         error: e => {
-          alert("error:" + JSON.stringify(e))
+          ddToast('网络错误')
         }
       })
     },
@@ -169,14 +166,15 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    if (!getSession()) {
+    window.localStorage.clear()
+    if (!getSession()|| !getSession().userId) {
       this.getAuthCode()
     }
-    let sessionObj = {
-      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      userId: '08623665231156032'
-    }
-    setSession(sessionObj)
+    // let sessionObj = {
+    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+    //   userId: '08623665231156032'
+    // }
+    // setSession(sessionObj)
   },
 })
 

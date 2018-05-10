@@ -44,7 +44,8 @@ var vm = new Vue({
 		popContent: [],
 		setStyle: '',
 		payHtml: '',
-		orderNo: ''
+		orderNo: '',
+		orderId: ''
 	},
 	methods: {
 		submitOrder() {
@@ -68,6 +69,7 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						this.orderNo = result.data.sn
+						this.orderId = result.data.orderId
 						if (result.data.authCode == 7010 || result.data.authCode == 7016 || result.data.authCode == 7022) {//未授权 或 拒绝 或 授权无效
 							location.href = 'userAuth.html?productId=' + this.order.productId + '&orderNo=' + this.orderNo
 						} else if (result.data.authCode == 7014) {//待审核
@@ -91,7 +93,7 @@ var vm = new Vue({
 				this.showAddressTip = true;		//	没有添加收货地址
 				setTimeout(()=>{
 					this.showAddressTip = false
-				}, 1000)
+				}, 2000)
 				return false
 			}
 			//	判断勾选
@@ -101,7 +103,7 @@ var vm = new Vue({
 				setTimeout(() => {
 					this.readFile = false;
 					$('.readFile').hide();
-				}, 1000);
+				}, 2000);
 
 				return false
 			}
@@ -134,9 +136,6 @@ var vm = new Vue({
 							// 免密
 							this.SecretFree()
 						} 
-						// else if (result.data.flag == 2) {
-						// 	location.href = result.data.html
-						// }
 					} else {
 						ddToast(result.message)
 					}
@@ -147,7 +146,7 @@ var vm = new Vue({
 			})
 		},
 		SecretFree() {
-			let url = getPhpApiUrl('/pay/nailpay.html')
+			let url = getPhpApiUrl('/nail/nailpay.html')
 			$.ajax({
 				url: url,
 				type: "POST",
@@ -160,9 +159,11 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-					// location.href = result
-					// if (result.code == 200) {
-					// }
+					if (result.code == 200) {
+						location.href = 'orderSuccess.html?orderId=' + this.orderId
+					} else if (result.code == -1) {
+						location.href = 'orderFailed.html?productId=' + this.order.productId
+					}
 				},
 				error: e => {
 					ddToast('网络错误')
@@ -281,6 +282,14 @@ var vm = new Vue({
 			this.goodsInfo.productDeposit = this.goodsInfo.productDeposit.toFixed(2)
 		},
 		countChange() {
+			// let value = parseInt(val)
+			// if (value <= 0 || isNaN(value)) {
+			// 	alert(value)
+			// 	this.goodsInfo.count = 1
+			// } else if (value > this.goodsInfo.inventory) {
+			// 	this.goodsInfo.count = this.goodsInfo.inventory
+			// 	return
+			// }
 			this.getTotalAmount()
 		},
 		getZmStatus() {
@@ -311,7 +320,6 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
-
 		let product = getUrlParam('product')
 		if (product) {
 			let arr = product.split('-')

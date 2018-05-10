@@ -1,7 +1,7 @@
 var vm = new Vue({
 	el: '#app',
 	data: {
-		orderId: 202,
+		orderId: 0,
 		noPaidList: [],
 		paidList: [],
 		ordersProductEntity: {},
@@ -41,7 +41,7 @@ var vm = new Vue({
 							this.allCount = data.data.ordersProductEntity.periodNumber;
 						});
 						this.paidList.forEach((k, v) => {
-							k.cdate = getTime(k.cdate);
+							k.cdate = getTime(k.cdate, 1);
 						})
 					} else {
 						ddToast(data.message)

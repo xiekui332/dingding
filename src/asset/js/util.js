@@ -19,15 +19,15 @@ function uploadImg(e, url) {
             },
             crossDomain: true,
             success: result => {
-                alert(JSON.stringify(result))
                 if (result.code == 200) {
-                    alert(1)
                     resolve(result.data)
                 } 
             },
             error: e => {
-                alert(3)
-                reject('上传失败')
+                reject(e)
+                
+                // reject(JSON.stringify(e))
+                // reject('上传失败')
             }
         });
     })
@@ -90,8 +90,8 @@ function getApiUrl(url) {
 }
 
 function getPhpApiUrl(url) {
-    // const taozugonghost = "http://test.api.taozugong.net";
-    const taozugonghost = "/getapi";
+    const taozugonghost = "http://test.api.taozugong.net";
+    // const taozugonghost = "/getapi";
     
     return taozugonghost + url
 }
