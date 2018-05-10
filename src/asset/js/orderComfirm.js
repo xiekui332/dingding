@@ -93,7 +93,7 @@ var vm = new Vue({
 				this.showAddressTip = true;		//	没有添加收货地址
 				setTimeout(()=>{
 					this.showAddressTip = false
-				}, 1000)
+				}, 2000)
 				return false
 			}
 			//	判断勾选
@@ -103,7 +103,7 @@ var vm = new Vue({
 				setTimeout(() => {
 					this.readFile = false;
 					$('.readFile').hide();
-				}, 1000);
+				}, 2000);
 
 				return false
 			}
