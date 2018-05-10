@@ -452,7 +452,7 @@ body{
 /* 订单状态
  */
  .order-status{
-	 padding: .42rem .3rem .3rem .4rem;
+	 padding: .4rem .3rem .4rem .4rem;
 	 background-image: linear-gradient(45deg, #F3654C 0%, #F78C5C 100%);
 	 position: relative;
  }
@@ -460,7 +460,7 @@ body{
 	 width: .26rem;
 	 height: .32rem;
 	 float: left;
-	 margin-top: .009rem;
+	 /* margin-top: .009rem; */
  }
  .status-word{
 	 display: inline-block;
@@ -470,7 +470,7 @@ body{
 	line-height: .36rem;
 	/* font-weight: bold; */
 	margin-left: .15rem;
-	margin-top: .02rem;
+	/* margin-top: .02rem; */
  }
  .explain-t{
 	 clear: both;
@@ -492,7 +492,8 @@ body{
 	 display: inline-block;
 	 position: absolute;
 	 right: .35rem;
-	 top: 1.3rem;
+	 top: 50%;
+	 transform: translateY(-50%);
  }
  .status-jump img{
 	 width: .3rem;
