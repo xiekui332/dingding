@@ -101,6 +101,5 @@ var vm = new Vue({
   },
   mounted() {
     this.user = getSession()
-    alert(JSON.stringify(this.user))
   },
 })
