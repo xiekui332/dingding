@@ -220,13 +220,8 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
-
 							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
-							
-							// alert(address.username)
-							
 							this.hasDefaultAddress = true
-							// this.name = result.data.addressEntity.username
 							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
 
@@ -236,8 +231,6 @@ var vm = new Vue({
 							this.order.districtId = result.data.addressEntity.districtId
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
-							
-							// this.order =  JSON.parse(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
