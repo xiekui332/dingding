@@ -39,41 +39,40 @@ var vm = new Vue({
       location.href = 'goodsDetail.html?productId=' + productId
     },
     getAuthCode() {
-      let url = getApiUrl('/ding-isv-access/get_js_config');
-      $.ajax({
-        url: url,
-        type: "GET",
-        dataType: "json",
-        data: {
-          url: window.location.href,
-          corpId: this.corpId
-        },
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
-        success: res => {
-          // alert(JSON.stringify(res))
-          // ddConfig(res)
-          dd.ready(()=>{
-            //获取免登授权码
-            dd.runtime.permission.requestAuthCode({
-              corpId: this.corpId,
-              onSuccess: (result)=> {
-                //  得到授权码
-                alert('requestAuthCode:' + JSON.stringify(result))
-                this.getUserId(result.code) 
-              },
-              onFail: (err)=> {
-                alert("fail" + JSON.stringify(err))
-              }
-            })
-          });
-        },
-        error: e => {
-          ddToast('网络错误')
-        }
-      })
+      dd.ready(()=>{
+        //获取免登授权码
+        dd.runtime.permission.requestAuthCode({
+          corpId: this.corpId,
+          onSuccess: (result)=> {
+            // alert('requestAuthCode:' + JSON.stringify(result))
+            this.getUserId(result.code) 
+          },
+          onFail: (err)=> {
+            alert("fail" + JSON.stringify(err))
+          }
+        })
+      });
+
+      // let url = getApiUrl('/ding-isv-access/get_js_config');
+      // $.ajax({
+      //   url: url,
+      //   type: "GET",
+      //   dataType: "json",
+      //   data: {
+      //     url: window.location.href,
+      //     corpId: this.corpId
+      //   },
+      //   xhrFields: {
+      //     withCredentials: true
+      //   },
+      //   crossDomain: true,
+      //   success: res => {
+      //     ddConfig(res)
+      //   },
+      //   error: e => {
+      //     ddToast('网络错误')
+      //   }
+      // })
     },
     getUserId(code) {
       let url = getApiUrl('/ding-isv-access/get_user_info');
