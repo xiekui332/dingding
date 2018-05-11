@@ -202,6 +202,7 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
+			alert(2)
 			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
@@ -232,7 +233,7 @@ var vm = new Vue({
 							this.hasDefaultAddress = false
 						}
 					} else {
-						// ddToast(result.message)
+						ddToast(result.message)
 					}
 				},
 				error: e => {
@@ -299,6 +300,7 @@ var vm = new Vue({
 			this.getTotalAmount()
 		},
 		getZmStatus() {
+			alert(4)
 			let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdZmStatus')
 			$.ajax({
 				url: url,
@@ -325,6 +327,7 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		alert(1)
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {
@@ -340,7 +343,5 @@ var vm = new Vue({
 		this.getAddress()
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
-
-		
 	},
 })
