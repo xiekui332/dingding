@@ -142,7 +142,7 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay"/>
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false"/>
 					<p></p>
 				</div>
 				<div class="item2 item4">
