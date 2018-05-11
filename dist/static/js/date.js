@@ -31,6 +31,10 @@ function getOverdueTime(year, month, date, time) {//3  7
     return overdueTime
 }
 
+function tranformTow(number) {
+    return number < 10 ? '0'+number:number
+}
+
 function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     if (!length) {
         length = 20
@@ -44,13 +48,10 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     var second = tranformTow(newDate.getSeconds())
 
     var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
-
     return newDate1.substring(0, length)
 }
 
-function tranformTow(number) {
-    return number < 10 ? '0'+number:number
-}
+
 /* 时间戳转化为时间格式 */
 function getTime(createTime,a) {
     
@@ -70,10 +71,6 @@ function getTime(createTime,a) {
     }else if(a == 3){
         return Y + M + D + h + m  + ':' + s
     }
-    
-    
-
-
 }
 
 // export default {

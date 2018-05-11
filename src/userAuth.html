@@ -6,6 +6,8 @@
 	<title>用户授权</title>
 	<link rel="stylesheet" type="text/css" href="asset/css/reset.css" />
     <link rel="stylesheet" type="text/css" href="asset/component/css/modal.css"/>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
 	<link rel="stylesheet" type="text/css" href="asset/css/userAuth.css" />
 	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 	<style>
@@ -55,19 +57,19 @@
 			<div class="tianxie">
 				<div class="item-mnue">
 					<p class="item-title">统一社会信用代码/注册号</p>
-					<input type="text" v-model="userAuth.registerNo" :readonly="!canEdit" >
+					<input type="text" v-model="userAuth.registerNo" :readonly="!canEdit" placeholder="请填写统一社会信用代码/注册号">
 				</div>
 				<div class="item-mnue">
 					<p class="item-title">公司名称</p>
-					<input type="text" v-model="userAuth.company" :readonly="!canEdit">
+					<input type="text" v-model="userAuth.company" :readonly="!canEdit" placeholder="请填写公司名称">
 				</div>
 				<div class="item-mnue">
 					<p class="item-title">真实姓名</p>
-					<input type="text" v-model="userAuth.name" :readonly="!canEdit">
+					<input type="text" v-model="userAuth.name" :readonly="!canEdit" placeholder="请填写真实姓名">
 				</div>
 				<div class="item-mnue">
 					<p class="item-title">身份证号</p>
-					<input type="text" v-model="userAuth.idcard" :readonly="!canEdit">
+					<input type="text" v-model="userAuth.idcard" :readonly="!canEdit" placeholder="请填写公司名称">
 				</div>
 				<!-- <div class="item-mnue">
 					<p class="item-title">手机号</p>
@@ -83,7 +85,7 @@
 						<input type="file" @change="onFileChange($event, 0)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
 						<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(0)" v-show="canEdit && userAuth.dingIndexImg != 'asset/images/icon/proof.png'">
 					</span>
-					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth">
+					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth" @click='imgPreview'>
 				</div>
 
 				<div class="item-mnue-jt">
@@ -132,6 +134,8 @@
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<!-- 引入组件库 -->
+<script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 <script src="asset/js/userAuth.js"></script>
 <script src="asset/component/js/modal.js"></script>
 </html>

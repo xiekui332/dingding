@@ -58,7 +58,7 @@
 			<!-- 确认地址 -->
 			<div class="dd_sure" v-if="hasDefaultAddress">
 				<div class="contain-box">
-					<span>{{order.name}}</span>
+					<span>{{name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
 					<div class="right-top">
 						<van-icon name="edit" @click="toManageAddress()"></van-icon>
@@ -94,7 +94,6 @@
 						<div class="gray">
 							<span class="left">总合计</span>
 							<div class="right">
-
 								￥
 								<span>{{goodsInfo.totalAmount}}</span>
 							</div>
@@ -103,7 +102,6 @@
 						<div>
 							<span class="left">月租金</span>
 							<div class="right">
-
 								￥
 								<span>{{goodsInfo.productPrice.price}} /个</span>
 							</div>
@@ -128,7 +126,6 @@
 					<div class="gray black">
 						<span class="left">总押金</span>
 						<div class="right">
-
 							￥
 							<span>{{goodsInfo.productDeposit}}</span>
 						</div>
@@ -189,13 +186,13 @@
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
+<!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 
-<script src="asset/js/util-8acc13c2af.js"></script>
+<script src="asset/js/util-be7d0a41ce.js"></script>
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<!-- 引入组件库 -->
-<script src="asset/js/orderComfirm-8cb90840a4.js"></script>
+<script src="asset/js/orderComfirm-4fe6aca8da.js"></script>
 
 </html>

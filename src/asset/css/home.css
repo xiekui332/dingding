@@ -42,7 +42,7 @@
   float: left;
   vertical-align: middle;
   line-height: .93rem;
-  margin-left: 0.2rem;
+  margin-left: 0.02rem;
   margin-top: .33rem;
 }
 .newTitleIcon {
@@ -105,9 +105,9 @@
 
 .newImg1 {
   /* height: 0.262rem; */
-  width: 0.4rem;
+  width: 0.25rem;
   margin-right: 0.2rem;
-  display: block;margin-top: .05rem;
+  display: none;margin-top: .05rem;
 }
 
 .homeAround-top {

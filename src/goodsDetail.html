@@ -274,11 +274,11 @@
 			</div>
 
 			<div class="fixed-bottom">
-				<span style="width:83%;display:inline-block">
+				<span style="width:83%;display:inline-block;background: #fff;">
 					<mt-button class="largeFont right-button" @click="openSku">立即租赁</mt-button>
 				</span>
 				<span style="width:17%;float:left">
-					<mt-button style="width:100%;height:1rem" @click="openModal">
+					<mt-button style="width:100%;height:1rem;background: #fff;" @click="openModal">
 						<img style="height:.5rem;width:auto;vertical-align: middle;" src="asset/images/icon/service.png">
 					</mt-button>
 				</span>
@@ -308,9 +308,7 @@
 						</div>
 						<p>数量</p>
 						<div class="sku-number">
-							<span class="reduce" @click="adjust(-1)">-</span>
-							<span class="num">{{count}}</span>
-							<span class="add" @click="adjust(1)">+</span>
+							<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{count}}</span><span class="add" @click="adjust(1)">+</span>
 						</div>
 					</div>
 					<mt-button class="full-width submit" @click="toOrderComfirm()">确认</mt-button>

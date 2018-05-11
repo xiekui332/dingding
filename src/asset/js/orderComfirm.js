@@ -46,7 +46,8 @@ var vm = new Vue({
 		payHtml: '',
 		orderNo: '',
 		orderId: '',
-		isPay: ''
+		isPay: '',
+		name: '',
 	},
 	methods: {
 		submitOrder() {
@@ -117,7 +118,7 @@ var vm = new Vue({
 
 			return true
 		},
-		pay(orderNo) {
+		pay() {
 			let url = getPhpApiUrl('/nail/pay.html')
 			$.ajax({
 				url: url,
@@ -218,8 +219,11 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
+							alert(JSON.stringify(result.data))
+							
 							this.hasDefaultAddress = true
-							this.order.name = result.data.addressEntity.username
+							this.name = result.data.addressEntity.username
+							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
@@ -228,11 +232,13 @@ var vm = new Vue({
 							this.order.districtId = result.data.addressEntity.districtId
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
+							
+							// this.order =  JSON.parse(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
 					} else {
-						// ddToast(result.message)
+						ddToast(result.message)
 					}
 				},
 				error: e => {
@@ -333,14 +339,12 @@ var vm = new Vue({
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
 			if (arr[3]) {
-				// alert(arr[3])
 				this.isPay = arr[3]
+				this.orderNo = arr[4]
 			}
 		}
 		this.getAddress()
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
-
-		
 	},
 })
