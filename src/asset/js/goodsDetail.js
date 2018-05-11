@@ -203,7 +203,7 @@ var vm = new Vue({
         </span>
     </div>
     
-    <!-- sku -->
+    <!--  sku -->
     <mt-popup v-model="popupVisible" position="bottom" class="popup">
         <div style="margin: 0 .4rem;">
             <div style="padding: .28rem 0;position: relative;">
