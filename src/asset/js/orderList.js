@@ -157,9 +157,9 @@ var vm = new Vue({
                             this.loading = false
                             return
                         }
-                        // res.data.data.forEach((item) => {
-                        //     item.orderTime = dateFormat(item.createTime, 20, '-', '-', ' ')
-                        // })
+                        res.data.data.forEach((item) => {
+                            item.orderTime = 123
+                        })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
                         this.loading = false;
