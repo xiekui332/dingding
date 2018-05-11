@@ -42,14 +42,18 @@
               <mt-swipe :auto="0" :show-indicators="true">
                 <mt-swipe-item>
                   <div class="main-list" v-for="item in navList">
-                    <img :src="item.url" class="img3" @click="toOrderList(item.status)">
+                    <span class="te te9" style="display: inline-block;width:70%;text-align: center">
+                      <img :src="item.url" class="img3" @click="toOrderList(item.status)">
+                    </span>
                     <div class="wenzi">{{item.navTitle}}</div> 
                   </div>
                   
                 </mt-swipe-item>
                 <mt-swipe-item>
                   <div class="main-list1" v-for="item in navList2">
+                    <span class="te te10" style="display: inline-block;width:100%;text-align: center">
                       <img :src="item.url" class="img3" @click="toOrderList(item.status)">
+                    </span>
                       <div class="wenzi">{{item.navTitle}}</div> 
                   </div>  
                   
