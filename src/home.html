@@ -84,13 +84,13 @@
   // })
   
   // alert(3)
-  var corpId = getUrlParam('corpId')
-  var user = getSession()
-  alert(user)
-  if (!user || !user.userId || !user.name|| !user.companyName) {
-    alert(1)
-    getAuthCode(corpId)
-  }
+  // var corpId = getUrlParam('corpId')
+  // var user = getSession()
+  // alert(user)
+  // if (!user || !user.userId || !user.name|| !user.companyName) {
+  //   alert(1)
+  //   getAuthCode(corpId)
+  // }
   
   function getAuthCode(corpId) {
     alert(4)
@@ -122,16 +122,16 @@
           alert(10)
           dd.ready(function(){
             alert(8)
-            // dd.runtime.permission.requestAuthCode({
-            //   corpId: corpId,
-            //   onSuccess: function(result) {
-            //     alert('requestAuthCode:' + JSON.stringify(result))
-            //     // getUserId(result.code)
-            //   },
-            //   onFail:function(err) {
-            //     alert("fail" + JSON.stringify(err))
-            //   }
-            // })
+            dd.runtime.permission.requestAuthCode({
+              corpId: corpId,
+              onSuccess: function(result) {
+                alert('requestAuthCode:' + JSON.stringify(result))
+                // getUserId(result.code)
+              },
+              onFail:function(err) {
+                alert("fail" + JSON.stringify(err))
+              }
+            })
           });
         },
         error: function(e) {

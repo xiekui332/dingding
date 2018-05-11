@@ -75,7 +75,7 @@
 <script src="asset/js/util-8acc13c2af.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-a77b78c46a.js"></script>
+<script src="asset/js/home-ef1f57209f.js"></script>
 <script>
 
 
@@ -84,13 +84,13 @@
   // })
   
   // alert(3)
-  var corpId = getUrlParam('corpId')
-  var user = getSession()
-  alert(user)
-  if (!user || !user.userId || !user.name|| !user.companyName) {
-    alert(1)
-    getAuthCode(corpId)
-  }
+  // var corpId = getUrlParam('corpId')
+  // var user = getSession()
+  // alert(user)
+  // if (!user || !user.userId || !user.name|| !user.companyName) {
+  //   alert(1)
+  //   getAuthCode(corpId)
+  // }
   
   function getAuthCode(corpId) {
     alert(4)
@@ -122,16 +122,16 @@
           alert(10)
           dd.ready(function(){
             alert(8)
-            // dd.runtime.permission.requestAuthCode({
-            //   corpId: corpId,
-            //   onSuccess: function(result) {
-            //     alert('requestAuthCode:' + JSON.stringify(result))
-            //     // getUserId(result.code)
-            //   },
-            //   onFail:function(err) {
-            //     alert("fail" + JSON.stringify(err))
-            //   }
-            // })
+            dd.runtime.permission.requestAuthCode({
+              corpId: corpId,
+              onSuccess: function(result) {
+                alert('requestAuthCode:' + JSON.stringify(result))
+                // getUserId(result.code)
+              },
+              onFail:function(err) {
+                alert("fail" + JSON.stringify(err))
+              }
+            })
           });
         },
         error: function(e) {
