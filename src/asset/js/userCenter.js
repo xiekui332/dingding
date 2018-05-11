@@ -5,7 +5,10 @@ var vm = new Vue({
   props: {
   },
   data: {
-    user: {},
+    user: {
+      name:123,
+      companyName:123456
+    },
     show: true,
     navList: [
       {
