@@ -138,7 +138,6 @@ var vm = new Vue({
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
 							location.href = result.data.html
-							// $('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
 							this.SecretFree()
