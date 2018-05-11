@@ -121,9 +121,9 @@ var vm = new Vue({
     methods: {
          //加载更多
         loadMore() {
-            // if (this.orderList == 0) {
-            //     return;
-            // }
+            if (this.orderList == 0) {
+                return;
+            }
             if (this.isEnd == true) {
                 return;
             }
@@ -157,13 +157,13 @@ var vm = new Vue({
                             this.loading = false
                             return
                         }
-                        res.data.data.forEach((item) => {
-                            item.orderTime = dateFormat(item.createTime, 20, '-', '-', ' ')
-                        })
+                        // res.data.data.forEach((item) => {
+                        //     item.orderTime = dateFormat(item.createTime, 20, '-', '-', ' ')
+                        // })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
                         this.loading = false;
-
+                        alert(JSON.stringify(this.orderList))
                     } else {
                         ddToast(res.message)
                     }
@@ -300,7 +300,7 @@ var vm = new Vue({
 
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
             <div :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
-                <div v-for="(item, index) in orderList" :key="index">
+                <div v-for="(item, index) in orderList" :key="item">
                     <div class="orderBar line mediumerFont black">
                         <span>{{item.orderTime}}</span>
                         <span>{{getOrderStatus(item.status)}}</span>
