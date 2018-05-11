@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>淘租公</title>
+  <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/home-288826e9ce.css" />
+  <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
+  <style>
+    [v-cloak]{
+      display: none;
+    }
+  </style>
+</head>
+<body>
+      <div id="app" v-cloak>
+          <div class="yamanTupian">
+             <!-- <img src="asset/images/icon/homeTitleGoods.png" class="homeImg1"> -->
+          </div>
+          <div class="newModal">
+             <div class="newTop">
+                <span class="newTitle ">淘租公</span>
+                <span  class="newTitle te">
+                  <img class="newImg" src="asset/images/icon/xiaoxi.png">
+                </span>
+              </div>
+            <a href="javascript:void(0)" class="newContent">
+              <marquee direction='left'>Dyson又出新产品了，历史价格最低...</marquee>
+            </a>
+          </div>
+          <div class="homeBox">
+              <div class="homeMain"
+                v-for="(item, index) in goodsList1" :key="index">
+                  <div class="homeMain-top" >
+                    <div class="homeMain-title">{{item.category}}</div>
+                    <img src="asset/images/icon/more.png" class="newImg1" v-if='item.productVo.length > 0'>
+                  </div>
+                  <div class="homeAround-top" >
+                      <div  class="homeAround">
+                        <div class="homeAroundLeft" v-for="goods in item.productVo" style="float:left;margin-left:0;margin-bottom:0.3rem;">
+                            <a @click="toGoodsDetail(goods.productEntity.id)">
+	                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
+	                              <div class="homeName">{{goods.productEntity.name}}</div>
+	                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
+	                              <div class="homeTitle"><span class="jine">金额</span> ￥<em class="homeMoney">{{goods.list[0].toFixed(2)}}</em></div>
+	                          </a>
+
+                        </div>
+                      </div>
+                    </div>
+                </div>
+          </div>
+          <div class="footer">
+            <mt-tabbar fixed="true">
+              <a style="width:50%">
+                <mt-tab-item id="tab4" style="color:#F3654C">
+                  <img slot="icon" src="asset/images/icon/lease_in.png">
+                  租赁
+                </mt-tab-item>
+              </a>
+              <a @click="toUserCenter()" style="width:50%">
+                <mt-tab-item id="tab3" >
+                  <img slot="icon" src="asset/images/icon/user_center_out.png" @click="toUserCenter()">
+                  我的
+                </mt-tab-item>
+              </a>
+            </mt-tabbar>
+        </div>
+    </div>
+</body>
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/zepto.min.js"></script>
+<script src="asset/js/util-a17ea04659.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="https://unpkg.com/mint-ui/lib/index.js"></script>
+<script src="asset/js/home-03ff897a77.js"></script>
+<script>
+  // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
+  // let corpId = getUrlParam('corpId')
+  // $.ajax({
+  //   url: url,
+  //   type: "GET",
+  //   dataType: "json",
+  //   data: {
+  //     url: window.location.href,
+  //     corpId: corpId
+  //   },
+  //   xhrFields: {
+  //     withCredentials: true
+  //   },
+  //   crossDomain: true,
+  //   success: res => {
+  //     alert("success:"+JSON.stringify(res))
+  //     dd.config({
+  //         agentId: res.agentId, // 必填，微应用ID
+  //         corpId: res.corpId,//必填，企业ID
+  //         timeStamp: res.timeStamp, // 必填，生成签名的时间戳
+  //         nonceStr: res.nonce, // 必填，生成签名的随机串
+  //         signature: res.signature, // 必填，签名
+  //         jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+  //     });
+  //     dd.ready(function(){
+  //           dd.runtime.permission.requestAuthCode({
+  //               corpId: corpId,
+  //               onSuccess: function(result) {
+  //                   getUserId(result.code)
+  //               },
+  //               onFail : function(err) {
+  //                   alert("fail"+JSON.stringify(err))
+  //               }
+  //             })
+  //         });
+  //   },
+  //   error: e => {
+  //   }
+  // })
+  // let url1 = 'http://api.taozugong.com:8080/ding-isv-access/get_user_info';
+  // function getUserId(code) {
+  //   $.ajax({
+	// 			url: url1,
+	// 			type: "GET",
+	// 			dataType: "json",
+	// 			data: {
+  //         url: window.location.href,
+  //         corpId: corpId,
+  //         code: code
+  //       },
+	// 			xhrFields: {
+	// 				withCredentials: true
+	// 			},
+	// 			crossDomain: true,
+	// 			success: result => {
+  //         alert("sucess:"+JSON.stringify(result))
+	// 			},
+	// 			error: e => {
+  //         alert("error"+JSON.stringify(e))
+	// 			}
+	// 		})
+  // } 
+</script>
+</html>
