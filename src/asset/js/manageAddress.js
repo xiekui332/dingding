@@ -74,9 +74,9 @@ var vm = new Vue({
         },
         toAddressEdit(addressId) {
             if (addressId) {
-                location.href = 'editAddress.html?addressId='+addressId
+                location.href = 'editAddress.html?addressId='+ addressId + '&product=' + getUrlParam('product')
             } else {
-                location.href = 'editAddress.html'
+                location.href = 'editAddress.html?product=' + getUrlParam('product')
             }
         },
         deleteAddress(addressId){

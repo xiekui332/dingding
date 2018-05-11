@@ -155,9 +155,9 @@ var vm = new Vue({
             });
         }) 
 
-        document.addEventListener('backbutton', function(e) {
-            e.preventDefault();
-            location.href = 'orderList.html'
-        });
+        // document.addEventListener('backbutton', function(e) {
+        //     e.preventDefault();
+        //     location.href = 'orderList.html'
+        // });
     },
 })
