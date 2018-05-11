@@ -249,7 +249,7 @@ var vm = new Vue({
 			})
 		},
 		toManageAddress() {
-			location.href = 'manageAddress.html'
+			location.href = 'manageAddress.html?product=' + getUrlParam('product')
 		},
 		getGoodsInfo() {
 			let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
