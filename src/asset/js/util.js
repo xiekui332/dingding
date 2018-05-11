@@ -112,14 +112,16 @@ function ddToast(message) {
 }
 
 function ddConfig(config) {
+    alert('config')
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID
         timeStamp: config.timeStamp, // 必填，生成签名的时间戳
         nonceStr: config.nonce, // 必填，生成签名的随机串
         signature: config.signature, // 必填，签名
-        jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+        jsApiList: ['runtime.permission','runtime.info', 'ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
+    alert('configend')
 }
 
 
