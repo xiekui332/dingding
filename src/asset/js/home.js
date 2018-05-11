@@ -26,6 +26,7 @@ var vm = new Vue({
         },
         success: (json) => {
           this.goodsList1 = json.data
+         // console.log(json)
         }
       })
     },
