@@ -32,8 +32,24 @@
   display: inline-block;
   color: #8A8A8A;
   font: 0.25rem/0.93rem "";
-  margin-left: 0.2rem;
+  margin-left: 0.15rem;
   line-height: .93rem;
+}
+.newTitleIcon img{
+  display: inline-block;
+  width: .83rem;
+  height: .25rem;
+  float: left;
+  vertical-align: middle;
+  line-height: .93rem;
+  margin-left: 0.2rem;
+  margin-top: .33rem;
+}
+.newTitleIcon {
+  display: inline-block;
+  overflow: hidden;
+  height: 100%;
+  float: left;
 }
 
 .newImg {
@@ -88,10 +104,10 @@
 }
 
 .newImg1 {
-  height: 0.262rem;
-  width: 0.142rem;
+  /* height: 0.262rem; */
+  width: 0.4rem;
   margin-right: 0.2rem;
-  display: block;
+  display: block;margin-top: .05rem;
 }
 
 .homeAround-top {
