@@ -38,44 +38,41 @@ var vm = new Vue({
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
-    getAuthCode(corpId) {
-      let url = getApiUrl('/ding-isv-access/get_js_config');
-      $.ajax({
-        url: url,
-        type: "GET",
-        dataType: "json",
-        data: {
-          url: window.location.href,
-          corpId: this.corpId
-        },
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
-        success: res => {
-          alert(JSON.stringify(res))
-          ddConfig(res)
-          alert(2)
-          dd.ready(function(){
-            alert(3)
-            //获取免登授权码
-            dd.runtime.permission.requestAuthCode({
-              corpId: corpId,
-              onSuccess: function(result) {
-                //  得到授权码
-                alert('requestAuthCode:' + JSON.stringify(result))
-                // this.getUserId(result.code) 
-              },
-              onFail: function(err) {
-                alert("fail" + JSON.stringify(err))
-              }
-            })
-          });
-        },
-        error: e => {
-          ddToast('网络错误')
-        }
-      })
+    getAuthCode() {
+      dd.ready(()=>{
+        //获取免登授权码
+        dd.runtime.permission.requestAuthCode({
+          corpId: this.corpId,
+          onSuccess: (result)=> {
+            // alert('requestAuthCode:' + JSON.stringify(result))
+            this.getUserId(result.code) 
+          },
+          onFail: (err)=> {
+            alert("fail" + JSON.stringify(err))
+          }
+        })
+      });
+
+      // let url = getApiUrl('/ding-isv-access/get_js_config');
+      // $.ajax({
+      //   url: url,
+      //   type: "GET",
+      //   dataType: "json",
+      //   data: {
+      //     url: window.location.href,
+      //     corpId: this.corpId
+      //   },
+      //   xhrFields: {
+      //     withCredentials: true
+      //   },
+      //   crossDomain: true,
+      //   success: res => {
+      //     ddConfig(res)
+      //   },
+      //   error: e => {
+      //     ddToast('网络错误')
+      //   }
+      // })
     },
     getUserId(code) {
       let url = getApiUrl('/ding-isv-access/get_user_info');
@@ -169,11 +166,9 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     let user = getSession()
-    alert(user)
-    if (!user || !user.userId || !user.name|| !user.companyName) {
-      alert(1)
+    // if (!user || !user.userId || !user.name|| !user.companyName) {
       this.getAuthCode(this.corpId)
-    }
+    // }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
