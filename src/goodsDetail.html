@@ -308,9 +308,7 @@
 						</div>
 						<p>数量</p>
 						<div class="sku-number">
-							<span class="reduce" @click="adjust(-1)">-</span>
-							<span class="num">{{count}}</span>
-							<span class="add" @click="adjust(1)">+</span>
+							<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{count}}</span><span class="add" @click="adjust(1)">+</span>
 						</div>
 					</div>
 					<mt-button class="full-width submit" @click="toOrderComfirm()">确认</mt-button>
