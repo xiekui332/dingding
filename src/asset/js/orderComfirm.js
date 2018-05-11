@@ -230,7 +230,7 @@ var vm = new Vue({
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
 							
 							this.order =  JSON.parse(JSON.stringify(this.order))
-							alert(this.order)
+							alert(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
