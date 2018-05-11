@@ -85,7 +85,7 @@
 						<input type="file" @change="onFileChange($event, 0)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
 						<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(0)" v-show="canEdit && userAuth.dingIndexImg != 'asset/images/icon/proof.png'">
 					</span>
-					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth" @click='imgPreview'>
+					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth" @click='imgPreview("asset/images/icon/example_index.png")'>
 				</div>
 
 				<div class="item-mnue-jt">
@@ -97,7 +97,7 @@
 							<input type="file" @change="onFileChange($event, 1)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
 							<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(1)" v-show="canEdit && userAuth.companyDelegateImg != 'asset/images/icon/proof.png'">
 					</span>
-					<img src="asset/images/icon/example_trust.png" v-show="isFirstAuth">
+					<img src="asset/images/icon/example_trust.png" v-show="isFirstAuth" @click='imgPreview("asset/images/icon/example_trust.png")'>
 				</div>
 
 
@@ -124,6 +124,13 @@
 						</div>
 					</div> -->
 				</div>
+
+
+				<!--预览提示-->
+				<van-popup v-model="showImgPreview">
+					<img :src="urls" class=""/>
+				</van-popup>
+
 				<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
 			</div>
 		</div>
@@ -136,6 +143,6 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
-<script src="asset/js/userAuth-7db35a2513.js"></script>
 <script src="asset/component/js/modal.js"></script>
+<script src="asset/js/userAuth-4c96616daa.js"></script>
 </html>

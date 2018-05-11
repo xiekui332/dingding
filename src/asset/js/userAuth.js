@@ -7,6 +7,7 @@ var vm = new Vue({
     props: {
     },
     data: {
+		showImgPreview:false,
         user: {},
         productId: '',
         orderNo: '',
@@ -43,6 +44,7 @@ var vm = new Vue({
         popContent: [
             '0571-85180735'
         ],
+        urls:'asset/images/icon/example_index.png',
     },
     computed: {
     },
@@ -233,7 +235,7 @@ var vm = new Vue({
             });
         },
         // 预览图片
-        imgPreview(){
+        imgPreview(url){
             // dd.ready(function(){
             //     dd.biz.util.previewImage({
             //         urls: ['asset/images/icon/example_index.png','asset/images/icon/example_index.png'],//图片地址列表
@@ -247,8 +249,9 @@ var vm = new Vue({
             //         }
             //     })
             // });
-
-            console.log(typeof ImagePreview)
+            this.urls = url;
+            this.showImgPreview = true;
+           
         }
     },
     created() {
