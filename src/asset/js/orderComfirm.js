@@ -218,8 +218,10 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
+							alert(JSON.stringify(result.data))
+							
 							this.hasDefaultAddress = true
-							this.order.name = result.data.addressEntity.username
+							this.order.name = JSON.parse(JSON.stringify(tresult.data.addressEntity.username))
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
