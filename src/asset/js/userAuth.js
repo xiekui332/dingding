@@ -229,6 +229,21 @@ var vm = new Vue({
                     ddToast('网络错误')
                 }
             });
+        },
+        // 预览图片
+        imgPreview(){
+            dd.ready(function(){
+                dd.biz.util.previewImage({
+                    urls: ['asset/images/icon/example_index.png'],//图片地址列表
+                    current: 'asset/images/icon/example_index.png',//当前显示的图片链接
+                    onSuccess : function(result) {
+                        /**/
+                        
+                    },
+                    onFail : function(err) {}
+                })
+            });
+
         }
     },
     created() {
@@ -242,3 +257,4 @@ var vm = new Vue({
         this.getUserAuth()
     },
 })
+

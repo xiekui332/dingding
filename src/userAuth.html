@@ -83,7 +83,7 @@
 						<input type="file" @change="onFileChange($event, 0)" :disabled="!canEdit" style="position:absolute;opacity: 0;width: 1.6rem;height: 1.6rem;left:0;top:0">
 						<img src="asset/images/icon/failed.png" class="img-close" @click="closeImg(0)" v-show="canEdit && userAuth.dingIndexImg != 'asset/images/icon/proof.png'">
 					</span>
-					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth">
+					<img src="asset/images/icon/example_index.png" v-show="isFirstAuth" @click='imgPreview'>
 				</div>
 
 				<div class="item-mnue-jt">
