@@ -14,13 +14,14 @@
 
 .newModal {
   height: 0.93rem;
-  margin-top: 0.3rem;
+  margin-top: 0.2rem;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
   background: #fff;
   margin-bottom: 0.2rem;
+  font-family: PingFangSC-Regular;
 }
 
 .newTop {
