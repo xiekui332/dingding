@@ -46,7 +46,8 @@ var vm = new Vue({
 		payHtml: '',
 		orderNo: '',
 		orderId: '',
-		isPay: ''
+		isPay: '',
+		name: '',
 	},
 	methods: {
 		submitOrder() {
@@ -221,6 +222,7 @@ var vm = new Vue({
 							alert(JSON.stringify(result.data))
 							
 							this.hasDefaultAddress = true
+							this.name = result.data.addressEntity.username
 							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
 							this.order.phone = result.data.addressEntity.mobile
 
@@ -231,8 +233,7 @@ var vm = new Vue({
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
 							
-							this.order =  JSON.parse(JSON.stringify(this.order))
-							alert(JSON.stringify(this.order))
+							// this.order =  JSON.parse(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
