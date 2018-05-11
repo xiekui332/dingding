@@ -149,18 +149,17 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     if (res.code == 200) {
-                        if (res.data.data.length === 0) {
+                        if (res.data.data.length == 0) {
                             this.isEnd = true
                             this.loading = false
                             return
                         }
                         res.data.data.forEach((item) => {
-                            item.orderTime =  dateFormat(item.createTime, 19, '-', '-', ' ')
+                            item.orderTime =  dateFormat(item.createTime, 20, '-', '-', ' ')
                         })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
                         this.loading = false;
-                        alert(JSON.stringify(this.orderList))
                     } else {
                         ddToast(res.message)
                     }
@@ -257,7 +256,6 @@ var vm = new Vue({
         // }
 
         this.chooseCategory(this.tabId || -1, -1)
-
     },
     template: `
     <div class="container">
