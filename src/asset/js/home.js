@@ -170,11 +170,11 @@ var vm = new Vue({
       this.getAuthCode()
     // }
 
-    let sessionObj = {
-      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      userId: '08623665231156032'
-    }
-    setSession(sessionObj)
+    // let sessionObj = {
+    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+    //   userId: '08623665231156032'
+    // }
+    // setSession(sessionObj)
 
     dd.ready(() => {
       dd.biz.navigation.setRight({
