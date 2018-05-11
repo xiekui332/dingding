@@ -142,14 +142,14 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark" :readonly="!isPay"/>
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="!isPay"/>
 					<p></p>
 				</div>
 				<div class="item2 item4">
 					<span class="left-title">
 						备注（选填）
 					</span>
-					<textarea v-model="order.invitationCode" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货" :readonly="isPay"></textarea>
+					<textarea v-model="order.order_remark" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货" :readonly="isPay"></textarea>
 
 				</div>
 			</div>
@@ -195,6 +195,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-a924a6cf2c.js"></script>
+<script src="asset/js/orderComfirm-cdf016ff48.js"></script>
 
 </html>
