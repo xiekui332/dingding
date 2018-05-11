@@ -51,6 +51,7 @@ var vm = new Vue({
 	},
 	methods: {
 		submitOrder() {
+			alert(5)
 			if (!this.submitValid()) {
 				return
 			}
@@ -84,9 +85,11 @@ var vm = new Vue({
 							ddToast("授权待审核中")
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
+							alert(7)
 							this.pay()
 						}
 					} else {
+						alert(89)
 						ddToast(result.message)
 					}
 				},
