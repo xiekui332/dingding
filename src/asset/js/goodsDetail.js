@@ -197,7 +197,7 @@ var vm = new Vue({
             <mt-button class="largeFont right-button" @click="openSku">立即租赁</mt-button>
         </span>
         <span style="width:17%;float:left" >
-            <mt-button style="width:100%;height:1rem" @click="openModal">
+            <mt-button style="width:100%;height:1rem;background:#fff;" @click="openModal">
                 <img style="height:.5rem;width:auto;vertical-align: middle;" src="asset/images/icon/service.png">
             </mt-button>
         </span>
