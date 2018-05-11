@@ -167,11 +167,9 @@ var vm = new Vue({
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
     let user = getSession()
-    alert(user)
-    if (!user || !user.userId || !user.name|| !user.companyName) {
-      alert(1)
+    // if (!user || !user.userId || !user.name|| !user.companyName) {
       this.getAuthCode(this.corpId)
-    }
+    // }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
