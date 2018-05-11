@@ -1,4 +1,4 @@
-import { ImagePreview } from 'vant';
+
 var vm = new Vue({
     
     el:'#app',
