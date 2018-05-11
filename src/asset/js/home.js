@@ -56,8 +56,8 @@ var vm = new Vue({
           alert(JSON.stringify(res))
           ddConfig(res)
           alert(2)
-          dd.ready(function(){
-            alert(3)
+          dd.ready(function(corpId){
+            alert(corpId)
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: corpId,
