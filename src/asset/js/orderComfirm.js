@@ -135,6 +135,7 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
+					alert(JSON.stringify(result))
 					if (result.code == 200) {
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
@@ -220,13 +221,13 @@ var vm = new Vue({
 					if (result.code == 200) {
 						if (result.data) {
 
-							let address = JSON.parse(JSON.stringify(result.data.addressEntity))
+							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							
-							alert(address.username)
+							// alert(address.username)
 							
 							this.hasDefaultAddress = true
 							// this.name = result.data.addressEntity.username
-							this.order.name = address.username
+							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
