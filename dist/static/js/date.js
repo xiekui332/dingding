@@ -36,12 +36,10 @@ function tranformTow(number) {
 }
 
 function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
-    alert(5)
     if (!length) {
         length = 20
     }
     var newDate = new Date(dateF)
-    alert(newDate)
     var year = newDate.getFullYear()
     var month = tranformTow(newDate.getMonth()+1)
     var date = tranformTow(newDate.getDate())
@@ -50,7 +48,6 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     var second = tranformTow(newDate.getSeconds())
 
     var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
-    alert(newDate1)
     return newDate1.substring(0, length)
 }
 
@@ -74,10 +71,6 @@ function getTime(createTime,a) {
     }else if(a == 3){
         return Y + M + D + h + m  + ':' + s
     }
-    
-    
-
-
 }
 
 // export default {
