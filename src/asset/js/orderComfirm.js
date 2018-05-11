@@ -202,7 +202,6 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
-			alert(2)
 			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
@@ -229,6 +228,9 @@ var vm = new Vue({
 							this.order.districtId = result.data.addressEntity.districtId
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
+							
+							this.order =  JSON.parse(JSON.stringify(this.order))
+							alert(this.order)
 						} else {
 							this.hasDefaultAddress = false
 						}
@@ -300,7 +302,6 @@ var vm = new Vue({
 			this.getTotalAmount()
 		},
 		getZmStatus() {
-			alert(4)
 			let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdZmStatus')
 			$.ajax({
 				url: url,
@@ -327,7 +328,6 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
-		alert(1)
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {
