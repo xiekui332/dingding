@@ -131,6 +131,7 @@ var vm = new Vue({
             this.getOrderList();
         },
         getOrderList() {
+            alert(2)
             let url = getApiUrl('/shop-test/rest/orders/dingding/list')
             $.ajax({
                 url: url,
@@ -149,6 +150,8 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     if (res.code == 200) {
+                        alert(JSON.stringify(res))
+                        
                         if (res.data.data.length === 0) {
                             this.isEnd = true
                             this.loading = false
@@ -235,6 +238,8 @@ var vm = new Vue({
             this.loading = false;
             this.isEnd = false
             // this.ordersDisplay = false
+
+            alert(1)
             this.getOrderList()
         },
         toLogistics(item) {
@@ -294,11 +299,8 @@ var vm = new Vue({
         </div>
 
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
-        22
-            <div v-if="orderList.length" :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
-            123
+            <div :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
                 <div v-for="(item, index) in orderList" :key="index">
-                1
                     <div class="orderBar line mediumerFont black">
                         <span>{{item.orderTime}}</span>
                         <span>{{getOrderStatus(item.status)}}</span>
@@ -309,7 +311,7 @@ var vm = new Vue({
                     </div>
                 </div>
             </div>
-            <div v-else-if="orderList.length==0 && isEnd" class="mediumFont orderNone grayBackColor">
+            <div v-if="orderList.length==0 && isEnd" class="mediumFont orderNone grayBackColor">
                 <img src="asset/images/icon/none.png" style="width:2.1rem;margin-top:3rem">
                 <p class="mediumerFont black" style="margin-top:.1rem">您还没有创建订单</p>
             </div>
