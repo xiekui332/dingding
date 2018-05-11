@@ -32,6 +32,7 @@ function getOverdueTime(year, month, date, time) {//3  7
 }
 
 function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
+    alert(5)
     if (!length) {
         length = 20
     }
