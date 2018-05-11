@@ -60,6 +60,8 @@ var vm = new Vue({
 				return
 			}
 			
+			window.localStorage.setItem('tzgInvitationCode', this.order.invitationCode)
+			window.localStorage.setItem('tzgOrderRemark', this.order.order_remark)
 
 			let url = getApiUrl('/shop-test/rest/orders/Ddcreate')
 			this.order.nailUserId = this.user.userId
@@ -342,12 +344,10 @@ var vm = new Vue({
 				this.isPay = arr[3]
 				this.orderNo = arr[4]
 
-				// if (arr[5]) {
-				// 	setTimeout(()=>{
-				// 		this.pay()
-				// 	}, 5000)
-				// }
 				if (window.localStorage.getItem('tzgPay') == 'true') {
+					this.order.invitationCode = window.localStorage.getItem('tzgInvitationCode')
+					this.order.order_remark = window.localStorage.getItem('tzgOrderRemark')
+					this.isAgreement = true
 					setTimeout(()=>{
 						this.pay()
 					}, 2000)
