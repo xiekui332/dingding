@@ -79,8 +79,15 @@
 <script>
   alert(3)
   var corpId = getUrlParam('corpId')
+  var user = getSession()
+  alert(user)
+  if (!user || !user.userId || !user.name|| !user.companyName) {
+    alert(1)
+    getAuthCode()
+  }
   
   function getAuthCode() {
+    alert(4)
       var url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
         url: url,
@@ -212,11 +219,6 @@
   //   })
   // }
 
-  var user = getSession()
-  alert(user)
-  if (!user || !user.userId || !user.name|| !user.companyName) {
-    alert(1)
-    getAuthCode()
-  }
+  
 </script>
 </html>
