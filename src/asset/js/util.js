@@ -139,3 +139,27 @@ function getSession() {
     // alert(JSON.parse(window.sessionStorage.getItem('tzgDingDing')))
     return JSON.parse(window.localStorage.getItem('tzgDingDing'))
 }
+
+
+function tranformTow(number) {
+    return number < 10 ? '0'+number:number
+}
+
+function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
+    alert(5)
+    if (!length) {
+        length = 20
+    }
+    var newDate = new Date(dateF)
+    alert(newDate)
+    var year = newDate.getFullYear()
+    var month = tranformTow(newDate.getMonth()+1)
+    var date = tranformTow(newDate.getDate())
+    var hour = tranformTow(newDate.getHours())
+    var minute = tranformTow(newDate.getMinutes())
+    var second = tranformTow(newDate.getSeconds())
+
+    var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
+    alert(newDate1)
+    return newDate1.substring(0, length)
+}
