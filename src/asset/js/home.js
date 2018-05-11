@@ -171,7 +171,7 @@ var vm = new Vue({
     alert(user)
     if (!user || !user.userId || !user.name|| !user.companyName) {
       alert(1)
-      this.getAuthCode(corpId)
+      this.getAuthCode(this.corpId)
     }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
