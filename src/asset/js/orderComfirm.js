@@ -218,8 +218,10 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
+							alert(JSON.stringify(result.data))
+							
 							this.hasDefaultAddress = true
-							this.order.name = result.data.addressEntity.username
+							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
@@ -228,11 +230,14 @@ var vm = new Vue({
 							this.order.districtId = result.data.addressEntity.districtId
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
+							
+							this.order =  JSON.parse(JSON.stringify(this.order))
+							alert(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
 					} else {
-						// ddToast(result.message)
+						ddToast(result.message)
 					}
 				},
 				error: e => {
@@ -340,7 +345,5 @@ var vm = new Vue({
 		this.getAddress()
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
-
-		
 	},
 })
