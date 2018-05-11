@@ -88,10 +88,23 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  alert(3)
-  var corpId = getUrlParam('corpId')
+
+
+  // dd.ready(function(){
+  //   alert('ready')
+  // })
   
-  function getAuthCode() {
+  // alert(3)
+  // var corpId = getUrlParam('corpId')
+  // var user = getSession()
+  // alert(user)
+  // if (!user || !user.userId || !user.name|| !user.companyName) {
+  //   alert(1)
+  //   getAuthCode(corpId)
+  // }
+  
+  function getAuthCode(corpId) {
+    alert(4)
       var url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
         url: url,
@@ -101,28 +114,28 @@
           url: window.location.href,
           corpId: corpId
         },
-        xhrFields: {
-          withCredentials: true
-        },
-        crossDomain: true,
+        // xhrFields: {
+        //   withCredentials: true
+        // },
+        // crossDomain: true,
         success: function(config) {
-          alert(JSON.stringify(res))
+          alert(JSON.stringify(config))
 
-          dd.config({
-              agentId: config.agentId, // 必填，微应用ID
-              corpId: config.corpId,//必填，企业ID
-              timeStamp: config.timeStamp, // 必填，生成签名的时间戳
-              nonceStr: config.nonce, // 必填，生成签名的随机串
-              signature: config.signature, // 必填，签名
-              jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
-          });
+          // dd.config({
+          //     agentId: config.agentId, // 必填，微应用ID
+          //     corpId: config.corpId,//必填，企业ID
+          //     timeStamp: config.timeStamp, // 必填，生成签名的时间戳
+          //     nonceStr: config.nonce, // 必填，生成签名的随机串
+          //     signature: config.signature, // 必填，签名
+          //     jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+          // });
           // ddConfig(res)
-          // dd.ready(() => {
-            //获取免登授权码
+          alert(10)
+          dd.ready(function(){
+            alert(8)
             dd.runtime.permission.requestAuthCode({
               corpId: corpId,
               onSuccess: function(result) {
-                //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
                 // getUserId(result.code)
               },
@@ -130,7 +143,7 @@
                 alert("fail" + JSON.stringify(err))
               }
             })
-          // });
+          });
         },
         error: function(e) {
           ddToast('网络错误')
@@ -223,11 +236,6 @@
   //   })
   // }
 
-  var user = getSession()
-  alert(user)
-  if (!user || !user.userId || !user.name|| !user.companyName) {
-    alert(1)
-    getAuthCode()
-  }
+  
 </script>
 </html>

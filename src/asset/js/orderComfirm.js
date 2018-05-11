@@ -334,7 +334,8 @@ var vm = new Vue({
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
 			if (arr[3]) {
-				this.order.isPay = arr[3]
+				// alert(arr[3])
+				this.isPay = arr[3]
 			}
 		}
 		this.getAddress()

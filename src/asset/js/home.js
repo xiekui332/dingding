@@ -54,21 +54,21 @@ var vm = new Vue({
         crossDomain: true,
         success: res => {
           // alert(JSON.stringify(res))
-          ddConfig(res)
-          // dd.ready(() => {
+          // ddConfig(res)
+          dd.ready(()=>{
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
-              onSuccess: (result) => {
+              onSuccess: (result)=> {
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
-                this.getUserId(result.code)
+                this.getUserId(result.code) 
               },
-              onFail: (err) => {
+              onFail: (err)=> {
                 alert("fail" + JSON.stringify(err))
               }
             })
-          // });
+          });
         },
         error: e => {
           ddToast('网络错误')
@@ -164,13 +164,11 @@ var vm = new Vue({
   created() { },
   destroyed() {},
   mounted() {
-    // this.corpId = getUrlParam('corpId')
+    this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    // let user = getSession()
-    // alert(user)
+    let user = getSession()
     // if (!user || !user.userId || !user.name|| !user.companyName) {
-    //   alert(1)
-    //   this.getAuthCode()
+      this.getAuthCode(this.corpId)
     // }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
