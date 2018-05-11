@@ -121,9 +121,9 @@ var vm = new Vue({
     methods: {
          //加载更多
         loadMore() {
-            if (this.orderList == 0) {
-                return;
-            }
+            // if (this.orderList == 0) {
+            //     return;
+            // }
             if (this.isEnd == true) {
                 return;
             }
@@ -294,8 +294,11 @@ var vm = new Vue({
         </div>
 
         <div v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+        22
             <div v-if="orderList.length" :style="{'margin-top': open ? '1.9rem' : '1.1rem'}" style="transition: all .3s;">
+            123
                 <div v-for="(item, index) in orderList" :key="index">
+                1
                     <div class="orderBar line mediumerFont black">
                         <span>{{item.orderTime}}</span>
                         <span>{{getOrderStatus(item.status)}}</span>
