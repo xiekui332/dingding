@@ -84,15 +84,15 @@
   // })
   
   // alert(3)
-  // var corpId = getUrlParam('corpId')
-  // var user = getSession()
-  // alert(user)
-  // if (!user || !user.userId || !user.name|| !user.companyName) {
-  //   alert(1)
-  //   getAuthCode()
-  // }
+  var corpId = getUrlParam('corpId')
+  var user = getSession()
+  alert(user)
+  if (!user || !user.userId || !user.name|| !user.companyName) {
+    alert(1)
+    getAuthCode(corpId)
+  }
   
-  function getAuthCode() {
+  function getAuthCode(corpId) {
     alert(4)
       var url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
@@ -108,7 +108,7 @@
         // },
         // crossDomain: true,
         success: function(config) {
-          alert(JSON.stringify(res))
+          alert(JSON.stringify(config))
 
           // dd.config({
           //     agentId: config.agentId, // 必填，微应用ID
