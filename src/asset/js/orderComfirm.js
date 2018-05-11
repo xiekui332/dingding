@@ -139,7 +139,7 @@ var vm = new Vue({
 					if (result.code == 200) {
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
-							window.localStorage.setItem('tzgPay', true);
+							// window.localStorage.setItem('tzgPay', true);
 							location.href = result.data.html
 						} else if (result.data.flag == 0) {
 							// 免密
@@ -339,10 +339,16 @@ var vm = new Vue({
 			if (arr[3]) {
 				this.isPay = arr[3]
 				this.orderNo = arr[4]
-				if (window.localStorage.getItem('tzgPay')) {
-					this.pay()
-					window.localStorage.clear()
+
+				if (arr[5]) {
+					setTimeout(()=>{
+						this.pay()
+					}, 5000)
 				}
+				// if (window.localStorage.getItem('tzgPay')) {
+				// 	this.pay()
+				// 	window.localStorage.clear()
+				// }
 			}
 		}
 		this.getAddress()
