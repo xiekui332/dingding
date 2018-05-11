@@ -201,7 +201,15 @@ var vm = new Vue({
 		},
 	},
 	mounted() {
-		this.orderId = getUrlParam('orderId')
+		let arr = getUrlParam('orderId').split('-')
+		// this.order.productId = arr[0]
+		this.orderId = arr[0]
 		this.getOrderDetail()
+
+		if (arr[1]) {
+			setTimeout(()=>{
+				this.pay()
+			}, 3000)
+		}
 	},
 })
