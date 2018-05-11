@@ -159,7 +159,7 @@ var vm = new Vue({
     <div class="content writeBackColor">
         <div class="title overHidden">{{goodsDetail.name}}</div>
         <div class="mediumstFont light-gray overHidden">{{goodsDetail.brief}}</div>
-        <div class="priceTitle">月租金<span class="unit">￥</span><span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span>起</div>
+        <div class="priceTitle">月租金<span class="unit">￥</span><span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span></div>
         <div class="gray regular smallFont deposit">
             <span>
                 <span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
