@@ -330,6 +330,7 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		alert(11)
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {
