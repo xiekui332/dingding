@@ -222,7 +222,7 @@ var vm = new Vue({
 
 							let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							
-							alert(JSON.stringify(address.username))
+							alert(address.username)
 							
 							this.hasDefaultAddress = true
 							// this.name = result.data.addressEntity.username
