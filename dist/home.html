@@ -119,7 +119,9 @@
               jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
           });
           // ddConfig(res)
+          alert(10)
           dd.ready(function(){
+            alert(8)
             dd.runtime.permission.requestAuthCode({
               corpId: corpId,
               onSuccess: function(result) {
