@@ -136,7 +136,7 @@ function getSession() {
     // list.forEach(item => {
     //     sessionObj[item] = window.sessionStorage.getItem(item);
     // })
-    alert(JSON.parse(window.sessionStorage.getItem('tzgDingDing')))
+    alert(JSON.parse(window.localStorage.getItem('tzgDingDing')))
     return JSON.parse(window.localStorage.getItem('tzgDingDing'))
 }
 
