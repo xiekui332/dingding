@@ -119,6 +119,7 @@ var vm = new Vue({
 			return true
 		},
 		pay() {
+			alert(3)
 			let url = getPhpApiUrl('/nail/pay.html')
 			$.ajax({
 				url: url,
@@ -135,6 +136,7 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
+					alert(7)
 					alert(JSON.stringify(result))
 					if (result.code == 200) {
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
@@ -213,10 +215,10 @@ var vm = new Vue({
 					nailUserId: this.user.userId,
 					nailUserInfoId: this.user.corpId
 				},
-				// xhrFields: {
-				// 	withCredentials: true
-				// },
-				// crossDomain: true,
+				xhrFields: {
+					withCredentials: true
+				},
+				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
