@@ -155,13 +155,9 @@ var vm = new Vue({
             });
         }) 
 
-        // dd.biz.navigation.goBack({
-        //     onSuccess : function(result) {
-        //         /*result结构
-        //         {}
-        //         */
-        //     },
-        //     onFail : function(err) {}
-        // })
+        document.addEventListener('backbutton', function(e) {
+            e.preventDefault();
+            location.href = 'orderList.html'
+        });
     },
 })

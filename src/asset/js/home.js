@@ -48,7 +48,7 @@ var vm = new Vue({
             this.getUserId(result.code) 
           },
           onFail: (err)=> {
-            alert("fail" + JSON.stringify(err))
+            // alert("fail" + JSON.stringify(err))
           }
         })
       });
