@@ -193,6 +193,7 @@
      display: inline-block;
      margin: 0 0.03rem;
      opacity: 1;
+     background:#fff;
      
   }
   .mint-swipe-indicator.is-active{

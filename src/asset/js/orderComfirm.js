@@ -117,7 +117,7 @@ var vm = new Vue({
 
 			return true
 		},
-		pay(orderNo) {
+		pay() {
 			let url = getPhpApiUrl('/nail/pay.html')
 			$.ajax({
 				url: url,
@@ -138,7 +138,6 @@ var vm = new Vue({
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
 							location.href = result.data.html
-							// $('#alipaysubmit').submit();
 						} else if (result.data.flag == 0) {
 							// 免密
 							this.SecretFree()
@@ -334,8 +333,8 @@ var vm = new Vue({
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
 			if (arr[3]) {
-				// alert(arr[3])
 				this.isPay = arr[3]
+				this.orderNo = arr[4]
 			}
 		}
 		this.getAddress()

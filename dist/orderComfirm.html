@@ -28,16 +28,17 @@
 			line-height: .45rem;
 			margin-left: .05rem;
 		}
+
 		.van-stepper__input[disabled] {
 			color: #000;
 			background: #fff;
 			border: 1px solid #ddd;
-    		border-left: none;
+			border-left: none;
 			border-right: none;
 			opacity: 1;
 		}
 
-		[v-cloak]{
+		[v-cloak] {
 			display: none;
 		}
 	</style>
@@ -87,21 +88,24 @@
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true"/>
+							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true"
+							/>
 						</div>
 						<div class="gray">
 							<span class="left">总合计</span>
 							<div class="right">
-								
-								￥<span>{{goodsInfo.totalAmount}}</span>
+
+								￥
+								<span>{{goodsInfo.totalAmount}}</span>
 							</div>
 						</div>
 
 						<div>
 							<span class="left">月租金</span>
 							<div class="right">
-								
-								￥<span>{{goodsInfo.productPrice.price}} /个</span>
+
+								￥
+								<span>{{goodsInfo.productPrice.price}} /个</span>
 							</div>
 						</div>
 						<div class="gray">
@@ -124,8 +128,9 @@
 					<div class="gray black">
 						<span class="left">总押金</span>
 						<div class="right">
-							
-							￥<span>{{goodsInfo.productDeposit}}</span>
+
+							￥
+							<span>{{goodsInfo.productDeposit}}</span>
 						</div>
 					</div>
 					<div class="gray gray-word">
@@ -140,7 +145,7 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark"/>
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark" />
 					<p></p>
 				</div>
 				<div class="item2 item4">
@@ -178,7 +183,6 @@
 
 			<!--免密支付问好图片的弹窗-->
 			<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
-			<div v-html="payHtml"></div>
 		</div>
 	</div>
 </body>
@@ -192,6 +196,6 @@
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
 <!-- 引入组件库 -->
-<script src="asset/js/orderComfirm-8cb90840a4.js"></script>
+<script src="asset/js/orderComfirm-f66e3334ea.js"></script>
 
 </html>
