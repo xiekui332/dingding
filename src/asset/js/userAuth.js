@@ -14,15 +14,15 @@ var vm = new Vue({
         userAuth: {
             nailCropId: '',
             userid: '',
-            company: "不匠",
-            companyDelegateImg: 'asset/images/icon/proof.png',
-            dingIndexImg: 'asset/images/icon/proof.png',
-            idcard: "321322199602052213",
-            name: "周磊",
+            company: "",
+            companyDelegateImg: '',
+            dingIndexImg: '',
+            idcard: "",
+            name: "",
             // phone: "",
-            registerNo: "330104000287730",
+            registerNo: "",
             status: 0,
-            rejectReason: "的v"
+            rejectReason: ""
         },
         isFirstAuth: true,
         canEdit: true,
