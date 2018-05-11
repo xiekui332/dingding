@@ -38,7 +38,7 @@ var vm = new Vue({
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
-    getAuthCode() {
+    getAuthCode(corpId) {
       let url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
         url: url,
@@ -59,13 +59,13 @@ var vm = new Vue({
           // dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
-              corpId: this.corpId,
-              onSuccess: (result) => {
+              corpId: corpId,
+              onSuccess: function(result) {
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
                 this.getUserId(result.code)
               },
-              onFail: (err) => {
+              onFail: function(err) {
                 alert("fail" + JSON.stringify(err))
               }
             })
@@ -171,7 +171,7 @@ var vm = new Vue({
     alert(user)
     if (!user || !user.userId || !user.name|| !user.companyName) {
       alert(1)
-      this.getAuthCode()
+      this.getAuthCode(corpId)
     }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
