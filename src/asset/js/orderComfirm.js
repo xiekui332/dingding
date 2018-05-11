@@ -347,12 +347,10 @@ var vm = new Vue({
 				// 		this.pay()
 				// 	}, 5000)
 				// }
-				alert(window.localStorage.getItem('tzgPay'))
-				if (window.localStorage.getItem('tzgPay') == 'true') {
-					alert(1)
+				if (window.localStorage.getItem('tzgPay') == true) {
 					setTimeout(()=>{
 						this.pay()
-					}, 5000)
+					}, 2000)
 					window.localStorage.setItem('tzgPay', false);
 				}
 			}
