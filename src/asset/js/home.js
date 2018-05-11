@@ -53,12 +53,10 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-          alert(JSON.stringify(res))
+          // alert(JSON.stringify(res))
           ddConfig(res)
-          alert(6)
           // dd.ready(() => {
             //获取免登授权码
-            alert(5)
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
               onSuccess: (result) => {
@@ -168,12 +166,11 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    if (!getSession() || !getSession().userId) {
-      alert(1)
+    // if (!getSession() || !getSession().userId) {
       this.getAuthCode()
-    }
+    // }
 
-    alert(window.localStorage.getItem('tzgDingDing'))
+    // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'

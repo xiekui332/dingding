@@ -118,11 +118,22 @@ var vm = new Vue({
     mounted() {
 		this.user = getSession()
         this.getAddressList()
-        // this.addressType = getUrlParam('addressType')
-        // if (this.addressType == 'userCenter') {
-        //     this.backUrl = 'userCenter.html'
-        // } else {
-        //     this.backUrl = document.referrer
-        // }
+        this.addressType = getUrlParam('addressType')
+        if (this.addressType == 'userCenter') {
+            this.backUrl = 'userCenter.html'
+        } else {
+            this.backUrl = 'orderComfirm.html?product=' + window.localStorage.getItem('tzdDingDingOrderComfirmUrl')
+        }
+
+        // dd.ready(() => {
+        //     dd.biz.navigation.setLeft({
+        //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+        //         text: '12',//控制显示文本，空字符串表示显示默认文本
+        //         onSuccess :(result) => {
+        //             location.href = this.backUrl
+        //         },
+        //         onFail : function(err) {}
+        //     });
+        // }) 
     }
 })
