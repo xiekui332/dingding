@@ -141,7 +141,9 @@ function getSession() {
 }
 
 
-
+function tranformTow(number) {
+    return number < 10 ? '0'+number:number
+}
 
 function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     if (!length) {
@@ -158,7 +160,6 @@ function dateFormat(dateF, length, yearName, monthName, dateName) {//日期
     var newDate1 = year + yearName + month + monthName + date + dateName + ' ' + hour + ':' + minute + ':' + second
     return newDate1.substring(0, length)
 }
-
 
 /* 时间戳转化为时间格式 */
 function getTime(createTime,a) {
