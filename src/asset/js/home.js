@@ -55,7 +55,7 @@ var vm = new Vue({
         success: res => {
           // alert(JSON.stringify(res))
           ddConfig(res)
-          dd.ready(() => {
+          // dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: this.corpId,
@@ -68,7 +68,7 @@ var vm = new Vue({
                 alert("fail" + JSON.stringify(err))
               }
             })
-          });
+          // });
         },
         error: e => {
           ddToast('网络错误')
@@ -166,11 +166,14 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    if (!getSession()|| !getSession().userId) {
+    let user = getSession()
+    alert(user)
+    if (!user || !user.userId || !user.name|| !user.companyName) {
+      alert(1)
       this.getAuthCode()
     }
 
-    alert(window.localStorage.getItem('tzgDingDing'))
+    // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'

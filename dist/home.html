@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>淘租公</title>
   <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css" />
-  <link rel="stylesheet" type="text/css" href="asset/css/home-1eb870c339.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/home-288826e9ce.css" />
   <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
   <style>
     [v-cloak]{
@@ -34,7 +34,7 @@
                 v-for="(item, index) in goodsList1" :key="index">
                   <div class="homeMain-top" >
                     <div class="homeMain-title">{{item.category}}</div>
-                    <img src="asset/images/icon/more.png" class="newImg1">
+                    <img src="asset/images/icon/more.png" class="newImg1" v-if='item.productVo.length > 0'>
                   </div>
                   <div class="homeAround-top" >
                       <div  class="homeAround">
@@ -43,7 +43,7 @@
 	                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
 	                              <div class="homeName">{{goods.productEntity.name}}</div>
 	                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
-	                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0].toFixed(2)}}</em></div>
+	                              <div class="homeTitle"><span class="jine">金额</span> ￥<em class="homeMoney">{{goods.list[0].toFixed(2)}}</em></div>
 	                          </a>
 
                         </div>
@@ -74,7 +74,7 @@
 <script src="asset/js/util-a17ea04659.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-94682db718.js"></script>
+<script src="asset/js/home-08598d6c2c.js"></script>
 <script>
   // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
   // let corpId = getUrlParam('corpId')
