@@ -60,7 +60,7 @@
 				<div class="contain-box">
 					<span>{{order.name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
-					<div class="right-top">
+					<div class="right-top" v-show="!isPay">
 						<van-icon name="edit" @click="toManageAddress()"></van-icon>
 					</div>
 				</div>
@@ -88,7 +88,7 @@
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true"
+							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
 							/>
 						</div>
 						<div class="gray">
@@ -142,14 +142,14 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.order_remark" />
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false"/>
 					<p></p>
 				</div>
 				<div class="item2 item4">
 					<span class="left-title">
 						备注（选填）
 					</span>
-					<textarea v-model="order.invitationCode" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货"></textarea>
+					<textarea v-model="order.order_remark" placeholder="任何您需要让我们额外了解的信息、批注，如：无需电联，直接发货" :disabled="isPay?true:false"></textarea>
 
 				</div>
 			</div>
@@ -168,7 +168,7 @@
 					</div>
 
 					<!-- red-btn -->
-					<div class="tjdd red-btn" @click="submitOrder">立即支付</div>
+					<div class="tjdd red-btn" @click="submitOrder" :disabled="isPay?true:false">立即支付</div>
 				</div>
 			</div>
 
@@ -195,6 +195,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-1055c6029d.js"></script>
+<script src="asset/js/orderComfirm-9e9e611691.js"></script>
 
 </html>

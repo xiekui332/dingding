@@ -156,10 +156,11 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						alert(result.data.flag)
-						
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
+							if (result.data.flag == 2) {
+								window.localStorage.setItem('tzgPay', true);
+							}
 							location.href = result.data.html
 						} else if (result.data.flag == 0) {
 							// 免密
@@ -203,5 +204,11 @@ var vm = new Vue({
 	mounted() {
 		this.orderId = getUrlParam('orderId')
 		this.getOrderDetail()
+		if (window.localStorage.getItem('tzgPay') == 'true') {
+			setTimeout(()=>{
+				this.pay()
+			}, 1000)
+			window.localStorage.setItem('tzgPay', false);
+		}
 	},
 })
