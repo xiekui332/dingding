@@ -119,18 +119,18 @@
               jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
           });
           // ddConfig(res)
-          // dd.ready(() => {
-          //   dd.runtime.permission.requestAuthCode({
-          //     corpId: corpId,
-          //     onSuccess: function(result) {
-          //       alert('requestAuthCode:' + JSON.stringify(result))
-          //       // getUserId(result.code)
-          //     },
-          //     onFail:function(err) {
-          //       alert("fail" + JSON.stringify(err))
-          //     }
-          //   })
-          // });
+          dd.ready(function(){
+            dd.runtime.permission.requestAuthCode({
+              corpId: corpId,
+              onSuccess: function(result) {
+                alert('requestAuthCode:' + JSON.stringify(result))
+                // getUserId(result.code)
+              },
+              onFail:function(err) {
+                alert("fail" + JSON.stringify(err))
+              }
+            })
+          });
         },
         error: function(e) {
           ddToast('网络错误')
