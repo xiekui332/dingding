@@ -204,7 +204,7 @@ var vm = new Vue({
 	mounted() {
 		this.orderId = getUrlParam('orderId')
 		this.getOrderDetail()
-		if (window.localStorage.getItem('tzgPay') == true) {
+		if (window.localStorage.getItem('tzgPay') == 'true') {
 			setTimeout(()=>{
 				this.pay()
 			}, 2000)
