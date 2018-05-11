@@ -149,7 +149,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  height: 0.28rem;
+  /* height: 0.28rem; */
   width:3.35rem;
 }
 

@@ -88,7 +88,7 @@
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay"
+							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
 							/>
 						</div>
 						<div class="gray">
@@ -168,7 +168,7 @@
 					</div>
 
 					<!-- red-btn -->
-					<div class="tjdd red-btn" @click="submitOrder">立即支付</div>
+					<div class="tjdd red-btn" @click="submitOrder" :disabled="isPay">立即支付</div>
 				</div>
 			</div>
 

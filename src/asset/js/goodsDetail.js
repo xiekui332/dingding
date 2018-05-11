@@ -103,6 +103,10 @@ var vm = new Vue({
             this.showPop = true
         },
         toOrderComfirm() {
+            if (this.count > this.goodsDetail.inventory) {
+                ddToast('库存不足~')
+                return
+            }
             let url = getApiUrl('/shop-test/rest/dingDingUserInfo/DdStatus')
             $.ajax({
                 url: url,
