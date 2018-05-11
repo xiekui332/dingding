@@ -164,14 +164,14 @@ var vm = new Vue({
   created() { },
   destroyed() {},
   mounted() {
-    this.corpId = getUrlParam('corpId')
+    // this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    let user = getSession()
-    alert(user)
-    if (!user || !user.userId || !user.name|| !user.companyName) {
-      alert(1)
-      this.getAuthCode()
-    }
+    // let user = getSession()
+    // alert(user)
+    // if (!user || !user.userId || !user.name|| !user.companyName) {
+    //   alert(1)
+    //   this.getAuthCode()
+    // }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {

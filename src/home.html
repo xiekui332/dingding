@@ -77,7 +77,7 @@
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  // var corpId = getUrlParam('corpId')
+  var corpId = getUrlParam('corpId')
   
   function getAuthCode() {
       var url = getApiUrl('/ding-isv-access/get_js_config');
@@ -93,9 +93,18 @@
           withCredentials: true
         },
         crossDomain: true,
-        success: function(res) {
+        success: function(config) {
           // alert(JSON.stringify(res))
-          ddConfig(res)
+
+          dd.config({
+              agentId: config.agentId, // 必填，微应用ID
+              corpId: config.corpId,//必填，企业ID
+              timeStamp: config.timeStamp, // 必填，生成签名的时间戳
+              nonceStr: config.nonce, // 必填，生成签名的随机串
+              signature: config.signature, // 必填，签名
+              jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+          });
+          // ddConfig(res)
           // dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
@@ -156,7 +165,7 @@
         },
         crossDomain: true,
         success: function(result) {
-          let sessionObj = {
+          var sessionObj = {
             corpId: corpId,
             userId: result.userid,
             companyName: result.companyName,
@@ -202,11 +211,11 @@
       })
     }
 
-    // var user = getSession()
-    // alert(user)
-    // if (!user || !user.userId || !user.name|| !user.companyName) {
-    //   alert(1)
-    //   getAuthCode()
-    // }
+    var user = getSession()
+    alert(user)
+    if (!user || !user.userId || !user.name|| !user.companyName) {
+      alert(1)
+      getAuthCode()
+    }
 </script>
 </html>
