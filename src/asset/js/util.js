@@ -181,3 +181,12 @@ function getTime(createTime,a) {
         return Y + M + D + h + m  + ':' + s
     }
 }
+
+// function mask(){
+//     var w = $(window).width(),
+//         h = $(window).height(),
+//         div = '<div class="mask"></div>';
+//         $(document.body).append('<div class="mask"></div>')
+//         $('.mask').css({'position':'fixed','top':'0','left':'0','background-color':'rgba(0,0,0,.7)','width':w,'height':h,'display':'none'});
+//         $('.mask').fadeIn(200);
+// }
