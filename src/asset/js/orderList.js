@@ -131,7 +131,6 @@ var vm = new Vue({
             this.getOrderList();
         },
         getOrderList() {
-            alert(2)
             let url = getApiUrl('/shop-test/rest/orders/dingding/list')
             $.ajax({
                 url: url,
@@ -150,15 +149,13 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     if (res.code == 200) {
-                        alert(JSON.stringify(res))
-                        
                         if (res.data.data.length === 0) {
                             this.isEnd = true
                             this.loading = false
                             return
                         }
                         res.data.data.forEach((item) => {
-                            item.orderTime = 123
+                            item.orderTime = dateFormat(item.createTime, 19, '-', '-', ' ')
                         })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
@@ -239,7 +236,6 @@ var vm = new Vue({
             this.isEnd = false
             // this.ordersDisplay = false
 
-            alert(1)
             this.getOrderList()
         },
         toLogistics(item) {
