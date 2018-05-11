@@ -221,7 +221,7 @@ var vm = new Vue({
 							alert(JSON.stringify(result.data))
 							
 							this.hasDefaultAddress = true
-							this.order.name = JSON.parse(JSON.stringify(tresult.data.addressEntity.username))
+							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
