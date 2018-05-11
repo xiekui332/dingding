@@ -155,7 +155,7 @@ var vm = new Vue({
                             return
                         }
                         res.data.data.forEach((item) => {
-                            item.orderTime =  dateFormat(item.createTime, 20, '-', '-', ' ')
+                            item.orderTime = dateFormat(item.createTime, 20, '-', '-', ' ')
                         })
                         this.orderList = this.orderList.concat(res.data.data);
                         this.page += 1;
