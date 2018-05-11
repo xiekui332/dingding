@@ -156,6 +156,7 @@ var vm = new Vue({
         }) 
 
         document.addEventListener('backbutton', function(e) {
+            alert(1)
             location.href = 'orderList.html'
         });
     },
