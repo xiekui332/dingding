@@ -51,7 +51,6 @@ var vm = new Vue({
 	},
 	methods: {
 		submitOrder() {
-			alert(5)
 			if (!this.submitValid()) {
 				return
 			}
@@ -85,11 +84,9 @@ var vm = new Vue({
 							ddToast("授权待审核中")
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
-							alert(7)
 							this.pay()
 						}
 					} else {
-						alert(89)
 						ddToast(result.message)
 					}
 				},
@@ -122,7 +119,6 @@ var vm = new Vue({
 			return true
 		},
 		pay() {
-			alert(3)
 			let url = getPhpApiUrl('/nail/pay.html')
 			$.ajax({
 				url: url,
@@ -139,8 +135,7 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
-					alert(7)
-					alert(JSON.stringify(result))
+					// alert(JSON.stringify(result))
 					if (result.code == 200) {
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
@@ -333,7 +328,6 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
-		alert(11)
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {
@@ -349,5 +343,16 @@ var vm = new Vue({
 		this.getAddress()
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
+
+		dd.ready(() => {
+            dd.biz.navigation.setLeft({
+                control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
+                text: '返回',//控制显示文本，空字符串表示显示默认文本
+                onSuccess :(result) => {
+                    // location.href = this.backUrl
+                },
+                onFail : function(err) {}
+            });
+        }) 
 	},
 })
