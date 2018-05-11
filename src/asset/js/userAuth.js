@@ -263,6 +263,21 @@ var vm = new Vue({
         this.productId = getUrlParam('productId')
         this.orderNo = getUrlParam('orderNo')
         this.getUserAuth()
+
+        dd.ready(function(){
+            dd.biz.navigation.setLeft({
+                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+                text: '返回',//控制显示文本，空字符串表示显示默认文本
+                onSuccess :function(result) {
+                    dd.biz.navigation.goBack({
+                        onSuccess : function(result) {
+                        },
+                        onFail : function(err) {}
+                    })
+                },
+                onFail:function(err){}
+            });
+        }) 
     },
 })
 
