@@ -71,12 +71,13 @@
 </body>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/zepto.min.js"></script>
+<script src="static/js/polyfill.js"></script>
 <script src="asset/js/util.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
 <script src="asset/js/home.js"></script>
 <script>
-  var corpId = getUrlParam('corpId')
+  // var corpId = getUrlParam('corpId')
   
   function getAuthCode() {
       var url = getApiUrl('/ding-isv-access/get_js_config');
@@ -110,7 +111,7 @@
             })
           // });
         },
-        error: e => {
+        error: function(e) {
           ddToast('网络错误')
         }
       })
@@ -201,11 +202,11 @@
       })
     }
 
-    var user = getSession()
-    alert(user)
-    if (!user || !user.userId || !user.name|| !user.companyName) {
-      alert(1)
-      getAuthCode()
-    }
+    // var user = getSession()
+    // alert(user)
+    // if (!user || !user.userId || !user.name|| !user.companyName) {
+    //   alert(1)
+    //   getAuthCode()
+    // }
 </script>
 </html>
