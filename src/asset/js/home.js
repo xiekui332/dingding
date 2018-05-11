@@ -53,8 +53,9 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-          // alert(JSON.stringify(res))
+          alert(JSON.stringify(res))
           ddConfig(res)
+          alert(1)
           // dd.ready(() => {
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
@@ -164,14 +165,14 @@ var vm = new Vue({
   created() { },
   destroyed() {},
   mounted() {
-    // this.corpId = getUrlParam('corpId')
+    this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    // let user = getSession()
-    // alert(user)
-    // if (!user || !user.userId || !user.name|| !user.companyName) {
-    //   alert(1)
-    //   this.getAuthCode()
-    // }
+    let user = getSession()
+    alert(user)
+    if (!user || !user.userId || !user.name|| !user.companyName) {
+      alert(1)
+      this.getAuthCode()
+    }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
