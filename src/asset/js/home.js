@@ -55,21 +55,22 @@ var vm = new Vue({
         success: res => {
           alert(JSON.stringify(res))
           ddConfig(res)
-          alert(1)
-          // dd.ready(() => {
+          alert(2)
+          dd.ready(function(){
+            alert(3)
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
               corpId: corpId,
               onSuccess: function(result) {
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
-                this.getUserId(result.code)
+                // this.getUserId(result.code) 
               },
               onFail: function(err) {
                 alert("fail" + JSON.stringify(err))
               }
             })
-          // });
+          });
         },
         error: e => {
           ddToast('网络错误')
