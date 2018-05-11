@@ -168,12 +168,12 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    let user = getSession()
-    alert(user)
-    if (!user || !user.userId || !user.name|| !user.companyName) {
-      alert(1)
-      this.getAuthCode(this.corpId)
-    }
+    // let user = getSession()
+    // alert(user)
+    // if (!user || !user.userId || !user.name|| !user.companyName) {
+    //   alert(1)
+    //   this.getAuthCode(this.corpId)
+    // }
 
     // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
