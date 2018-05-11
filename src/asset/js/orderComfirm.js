@@ -276,6 +276,7 @@ var vm = new Vue({
 						this.goodsInfo.cover = result.data.cover
 						this.goodsInfo.brief = result.data.brief
 						this.goodsInfo.count = this.order.count
+						this.goodsInfo.inventory = result.data.inventory
 
 						this.getTotalAmount()
 					} else {
