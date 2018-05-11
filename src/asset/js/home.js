@@ -38,7 +38,7 @@ var vm = new Vue({
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
-    getAuthCode() {
+    getAuthCode(corpId) {
       let url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
         url: url,
@@ -55,22 +55,22 @@ var vm = new Vue({
         success: res => {
           alert(JSON.stringify(res))
           ddConfig(res)
-          alert(6)
-          // dd.ready(() => {
+          alert(2)
+          dd.ready(function(){
+            alert(3)
             //获取免登授权码
-            alert(5)
             dd.runtime.permission.requestAuthCode({
-              corpId: this.corpId,
-              onSuccess: (result) => {
+              corpId: corpId,
+              onSuccess: function(result) {
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
-                this.getUserId(result.code)
+                // this.getUserId(result.code) 
               },
-              onFail: (err) => {
+              onFail: function(err) {
                 alert("fail" + JSON.stringify(err))
               }
             })
-          // });
+          });
         },
         error: e => {
           ddToast('网络错误')
@@ -168,12 +168,14 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    if (!getSession() || !getSession().userId) {
+    let user = getSession()
+    alert(user)
+    if (!user || !user.userId || !user.name|| !user.companyName) {
       alert(1)
-      this.getAuthCode()
+      this.getAuthCode(this.corpId)
     }
 
-    alert(window.localStorage.getItem('tzgDingDing'))
+    // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'

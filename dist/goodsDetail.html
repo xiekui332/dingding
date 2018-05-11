@@ -33,6 +33,7 @@
         padding: .05rem .08rem;
         /* float: right; */
         border: 1px solid #999999;
+        opacity: .6;
     }
     .content {
         padding:.43rem .30rem .24rem .30rem;
@@ -48,6 +49,9 @@
         line-height: .32rem;
         margin: .20rem 0;
     } 
+    .priceTitle .largestFont{
+        font-family: PingFangSC-Semibold;
+    }
     .deposit {
         display: flex;
         justify-content: space-between;
@@ -97,6 +101,10 @@
         position: fixed;
         bottom: 0;
         width: 100%;
+        background: #ffffff;
+    }
+    .fixed-bottom span{
+        background: #fff!important;
     }
     .mint-button {
         border-radius: 0;
@@ -174,7 +182,7 @@
         border-left: 0 !important;
         font-size: .24rem;
         padding: .12rem .2rem;
-        
+        margin-top: -.0054rem!important;
     }
     .submit {
         font-family: 'PingFangSC-Regular';
@@ -183,6 +191,9 @@
         border-radius: .88rem;
         font-size: .36rem;
         margin: .25rem 0 .18rem 0;
+    }
+    body{
+        border-top: 1px solid #f7f7f7;
     }
 </style>
 <body>
@@ -196,6 +207,6 @@
 <script src="asset/js/util-a17ea04659.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/goodsDetail-81f47e552d.js"></script>
+<script src="asset/js/goodsDetail-8bcbe64498.js"></script>
 <script src="asset/component/js/modal.js"></script>
 </html>

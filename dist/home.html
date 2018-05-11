@@ -5,7 +5,7 @@
   <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>淘租公</title>
   <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css" />
-  <link rel="stylesheet" type="text/css" href="asset/css/home-1eb870c339.css" />
+  <link rel="stylesheet" type="text/css" href="asset/css/home-288826e9ce.css" />
   <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
   <style>
     [v-cloak]{
@@ -34,7 +34,7 @@
                 v-for="(item, index) in goodsList1" :key="index">
                   <div class="homeMain-top" >
                     <div class="homeMain-title">{{item.category}}</div>
-                    <img src="asset/images/icon/more.png" class="newImg1">
+                    <img src="asset/images/icon/more.png" class="newImg1" v-if='item.productVo.length > 0'>
                   </div>
                   <div class="homeAround-top" >
                       <div  class="homeAround">
@@ -43,7 +43,7 @@
 	                              <img v-lazy="goods.productEntity.cover" class="newImg2" >
 	                              <div class="homeName">{{goods.productEntity.name}}</div>
 	                              <div class="homeDecc">{{goods.productEntity.brief}}</div>
-	                              <div class="homeTitle"><span class="jine">金额</span> <em class="homeMoney">￥{{goods.list[0].toFixed(2)}}</em></div>
+	                              <div class="homeTitle"><span class="jine">金额</span> ￥<em class="homeMoney">{{goods.list[0].toFixed(2)}}</em></div>
 	                          </a>
 
                         </div>
@@ -71,72 +71,153 @@
 </body>
 <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/zepto.min.js"></script>
+<script src="static/js/polyfill.js"></script>
 <script src="asset/js/util-a17ea04659.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="https://unpkg.com/mint-ui/lib/index.js"></script>
-<script src="asset/js/home-0cba526cc3.js"></script>
+<script src="asset/js/home-10de9a0730.js"></script>
 <script>
-  // let url = 'http://api.taozugong.com:8080/ding-isv-access/get_js_config';
-  // let corpId = getUrlParam('corpId')
-  // $.ajax({
-  //   url: url,
-  //   type: "GET",
-  //   dataType: "json",
-  //   data: {
-  //     url: window.location.href,
-  //     corpId: corpId
-  //   },
-  //   xhrFields: {
-  //     withCredentials: true
-  //   },
-  //   crossDomain: true,
-  //   success: res => {
-  //     alert("success:"+JSON.stringify(res))
-  //     dd.config({
-  //         agentId: res.agentId, // 必填，微应用ID
-  //         corpId: res.corpId,//必填，企业ID
-  //         timeStamp: res.timeStamp, // 必填，生成签名的时间戳
-  //         nonceStr: res.nonce, // 必填，生成签名的随机串
-  //         signature: res.signature, // 必填，签名
-  //         jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
-  //     });
-  //     dd.ready(function(){
-  //           dd.runtime.permission.requestAuthCode({
-  //               corpId: corpId,
-  //               onSuccess: function(result) {
-  //                   getUserId(result.code)
-  //               },
-  //               onFail : function(err) {
-  //                   alert("fail"+JSON.stringify(err))
-  //               }
-  //             })
-  //         });
-  //   },
-  //   error: e => {
-  //   }
-  // })
-  // let url1 = 'http://api.taozugong.com:8080/ding-isv-access/get_user_info';
+  // alert(3)
+  // var corpId = getUrlParam('corpId')
+  // var user = getSession()
+  // alert(user)
+  if (!user || !user.userId || !user.name|| !user.companyName) {
+    alert(1)
+    getAuthCode()
+  }
+  
+  function getAuthCode() {
+    alert(4)
+      var url = getApiUrl('/ding-isv-access/get_js_config');
+      $.ajax({
+        url: url,
+        type: "GET",
+        dataType: "json",
+        data: {
+          url: window.location.href,
+          corpId: corpId
+        },
+        // xhrFields: {
+        //   withCredentials: true
+        // },
+        // crossDomain: true,
+        success: function(config) {
+          alert(JSON.stringify(res))
+
+          // dd.config({
+          //     agentId: config.agentId, // 必填，微应用ID
+          //     corpId: config.corpId,//必填，企业ID
+          //     timeStamp: config.timeStamp, // 必填，生成签名的时间戳
+          //     nonceStr: config.nonce, // 必填，生成签名的随机串
+          //     signature: config.signature, // 必填，签名
+          //     jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+          // });
+          // ddConfig(res)
+          // dd.ready(() => {
+            //获取免登授权码
+            // dd.runtime.permission.requestAuthCode({
+            //   corpId: corpId,
+            //   onSuccess: function(result) {
+            //     alert('requestAuthCode:' + JSON.stringify(result))
+            //     // getUserId(result.code)
+            //   },
+            //   onFail:function(err) {
+            //     alert("fail" + JSON.stringify(err))
+            //   }
+            // })
+          // });
+        },
+        error: function(e) {
+          ddToast('网络错误')
+        }
+      })
+    }
   // function getUserId(code) {
+  //   let url = getApiUrl('/ding-isv-access/get_user_info');
   //   $.ajax({
-	// 			url: url1,
-	// 			type: "GET",
-	// 			dataType: "json",
-	// 			data: {
-  //         url: window.location.href,
+  //     url: url,
+  //     type: "GET",
+  //     dataType: "json",
+  //     data: {
+  //       url: window.location.href,
+  //       corpId: corpId,
+  //       code: code
+  //     },
+  //     xhrFields: {
+  //       withCredentials: true
+  //     },
+  //     crossDomain: true,
+  //     success: function(result) {
+  //       getUserDetail(result.userId)
+  //     },
+  //     error: function(e) {
+  //       ddToast('网络错误')
+  //     }
+  //   })
+  // }
+  // function getUserDetail(userId) {
+  //   // this.corpId = 'dingaaa4a95c02214e0835c2f4657eb6378f'
+  //   // userId = '141502201726340017'
+  //   let url = getApiUrl('/ding-isv-access/get_user_detail');
+  //   $.ajax({
+  //     url: url,
+  //     type: "GET",
+  //     dataType: "json",
+  //     data: {
+  //       corpId: corpId,
+  //       useId: userId
+  //     },
+  //     xhrFields: {
+  //       withCredentials: true
+  //     },
+  //     crossDomain: true,
+  //     success: function(result) {
+  //       var sessionObj = {
   //         corpId: corpId,
-  //         code: code
-  //       },
-	// 			xhrFields: {
-	// 				withCredentials: true
-	// 			},
-	// 			crossDomain: true,
-	// 			success: result => {
-  //         alert("sucess:"+JSON.stringify(result))
-	// 			},
-	// 			error: e => {
-  //         alert("error"+JSON.stringify(e))
-	// 			}
-	// 		})
-  // } 
+  //         userId: result.userid,
+  //         companyName: result.companyName,
+  //         avatar: result.avatar,
+  //         name: result.name
+  //       }
+  //       //  session存储对象
+  //       setSession(sessionObj)
+  //       setUserDetail(result)
+  //     },
+  //     error:function(e) {
+  //       ddToast('网络错误')
+  //     }
+  //   })
+  // }
+  // function setUserDetail(user) {
+  //   let userDetail = {
+  //     userid: user.userid,
+  //     unionid: user.unionid,
+  //     nailCropId: corpId,
+  //     name: user.name,
+  //     isAdmin: user.isAdmin,
+  //     isBoss: user.isBoss,
+  //     dingId: user.dingId,
+  //     companyName: user.companyName
+  //   }
+  //   let url = getApiUrl('/shop-test/rest/user/addInformation');
+  //   $.ajax({
+  //     url: url,
+  //     type: "POST",
+  //     dataType: "json",
+  //     contentType: "application/json",
+  //     data: JSON.stringify(userDetail),
+  //     xhrFields: {
+  //       withCredentials: true
+  //     },
+  //     crossDomain: true,
+  //     success: function(result) {
+  //     },
+  //     error: function(e) {
+  //       ddToast('网络错误')
+  //     }
+  //   })
+  // }
+
+  
 </script>
 </html>

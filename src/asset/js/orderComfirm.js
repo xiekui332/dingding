@@ -45,13 +45,21 @@ var vm = new Vue({
 		setStyle: '',
 		payHtml: '',
 		orderNo: '',
-		orderId: ''
+		orderId: '',
+		isPay: ''
 	},
 	methods: {
 		submitOrder() {
 			if (!this.submitValid()) {
 				return
 			}
+
+			if (this.isPay == 'p') {
+				this.pay()
+				return
+			}
+
+
 			let url = getApiUrl('/shop-test/rest/orders/Ddcreate')
 			this.order.nailUserId = this.user.userId
 			this.order.nailCropId = this.user.corpId
@@ -325,8 +333,14 @@ var vm = new Vue({
 			this.order.productId = arr[0]
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
+			if (arr[3]) {
+				this.order.isPay = arr[3]
+			}
 		}
 		this.getAddress()
 		this.getZmStatus()
+		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
+
+		
 	},
 })

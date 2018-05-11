@@ -159,7 +159,7 @@ var vm = new Vue({
     <div class="content writeBackColor">
         <div class="title overHidden">{{goodsDetail.name}}</div>
         <div class="mediumstFont light-gray overHidden">{{goodsDetail.brief}}</div>
-        <div class="priceTitle">月租金<span class="unit">￥</span><span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span>起</div>
+        <div class="priceTitle">月租金<span class="unit">￥</span><span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span></div>
         <div class="gray regular smallFont deposit">
             <span>
                 <span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
@@ -197,13 +197,13 @@ var vm = new Vue({
             <mt-button class="largeFont right-button" @click="openSku">立即租赁</mt-button>
         </span>
         <span style="width:17%;float:left" >
-            <mt-button style="width:100%;height:1rem" @click="openModal">
+            <mt-button style="width:100%;height:1rem;background:#fff;" @click="openModal">
                 <img style="height:.5rem;width:auto;vertical-align: middle;" src="asset/images/icon/service.png">
             </mt-button>
         </span>
     </div>
     
-    <!-- sku -->
+    <!--  sku -->
     <mt-popup v-model="popupVisible" position="bottom" class="popup">
         <div style="margin: 0 .4rem;">
             <div style="padding: .28rem 0;position: relative;">
