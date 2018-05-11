@@ -38,7 +38,7 @@ var vm = new Vue({
     toGoodsDetail(productId) {
       location.href = 'goodsDetail.html?productId=' + productId
     },
-    getAuthCode(corpId) {
+    getAuthCode() {
       let url = getApiUrl('/ding-isv-access/get_js_config');
       $.ajax({
         url: url,
@@ -53,20 +53,18 @@ var vm = new Vue({
         },
         crossDomain: true,
         success: res => {
-          alert(JSON.stringify(res))
+          // alert(JSON.stringify(res))
           // ddConfig(res)
-          alert(2)
-          dd.ready(function(){
-            alert(corpId)
+          dd.ready(()=>{
             //获取免登授权码
             dd.runtime.permission.requestAuthCode({
-              corpId: corpId,
-              onSuccess: function(result) {
+              corpId: this.corpId,
+              onSuccess: (result)=> {
                 //  得到授权码
                 alert('requestAuthCode:' + JSON.stringify(result))
-                // this.getUserId(result.code) 
+                this.getUserId(result.code) 
               },
-              onFail: function(err) {
+              onFail: (err)=> {
                 alert("fail" + JSON.stringify(err))
               }
             })
