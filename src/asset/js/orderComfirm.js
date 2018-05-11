@@ -51,6 +51,7 @@ var vm = new Vue({
 	},
 	methods: {
 		submitOrder() {
+			alert(5)
 			if (!this.submitValid()) {
 				return
 			}
@@ -84,9 +85,11 @@ var vm = new Vue({
 							ddToast("授权待审核中")
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
+							alert(7)
 							this.pay()
 						}
 					} else {
+						alert(89)
 						ddToast(result.message)
 					}
 				},
@@ -119,6 +122,7 @@ var vm = new Vue({
 			return true
 		},
 		pay() {
+			alert(3)
 			let url = getPhpApiUrl('/nail/pay.html')
 			$.ajax({
 				url: url,
@@ -135,6 +139,8 @@ var vm = new Vue({
 				},
 				crossDomain: true,
 				success: result => {
+					alert(7)
+					alert(JSON.stringify(result))
 					if (result.code == 200) {
 						if (result.data.flag == 1 || result.data.flag == 2) { //2免密签约跳转; 1花呗冻结跳转
 							// 支付链接
@@ -219,11 +225,9 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
-							alert(JSON.stringify(result.data))
-							
+							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							this.hasDefaultAddress = true
-							this.name = result.data.addressEntity.username
-							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
+							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
@@ -232,8 +236,6 @@ var vm = new Vue({
 							this.order.districtId = result.data.addressEntity.districtId
 							this.order.companyName = result.data.addressEntity.company
 							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
-							
-							// this.order =  JSON.parse(JSON.stringify(this.order))
 						} else {
 							this.hasDefaultAddress = false
 						}
@@ -331,6 +333,7 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		alert(11)
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {

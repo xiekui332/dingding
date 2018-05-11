@@ -167,10 +167,9 @@ var vm = new Vue({
     this.getGoodsList()
     let user = getSession()
     // if (!user || !user.userId || !user.name|| !user.companyName) {
-      this.getAuthCode(this.corpId)
+      this.getAuthCode()
     // }
 
-    // alert(window.localStorage.getItem('tzgDingDing'))
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
     //   userId: '08623665231156032'

@@ -45,8 +45,8 @@
 </head>
 
 <body>
-	<div id="app" v-cloak>
-		<div>
+	<div id="app">
+		<div v-cloak>
 			<!--未添加收货地址-->
 			<div class="no-add" v-show="!hasDefaultAddress" style="display: none">
 				<div class="no-btn" @click="toManageAddress">
@@ -58,7 +58,7 @@
 			<!-- 确认地址 -->
 			<div class="dd_sure" v-if="hasDefaultAddress">
 				<div class="contain-box">
-					<span>{{name}}</span>
+					<span>{{order.name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
 					<div class="right-top">
 						<van-icon name="edit" @click="toManageAddress()"></van-icon>
@@ -195,6 +195,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-4fe6aca8da.js"></script>
+<script src="asset/js/orderComfirm-1055c6029d.js"></script>
 
 </html>
