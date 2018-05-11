@@ -212,18 +212,21 @@ var vm = new Vue({
 					nailUserId: this.user.userId,
 					nailUserInfoId: this.user.corpId
 				},
-				xhrFields: {
-					withCredentials: true
-				},
-				crossDomain: true,
+				// xhrFields: {
+				// 	withCredentials: true
+				// },
+				// crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
-							alert(JSON.stringify(result.data))
+
+							let address = JSON.parse(JSON.stringify(result.data.addressEntity))
+							
+							alert(JSON.stringify(address.username))
 							
 							this.hasDefaultAddress = true
-							this.name = result.data.addressEntity.username
-							this.order.name = JSON.parse(JSON.stringify(result.data.addressEntity.username))
+							// this.name = result.data.addressEntity.username
+							this.order.name = address.username
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.address = result.data.addressEntity.detail
