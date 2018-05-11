@@ -207,7 +207,7 @@ var vm = new Vue({
 		if (window.localStorage.getItem('tzgPay') == 'true') {
 			setTimeout(()=>{
 				this.pay()
-			}, 2000)
+			}, 1000)
 			window.localStorage.setItem('tzgPay', false);
 		}
 	},
