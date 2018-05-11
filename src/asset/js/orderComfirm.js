@@ -59,7 +59,7 @@ var vm = new Vue({
 				this.pay()
 				return
 			}
-
+			
 
 			let url = getApiUrl('/shop-test/rest/orders/Ddcreate')
 			this.order.nailUserId = this.user.userId
@@ -338,6 +338,7 @@ var vm = new Vue({
 			if (arr[3]) {
 				this.isPay = arr[3]
 				this.orderNo = arr[4]
+				this.pay()
 			}
 		}
 		this.getAddress()

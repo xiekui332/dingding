@@ -37,7 +37,7 @@ var vm = new Vue({
                         this.addressList = result.data
                         this.activeAddressId = 0
                     } else {
-                        // ddToast(result.message)
+                        ddToast(result.message)
                     }
                 },
                 error: e => {
