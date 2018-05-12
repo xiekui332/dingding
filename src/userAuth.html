@@ -128,7 +128,7 @@
 
 				<!--预览提示-->
 				<van-popup v-model="showImgPreview">
-					<img :src="urls" class=""/>
+					<img :src="urls" class="" style="width: 7.5rem" @click="showImgPreview=!showImgPreview"/>
 				</van-popup>
 
 				<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
