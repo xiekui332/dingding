@@ -89,7 +89,11 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						location.href = 'orderComfirm.html?product=' + getUrlParam('product')
+						if (getUrlParam('product')) {
+							location.href = 'orderComfirm.html?product=' + getUrlParam('product')
+						} else {
+							location.href = 'manageAddress.html'
+						}
 					} else {
 						ddToast(result.message)
 					}
