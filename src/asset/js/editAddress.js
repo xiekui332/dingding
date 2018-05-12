@@ -90,7 +90,7 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (getUrlParam('product') == 'null') {
-							location.href = 'manageAddress.html'
+							location.href = 'manageAddress.html?addressType=userCenter'
 						} else {
 							location.href = 'orderComfirm.html?product=' + getUrlParam('product')
 						}
