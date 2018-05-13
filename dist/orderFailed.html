@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>下单失败</title>
+    <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/success-b0b1d5fed7.css"/>
+    <style>
+        body{
+            border-top: 1px solid #f7f7f7;
+        }
+    </style>
+</head>
+<body>
+	<div id="app">
+		<div class="sec-1">
+            <img src="asset/images/icon/failed.png" alt="" class="sure sure2">
+            <p class="gx">下单失败</p>
+            <p class="will">系统异常请尝试重新下单</p>
+		</div>
+        <!-- 按钮 -->
+		<div class="btn-box btn-box2">
+            <a @click="toGoodsDetail">重试</a>
+        </div>
+	</div>
+</body>
+<script src="static/js/zepto.min.js"></script>
+<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+<script src="static/js/vue.min.js"></script>
+<script src="asset/js/util-c6022bf896.js"></script>
+<script type="text/javascript">
+	var vm = new Vue({
+		el:'#app',
+		data:{
+		},
+        methods:{
+            toGoodsDetail:function() {
+                let productId = getUrlParam('productId')
+                location.href = 'goodsDetail.html?productId=' + productId
+            }
+        },
+        // mounted:function() {
+        //     dd.ready(() => {
+        //         dd.biz.navigation.setLeft({
+        //             control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+        //             text: '返回',//控制显示文本，空字符串表示显示默认文本
+        //             onSuccess :(result) => {
+        //                 location.href = 'home.html'
+        //             },
+        //             onFail : function(err) {}
+        //         });
+        //     }) 
+        // }
+	})
+</script>
+</html>
