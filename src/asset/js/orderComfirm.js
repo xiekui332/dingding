@@ -249,7 +249,7 @@ var vm = new Vue({
 			})
 		},
 		toManageAddress() {
-			location.href = 'manageAddress.html'
+			location.href = 'manageAddress.html?product=' + getUrlParam('product')
 		},
 		getGoodsInfo() {
 			let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
@@ -360,15 +360,15 @@ var vm = new Vue({
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
 
-		dd.ready(() => {
-            dd.biz.navigation.setLeft({
-                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
-                text: '返回',//控制显示文本，空字符串表示显示默认文本
-                onSuccess :(result) => {
-                    location.href = 'goodsDetail.html?productId=' + this.order.productId
-                },
-                onFail:(err)=>{}
-            });
-        }) 
+		// dd.ready(() => {
+        //     dd.biz.navigation.setLeft({
+        //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+        //         text: '返回',//控制显示文本，空字符串表示显示默认文本
+        //         onSuccess :(result) => {
+        //             location.href = 'goodsDetail.html?productId=' + this.order.productId
+        //         },
+        //         onFail:(err)=>{}
+        //     });
+        // }) 
 	},
 })

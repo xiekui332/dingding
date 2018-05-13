@@ -35,15 +35,15 @@ var vm = new Vue({
         this.orderId = getUrlParam('orderId')
         this.getOrderDetail()
 
-        dd.ready(() => {
-            dd.biz.navigation.setLeft({
-                control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
-                text: '返回',//控制显示文本，空字符串表示显示默认文本
-                onSuccess :(result) => {
-                    location.href = 'home.html'
-                },
-                onFail :(err)=> {}
-            });
-        }) 
+        // dd.ready(() => {
+        //     dd.biz.navigation.setLeft({
+        //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+        //         text: '返回',//控制显示文本，空字符串表示显示默认文本
+        //         onSuccess :(result) => {
+        //             location.href = 'home.html'
+        //         },
+        //         onFail :(err)=> {}
+        //     });
+        // }) 
     }
 })

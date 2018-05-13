@@ -90,7 +90,11 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
-						location.href = 'manageAddress.html'
+						if (getUrlParam('product') == 'null') {
+							location.href = 'manageAddress.html?addressType=userCenter'
+						} else {
+							location.href = 'orderComfirm.html?product=' + getUrlParam('product')
+						}
 					} else {
 						ddToast(result.message)
 					}
@@ -153,7 +157,20 @@ var vm = new Vue({
 		if (this.addressId) {
 			this.getAddress()
 		}
-		
+		// dd.ready(function(){
+		// 	dd.biz.navigation.setLeft({
+		// 		control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+		// 		text: '返回',//控制显示文本，空字符串表示显示默认文本
+		// 		onSuccess :function(result) {
+		// 			dd.biz.navigation.goBack({
+		// 				onSuccess : function(result) {
+		// 				},
+		// 				onFail : function(err) {}
+		// 			})
+		// 		},
+		// 		onFail:function(err){}
+		// 	});
+		// }) 
 	}
 })
 
