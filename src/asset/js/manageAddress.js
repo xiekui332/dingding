@@ -63,7 +63,7 @@ var vm = new Vue({
                 success: result => {
                     if (result.code == 200) {
                         this.activeAddressId = addressId
-                        if (getUrlParam('product') || getUrlParam('product')!='null') {
+                        if (getUrlParam('product') && getUrlParam('product')!='null') {
                             location.href = 'orderComfirm.html?product=' + getUrlParam('product')
                         }
                     } else {
