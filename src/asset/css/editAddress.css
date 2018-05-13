@@ -9,10 +9,10 @@
     background: #fff;
 }
 .item-box .item2{
-    padding: .25rem 0;
+    /* padding: .25rem 0; */
     border-bottom: 1px solid #DDDDDD;
     font-size: .32rem;
-    line-height: .45rem;
+    line-height: 1rem;
 }
 .item-box .item2:last-of-type{
     border-bottom: none;
@@ -36,13 +36,13 @@
     font-size: .32rem;
     text-align: left;
     font-family: 'PingFangSC-Regular';
-    line-height: .47rem;
+    line-height: .5rem;
 }
 .ad-more{
     width: .19rem;
    position: absolute;
    right: .3rem;
-   top: .33rem;
+   top: .35rem;
 }
 .item3{
     position: relative;
@@ -53,13 +53,17 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+.item3 input::placeholder{
+    line-height: .49rem;
+}
 .item4 span.left-title{
-    line-height:.9rem; 
+    /* height: 2rem; */
+    line-height:1.5rem!important; 
 }
 .item2 textarea{
     height: .9rem;
     border: none;
-    line-height: .45rem;
+    line-height: .4rem;
     vertical-align: middle;
 }
 .btn-red{
