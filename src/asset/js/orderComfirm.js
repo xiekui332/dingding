@@ -226,7 +226,7 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
-							alert(JSON.stringify(result.data.addressEntity))
+							// alert(JSON.stringify(result.data.addressEntity))
 							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							this.hasDefaultAddress = true
 							this.order.name = result.data.addressEntity.username
@@ -374,7 +374,4 @@ var vm = new Vue({
         //     });
         // }) 
 	},
-	// created() {
-	// 	this.getAddress()
-	// }
 })
