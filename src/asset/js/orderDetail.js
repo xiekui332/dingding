@@ -23,7 +23,8 @@ var vm = new Vue({
 		objAddress: '',
 		orderNo: '',
 		createTime: '',
-		id: ''
+		id: '',
+		hasSubmit: 0
 	},
 	methods: {
 		getOrderDetail() {
@@ -142,6 +143,7 @@ var vm = new Vue({
 			location.href = 'logistics.html?orderNo=' + this.orderNo + '&createTime=' + this.createTime
 		},
 		pay() {
+			this.hasSubmit = 1
 			let url = getPhpApiUrl('/nail/immediatelypay.html')
 			$.ajax({
 				url: url,
@@ -177,6 +179,7 @@ var vm = new Vue({
 					}
 				},
 				error: e => {
+					this.hasSubmit = 0
 					ddToast('网络错误')
 				}
 			})
@@ -212,6 +215,7 @@ var vm = new Vue({
 		this.orderId = getUrlParam('orderId')
 		this.getOrderDetail()
 		if (window.localStorage.getItem('tzgPay') == 'true') {
+			this.hasSubmit = 1
 			setTimeout(()=>{
 				this.pay()
 			}, 1000)
