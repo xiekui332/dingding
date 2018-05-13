@@ -351,6 +351,7 @@ body{
 }
 .red-btn{
     background: rgba(244,107,83,1);
+    border: none;
 }
 
 
