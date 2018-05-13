@@ -6,7 +6,7 @@
     <title>个人中心</title>
     <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
     <link rel="stylesheet" type="text/css" href="asset/css/reset-8a6bf83bb8.css"/>
-    <link rel="stylesheet" type="text/css" href="asset/css/userCenter-534de521fa.css"/>
+    <link rel="stylesheet" type="text/css" href="asset/css/userCenter-6cd8125ad4.css"/>
     <style>
       [v-cloak]{
         display: none;
@@ -69,7 +69,7 @@
                 </mt-swipe-item>
                 <mt-swipe-item>
                   <div class="main-list1" v-for="item in navList2">
-                    <span class="te te10" style="display: inline-block;width:100%;text-align: center">
+                    <span class="te te10" style="display: block;text-align: center;margin: 0 auto;">
                       <img :src="item.url" class="img3" @click="toOrderList(item.status)">
                     </span>
                       <div class="wenzi">{{item.navTitle}}</div> 
