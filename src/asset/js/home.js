@@ -172,7 +172,7 @@ var vm = new Vue({
     //   userId: '08623665231156032'
     // }
     // setSession(sessionObj)
-
+   
     dd.ready(() => {
       dd.biz.navigation.setRight({
           show: true,
