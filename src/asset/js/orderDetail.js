@@ -166,8 +166,13 @@ var vm = new Vue({
 							// 免密
 							this.SecretFree()
 						} 
-					} else {
-						ddToast(result.message)
+					} else { //-1
+						// ddToast(result.message)
+						this.$dialog.alert({
+							message: result.message,
+							confirmButtonText: '我知道了'
+						}).then(() => {
+						});
 					}
 				},
 				error: e => {
@@ -190,6 +195,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						this.orderId = result.data
 						location.href = 'orderSuccess.html?orderId=' + this.orderId
 					} else if (result.code == -1) {
 						location.href = 'orderFailed.html?productId=' + this.order.productId
