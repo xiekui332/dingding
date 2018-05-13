@@ -28,7 +28,7 @@
 <script src="static/js/zepto.min.js"></script>
 <script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
-<script src="asset/js/util-be7d0a41ce.js"></script>
+<script src="asset/js/util-54f3f84af1.js"></script>
 <script type="text/javascript">
 	var vm = new Vue({
 		el:'#app',
@@ -40,18 +40,18 @@
                 location.href = 'goodsDetail.html?productId=' + productId
             }
         },
-        mounted:function() {
-            dd.ready(() => {
-                dd.biz.navigation.setLeft({
-                    control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
-                    text: '返回',//控制显示文本，空字符串表示显示默认文本
-                    onSuccess :(result) => {
-                        location.href = 'home.html'
-                    },
-                    onFail : function(err) {}
-                });
-            }) 
-        }
+        // mounted:function() {
+        //     dd.ready(() => {
+        //         dd.biz.navigation.setLeft({
+        //             control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+        //             text: '返回',//控制显示文本，空字符串表示显示默认文本
+        //             onSuccess :(result) => {
+        //                 location.href = 'home.html'
+        //             },
+        //             onFail : function(err) {}
+        //         });
+        //     }) 
+        // }
 	})
 </script>
 </html>
