@@ -91,7 +91,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #EEEEEE;
+  border-bottom: 1px solid #ddd;
   /* margin-left: 0.2rem; */
   padding-left: .2rem;
 }
@@ -188,7 +188,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
-  border: 1px solid #f7f7f7;
+  border: 1px solid #ddd;
 }
 
 .mint-tabbar>.mint-tab-item.is-selected {
@@ -206,7 +206,7 @@
  }
  .mint-tabbar.is-fixed{
   background: #fff;  
-  border: 1px solid #f7f7f7;
+  border: 1px solid #ddd;
  }
 
  /* @keyframes mymove{

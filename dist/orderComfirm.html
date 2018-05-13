@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
 	<!-- 引入样式 -->
 	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-ea09a70fbc.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-ec65a6d6d5.css" />
 	<style type="text/css">
 		.van-checkbox {
 			display: inline-block;
@@ -43,35 +43,35 @@
 		}
 
 		.sku-number span {
-		border: 1px solid #DDDDDD !important;
-		margin: 0 !important;
-	}
+			border: 1px solid #DDDDDD !important;
+			margin: 0 !important;
+		}
 
-	.sku-number .reduce {
-		border-radius: .24rem 0 0 .24rem;
-		color: #F3654C;
-		font-size: .35rem;
-		vertical-align: top;
-		padding: .0rem .15rem .04rem;
-		cursor: pointer;
-	}
+		.sku-number .reduce {
+			border-radius: .24rem 0 0 .24rem;
+			color: #F3654C;
+			font-size: .35rem;
+			vertical-align: top;
+			padding: .0rem .15rem .04rem;
+			cursor: pointer;
+		}
 
-	.sku-number .add {
-		border-radius: 0 .24rem .24rem 0;
-		color: #F3654C;
-		font-size: .35rem;
-		vertical-align: top;
-		padding: .0rem .15rem .04rem;
-		cursor: pointer;
-	}
+		.sku-number .add {
+			border-radius: 0 .24rem .24rem 0;
+			color: #F3654C;
+			font-size: .35rem;
+			vertical-align: top;
+			padding: .0rem .15rem .04rem;
+			cursor: pointer;
+		}
 
-	.sku-number .num {
-		border-radius: 0;
-		border-right: 0 !important;
-		border-left: 0 !important;
-		font-size: .24rem;
-		padding: .1rem .2rem;
-	}
+		.sku-number .num {
+			border-radius: 0;
+			border-right: 0 !important;
+			border-left: 0 !important;
+			font-size: .24rem;
+			padding: .1rem .2rem;
+		}
 	</style>
 </head>
 
@@ -121,7 +121,9 @@
 							</span>
 
 							<div class="sku-number">
-								<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{goodsInfo.count}}</span><span class="add" @click="adjust(1)">+</span>
+								<span class="reduce" @click="adjust(-1)">-</span>
+								<span class="num">{{goodsInfo.count}}</span>
+								<span class="add" @click="adjust(1)">+</span>
 							</div>
 							<!-- <van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
 							/> -->
@@ -129,14 +131,14 @@
 						<div class="gray">
 							<span class="left">总合计</span>
 							<div class="right">
-								￥<span>{{goodsInfo.totalAmount}}</span>
+								<span>￥{{goodsInfo.totalAmount}}</span>
 							</div>
 						</div>
 
 						<div>
 							<span class="left">月租金</span>
 							<div class="right">
-								￥<span>{{goodsInfo.productPrice.price}}/个</span>
+								<span>￥{{goodsInfo.productPrice.price}}/个</span>
 							</div>
 						</div>
 						<div class="gray">
@@ -159,7 +161,7 @@
 					<div class="gray black">
 						<span class="left">总押金</span>
 						<div class="right">
-							￥<span>{{goodsInfo.productDeposit}}</span>
+							<span>￥{{goodsInfo.productDeposit}}</span>
 						</div>
 					</div>
 					<div class="gray gray-word">
@@ -174,7 +176,7 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false"/>
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false" />
 					<p></p>
 				</div>
 				<div class="item2 item4">
@@ -210,7 +212,7 @@
 				<p>请添加收货地址</p>
 			</van-popup>
 
-			
+
 
 			<!--免密支付问好图片的弹窗-->
 			<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
@@ -227,6 +229,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-ee58a25d05.js"></script>
+<script src="asset/js/orderComfirm-666f2edf24.js"></script>
 
 </html>

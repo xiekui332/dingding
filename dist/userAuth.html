@@ -15,7 +15,7 @@
 			display: none;
 		}
       body{
-        border-top: 1px solid #f7f7f7;
+        border-top: 1px solid #ddd;
       }
 	</style>
 </head>
@@ -65,11 +65,11 @@
 				</div>
 				<div class="item-mnue">
 					<p class="item-title">真实姓名</p>
-					<input type="text" v-model="userAuth.name" :readonly="!canEdit" placeholder="请填写真实姓名">
+					<input type="text" v-model="userAuth.name" :readonly="!canEdit" placeholder="请填写公司法人真实姓名">
 				</div>
 				<div class="item-mnue">
 					<p class="item-title">身份证号</p>
-					<input type="text" v-model="userAuth.idcard" :readonly="!canEdit" placeholder="请填写公司名称">
+					<input type="text" v-model="userAuth.idcard" :readonly="!canEdit" placeholder="请填写公司法人身份证号码">
 				</div>
 				<!-- <div class="item-mnue">
 					<p class="item-title">手机号</p>

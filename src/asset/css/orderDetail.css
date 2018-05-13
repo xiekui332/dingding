@@ -397,7 +397,7 @@ body{
 	vertical-align: middle;
 	overflow: hidden;
 	left: 0;
-	border-top: 1px solid #f7f7f7;
+	border-top: 1px solid #ddd;
 	border-bottom: 1px solid #ddd;
 }
 .kf .btnIng{

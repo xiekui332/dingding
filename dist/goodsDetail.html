@@ -238,25 +238,25 @@
 				<div class="title overHidden">{{goodsDetail.name}}</div>
 				<div class="mediumstFont light-gray overHidden">{{goodsDetail.brief}}</div>
 				<div class="priceTitle">月租金
-					<span class="unit">￥</span>
-					<span class="largestFont" style="margin-right:.2rem">{{goodsDetail.productPrice}}</span></div>
+					
+					<span class="largestFont" style="margin-right:.2rem"><span class="unit">￥</span>{{goodsDetail.productPrice}}</span></div>
 				<div class="gray regular smallFont deposit">
 					<span>
 						<span style="background: #F5F5F5;padding:.03rem .07rem">官网售价</span>
-						<span class="smallerFont" style="color:#2A2A2A">￥</span>
-						<span class="mediumFont" style="color:#2A2A2A">{{goodsDetail.productDeposit}}</span>
+						<span class="smallerFont" style="color:#2A2A2A"></span>
+						<span class="mediumFont" style="color:#2A2A2A">￥{{goodsDetail.productDeposit}}</span>
 					</span>
 					<span class="tip">非全新</span>
 				</div>
 			</div>
 
 
-			<div class="writeBackColor layout" style="margin-top:.31rem;padding: .4rem .3rem">
-				<p class="mediumerFont black">租赁流程</p>
+			<div class="writeBackColor layout" style="margin-top:.2rem;padding: .4rem .3rem">
+				<p class="mediumerFont black" style="font-size: .32rem">租赁流程</p>
 				<img src="asset/images/icon/lease_process.png" class="full-width" style="margin-top:.2rem">
 			</div>
 
-			<div class="tab writeBackColor" style="margin-top:.2rem">
+			<div class="tab writeBackColor" style="margin-top:.2rem;font-size: .32rem">
 				<span @click="tabTap(0)" :class="{'tabActive':tabActive==0}">商品介绍</span>
 				<span @click="tabTap(1)" :class="{'tabActive':tabActive==1}">规格参数</span>
 				<span @click="tabTap(2)" :class="{'tabActive':tabActive==2}">售后说明</span>
@@ -273,7 +273,7 @@
 				</div>
 			</div>
 
-			<div class="fixed-bottom">
+			<div class="fixed-bottom" style="border-top: 1px solid #dddddd">
 				<span style="width:83%;display:inline-block;background: #fff;">
 					<mt-button class="largeFont right-button" @click="openSku">立即租赁</mt-button>
 				</span>
