@@ -175,7 +175,7 @@ var vm = new Vue({
    
     dd.ready(() => {
       dd.biz.navigation.setRight({
-          show: false,
+          show: true,
           control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
           text: '更多',//控制显示文本，空字符串表示显示默认文本
           onSuccess :(result) => {
