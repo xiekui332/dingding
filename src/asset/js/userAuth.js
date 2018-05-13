@@ -115,6 +115,7 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
+                        this.getUserAuth()
                         // ddToast('授权成功')
                         this.zhimaAuth()
                     } else {
@@ -194,6 +195,7 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
+                        this.getUserAuth()
                         this.zhimaAuth()
                     } else {
                         ddToast(result.message)
