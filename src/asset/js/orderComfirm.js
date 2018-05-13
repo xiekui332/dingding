@@ -104,9 +104,9 @@ var vm = new Vue({
 			//	判断是否添加收货地址，改变show的状态触发提示
 			if (this.hasDefaultAddress == false) {
 				this.showAddressTip = true;		//	没有添加收货地址
-				// setTimeout(() => {
-				// 	this.showAddressTip = false
-				// }, 2000)
+				setTimeout(() => {
+					this.showAddressTip = false
+				}, 2000)
 				return false
 			}
 			//	判断勾选
