@@ -166,13 +166,14 @@ var vm = new Vue({
 							// 免密
 							this.SecretFree()
 						} 
-					} else { //-1
-						// ddToast(result.message)
+					} else if (result.code == -1) {
 						this.$dialog.alert({
-							message: result.message,
+							message: '请到支付宝 > 我的 > 账单 </br>里完成支付',
 							confirmButtonText: '我知道了'
 						}).then(() => {
 						});
+					} else {
+						ddToast(result.message)
 					}
 				},
 				error: e => {
