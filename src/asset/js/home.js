@@ -165,7 +165,7 @@ var vm = new Vue({
   mounted() {
     this.corpId = getUrlParam('corpId')
     this.getGoodsList()
-    let user = getSession()
+    // let user = getSession()
     // if (!user || !user.userId || !user.name|| !user.companyName) {
       this.getAuthCode()
     // }
@@ -178,9 +178,9 @@ var vm = new Vue({
 
     dd.ready(() => {
       dd.biz.navigation.setRight({
-          show: false,
+          show: true,
           control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-          text: '',//控制显示文本，空字符串表示显示默认文本
+          text: '更多',//控制显示文本，空字符串表示显示默认文本
           onSuccess :(result) => {
           },
           onFail:(err) => {}
