@@ -168,7 +168,7 @@
 					</div>
 
 					<!-- red-btn -->
-					<div class="tjdd red-btn" @click="submitOrder" :disabled="isPay?true:false">立即支付</div>
+					<button class="tjdd red-btn" @click="submitOrder" :disabled="(isPay || hasSubmit)?true:false">立即支付</button>
 				</div>
 			</div>
 
