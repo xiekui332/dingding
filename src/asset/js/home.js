@@ -167,11 +167,11 @@ var vm = new Vue({
     this.getGoodsList()
     this.getAuthCode()
 
-    let sessionObj = {
-      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-      userId: '08623665231156033'
-    }
-    setSession(sessionObj)
+    // let sessionObj = {
+    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+    //   userId: '08623665231156033'
+    // }
+    // setSession(sessionObj)
    
     // 钉钉页面title右侧更多文字
     dd.ready(() => {
