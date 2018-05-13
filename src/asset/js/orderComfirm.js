@@ -336,6 +336,8 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
+		this.getAddress()
+		
 		this.user = getSession()
 		let product = getUrlParam('product')
 		if (product) {
@@ -358,7 +360,7 @@ var vm = new Vue({
 				}
 			}
 		}
-		this.getAddress()
+		
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
 
