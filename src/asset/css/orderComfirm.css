@@ -450,7 +450,7 @@ text-align: center;
 }
 .van-stepper__input{
     line-height: .05rem;
-    margin-top: -.0055rem;
+    /* margin-top: -.0055rem; */
 }
 .yuezu div.gray-word{
 	font-size: .24rem;
