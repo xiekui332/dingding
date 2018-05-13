@@ -122,12 +122,13 @@
      text-align
    } */
    .main-list1{
-     /* width: 20%;
+    width: 20%;
+     /* 
      text-align: center;
      float:left; */
      float: left;
-     margin-left: 0.11rem;
-     margin-right: 0.46rem;
+     /* margin-left: 0.11rem;
+     margin-right: 0.46rem; */
    }
    .img3{
     width:0.5rem;
