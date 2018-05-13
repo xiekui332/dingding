@@ -229,15 +229,15 @@ var vm = new Vue({
 							alert(JSON.stringify(result.data.addressEntity))
 							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							this.hasDefaultAddress = true
-							// this.order.name = result.data.addressEntity.username
-							// this.order.phone = result.data.addressEntity.mobile
+							this.order.name = result.data.addressEntity.username
+							this.order.phone = result.data.addressEntity.mobile
 
-							// this.order.address = result.data.addressEntity.detail
-							// this.order.provinceId = result.data.addressEntity.provinceId
-							// this.order.cityId = result.data.addressEntity.cityId
-							// this.order.districtId = result.data.addressEntity.districtId
-							// this.order.companyName = result.data.addressEntity.company
-							// this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
+							this.order.address = result.data.addressEntity.detail
+							this.order.provinceId = result.data.addressEntity.provinceId
+							this.order.cityId = result.data.addressEntity.cityId
+							this.order.districtId = result.data.addressEntity.districtId
+							this.order.companyName = result.data.addressEntity.company
+							this.order.mobile = result.data.addressEntity.mobile.substring(0, 4) + '****' + result.data.addressEntity.mobile.substring(7)
 						} else {
 							this.hasDefaultAddress = false
 						}
