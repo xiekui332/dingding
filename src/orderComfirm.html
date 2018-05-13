@@ -45,33 +45,37 @@
 		.sku-number span {
 			border: 1px solid #DDDDDD !important;
 			margin: 0 !important;
+			display: inline-block;
+			line-height: .24rem;
 		}
 
 		.sku-number .reduce {
-			border-radius: .24rem 0 0 .24rem;
-			color: #F3654C;
-			font-size: .33rem;
-			vertical-align: top;
-			padding: .0rem .15rem .03rem .15rem;
-			cursor: pointer;
-		}
+		border-radius: .24rem 0 0 .24rem;
+		color: #F3654C;
+		font-size: .35rem;
+		vertical-align: top;
+		padding: .11rem .15rem .13rem;
+		cursor: pointer;
+	}
 
-		.sku-number .add {
-			border-radius: 0 .24rem .24rem 0;
-			color: #F3654C;
-			font-size: .33rem;
-			vertical-align: top;
-			padding: 0rem .15rem .03rem .15rem;
-			cursor: pointer;
-		}
+	.sku-number .add {
+		border-radius: 0 .24rem .24rem 0;
+		color: #F3654C;
+		font-size: .35rem;
+		vertical-align: top;
+		padding: .11rem .15rem .13rem;
+		cursor: pointer;
+	}
 
-		.sku-number .num {
-			border-radius: 0;
-			border-right: 0 !important;
-			border-left: 0 !important;
-			font-size: .24rem;
-			padding: .07rem .2rem .07rem .2rem;
-		}
+	.sku-number .num {
+		border-radius: 0;
+		border-right: 0 !important;
+		border-left: 0 !important;
+		font-size: .24rem;
+		padding: .12rem .2rem;
+		/* margin-top: -.006rem!important; */
+
+	}
 	</style>
 </head>
 
@@ -120,9 +124,14 @@
 								数量
 							</span>
 
-							<div class="sku-number" style="line-height: .6rem;">
+							<div class="sku-number" style="line-height: .24rem;">
 								<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{goodsInfo.count}}</span><span class="add" @click="adjust(1)">+</span>
 							</div>
+
+
+							<!-- <div class="sku-number" style="line-height: .6rem;">
+								<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{goodsInfo.count}}</span><span class="add" @click="adjust(1)">+</span>
+							</div> -->
 							<!-- <van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
 							/> -->
 						</div>
