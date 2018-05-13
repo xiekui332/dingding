@@ -67,6 +67,7 @@ var vm = new Vue({
 			let url = getApiUrl('/shop-test/rest/orders/Ddcreate')
 			this.order.nailUserId = this.user.userId
 			this.order.nailCropId = this.user.corpId
+			this.order.count = this.goodsInfo.count
 			$.ajax({
 				url: url,
 				type: "POST",
@@ -337,7 +338,18 @@ var vm = new Vue({
 				}
 			})
 
-		}
+		},
+		adjust(count) {
+			this.goodsInfo.count = parseInt(this.goodsInfo.count)
+            if (count < 0 && this.goodsInfo.count <=1) {
+                return
+            } else if (count > 0 && this.goodsInfo.count >= parseInt(this.goodsInfo.inventory)) { //库存判断
+                ddToast('超过库存了')
+                return
+            }
+			this.goodsInfo.count += count;
+			this.getTotalAmount()
+        },
 	},
 	mounted() {
 		this.user = getSession()

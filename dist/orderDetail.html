@@ -193,7 +193,7 @@
 				<div @click="retBack" class="btnIng">申请归还</div>
 			</div>
 			<div class="pay_btn" v-else-if="status == 0">
-				<div class="pay_now" @click="pay">
+				<div class="pay_now" @click="pay" :disabled="hasSubmit?true:false" :style="{background:hasSubmit ? '#ddd' : '' }">
 					立即支付
 				</div>
 			</div>
@@ -213,5 +213,5 @@
 <script src="asset/js/util-d5769cbac8.js"></script>
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderDetail-a9d317c388.js"></script>
+<script src="asset/js/orderDetail-86b5237f09.js"></script>
 </html>
