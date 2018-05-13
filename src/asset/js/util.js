@@ -99,7 +99,6 @@ document.documentElement.style.fontSize = document.documentElement.clientWidth /
 
 function ddToast(message) {
     // alert(message)
-
     dd.device.notification.toast({
         icon: '', //icon样式，有success和error，默认为空 0.0.2
         text: message, //提示信息
@@ -112,7 +111,6 @@ function ddToast(message) {
 }
 
 function ddConfig(config) {
-    alert('config')
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID
@@ -121,9 +119,7 @@ function ddConfig(config) {
         signature: config.signature, // 必填，签名
         jsApiList: ['runtime.permission','runtime.info', 'ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
-    alert('configend')
 }
-
 
 //{corpId:1,  userId:1}
 function setSession(sessionObj) {
