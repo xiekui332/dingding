@@ -36,7 +36,7 @@
     font-size: .32rem;
     text-align: left;
     font-family: 'PingFangSC-Regular';
-    line-height: .5rem;
+    line-height: .46rem;
 }
 .ad-more{
     width: .19rem;
@@ -61,9 +61,9 @@
     /* line-height:1.5rem!important;  */
 }
 .item2 textarea{
-    height: .9rem;
+    height: .75rem;
     border: none;
-    line-height: .5rem;
+    line-height: .49rem;
     vertical-align: middle;
     margin-top: .25rem;
 }
