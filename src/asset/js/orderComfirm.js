@@ -113,10 +113,10 @@ var vm = new Vue({
 			if (this.isAgreement == false) {
 				this.readFile = true;
 				$('.readFile').show();
-				setTimeout(() => {
-					this.readFile = false;
-					$('.readFile').hide();
-				}, 2000);
+				// setTimeout(() => {
+				// 	this.readFile = false;
+				// 	$('.readFile').hide();
+				// }, 2000);
 
 				return false
 			}
