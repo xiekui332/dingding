@@ -336,9 +336,8 @@ var vm = new Vue({
 		}
 	},
 	mounted() {
-		this.getAddress()
-		
 		this.user = getSession()
+		this.getAddress()
 		let product = getUrlParam('product')
 		if (product) {
 			let arr = product.split('-')
