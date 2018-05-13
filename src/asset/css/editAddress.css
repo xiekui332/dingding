@@ -58,13 +58,14 @@
 }
 .item4 span.left-title{
     /* height: 2rem; */
-    line-height:1.5rem!important; 
+    /* line-height:1.5rem!important;  */
 }
 .item2 textarea{
     height: .9rem;
     border: none;
-    line-height: .4rem;
+    line-height: .5rem;
     vertical-align: middle;
+    margin-top: .25rem;
 }
 .btn-red{
     width: 6.9rem;
