@@ -166,6 +166,12 @@ var vm = new Vue({
 							// 免密
 							this.SecretFree()
 						} 
+					} else if (result.code == -1) {
+						this.$dialog.alert({
+							message: '请到支付宝 > 我的 > 账单 </br>里完成支付',
+							confirmButtonText: '我知道了'
+						}).then(() => {
+						});
 					} else {
 						ddToast(result.message)
 					}
@@ -190,6 +196,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						this.orderId = result.data
 						location.href = 'orderSuccess.html?orderId=' + this.orderId
 					} else if (result.code == -1) {
 						location.href = 'orderFailed.html?productId=' + this.order.productId

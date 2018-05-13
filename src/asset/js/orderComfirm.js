@@ -48,6 +48,7 @@ var vm = new Vue({
 		orderId: '',
 		isPay: '',
 		name: '',
+		hasSubmit: 0
 	},
 	methods: {
 		submitOrder() {
@@ -59,7 +60,7 @@ var vm = new Vue({
 				this.pay()
 				return
 			}
-			
+			this.hasSubmit = 1 
 			window.localStorage.setItem('tzgInvitationCode', this.order.invitationCode)
 			window.localStorage.setItem('tzgOrderRemark', this.order.order_remark)
 
@@ -94,6 +95,8 @@ var vm = new Vue({
 				},
 				error: e => {
 					ddToast('网络错误')
+					this.hasSubmit = 0
+					
 				}
 			})
 		},
@@ -173,6 +176,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						this.orderId = result.data
 						location.href = 'orderSuccess.html?orderId=' + this.orderId
 					} else if (result.code == -1) {
 						location.href = 'orderFailed.html?productId=' + this.order.productId

@@ -12,7 +12,7 @@
 	<link rel="stylesheet" type="text/css" href="asset/component/css/goodInfo.css" />
 	<!-- 引入样式 -->
 	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
-	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-7a009256a7.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/orderComfirm-ea09a70fbc.css" />
 	<style type="text/css">
 		.van-checkbox {
 			display: inline-block;
@@ -165,7 +165,7 @@
 					</div>
 
 					<!-- red-btn -->
-					<div class="tjdd red-btn" @click="submitOrder" :disabled="isPay?true:false">立即支付</div>
+					<button class="tjdd red-btn" @click="submitOrder" :disabled="(isPay || hasSubmit)?true:false">立即支付</button>
 				</div>
 			</div>
 
@@ -192,6 +192,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-821cca0769.js"></script>
+<script src="asset/js/orderComfirm-d6cdf3933e.js"></script>
 
 </html>
