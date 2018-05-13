@@ -337,7 +337,7 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
-		this.getAddress()
+		// this.getAddress()
 		let product = getUrlParam('product')
 		if (product) {
 			let arr = product.split('-')
@@ -374,4 +374,7 @@ var vm = new Vue({
         //     });
         // }) 
 	},
+	created() {
+		this.getAddress()
+	}
 })
