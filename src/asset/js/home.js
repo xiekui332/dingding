@@ -184,6 +184,8 @@ var vm = new Vue({
           onFail:(err) => {}
       });
     }) 
+
+   // document.title.style.fontSize=".3rem"; 
   },
 })
 
