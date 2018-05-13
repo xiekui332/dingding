@@ -173,6 +173,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						this.orderId = result.data
 						location.href = 'orderSuccess.html?orderId=' + this.orderId
 					} else if (result.code == -1) {
 						location.href = 'orderFailed.html?productId=' + this.order.productId

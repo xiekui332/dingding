@@ -81,8 +81,8 @@ function getHostUrl(url) {
 }
 //接口api地址
 function getApiUrl(url) {
-    const taozugonghost = "http://api.taozugong.com:8080";
-    // const taozugonghost = '/getapi'
+    // const taozugonghost = "http://api.taozugong.com:8080";
+    const taozugonghost = '/getapi'
     return taozugonghost + url
 }
 
