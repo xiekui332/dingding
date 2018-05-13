@@ -76,6 +76,7 @@
      overflow: hidden;
    }
    .main-bottom1{
+     width: 100%;
      display: flex;
      flex-direction: row;
      justify-content:space-between;
@@ -84,7 +85,7 @@
      /* padding-top:0.32rem; */
      border-top:1px solid #ddd;
      overflow: hidden;
-     margin-left:0.3rem;
+     /* margin-left:0.3rem; */
    }
    /* .main-bottom1:hover{
     display: none;
@@ -109,14 +110,13 @@
      margin-left:0.07rem;
    }
    .main-list{
-     /* width: 20%; */
+     width: 20%;
      /* width:0.33rem; */
      /* text-align: left; */
      /* float:left; */
-     width: 15%;
     float: left;
-    margin-left: 0.1rem;
-    margin-right: 0.26rem;
+    /* margin-left: 0.1rem;
+    margin-right: 0.26rem; */
    }
    /* .main-list:first-child{
      text-align
@@ -139,6 +139,7 @@
      font:0.24rem/0.63rem "";
      color:#666;
      margin-bottom:0.1rem;
+     text-align: center;
    }
    .main1{
      background:#fff;
@@ -150,6 +151,7 @@
      /* border-bottom:1px solid #ddd; */
      /* 修改9 */
      margin-left:  0.3rem;
+     /* overflow: hidden; */
    }
    .main1 ul li:last-of-type{
    		border-bottom: none;
@@ -161,6 +163,7 @@
      height: 1.2rem;
      text-align: center;
      vertical-align: middle;
+     margin-left: .02rem;
    }
    .wenzi1{
      display: inline-block;
@@ -183,7 +186,7 @@
     margin-top:0.3rem;
    }
   .mint-swipe{
-    height:1.55rem;
+    height:1.5rem;
     width:100%;
     border-top:0;
     border-bottom:0;
@@ -204,7 +207,7 @@
   .mint-swipe-indicator {
      border-bottom:1px solid #999;
      width: 0.3rem;
-     height: 0.01rem;
+     height: 0.015rem;
      display: inline-block;
      margin: 0 0.03rem;
      opacity: 1;
@@ -220,11 +223,12 @@
     opacity: 1;
   }
   .mint-swipe-indicators {
+    width: .75rem;
     position: absolute;
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    margin-left:-0.4rem;
+    /* margin-left:-0.4rem; */
  }
  /* 修改底部加颜色边框
   */

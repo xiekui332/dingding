@@ -54,7 +54,7 @@ var vm = new Vue({
       // },
       {
         url: 'asset/images/icon/review_fail.png',
-        navTitle: '审核失败',
+        navTitle: '审核拒绝',
         status: 16
       },
       {
