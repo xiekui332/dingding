@@ -41,8 +41,36 @@
 		[v-cloak] {
 			display: none;
 		}
-		.van-popup{
-			margin-top: -1.3rem;
+
+		.sku-number span {
+			border: 1px solid #DDDDDD !important;
+			margin: 0 !important;
+		}
+
+		.sku-number .reduce {
+			border-radius: .24rem 0 0 .24rem;
+			color: #F3654C;
+			font-size: .33rem;
+			vertical-align: top;
+			padding: .0rem .15rem .04rem;
+			cursor: pointer;
+		}
+
+		.sku-number .add {
+			border-radius: 0 .24rem .24rem 0;
+			color: #F3654C;
+			font-size: .33rem;
+			vertical-align: top;
+			padding: .0rem .15rem .04rem;
+			cursor: pointer;
+		}
+
+		.sku-number .num {
+			border-radius: 0;
+			border-right: 0 !important;
+			border-left: 0 !important;
+			font-size: .24rem;
+			padding: .08rem .2rem;
 		}
 	</style>
 </head>
@@ -87,12 +115,16 @@
 			<div class="lb">
 				<div class="lb-1">
 					<div class="yuezu">
-						<div class="item item1">
+						<div class="item item1" style="display: flex;justify-content: space-between;">
 							<span class="left-title">
 								数量
 							</span>
-							<van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
-							/>
+
+							<div class="sku-number">
+								<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{goodsInfo.count}}</span><span class="add" @click="adjust(1)">+</span>
+							</div>
+							<!-- <van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
+							/> -->
 						</div>
 						<div class="gray">
 							<span class="left">总合计</span>
@@ -142,7 +174,7 @@
 					<span class="left-title">
 						邀请码（选填）
 					</span>
-					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false"/>
+					<input type="text" placeholder="请输入渠道邀请码，有机会获得优惠" v-model="order.invitationCode" :readonly="isPay?true:false" />
 					<p></p>
 				</div>
 				<div class="item2 item4">
@@ -168,7 +200,7 @@
 					</div>
 
 					<!-- red-btn -->
-					<button class="tjdd red-btn" @click="submitOrder" :disabled="(isPay || hasSubmit)?true:false">立即支付</button>
+					<button class="tjdd red-btn" @click="submitOrder" :disabled="(isPay || hasSubmit)?true:false" :style="{background:(isPay || hasSubmit) ? '#ddd' : '' }">立即支付</button>
 				</div>
 			</div>
 
@@ -178,7 +210,7 @@
 				<p>请添加收货地址</p>
 			</van-popup>
 
-			
+
 
 			<!--免密支付问好图片的弹窗-->
 			<pop-modal v-model="showPop" :poptitle="popTitle" :popcontent="popContent" :setstyle="setStyle"></pop-modal>
@@ -195,6 +227,6 @@
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-3a9705e7e1.js"></script>
+<script src="asset/js/orderComfirm-666f2edf24.js"></script>
 
 </html>
