@@ -50,7 +50,7 @@
 		.sku-number .reduce {
 			border-radius: .24rem 0 0 .24rem;
 			color: #F3654C;
-			font-size: .35rem;
+			font-size: .33rem;
 			vertical-align: top;
 			padding: .0rem .15rem .04rem;
 			cursor: pointer;
@@ -59,7 +59,7 @@
 		.sku-number .add {
 			border-radius: 0 .24rem .24rem 0;
 			color: #F3654C;
-			font-size: .35rem;
+			font-size: .33rem;
 			vertical-align: top;
 			padding: .0rem .15rem .04rem;
 			cursor: pointer;
@@ -70,7 +70,7 @@
 			border-right: 0 !important;
 			border-left: 0 !important;
 			font-size: .24rem;
-			padding: .1rem .2rem;
+			padding: .08rem .2rem;
 		}
 	</style>
 </head>
@@ -121,9 +121,7 @@
 							</span>
 
 							<div class="sku-number">
-								<span class="reduce" @click="adjust(-1)">-</span>
-								<span class="num">{{goodsInfo.count}}</span>
-								<span class="add" @click="adjust(1)">+</span>
+								<span class="reduce" @click="adjust(-1)">-</span><span class="num">{{goodsInfo.count}}</span><span class="add" @click="adjust(1)">+</span>
 							</div>
 							<!-- <van-stepper v-model="goodsInfo.count" class="van-stepper" :max="goodsInfo.inventory" @change="countChange" disable-input="true" :disabled="isPay?true:false"
 							/> -->
