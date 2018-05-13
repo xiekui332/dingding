@@ -211,6 +211,8 @@
      background:#fff;
      /* 修改5 */
      margin-bottom: 0.07rem;
+    
+
      
   }
   .mint-swipe-indicator.is-active{
@@ -222,6 +224,7 @@
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+    margin-left:-0.4rem;
  }
  /* 修改底部加颜色边框
   */

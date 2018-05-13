@@ -173,6 +173,7 @@ var vm = new Vue({
     }
     setSession(sessionObj)
    
+    // 钉钉页面title右侧更多文字
     dd.ready(() => {
       dd.biz.navigation.setRight({
           show: true,
@@ -183,6 +184,8 @@ var vm = new Vue({
           onFail:(err) => {}
       });
     }) 
+
+   // document.title.style.fontSize=".3rem"; 
   },
 })
 

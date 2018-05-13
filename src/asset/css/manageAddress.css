@@ -88,10 +88,12 @@ body{
 /* test
  */
  .bottom{
-     width: 100%;
+     width: 6.9rem;
      height: .86rem;
      position: fixed;
-     bottom: 0;
+     left: 50%;
+     margin-left: -3.45rem;
+     bottom: .4rem;
      background: #F3654C;
      text-align: center; 
      font-size: .36rem;

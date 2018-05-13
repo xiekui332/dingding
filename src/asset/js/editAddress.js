@@ -47,6 +47,7 @@ var vm = new Vue({
 				crossDomain: true,
 				success: result => {
 					if (result.code == 200) {
+						//console.log(result)
 						this.address = result.data.addressEntity
 						this.addressName = result.data.addressVo.prefix
 					} else {
