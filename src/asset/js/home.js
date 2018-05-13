@@ -169,15 +169,15 @@ var vm = new Vue({
 
     // let sessionObj = {
     //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-    //   userId: '08623665231156032'
+    //   userId: '08623665231156033'
     // }
     // setSession(sessionObj)
    
     dd.ready(() => {
       dd.biz.navigation.setRight({
-          show: false,
+          show: true,
           control: false,//是否控制点击事件，true 控制，false 不控制， 默认false
-          text: '',//控制显示文本，空字符串表示显示默认文本
+          text: '更多',//控制显示文本，空字符串表示显示默认文本
           onSuccess :(result) => {
           },
           onFail:(err) => {}
