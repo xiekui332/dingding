@@ -187,7 +187,7 @@ var vm = new Vue({
             } else if (status == this.orderStatus.authing) {
                 orderStatus = '审核中';
             } else if (status == this.orderStatus.authFail) {
-                orderStatus = '审核失败';
+                orderStatus = '审核拒绝';
             } else if (status == this.orderStatus.cancel) {
                 orderStatus = '订单取消';
             } else {
