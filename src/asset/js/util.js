@@ -98,21 +98,20 @@ document.documentElement.style.fontSize = document.documentElement.clientWidth /
 
 
 function ddToast(message) {
-    // alert(message)
-
-    dd.device.notification.toast({
-        icon: '', //icon样式，有success和error，默认为空 0.0.2
-        text: message, //提示信息
-        duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
-        delay: 0, //延迟显示，单位秒，默认0
-        onSuccess : function(result) {
-        },
-        onFail : function(err) {}
+    dd.ready(() => {
+        dd.device.notification.toast({
+            icon: '', //icon样式，有success和error，默认为空 0.0.2
+            text: message, //提示信息
+            duration: 3, //显示持续时间，单位秒，默认按系统规范[android只有两种(<=2s >2s)]
+            delay: 0, //延迟显示，单位秒，默认0
+            onSuccess : function(result) {
+            },
+            onFail : function(err) {}
+        })
     })
 }
 
 function ddConfig(config) {
-    alert('config')
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID
@@ -121,9 +120,7 @@ function ddConfig(config) {
         signature: config.signature, // 必填，签名
         jsApiList: ['runtime.permission','runtime.info', 'ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
-    alert('configend')
 }
-
 
 //{corpId:1,  userId:1}
 function setSession(sessionObj) {

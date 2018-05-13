@@ -37,7 +37,8 @@
 	<div id="app" v-cloak>
       <div class="nav">
         <div class="nav-top">
-             <img :src="user.avatar" class="img1">
+            <img :src="user.avatar" class="img1" v-if="user.avatar">
+            <img src="asset/images/icon/rentou.png" class="img1" v-else>
         </div>
         <div class="nav-bottom">
            <div class="nav-momo">{{user.name}}</div>

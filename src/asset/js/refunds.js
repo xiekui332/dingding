@@ -56,7 +56,6 @@ var vm = new Vue({
               Number(res.data.Liquidated_amount).toFixed(2);
               Number(res.data.total_amount).toFixed(2);
               this.dataArray = res.data;
-
               if (res.data.status == 0) { //归还中
                 this.showA = false
               } else if (res.data.status == 1)  { //归还成功

@@ -209,6 +209,7 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
+			// location.reload()
 			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
@@ -225,6 +226,7 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (result.data) {
+							// alert(JSON.stringify(result.data.addressEntity))
 							// let address = JSON.parse(JSON.stringify(result.data.addressEntity))
 							this.hasDefaultAddress = true
 							this.order.name = result.data.addressEntity.username
@@ -335,6 +337,7 @@ var vm = new Vue({
 	},
 	mounted() {
 		this.user = getSession()
+		this.getAddress()
 		let product = getUrlParam('product')
 		if (product) {
 			let arr = product.split('-')
@@ -356,7 +359,7 @@ var vm = new Vue({
 				}
 			}
 		}
-		this.getAddress()
+		
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
 
