@@ -415,17 +415,18 @@ text-align: center;
     margin-left: .74rem;
 }
 .item1 .van-stepper button{
-    height: .55rem;
+    height: .5rem;
     border: 1px solid #ddd;
     width: .5rem;
 }
 .van-stepper input{
-    height: .4rem;
+    height: .43rem;
     border: 1px solid #ddd;
     border-left: none;
     border-right: none;
     width: .5rem;
     font-size: .23rem;
+    margin-top: .02rem;
 }
 
 .van-stepper .van-stepper__minus{
