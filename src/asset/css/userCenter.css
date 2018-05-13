@@ -229,7 +229,7 @@
  /* 修改底部加颜色边框
   */
   .mint-tabbar{
-    border-top: 1px solid #f7f7f7;
+    border-top: 1px solid #ddd;
     border-bottom: 1px solid #f7f7f7;
 
   }
