@@ -130,7 +130,7 @@
 			<div class="kf">
 				<div class="seePower" v-show="userAuth.status == authStatus.fail" @click="failEdit">{{canEdit ? '提交':'重新编辑'}}</div>
 				<!-- 审核中、审核拒绝 -->
-				<div v-show="userAuth.status == authStatus.fail || userAuth.status == authStatus.audit" @click="showPop=!showPop">联系
+				<div v-show="userAuth.status == authStatus.fail || userAuth.status == authStatus.audit" @click="showPop=!showPop">联系客服
 				</div>
 			</div>
 			<!-- 审核成功 -->

@@ -69,10 +69,10 @@
 					</p>
 					<p class="detail-address">{{item.detail}}</p>
 					<div style="display: flex;justify-content: space-between;margin-top:.2rem">
-						<van-radio :name="item.addressId" @click="checkAddress(item.addressId)">{{item.isDefault ? '默认地址':'默认地址'}}</van-radio>
+						<van-radio :name="item.addressId" @click="checkAddress(item.addressId)">{{item.isDefault ? '默认地址':'设为默认地址'}}</van-radio>
 						<span class="icon-an">
 							<van-icon name="edit" @click="toAddressEdit(item.addressId)"></van-icon>
-							<van-icon name="delete" @click="deleteAddress(item.addressId)"></van-icon>
+							<van-icon name="delete" @click="deleteAddress(item.addressId)" v-show="!item.isDefault"></van-icon>
 						</span>
 					</div>
 				</div>
