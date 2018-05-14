@@ -91,11 +91,11 @@ var vm = new Vue({
 				success: result => {
 					if (result.code == 200) {
 						if (this.addressId) {
-							location.href = 'manageAddress.html?product=' + getUrlParam('product')
+							location.href = 'manageAddress.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
 						} else if (getUrlParam('product') == 'null') {
-							location.href = 'manageAddress.html?addressType=userCenter'
+							location.href = 'manageAddress.html?addressType=userCenter' + '&time=' + (+new Date())
 						} else {
-							location.href = 'orderComfirm.html?product=' + getUrlParam('product')
+							location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
 						}
 					} else {
 						ddToast(result.message)

@@ -45,6 +45,7 @@ var vm = new Vue({
             '0571-85180735'
         ],
         urls:'asset/images/icon/example_index.png',
+        isFocus: false
     },
     computed: {
     },
@@ -254,6 +255,12 @@ var vm = new Vue({
             this.urls = url;
             this.showImgPreview = true;
            
+        },
+        doFocus() {
+            this.isFocus = true
+        },
+        doBlur() {
+            this.isFocus = false
         }
     },
     created() {
@@ -280,6 +287,19 @@ var vm = new Vue({
         //         onFail:function(err){}
         //     });
         // }) 
+
+
+        var winHeight = $(window).height();   //获取当前页面高度
+        $(window).resize(function(){
+        var thisHeight = $(this).height();
+            if(winHeight - thisHeight >50){
+                //当软键盘弹出，在这里面操作
+                this.isFocus = true
+            }else{
+                //当软键盘收起，在此处操作
+                this.isFocus = false
+            }
+        });
     },
 })
 

@@ -255,8 +255,12 @@ var vm = new Vue({
 				}
 			})
 		},
-		toManageAddress() {
-			location.href = 'manageAddress.html?product=' + getUrlParam('product')
+		toManageAddress(index) {
+			if (index == 0) { //新增
+                location.href = 'editAddress.html?product=' + getUrlParam('product')
+			} else if (index == 1) {
+				location.href = 'manageAddress.html?product=' + getUrlParam('product')
+			}
 		},
 		getGoodsInfo() {
 			let url = getApiUrl('/shop-test/rest/ddproducts/dingding/view')
