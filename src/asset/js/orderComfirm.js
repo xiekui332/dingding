@@ -240,6 +240,8 @@ var vm = new Vue({
 							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
 
+							this.order.allAddress = result.data.addressVo.address
+							
 							this.order.address = result.data.addressEntity.detail
 							this.order.provinceId = result.data.addressEntity.provinceId
 							this.order.cityId = result.data.addressEntity.cityId

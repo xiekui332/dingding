@@ -74,8 +74,11 @@ body{
     float: right;
     transform: scale(1.3);
 }
-.van-icon-edit{
-    padding-right: .5rem;
+/* .van-icon-edit{
+    padding-left: .5rem;
+} */
+.van-icon-delete{
+    padding-left: .5rem;
     /* margin-top: -.05rem; */
 }
 .van-radio__label{

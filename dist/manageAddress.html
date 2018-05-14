@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="https://unpkg.com/vant/lib/vant-css/index.css">
 	<!-- <link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css"> -->
 
-	<link rel="stylesheet" type="text/css" href="asset/css/manageAddress-be4df3b63f.css" />
+	<link rel="stylesheet" type="text/css" href="asset/css/manageAddress-bad19c4c3f.css" />
 </head>
 <style>
 	.van-radio__input {
@@ -69,10 +69,10 @@
 					</p>
 					<p class="detail-address">{{item.detail}}</p>
 					<div style="display: flex;justify-content: space-between;margin-top:.2rem">
-						<van-radio :name="item.addressId" @click="checkAddress(item.addressId)">{{item.isDefault ? '默认地址':'设为默认地址'}}</van-radio>
+						<van-radio :name="item.addressId" @click="checkAddress(item.addressId, item)">{{activeAddressId == item.addressId ? '默认地址':'设为默认地址'}}</van-radio>
 						<span class="icon-an">
 							<van-icon name="edit" @click="toAddressEdit(item.addressId)"></van-icon>
-							<van-icon name="delete" @click="deleteAddress(item.addressId)" v-show="!item.isDefault"></van-icon>
+							<van-icon name="delete" @click="deleteAddress(item.addressId)" v-show="activeAddressId != item.addressId"></van-icon>
 						</span>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 <script src="asset/js/util-d5769cbac8.js"></script>
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
-<script src="asset/js/manageAddress-515db8863a.js"></script>
+<script src="asset/js/manageAddress-b65c7b4ad3.js"></script>
 <script>
 </script>
 </html>
