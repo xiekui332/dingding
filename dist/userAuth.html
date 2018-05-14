@@ -11,12 +11,15 @@
 	<link rel="stylesheet" type="text/css" href="asset/css/userAuth-6b70a7e1da.css" />
 	<link rel="stylesheet" href="https://unpkg.com/mint-ui/lib/style.css">
 	<style>
-		[v-cloak]{
-			display: none;
-		}
-      body{
-        border-top: 1px solid #ddd;
-      }
+	[v-cloak]{
+		display: none;
+	}
+	body{
+		border-top: 1px solid #ddd;
+	}
+	input:disabled{
+		color:#333;
+	}
 	</style>
 </head>
 
@@ -62,15 +65,15 @@
 					</div>
 					<div class="item-mnue">
 						<p class="item-title">公司名称</p>
-						<input type="text" v-model="userAuth.company" :readonly="!canEdit" placeholder="请填写公司名称" @focus="doFocus" @blur="doBlur">
+						<input type="text" v-model="userAuth.company" :disabled="canEdit? false:true" placeholder="请填写公司名称" @focus="doFocus" @blur="doBlur">
 					</div>
 					<div class="item-mnue">
 						<p class="item-title">真实姓名</p>
-						<input type="text" v-model="userAuth.name" :readonly="!canEdit" placeholder="请填写公司法人真实姓名" @focus="doFocus" @blur="doBlur">
+						<input type="text" v-model="userAuth.name" :disabled="canEdit? false:true" placeholder="请填写公司法人真实姓名" @focus="doFocus" @blur="doBlur">
 					</div>
 					<div class="item-mnue">
 						<p class="item-title">身份证号</p>
-						<input type="text" v-model="userAuth.idcard" :readonly="!canEdit" placeholder="请填写公司法人身份证号码" @focus="doFocus" @blur="doBlur">
+						<input type="text" v-model="userAuth.idcard" :disabled="canEdit? false:true" placeholder="请填写公司法人身份证号码" @focus="doFocus" @blur="doBlur">
 					</div>
 					<!-- <div class="item-mnue">
 						<p class="item-title">手机号</p>
