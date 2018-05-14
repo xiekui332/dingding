@@ -164,6 +164,11 @@ var vm = new Vue({
                 e.stopPropagation();
                 e.preventDefault();
             })
+
+            $('.mint-popup-bottom').on('touchmove',function(e){
+                e.stopPropagation();
+                e.preventDefault();
+            })
         }
         
     },
