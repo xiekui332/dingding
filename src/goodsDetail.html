@@ -224,7 +224,7 @@
 
 <body>
 	<div id="app" v-cloak>
-		<div class="regular">
+		<div class="regular" :style="{overflow: popupVisible ? 'hidden' : ''}">
 
 			<mt-swipe :auto="3000" style="height:6.82rem;" class="writeBackColor layout">
 				<mt-swipe-item v-for="(item, index) in goodsDetail.productImages">
