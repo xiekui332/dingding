@@ -183,6 +183,19 @@ var vm = new Vue({
           },
           onFail:(err) => {}
       });
+
+      dd.biz.util.share({
+        type: 0,//分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
+        url: window.location.href,
+        title: '淘租公公公',
+        content: '淘租公钉钉微应用',
+        image: 'asset/images/icon/logo.png',
+        onSuccess : function() {
+            //onSuccess将在调起分享组件成功之后回调
+            /**/
+        },
+        onFail : function(err) {}
+      })
     }) 
   },
 })
