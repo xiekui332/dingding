@@ -167,11 +167,11 @@ var vm = new Vue({
     this.getGoodsList()
     this.getAuthCode()
 
-    // let sessionObj = {
-    //   corpId: 'ding232f30042c7d834635c2f4657eb6378f',
-    //   userId: '08623665231156033'
-    // }
-    // setSession(sessionObj)
+    let sessionObj = {
+      corpId: 'ding232f30042c7d834635c2f4657eb6378f',
+      userId: '08623665231156032'
+    }
+    setSession(sessionObj)
    
     // 钉钉页面title右侧更多文字
     dd.ready(() => {
@@ -184,8 +184,6 @@ var vm = new Vue({
           onFail:(err) => {}
       });
     }) 
-
-   // document.title.style.fontSize=".3rem"; 
   },
 })
 
