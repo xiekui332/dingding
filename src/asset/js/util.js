@@ -76,7 +76,7 @@ function getUrlParam(name) {
 
 //租赁正式域名
 function getHostUrl(url) {
-    const tzg_lease_domain = "https://lease.taozugong.com"; 
+    const tzg_lease_domain = "http://ding.taozugong.com"; 
     return tzg_lease_domain + url
 }
 //接口api地址

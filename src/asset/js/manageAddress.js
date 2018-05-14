@@ -64,9 +64,15 @@ var vm = new Vue({
                     if (result.code == 200) {
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            let href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
-                            dd.biz.util.openLink({url: href})
-
+                            let url = getHostUrl('/orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date()))
+                            dd.ready(()=>{
+                                dd.biz.util.openLink({
+                                    url: url,//要打开链接的地址
+                                    onSuccess : function(result) {
+                                    },
+                                    onFail : function(err) {}
+                                })
+                            })
                             // location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
                         }
                     } else {
