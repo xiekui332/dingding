@@ -63,7 +63,7 @@ var vm = new Vue({
 							vm.orderStatus = '审核拒绝';
 							vm.bottom = true;
 						} else if (vm.status == 15) {
-							vm.statusWords = '授权信息正在审核中，请耐心等待';
+							vm.statusWords = '我们会在两个工作日内完成审核，请耐心等待';
 							vm.orderStatus = '审核中';
 							vm.bottom = true;
 						} else if (vm.status == 1) {
