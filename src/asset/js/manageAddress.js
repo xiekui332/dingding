@@ -65,33 +65,45 @@ var vm = new Vue({
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
                             let href = getHostUrl('/orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date()))
-
-
-                            let url = getApiUrl('/ding-isv-access/get_js_config');
-                            $.ajax({
-                                url: url,
-                                type: "GET",
-                                dataType: "json",
-                                data: {
-                                url: window.location.href,
-                                corpId: this.user.corpId
-                                },
-                                success: res => {
-                                    ddConfig(res)
-
-                                    dd.ready(()=>{
-                                        dd.biz.util.openLink({
-                                            url: href,//要打开链接的地址
-                                            onSuccess : function(result) {
-                                            },
-                                            onFail : function(err) {}
-                                        })
-                                    })
-                                },
-                                error: e => {
-                                    ddToast('网络错误')
-                                }
+                            alert(href)
+                            dd.ready(()=>{
+                                alert(1)
+                                dd.biz.util.openLink({
+                                    url: href,//要打开链接的地址
+                                    onSuccess : function(result) {
+                                    },
+                                    onFail : function(err) {
+                                        alert(JSON.stringify(err))
+                                    }
+                                })
                             })
+
+
+                            // let url = getApiUrl('/ding-isv-access/get_js_config');
+                            // $.ajax({
+                            //     url: url,
+                            //     type: "GET",
+                            //     dataType: "json",
+                            //     data: {
+                            //     url: window.location.href,
+                            //     corpId: this.user.corpId
+                            //     },
+                            //     success: res => {
+                            //         ddConfig(res)
+
+                            //         dd.ready(()=>{
+                            //             dd.biz.util.openLink({
+                            //                 url: href,//要打开链接的地址
+                            //                 onSuccess : function(result) {
+                            //                 },
+                            //                 onFail : function(err) {}
+                            //             })
+                            //         })
+                            //     },
+                            //     error: e => {
+                            //         ddToast('网络错误')
+                            //     }
+                            // })
                             
                             // location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
                         }
