@@ -38,11 +38,25 @@
 	[v-cloak]{
 		display: none;
 	}
+	.address-none {
+		position: absolute;
+		top: 40%;
+		transform: translate(-50%, -50%);
+		left: 50%;
+		text-align: center;
+	}
+	.address-none p {
+		font-family: PingFangSC-Regular;
+		font-size: 0.26rem;
+		color: #999999;
+		text-align: center;
+		margin-top: .2rem;
+	}
 </style>
 
 <body>
 	<div id="app" v-cloak>
-		<van-radio-group v-model="activeAddressId" style="margin-bottom: 1rem">
+		<van-radio-group v-model="activeAddressId" style="margin-bottom: 1rem" v-if="addressList.length">
 			<div v-for="(item,index) in addressList">
 				<div class="sec-1">
 					<p class="name-tel">
@@ -64,6 +78,10 @@
 				</div>
 			</div>
 		</van-radio-group>
+		<div v-else class="address-none">
+			<img src="asset/images/icon/address.png" style="width:2.5rem">
+			<p>你还没有添加收货地址呢</p>
+		</div>
 		<div class="bottom" @click="toAddressEdit()">
 			新增收货地址
 		</div>

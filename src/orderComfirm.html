@@ -86,7 +86,7 @@
 		<div v-cloak>
 			<!--未添加收货地址-->
 			<div class="no-add" v-show="!hasDefaultAddress" style="display: none">
-				<div class="no-btn" @click="toManageAddress">
+				<div class="no-btn" @click="toManageAddress(0)">
 					新建收货地址
 				</div>
 			</div>
@@ -98,7 +98,7 @@
 					<span>{{order.name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
 					<div class="right-top" v-show="!isPay">
-						<van-icon name="edit" @click="toManageAddress()"></van-icon>
+						<van-icon name="edit" @click="toManageAddress(1)"></van-icon>
 					</div>
 				</div>
 				<div class="address">
