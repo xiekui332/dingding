@@ -94,11 +94,11 @@
 
 			<!-- 确认地址 -->
 			<div class="dd_sure" v-if="hasDefaultAddress">
-				<div class="contain-box">
+				<div class="contain-box" @click="toManageAddress(1)">
 					<span>{{order.name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
 					<div class="right-top" v-show="!isPay">
-						<van-icon name="edit" @click="toManageAddress(1)"></van-icon>
+						<van-icon name="edit"></van-icon>
 					</div>
 				</div>
 				<div class="address">

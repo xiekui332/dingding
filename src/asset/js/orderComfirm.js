@@ -134,7 +134,8 @@ var vm = new Vue({
 					order_no: this.orderNo,
 					product_id: this.order.productId,
 					product_price_id: this.order.productPriceId,
-					count: this.order.count
+					count: this.order.count,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -151,6 +152,7 @@ var vm = new Vue({
 							location.href = result.data.html
 						} else if (result.data.flag == 0) {
 							// 免密
+							this.orderId = result.data.order_id
 							this.SecretFree()
 						}
 					} else {
@@ -169,7 +171,8 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: this.orderNo
+					order_no: this.orderNo,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -208,7 +211,7 @@ var vm = new Vue({
 				this.popTitle = '客服电话'
 				this.setStyle = 'textAlign:center;fontSize:.38rem;lineHeight:2'
 				this.popContent = [
-					'0571-85180735'
+					'<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
 				]
 			}
 			this.showPop = true
@@ -359,11 +362,13 @@ var vm = new Vue({
 		this.user = getSession()
 		this.getAddress()
 		let product = getUrlParam('product')
-		if (product) {
+		if (product) {//productId-productPriceId-count-P-orderNo-orderId
 			let arr = product.split('-')
 			this.order.productId = arr[0]
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
+
+			this.orderId = arr[5]
 			if (arr[3]) {
 				this.isPay = arr[3]
 				this.orderNo = arr[4]

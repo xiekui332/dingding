@@ -96,6 +96,14 @@ var vm = new Vue({
 						vm.goodsInfo.count = data.data.quantity;
 						vm.orderNo = data.data.sn;
 						vm.createTime = data.data.createTime;
+
+						if (window.localStorage.getItem('tzgPay') == 'true') {
+							this.hasSubmit = 1
+							setTimeout(()=>{
+								this.pay()
+							}, 1000)
+							window.localStorage.setItem('tzgPay', false);
+						}
 					}
 				},
 				error: (e) => {
@@ -129,7 +137,7 @@ var vm = new Vue({
 				this.popTitle = '客服电话'
 				this.setStyle = 'textAlign:center;fontSize:.38rem;lineHeight:2'
 				this.popContent = [
-					'0571-85180735'
+					'<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
 				]
 			}
 			this.showPop = true
@@ -151,6 +159,7 @@ var vm = new Vue({
 				dataType: "json",
 				data: {
 					order_no: this.orderNo,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -191,7 +200,8 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: this.orderNo
+					order_no: this.orderNo,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -214,13 +224,7 @@ var vm = new Vue({
 	mounted() {
 		this.orderId = getUrlParam('orderId')
 		this.getOrderDetail()
-		if (window.localStorage.getItem('tzgPay') == 'true') {
-			this.hasSubmit = 1
-			setTimeout(()=>{
-				this.pay()
-			}, 1000)
-			window.localStorage.setItem('tzgPay', false);
-		}
+		
 
 		// dd.ready(function(){
 		// 	dd.biz.navigation.setLeft({

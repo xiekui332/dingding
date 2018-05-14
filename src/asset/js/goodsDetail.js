@@ -36,9 +36,9 @@ var vm = new Vue({
         count: 1,
         showPop: false,
         popTitle: '客服电话',
-        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
+        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2;',
         popContent: [
-            '0571-85180735'
+            '<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
         ],
     },
     computed: {
@@ -122,7 +122,9 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     // 7010 未提交授权信息；7014 授权待审核；7015 授权审核通过；7016 授权审核拒绝
-                    if (res.code == 7014) {
+                    if (res.code == 7016) {
+                        
+                    } else if (res.code == 7014) {
                         ddToast('授权信息审核中~')
                         return
                     } else {

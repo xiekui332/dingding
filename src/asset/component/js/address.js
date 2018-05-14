@@ -152,11 +152,13 @@ Vue.component('popupAddress',{
                             let areasObj = cityObj.child;
                             if (areasObj !== undefined) {
                                 for (let k = 0; k < areasObj.length; k++) {
-                                    this.areaList.push({ 
-                                        name: areasObj[k].name, 
-                                        id: areasObj[k].id 
-                                    });
-                                    list.push(areasObj[k].name);
+                                    if (areasObj[k].name != '市辖区') {
+                                        this.areaList.push({ 
+                                            name: areasObj[k].name, 
+                                            id: areasObj[k].id 
+                                        });
+                                        list.push(areasObj[k].name);
+                                    }
                                     if (this.resultList[2] && this.resultList[2] == areasObj[k].name) {
                                         this.addressSlots[2].defaultIndex = k;
                                     }
