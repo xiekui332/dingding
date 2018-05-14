@@ -64,20 +64,7 @@ var vm = new Vue({
                     if (result.code == 200) {
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            dd.ready(() => {
-                                alert(1)
-                                dd.biz.util.open({
-                                    name:'orderComfirm.html',//页面名称
-                                    params:{
-                                        product: getUrlParam('product')
-                                    },//传参
-                                    onSuccess : function() {
-                                        /**/
-                                    },
-                                    onFail : function(err) {}
-                                });
-                            })
-                            // location.href = 'orderComfirm.html?product=' + getUrlParam('product')
+                            location.href = 'orderComfirm.html?product=' + getUrlParam('product')
                         }
                     } else {
                         ddToast(result.message)
