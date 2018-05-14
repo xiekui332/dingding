@@ -55,7 +55,7 @@
 					</span>
 					<textarea rows="2" placeholder="街道门牌信息" v-model="address.detail" @input="getDetailAddress" @blur="looseBlur"></textarea>
 					<p style="clear: both"></p>
-					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh">
+					<div v-show="addressShow" style="background-color:#f2f2f2;overflow-y: scroll;-webkit-overflow-scrolling: touch;height:30vh;line-height:.5rem">
 						<div class="result_item" v-for="item in detailAddresslist">
 							<div class="test" style="padding:10px 20px" @click="chooseDetailAddress(item)">
 								<div style="font-size:15px">{{item.name}}</div>
