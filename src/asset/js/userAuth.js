@@ -148,7 +148,7 @@ var vm = new Vue({
                         this.userAuth = result.data
                         // 审核拒绝可再编辑
                         if (this.userAuth.status == this.authStatus.fail) {
-                            this.canEdit = true
+                            this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_fail.png'
                             this.authHead.title = '审核拒绝'
                             this.authHead.describe[0] = this.userAuth.rejectReason
@@ -261,6 +261,13 @@ var vm = new Vue({
         },
         doBlur() {
             this.isFocus = false
+        },
+        failEdit() {
+            if (this.canEdit) {
+                this.updateUserAuth()
+            } else {
+                this.canEdit = true
+            }
         }
     },
     created() {
@@ -289,17 +296,18 @@ var vm = new Vue({
         // }) 
 
 
-        var winHeight = $(window).height();   //获取当前页面高度
-        $(window).resize(function(){
-        var thisHeight = $(this).height();
-            if(winHeight - thisHeight >50){
-                //当软键盘弹出，在这里面操作
-                this.isFocus = true
-            }else{
-                //当软键盘收起，在此处操作
-                this.isFocus = false
-            }
-        });
+        // var winHeight = $(window).height();   //获取当前页面高度
+        // $(window).resize(()=>{
+            // alert($(this).height())
+            // var thisHeight = $(this).height();
+            // if(winHeight - thisHeight >50){
+            //     //当软键盘弹出，在这里面操作
+            //     this.isFocus = true
+            // }else{
+            //     //当软键盘收起，在此处操作
+            //     this.isFocus = false
+            // }
+        // });
     },
 })
 
