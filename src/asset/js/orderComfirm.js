@@ -218,7 +218,6 @@ var vm = new Vue({
 			this.showPop = true
 		},
 		getAddress() {
-			// location.reload()
 			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
