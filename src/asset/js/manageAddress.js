@@ -64,48 +64,20 @@ var vm = new Vue({
                     if (result.code == 200) {
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            let href = getHostUrl('/orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date()))
-                            alert(href)
-                            dd.ready(()=>{
+                            dd.ready(() => {
                                 alert(1)
-                                dd.biz.util.openLink({
-                                    url: href,//要打开链接的地址
-                                    onSuccess : function(result) {
+                                dd.biz.util.open({
+                                    name:'orderComfirm.html',//页面名称
+                                    params:{
+                                        product: getUrlParam('product')
+                                    },//传参
+                                    onSuccess : function() {
+                                        /**/
                                     },
-                                    onFail : function(err) {
-                                        alert(JSON.stringify(err))
-                                    }
-                                })
+                                    onFail : function(err) {}
+                                });
                             })
-
-
-                            // let url = getApiUrl('/ding-isv-access/get_js_config');
-                            // $.ajax({
-                            //     url: url,
-                            //     type: "GET",
-                            //     dataType: "json",
-                            //     data: {
-                            //     url: window.location.href,
-                            //     corpId: this.user.corpId
-                            //     },
-                            //     success: res => {
-                            //         ddConfig(res)
-
-                            //         dd.ready(()=>{
-                            //             dd.biz.util.openLink({
-                            //                 url: href,//要打开链接的地址
-                            //                 onSuccess : function(result) {
-                            //                 },
-                            //                 onFail : function(err) {}
-                            //             })
-                            //         })
-                            //     },
-                            //     error: e => {
-                            //         ddToast('网络错误')
-                            //     }
-                            // })
-                            
-                            // location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
+                            // location.href = 'orderComfirm.html?product=' + getUrlParam('product')
                         }
                     } else {
                         ddToast(result.message)
