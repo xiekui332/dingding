@@ -24,7 +24,8 @@ var vm = new Vue({
 			phone: '',
 			is_once_pay: 0,
 			order_remark: '',
-			invitationCode: ''
+			invitationCode: '',
+			allAddress: ''
 		},
 		goodsInfo: {
 			productName: '',
@@ -241,7 +242,7 @@ var vm = new Vue({
 							this.order.phone = result.data.addressEntity.mobile
 
 							this.order.allAddress = result.data.addressVo.address
-							
+
 							this.order.address = result.data.addressEntity.detail
 							this.order.provinceId = result.data.addressEntity.provinceId
 							this.order.cityId = result.data.addressEntity.cityId
