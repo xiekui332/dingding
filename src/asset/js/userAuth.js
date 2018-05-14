@@ -56,10 +56,10 @@ var vm = new Vue({
     methods: {
         onFileChange(e, index) {
             const imgFile = e.target.filter
-            if (imgFile.length > 1) {
-                ddToast('只能上传一张')
-                return
-            }
+            // if (imgFile.length > 1) {
+            //     ddToast('只能上传一张')
+            //     return
+            // }
             if(!/\.(gif|jpg|jpeg|png)$/i.test(imgFile[0].name))  
             {  
                 ddToast("图片类型必须是.gif,jpeg,jpg,png中的一种")  
