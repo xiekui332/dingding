@@ -64,15 +64,35 @@ var vm = new Vue({
                     if (result.code == 200) {
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            let url = getHostUrl('/orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date()))
-                            dd.ready(()=>{
-                                dd.biz.util.openLink({
-                                    url: url,//要打开链接的地址
-                                    onSuccess : function(result) {
-                                    },
-                                    onFail : function(err) {}
-                                })
+                            let href = getHostUrl('/orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date()))
+
+
+                            let url = getApiUrl('/ding-isv-access/get_js_config');
+                            $.ajax({
+                                url: url,
+                                type: "GET",
+                                dataType: "json",
+                                data: {
+                                url: window.location.href,
+                                corpId: this.user.corpId
+                                },
+                                success: res => {
+                                    ddConfig(res)
+
+                                    dd.ready(()=>{
+                                        dd.biz.util.openLink({
+                                            url: href,//要打开链接的地址
+                                            onSuccess : function(result) {
+                                            },
+                                            onFail : function(err) {}
+                                        })
+                                    })
+                                },
+                                error: e => {
+                                    ddToast('网络错误')
+                                }
                             })
+                            
                             // location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
                         }
                     } else {
