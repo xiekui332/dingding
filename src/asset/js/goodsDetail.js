@@ -36,9 +36,9 @@ var vm = new Vue({
         count: 1,
         showPop: false,
         popTitle: '客服电话',
-        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
+        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2;',
         popContent: [
-            '0571-85180735'
+            '<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
         ],
     },
     computed: {
