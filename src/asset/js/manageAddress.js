@@ -62,12 +62,13 @@ var vm = new Vue({
                 crossDomain: true,
                 success: result => {
                     if (result.code == 200) {
-                        // item.isDefault = 1
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
+                            let href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
+                            dd.biz.util.openLink({url: href})
+
+                            // location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
                         }
-                        // this.getAddressList()
                     } else {
                         ddToast(result.message)
                     }
