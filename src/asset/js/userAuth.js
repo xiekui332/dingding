@@ -45,6 +45,7 @@ var vm = new Vue({
             '0571-85180735'
         ],
         urls:'asset/images/icon/example_index.png',
+        isFocus: false
     },
     computed: {
     },
@@ -254,6 +255,12 @@ var vm = new Vue({
             this.urls = url;
             this.showImgPreview = true;
            
+        },
+        doFocus() {
+            this.isFocus = true
+        },
+        doBlur() {
+            this.isFocus = false
         }
     },
     created() {
