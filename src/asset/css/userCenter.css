@@ -206,22 +206,24 @@
      border-top:0;
   }
   .mint-swipe-indicator {
-     border-bottom:1px solid #999;
      width: 0.3rem;
-     height: 0.015rem;
+     height: 0.02rem;
      display: inline-block;
      margin: 0 0.03rem;
      opacity: 1;
      background:#fff;
+     border: none;
+     border-bottom:1px solid #999;
      /* 修改5 */
      margin-bottom: 0.07rem;
-    
+    border-radius: 0;
 
      
   }
   .mint-swipe-indicator.is-active{
     border-bottom:1px solid #F46B4E;
     opacity: 1;
+    border-radius: none!important;
   }
   .mint-swipe-indicators {
     width: .75rem;
