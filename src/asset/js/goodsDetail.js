@@ -168,17 +168,18 @@ var vm = new Vue({
         //     e.preventDefault();
         //     location.href = 'orderList.html'
         // });
-        if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
-            $('.v-modal').on('touchmove',function(e){
-                e.stopPropagation();
-                e.preventDefault();
-            })
 
-            $('.mint-popup-bottom').on('touchmove',function(e){
-                e.stopPropagation();
-                e.preventDefault();
-            })
-        }
+        // if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
+        //     $('.v-modal').on('touchmove',function(e){
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //     })
+
+        //     $('.mint-popup-bottom').on('touchmove',function(e){
+        //         e.stopPropagation();
+        //         e.preventDefault();
+        //     })
+        // }
         
     },
 })
