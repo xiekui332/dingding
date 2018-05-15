@@ -135,7 +135,7 @@ function ddShare(url) {
                 url: url,
                 title: '淘租公信享生活',
                 content: '淘租公钉钉微应用',
-                image: 'asset/images/icon/logo.png',
+                image: 'http://img.taozugong.com/product/2018-05-09/cbbd1ea2fJceMj',
                 onSuccess : function() {
                 },
                 onFail : function(err) {}
