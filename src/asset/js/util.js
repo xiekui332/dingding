@@ -123,6 +123,29 @@ function ddConfig(config) {
     });
 }
 
+function ddShare(url) {
+    dd.ready(() => {
+        dd.biz.navigation.setRight({
+            show: true,
+            control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+            text: '更多',//控制显示文本，空字符串表示显示默认文本
+            onSuccess :(result) => {
+              dd.biz.util.share({
+                type: 0,//分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
+                url: url,
+                title: '淘租公信享生活',
+                content: '淘租公钉钉微应用',
+                image: 'asset/images/icon/logo.png',
+                onSuccess : function() {
+                },
+                onFail : function(err) {}
+              })
+            },
+            onFail:(err) => {}
+        });
+    }) 
+}
+
 //{corpId:1,  userId:1}
 function setSession(sessionObj) {
     window.localStorage.clear()
