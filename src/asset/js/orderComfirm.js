@@ -91,6 +91,7 @@ var vm = new Vue({
 							// 支付
 							this.pay()
 						} else if (result.data.authCode == 7012) {  //芝麻分失效 重新芝麻授权
+							alert(2)
 							this.zhimaAuth(result.data.IdCard, result.data.username)
 						}
 					} else {
@@ -362,6 +363,7 @@ var vm = new Vue({
 			this.getTotalAmount()
 		},
 		zhimaAuth(idCard, username) {
+			alert(idCard)
             let url = getPhpApiUrl('/nail/zhimaauth.html')
             $.ajax({
                 url: url,
