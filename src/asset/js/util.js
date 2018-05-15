@@ -135,7 +135,7 @@ function ddShare(url) {
                 url: url,
                 title: '淘租公信享生活',
                 content: '生活不将就，乐享每一天。',
-                image: '../images/icon/logo.png',
+                image: 'https://lease.taozugong.com/asset/img/us/logo.png',
                 onSuccess : function() {
                 },
                 onFail : function(err) {}
