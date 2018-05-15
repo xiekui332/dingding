@@ -224,6 +224,7 @@ var vm = new Vue({
 	mounted() {
 		this.orderId = getUrlParam('orderId')
 		this.getOrderDetail()
+		ddShare(window.location.href)
 		
 
 		// dd.ready(function(){

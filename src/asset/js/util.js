@@ -134,8 +134,8 @@ function ddShare(url) {
                 type: 0,//分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
                 url: url,
                 title: '淘租公信享生活',
-                content: '淘租公钉钉微应用',
-                image: 'http://img.taozugong.com/product/2018-05-09/cbbd1ea2fJceMj',
+                content: '生活不将就，乐享每一天。',
+                image: '../images/icon/logo.png',
                 onSuccess : function() {
                 },
                 onFail : function(err) {}

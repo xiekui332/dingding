@@ -389,7 +389,8 @@ var vm = new Vue({
 		
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
-
+		ddShare(window.location.href)
+		
 		// dd.ready(() => {
         //     dd.biz.navigation.setLeft({
         //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false

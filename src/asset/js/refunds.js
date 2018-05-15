@@ -78,7 +78,8 @@ var vm = new Vue({
     mounted() {
       this.orderNo = getUrlParam('orderNo')
       this.init();
-
+      ddShare(window.location.href)
+      
       // dd.ready(function(){
       //   dd.biz.navigation.setLeft({
       //       control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
