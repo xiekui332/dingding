@@ -90,6 +90,8 @@ var vm = new Vue({
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
 							this.pay()
+						} else if (result.data.authCode == 7012) {  //芝麻分失效 重新芝麻授权
+							this.zhimaAuth(result.data.IdCard, result.data.username)
 						}
 					} else {
 						ddToast(result.message)
@@ -358,6 +360,35 @@ var vm = new Vue({
             }
 			this.goodsInfo.count += count;
 			this.getTotalAmount()
+		},
+		zhimaAuth(idCard, username) {
+            let url = getPhpApiUrl('/nail/zhimaauth.html')
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: {
+                    name: username,
+                    card: idcard,
+                    product: getUrlParam('product'),
+                    nail_crop_id: this.user.corpId,
+                    userid: this.user.userId,
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+                        location.href = result.data.url
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+                }
+            });
         },
 	},
 	mounted() {
