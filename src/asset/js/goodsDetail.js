@@ -152,6 +152,8 @@ var vm = new Vue({
 		this.user = getSession()
         this.productId = getUrlParam('productId')
         this.getGoodsDetail()
+        ddShare(window.location.href)
+        
 
         // dd.ready(() => {
         //     dd.biz.navigation.setLeft({

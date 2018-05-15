@@ -289,6 +289,8 @@ var vm = new Vue({
         this.productId = getUrlParam('productId')
         this.orderNo = getUrlParam('orderNo')
         this.getUserAuth()
+        ddShare(window.location.href)
+        
 
         // dd.ready(function(){
         //     dd.biz.navigation.setLeft({
