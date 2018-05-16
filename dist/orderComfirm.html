@@ -94,16 +94,16 @@
 
 			<!-- 确认地址 -->
 			<div class="dd_sure" v-if="hasDefaultAddress">
-				<div class="contain-box">
+				<div class="contain-box" @click="toManageAddress(1)">
 					<span>{{order.name}}</span>
 					<span style="margin-left:.72rem">{{order.mobile}}</span>
 					<div class="right-top" v-show="!isPay">
-						<van-icon name="edit" @click="toManageAddress(1)"></van-icon>
+						<van-icon name="edit"></van-icon>
 					</div>
 				</div>
 				<div class="address">
 					<img src="asset/images/icon/map.png" alt="" class="map">
-					<p>{{order.address}}</p>
+					<p>{{order.allAddress}}</p>
 					<div class="p-box" @click="openModal('signTip')">
 						<p class="small orderDetail-small">签收须知：收货当天你需要1、提供身份证复印件(正反面)</p>
 						<img src="asset/images/icon/more.png" alt="" class="small-jump">
@@ -234,10 +234,10 @@
 <!-- 引入组件库 -->
 <script src="https://unpkg.com/vant/lib/vant.min.js"></script>
 
-<script src="asset/js/util-d5769cbac8.js"></script>
+<script src="asset/js/util-56b6c818db.js"></script>
 <script src="static/js/date.js"></script>
 <script src="asset/component/js/modal.js"></script>
 <script src="asset/component/js/goodInfo.js"></script>
-<script src="asset/js/orderComfirm-94a8708da2.js"></script>
+<script src="asset/js/orderComfirm-08fc0420ac.js"></script>
 
 </html>

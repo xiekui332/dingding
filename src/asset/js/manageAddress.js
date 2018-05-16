@@ -45,7 +45,7 @@ var vm = new Vue({
 				}
 			})
         },
-        checkAddress(addressId) {
+        checkAddress(addressId, item) {
             let url = getApiUrl('/shop-test/api/address/set_default_address/')
 			$.ajax({
                 url: url,
@@ -64,7 +64,7 @@ var vm = new Vue({
                     if (result.code == 200) {
                         this.activeAddressId = addressId
                         if (getUrlParam('product') && getUrlParam('product')!='null') {
-                            location.href = 'orderComfirm.html?product=' + getUrlParam('product') + '&time=' + (+new Date())
+                            location.href = 'orderComfirm.html?product=' + getUrlParam('product')
                         }
                     } else {
                         ddToast(result.message)
@@ -127,6 +127,8 @@ var vm = new Vue({
         } else {
             this.backUrl = window.sessionStorage.getItem('tzdDingDingOrderComfirmUrl')
         }
+        ddShare(window.location.href)
+        
         // dd.ready(() => {
         //     dd.biz.navigation.setLeft({
         //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false

@@ -36,9 +36,9 @@ var vm = new Vue({
         count: 1,
         showPop: false,
         popTitle: '客服电话',
-        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
+        setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2;',
         popContent: [
-            '0571-85180735'
+            '<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
         ],
     },
     computed: {
@@ -122,7 +122,16 @@ var vm = new Vue({
                 crossDomain: true,
                 success: res => {
                     // 7010 未提交授权信息；7014 授权待审核；7015 授权审核通过；7016 授权审核拒绝
-                    if (res.code == 7014) {
+                    if (res.code == 7016) {
+                        this.popupVisible = false
+                        this.$dialog.alert({
+                            message: '授权信息，审核拒绝中请到“个人中心”重新提交企业授权信息',
+                            confirmButtonText: '我知道了'
+                        }).then(() => {
+                        });
+                    } else if (res.code == 7014) {
+                        this.popupVisible = false
+                        
                         ddToast('授权信息审核中~')
                         return
                     } else {
@@ -143,6 +152,8 @@ var vm = new Vue({
 		this.user = getSession()
         this.productId = getUrlParam('productId')
         this.getGoodsDetail()
+        ddShare(window.location.href)
+        
 
         // dd.ready(() => {
         //     dd.biz.navigation.setLeft({
@@ -159,6 +170,7 @@ var vm = new Vue({
         //     e.preventDefault();
         //     location.href = 'orderList.html'
         // });
+
         if(/Android|webOS|iPhone|iPod|BlackBerry/i.test(navigator.userAgent)){
             $('.v-modal').on('touchmove',function(e){
                 e.stopPropagation();
@@ -170,6 +182,5 @@ var vm = new Vue({
                 e.preventDefault();
             })
         }
-        
     },
 })

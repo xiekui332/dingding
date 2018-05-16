@@ -76,7 +76,7 @@ function getUrlParam(name) {
 
 //租赁正式域名
 function getHostUrl(url) {
-    const tzg_lease_domain = "https://lease.taozugong.com"; 
+    const tzg_lease_domain = "http://ding.taozugong.com"; 
     return tzg_lease_domain + url
 }
 //接口api地址
@@ -112,14 +112,38 @@ function ddToast(message) {
 }
 
 function ddConfig(config) {
+    
     dd.config({
         agentId: config.agentId, // 必填，微应用ID
         corpId: config.corpId,//必填，企业ID
         timeStamp: config.timeStamp, // 必填，生成签名的时间戳
         nonceStr: config.nonce, // 必填，生成签名的随机串
         signature: config.signature, // 必填，签名
-        jsApiList: ['runtime.permission','runtime.info', 'ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
+        jsApiList: ['ui.pullToRefresh.enable','ui.pullToRefresh.stop','biz.util.openLink','biz.navigation.setLeft','biz.navigation.setTitle','biz.navigation.setRight'] // 必填，需要使用的jsapi列表
     });
+}
+
+function ddShare(url) {
+    dd.ready(() => {
+        dd.biz.navigation.setRight({
+            show: true,
+            control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
+            text: '更多',//控制显示文本，空字符串表示显示默认文本
+            onSuccess :(result) => {
+              dd.biz.util.share({
+                type: 0,//分享类型，0:全部组件 默认； 1:只能分享到钉钉；2:不能分享，只有刷新按钮
+                url: url,
+                title: '淘租公信享生活',
+                content: '生活不将就，乐享每一天。',
+                image: 'https://lease.taozugong.com/asset/img/us/logo.png',
+                onSuccess : function() {
+                },
+                onFail : function(err) {}
+              })
+            },
+            onFail:(err) => {}
+        });
+    }) 
 }
 
 //{corpId:1,  userId:1}

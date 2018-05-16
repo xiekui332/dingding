@@ -69,10 +69,10 @@
 					</p>
 					<p class="detail-address">{{item.detail}}</p>
 					<div style="display: flex;justify-content: space-between;margin-top:.2rem">
-						<van-radio :name="item.addressId" @click="checkAddress(item.addressId)">{{item.isDefault ? '默认地址':'默认地址'}}</van-radio>
+						<van-radio :name="item.addressId" @click="checkAddress(item.addressId, item)">{{activeAddressId == item.addressId ? '默认地址':'设为默认地址'}}</van-radio>
 						<span class="icon-an">
 							<van-icon name="edit" @click="toAddressEdit(item.addressId)"></van-icon>
-							<van-icon name="delete" @click="deleteAddress(item.addressId)"></van-icon>
+							<van-icon name="delete" @click="deleteAddress(item.addressId)" v-show="activeAddressId != item.addressId"></van-icon>
 						</span>
 					</div>
 				</div>
@@ -87,8 +87,8 @@
 		</div>
 	</div>
 </body>
+<script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/zepto.min.js"></script>
-<script src="http://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
 <script src="static/js/vue.min.js"></script>
 <script src="asset/js/util.js"></script>
 <!-- 引入组件库 -->

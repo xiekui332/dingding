@@ -42,7 +42,7 @@ var vm = new Vue({
         popTitle: '客服电话',
         setStyle: 'textAlign:center;fontSize:.38rem;lineHeight:2',
         popContent: [
-            '0571-85180735'
+            '<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
         ],
         urls:'asset/images/icon/example_index.png',
         isFocus: false
@@ -55,6 +55,16 @@ var vm = new Vue({
     },
     methods: {
         onFileChange(e, index) {
+            const imgFile = e.target.files
+            if (imgFile.length > 1) {
+                ddToast('只能上传一张')
+                return
+            }
+            if(!/\.(gif|jpg|jpeg|png)$/i.test(imgFile[0].name))  
+            {
+                ddToast("图片类型必须是.gif,jpeg,jpg,png中的一种")  
+                return;  
+            }  
             let url =  getApiUrl('/shop-test/img/upload.do') 
             uploadImg(e, url).then((imgUrl)=>{
                 if (index === 0) {
@@ -148,7 +158,7 @@ var vm = new Vue({
                         this.userAuth = result.data
                         // 审核拒绝可再编辑
                         if (this.userAuth.status == this.authStatus.fail) {
-                            this.canEdit = true
+                            this.canEdit = false
                             this.authHead.icon = 'asset/images/icon/auth_fail.png'
                             this.authHead.title = '审核拒绝'
                             this.authHead.describe[0] = this.userAuth.rejectReason
@@ -261,6 +271,13 @@ var vm = new Vue({
         },
         doBlur() {
             this.isFocus = false
+        },
+        failEdit() {
+            if (this.canEdit) {
+                this.updateUserAuth()
+            } else {
+                this.canEdit = true
+            }
         }
     },
     created() {
@@ -272,6 +289,8 @@ var vm = new Vue({
         this.productId = getUrlParam('productId')
         this.orderNo = getUrlParam('orderNo')
         this.getUserAuth()
+        ddShare(window.location.href)
+        
 
         // dd.ready(function(){
         //     dd.biz.navigation.setLeft({
@@ -289,17 +308,18 @@ var vm = new Vue({
         // }) 
 
 
-        var winHeight = $(window).height();   //获取当前页面高度
-        $(window).resize(function(){
-        var thisHeight = $(this).height();
-            if(winHeight - thisHeight >50){
-                //当软键盘弹出，在这里面操作
-                this.isFocus = true
-            }else{
-                //当软键盘收起，在此处操作
-                this.isFocus = false
-            }
-        });
+        // var winHeight = $(window).height();   //获取当前页面高度
+        // $(window).resize(()=>{
+            // alert($(this).height())
+            // var thisHeight = $(this).height();
+            // if(winHeight - thisHeight >50){
+            //     //当软键盘弹出，在这里面操作
+            //     this.isFocus = true
+            // }else{
+            //     //当软键盘收起，在此处操作
+            //     this.isFocus = false
+            // }
+        // });
     },
 })
 

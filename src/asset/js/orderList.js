@@ -251,12 +251,9 @@ var vm = new Vue({
     mounted() {
         this.user =  getSession()
         this.tabId = getUrlParam('status')
-        // if (status) {
-        //     this.chooseCategory(status, -1)
-        // }
-
         this.chooseCategory(this.tabId || -1, -1)
-
+        ddShare(window.location.href)
+        
         // dd.ready(function(){
         //     dd.biz.navigation.setLeft({
         //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false

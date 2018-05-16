@@ -36,7 +36,7 @@ Vue.component('popModal',{
                     <div class="pop_title largeFont">{{poptitle}}</div>
                     <div class="pop_content" :style="setstyle"> 
                         <div v-for="item in popcontent">
-                            <p>{{item}}</p>
+                            <p v-html="item"></p>
                         </div>
                     </div>
                     <div class="close" @click="closeModal">

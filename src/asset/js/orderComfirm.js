@@ -24,7 +24,8 @@ var vm = new Vue({
 			phone: '',
 			is_once_pay: 0,
 			order_remark: '',
-			invitationCode: ''
+			invitationCode: '',
+			allAddress: ''
 		},
 		goodsInfo: {
 			productName: '',
@@ -89,6 +90,8 @@ var vm = new Vue({
 						} else if (result.data.authCode == 7015) {  //审核通过
 							// 支付
 							this.pay()
+						} else if (result.data.authCode == 7012) {  //芝麻分失效 重新芝麻授权
+							this.zhimaAuth(result.data.IdCard, result.data.username)
 						}
 					} else {
 						ddToast(result.message)
@@ -134,7 +137,8 @@ var vm = new Vue({
 					order_no: this.orderNo,
 					product_id: this.order.productId,
 					product_price_id: this.order.productPriceId,
-					count: this.order.count
+					count: this.order.count,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -151,6 +155,7 @@ var vm = new Vue({
 							location.href = result.data.html
 						} else if (result.data.flag == 0) {
 							// 免密
+							this.orderId = result.data.order_id
 							this.SecretFree()
 						}
 					} else {
@@ -169,7 +174,8 @@ var vm = new Vue({
 				type: "POST",
 				dataType: "json",
 				data: {
-					order_no: this.orderNo
+					order_no: this.orderNo,
+					order_id: this.orderId
 				},
 				xhrFields: {
 					withCredentials: true
@@ -208,13 +214,12 @@ var vm = new Vue({
 				this.popTitle = '客服电话'
 				this.setStyle = 'textAlign:center;fontSize:.38rem;lineHeight:2'
 				this.popContent = [
-					'0571-85180735'
+					'<a href="tel:0571-8518073" style="color:#333">0571-85180735</a>'
 				]
 			}
 			this.showPop = true
 		},
 		getAddress() {
-			// location.reload()
 			let url = getApiUrl('/shop-test/api/address/get_default_address/')
 			$.ajax({
 				url: url,
@@ -236,6 +241,8 @@ var vm = new Vue({
 							this.hasDefaultAddress = true
 							this.order.name = result.data.addressEntity.username
 							this.order.phone = result.data.addressEntity.mobile
+
+							this.order.allAddress = result.data.addressVo.address
 
 							this.order.address = result.data.addressEntity.detail
 							this.order.provinceId = result.data.addressEntity.provinceId
@@ -353,17 +360,48 @@ var vm = new Vue({
             }
 			this.goodsInfo.count += count;
 			this.getTotalAmount()
+		},
+		zhimaAuth(idCard, username) {
+            let url = getPhpApiUrl('/nail/zhimaauth.html')
+            $.ajax({
+                url: url,
+                type: "POST",
+                dataType: "json",
+                data: {
+                    name: username,
+                    card: idCard,
+                    product: getUrlParam('product'),
+                    nail_crop_id: this.user.corpId,
+                    userid: this.user.userId,
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                success: result => {
+                    if (result.code == 200) {
+                        location.href = result.data.url
+                    } else {
+                        ddToast(result.message)
+                    }
+                },
+                error: e => {
+                    ddToast('网络错误')
+                }
+            });
         },
 	},
 	mounted() {
 		this.user = getSession()
 		this.getAddress()
 		let product = getUrlParam('product')
-		if (product) {
+		if (product) {//productId-productPriceId-count-P-orderNo-orderId
 			let arr = product.split('-')
 			this.order.productId = arr[0]
 			this.order.productPriceId = arr[1]
 			this.order.count = arr[2]
+
+			this.orderId = arr[5]
 			if (arr[3]) {
 				this.isPay = arr[3]
 				this.orderNo = arr[4]
@@ -382,7 +420,8 @@ var vm = new Vue({
 		
 		this.getZmStatus()
 		window.sessionStorage.setItem('tzdDingDingOrderComfirmUrl', window.location.href);
-
+		ddShare(window.location.href)
+		
 		// dd.ready(() => {
         //     dd.biz.navigation.setLeft({
         //         control: true,//是否控制点击事件，true 控制，false 不控制， 默认false
