@@ -1,5 +1,5 @@
 /**
- * Created by guizhong on 15/8/4.
+ * Created by xiaocai on 15/8/4.
  */
 
 var gulp = require("gulp");
@@ -110,7 +110,7 @@ gulp.task('copyComponentCss',function() {
 });
 
 /*修改html文件的link标签和script标签引用的css和js文件名，并把html文件输出到指定的位置*/
-gulp.task('html',['less','js', 'img'], function() {          //- compress-css和compress-js任务执行完毕再执行rev-index任务
+gulp.task('html',['less','js'], function() {          //- compress-css和compress-js任务执行完毕再执行rev-index任务
     /*修改其它html文件的link标签和script标签引用的css和js文件名，并把html文件输出到指定的位置*/
     gulp.src(['dist/rev-css/*.json','dist/rev-js/*.json', './src/**/*.html'])     //- 读取两个rev-manifest.json文件以及需要进行css和js名替换的html文件
         .pipe(revCollector())                                                      //- 执行文件内css和js名的替换
@@ -149,11 +149,11 @@ gulp.task('build', ['html', 'copy']);
 
 gulp.task("default",function(){
 
-    bs(
-        {
-            server: "./dist"
-        }
-    );
+    // bs(
+    //     {
+    //         server: "./dist"
+    //     }
+    // );
     gulp.start('watch');
 });
 
