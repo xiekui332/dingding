@@ -4,7 +4,7 @@
   "description": "npm install --global gulp\r ### 第三步  gulp clean 清除dist下文件",
   "main": "gulpfile.js",
   "dependencies": {
-    "browser-sync": "^2.26.3",
+    "browser-sync": "^2.27.10",
     "webpack": "^1.15.0"
   },
   "devDependencies": {
