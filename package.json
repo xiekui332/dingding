@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "dependencies": {
     "browser-sync": "^2.26.3",
-    "webpack": "^1.15.0"
+    "webpack": "^5.74.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
