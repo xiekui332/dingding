@@ -5,10 +5,10 @@
   "main": "gulpfile.js",
   "dependencies": {
     "browser-sync": "^2.26.3",
-    "webpack": "^1.15.0"
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.2",
+    "@babel/core": "^7.20.7",
     "gulp": "^3.9.1",
     "gulp-babel": "^8.0.0",
     "gulp-clean": "^0.4.0",
